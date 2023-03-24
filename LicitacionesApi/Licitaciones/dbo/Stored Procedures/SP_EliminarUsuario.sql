@@ -1,0 +1,7 @@
+﻿CREATE PROCEDURE SP_EliminarUsuario
+@ID INT
+AS
+BEGIN
+    DELETE FROM Usuarios
+    WHERE Id = @ID
+END
