@@ -8,3 +8,53 @@
 
 <h2>Licitaciones</h2>
 
+<!--Tabla general datos de la licitacion -->
+
+<div>
+    <table id="tblLicitacion" class="display" syle="width:100%">
+        <thead>
+            <tr>
+                <th>ID Analista</th>
+                <th>Título</th>
+                <th>Lugar de Entrega</th>
+                <th>Cierre de Oferta</th>
+                <th>Monto Presupuestado</th>
+                <th>Estado</th>
+            </tr>
+
+        </thead>
+    </table>
+
+    <!--Formulario para mostrar datos de la lista-->
+    <form id="frmLicitacion">
+        <h2>Detalles de la Licitación</h2>
+
+        <div>
+            <lable for="txtIdLicitacion">ID Licitación:</lable>
+            <input id="txtIdLicitacion" type="number" class="form-control" ColumnDataName="IdLicitacion" />
+        </div>
+
+        <div>
+            <lable for="txtIdAnalista">ID Analista:</lable>
+            <input id="txtIdAnalista" type="text" class="form-control" ColumnDataName="IdAnalista" />
+        </div>
+
+        <div>
+            <lable for="txtIdproducto">ID Producto:</lable>
+            <input id="txtIdproducto" type="number" class="form-control" ColumnDataName="Idproducto" />
+        </div>
+
+        <div>
+            <lable for="txtCantidad">Cantidad:</lable>
+            <input id="txtCantidad" type="number" class="form-control" ColumnDataName="Cantidad" />
+        </div>
+
+        <div>
+            <lable for="txtDescripcion">Descripción:</lable>
+            <textarea rows="3" id="txtDescripcion" type="text" class="form-control" ColumnDataName="Descripcion"></textarea>
+        </div>
+
+
+    </form>
+
+</div>
