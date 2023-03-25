@@ -54,14 +54,13 @@ namespace AppLogic
                 }
                 var l = new Licitaciones
                 {
-                    Id= lic.Id,
+                    Id = lic.Id,
                     Titulo = lic.Titulo,
                     Descripcion = lic.Descripcion,
                     LugarEntrega = lic.LugarEntrega,
                     FechaCierreOfertas = lic.FechaCierreOfertas,
                     MontoPresupuestado = lic.MontoPresupuestado,
-                    CodigoQR = lic.CodigoQR,
-                    Estado=lic.Estado,
+                    Estado = lic.Estado,
                     IdUsrActualizacion = lic.IdUsrActualizacion
                 };
                 lcf.Update(l);

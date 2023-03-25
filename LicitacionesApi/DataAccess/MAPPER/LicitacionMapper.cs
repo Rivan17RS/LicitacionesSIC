@@ -76,7 +76,6 @@ namespace DataAccess.MAPPER
             oper.AddDateTimeParam("FechaCierreOfertas", l.FechaCierreOfertas);
             oper.AddDoubleParam("MontoPresupuestado", l.MontoPresupuestado);
             oper.AddVarcharParam("Estado", l.Estado);
-            oper.AddBinaryParam("CodigoQR", l.CodigoQR != null ? Encoding.UTF8.GetBytes(l.CodigoQR) : null);
             oper.AddIntegerParam("IdUsrActualizacion", l.IdUsrActualizacion);
 
             return oper;
