@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DetalleLicitacionesManager.cs" />
     <Compile Include="Hashing.cs" />
     <Compile Include="LicitacionesManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
