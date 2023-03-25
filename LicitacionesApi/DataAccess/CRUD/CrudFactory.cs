@@ -19,6 +19,7 @@ namespace DataAccess.CRUD
         public abstract T RetrieveByID<T>(int Id);
 
         public abstract T RetrieveByIdent<T>(String Id);
+        public abstract List<T> RetrieveByLicitacion<T>(int Id);
 
     }
 }

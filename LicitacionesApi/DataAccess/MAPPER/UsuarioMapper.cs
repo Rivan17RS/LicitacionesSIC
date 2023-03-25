@@ -47,11 +47,11 @@ namespace DataAccess.MAPPER
 
         public SqlOperation GetRetrieveAllStatement()
         {
-            var operation = new SqlOperation()
+            var oper = new SqlOperation()
             {
                 ProcedureName = "SP_ObtenerUsuarios"
             };
-            return operation;
+            return oper;
         }
 
         public SqlOperation GetRetrieveByIDStatement(string ID)
