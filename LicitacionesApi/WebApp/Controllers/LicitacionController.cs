@@ -34,7 +34,7 @@ namespace WebApp.Controllers
             return lm.ObtenerLicitacion(Id);
         }
         [HttpPost]
-        public string ActualizarLicitacion(int Id, string Titulo, string Descripcion, string LugarEntrega, DateTime FechaCierreOfertas, double MontoPresupuestado,string CodigoQr, string Estado, int IdUsrActualizacion)
+        public string ActualizarLicitacion(int Id, string Titulo, string Descripcion, string LugarEntrega, DateTime FechaCierreOfertas, double MontoPresupuestado,string Estado, int IdUsrActualizacion)
         {
             var lm = new LicitacionesManager();
             var l = new Licitaciones
@@ -45,7 +45,6 @@ namespace WebApp.Controllers
                 LugarEntrega= LugarEntrega,
                 FechaCierreOfertas=FechaCierreOfertas,
                 MontoPresupuestado= MontoPresupuestado,
-                CodigoQR   = CodigoQr,
                 Estado= Estado,
                 IdUsrActualizacion= IdUsrActualizacion
             };
