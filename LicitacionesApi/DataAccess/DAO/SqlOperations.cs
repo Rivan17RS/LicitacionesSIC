@@ -37,5 +37,10 @@ namespace DataAccess.DAO
             parameters.Add(new SqlParameter("@" + name, value));
         }
 
+        public void AddBinaryParam(string name, byte[] value)
+        {
+            parameters.Add(new SqlParameter("@" + name, value));
+        }
+
     }
 }

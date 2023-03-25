@@ -79,6 +79,10 @@
     <Build Include="dbo\Stored Procedures\SP_ActualizarUsuario.sql" />
     <Build Include="dbo\Stored Procedures\SP_ObtenerUsuarios.sql" />
     <Build Include="dbo\Stored Procedures\SP_CrearLicitacion.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ObtenerLicitaciones.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ObtenerLicitacion.sql" />
+    <Build Include="dbo\Stored Procedures\SP_EliminarLicitacion.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ActualizarLicitacion.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="querys Datos\Inicial.sql" />

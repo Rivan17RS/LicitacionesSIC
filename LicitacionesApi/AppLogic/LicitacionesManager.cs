@@ -35,5 +35,63 @@ namespace AppLogic
             lcf.Create(l);
             return "Realizado correctamente";
         }
+
+        public Licitaciones ObtenerLicitacion(int Id)
+        {
+            LicitacionCrudFactory lcf =new LicitacionCrudFactory();
+            return lcf.RetrieveByID<Licitaciones>(Id);
+        }
+
+        public string ActualizarLicitacion(Licitaciones lic)
+        {
+            LicitacionCrudFactory lcf = new LicitacionCrudFactory();
+            var v = new Validaciones();
+            Licitaciones licitacion = lcf.RetrieveByID<Licitaciones>(lic.Id);
+            if(licitacion != null ) { 
+                if (!v.ValidarNumero(lic.MontoPresupuestado))
+                {
+                    return "El monto presupuestado debe ser mallor que 0";
+                }
+                var l = new Licitaciones
+                {
+                    Id= lic.Id,
+                    Titulo = lic.Titulo,
+                    Descripcion = lic.Descripcion,
+                    LugarEntrega = lic.LugarEntrega,
+                    FechaCierreOfertas = lic.FechaCierreOfertas,
+                    MontoPresupuestado = lic.MontoPresupuestado,
+                    CodigoQR = lic.CodigoQR,
+                    Estado=lic.Estado,
+                    IdUsrActualizacion = lic.IdUsrActualizacion
+                };
+                lcf.Update(l);
+                return "Actualizado Correctamente";
+            }
+            else
+            {
+                return "La Licitacion no existe";
+            }
+            
+
+        }
+
+        public string EliminarLicitacion(int Id)
+        {
+            LicitacionCrudFactory lcf = new LicitacionCrudFactory();
+            Licitaciones licitacion = lcf.RetrieveByID<Licitaciones>(Id);
+
+            if (licitacion == null)
+            {
+                return "La Licitacion no existe";
+            }
+            lcf.Delete(licitacion);
+            return "Licitacion Eliminada";
+        }
+
+        public List<Licitaciones> ObtenerLicitaciones()
+        {
+            LicitacionCrudFactory lcf = new LicitacionCrudFactory();
+            return lcf.RetrieveAll<Licitaciones>();
+        }
     }
 }

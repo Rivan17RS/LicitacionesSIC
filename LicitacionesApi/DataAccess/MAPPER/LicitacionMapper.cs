@@ -2,6 +2,7 @@
 using DTO;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,17 +54,59 @@ namespace DataAccess.MAPPER
 
         public SqlOperation GetRetrieveByIDStatement(int ID)
         {
-            throw new NotImplementedException();
+            var oper = new SqlOperation()
+            {
+                ProcedureName = "SP_ObtenerLicitacion"
+            };
+            oper.AddIntegerParam("Id", ID); 
+            return oper;
         }
 
         public SqlOperation GetUpdateStatement(BaseEntity entyDTO)
         {
-            throw new NotImplementedException();
+            var oper = new SqlOperation()
+            {
+                ProcedureName = "SP_ActualizarLicitacion"
+            };
+            var l = (Licitaciones)entyDTO;
+            oper.AddIntegerParam("Id", l.Id);
+            oper.AddVarcharParam("Titulo", l.Titulo);
+            oper.AddVarcharParam("Descripcion", l.Descripcion);
+            oper.AddVarcharParam("LugarEntrega", l.LugarEntrega);
+            oper.AddDateTimeParam("FechaCierreOfertas", l.FechaCierreOfertas);
+            oper.AddDoubleParam("MontoPresupuestado", l.MontoPresupuestado);
+            oper.AddVarcharParam("Estado", l.Estado);
+            oper.AddBinaryParam("CodigoQR", l.CodigoQR != null ? Encoding.UTF8.GetBytes(l.CodigoQR) : null);
+            oper.AddIntegerParam("IdUsrActualizacion", l.IdUsrActualizacion);
+
+            return oper;
         }
 
         public BaseEntity BuildObject(Dictionary<string, object> row)
         {
-            throw new NotImplementedException();
+            var licitacion = new Licitaciones()
+            {
+                Id = Convert.ToInt32(row["Id"]),
+                IdAnalista = Convert.ToInt32(row["IdAnalista"]),
+                Titulo = Convert.ToString(row["Titulo"]),
+                Descripcion = Convert.ToString(row["Descripcion"]),
+                LugarEntrega = Convert.ToString(row["LugarEntrega"]),
+                FechaCierreOfertas = Convert.ToDateTime(row["FechaCierreOfertas"]),
+                MontoPresupuestado = Convert.ToDouble(row["MontoPresupuestado"]),
+                Estado = Convert.ToString(row["Estado"]),
+                CodigoQR = Convert.ToString(row["CodigoQR"]),
+
+
+
+                //necesario para todas las tablas
+                IdUsrCreacion = row["IdUsrCreacion"] != DBNull.Value ? Convert.ToInt32(row["IdUsrCreacion"]) : 0,
+                IdUsrActualizacion = row["IdUsrActualizacion"] != DBNull.Value ? Convert.ToInt32(row["IdUsrActualizacion"]) : 0,
+                IdUsrEliminacion = row["IdUsrEliminacion"] != DBNull.Value ? Convert.ToInt32(row["IdUsrEliminacion"]) : 0,
+                FechaCreacion = Convert.ToDateTime(row["FechaCreacion"]),
+                FechaActualizacion = row["FechaActualizacion"] != DBNull.Value ? Convert.ToDateTime(row["FechaActualizacion"]) : new DateTime(1753, 1, 1, 0, 0, 0),
+                FechaEliminacion = row["FechaEliminacion"] != DBNull.Value ? Convert.ToDateTime(row["FechaEliminacion"]) : new DateTime(1753, 1, 1, 0, 0, 0)
+            };
+            return licitacion;
         }
 
         public List<BaseEntity> BuildObjects(List<Dictionary<string, object>> lstRows)
