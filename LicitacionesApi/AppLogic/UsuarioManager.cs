@@ -59,10 +59,12 @@ namespace AppLogic
                 Otp = v.GenerarCodigoAlfanumerico(),
                 Rol = 3,
                 IdUsrCreacion = 1
+
+
             };
 
             ucf.Create(u);
-
+            SendEmail(u.CorreoElectronico, u.Otp);
             return "Realizado correctamente";
         }
 
@@ -242,6 +244,71 @@ namespace AppLogic
         {
             Usuario usuario = buscarUsuarioPorCorreo(correo);
             return Hashing.verifyPassword(contrasena, usuario.Contrasena);
+        }
+
+
+        public bool SendEmail(string Dest, string code)
+        {
+            var ed = new EmailDataManager();
+            var e = new Email()
+            {
+                Dest = Dest,
+                Subject = "Codigo de Seguridad",
+                IsHtml = true,
+                Body =@"
+                        <!DOCTYPE html>
+                        <html>
+                        <head>
+	                        <meta charset='UTF-8'>
+	                        <title>Código de seguridad</title>
+	                        <style>
+		                        body {
+			                        font-family: Arial, sans-serif;
+			                        background-color: #f5f5f5;
+			                        padding: 20px;
+		                        }
+
+		                        .container {
+			                        background-color: #fff;
+			                        border-radius: 10px;
+			                        padding: 20px;
+			                        max-width: 600px;
+			                        margin: 0 auto;
+		                        }
+
+		                        h1 {
+			                        color: #0056b3;
+			                        font-size: 24px;
+			                        margin-top: 0;
+		                        }
+
+		                        p {
+			                        font-size: 16px;
+			                        line-height: 1.5;
+			                        margin: 0;
+			                        padding-bottom: 20px;
+		                        }
+
+		                        .code {
+			                        font-size: 28px;
+			                        font-weight: bold;
+			                        color: #0056b3;
+			                        margin-bottom: 20px;
+		                        }
+	                        </style>
+                        </head>
+                        <body>
+	                        <div class='container'>
+		                        <h1>Código de seguridad</h1>
+		                        <p>Este es su código de seguridad para realizar la acción solicitada:</p>
+		                        <div class='code'>" + code + @"</div>
+		                        <p>No comparta este código con nadie.</p>
+	                        </div>
+                        </body>
+                        </html>
+                        "
+        };
+            return ed.Send(e);
         }
     }
 }

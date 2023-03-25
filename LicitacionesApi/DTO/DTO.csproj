@@ -44,6 +44,7 @@
     <Compile Include="Adjudicaciones.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="DetalleLicitaciones.cs" />
+    <Compile Include="Email.cs" />
     <Compile Include="Licitaciones.cs" />
     <Compile Include="Ofertas.cs" />
     <Compile Include="PagosUsuarios.cs" />
@@ -54,6 +55,11 @@
     <Compile Include="Subscripcion.cs" />
     <Compile Include="SubscripcionUsuario.cs" />
     <Compile Include="Usuario.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
