@@ -166,6 +166,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\View\ActionsControl.js" />
+    <Content Include="Scripts\View\CrearLicitacion.js" />
     <Content Include="Scripts\View\Licitaciones.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -183,6 +184,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\IniciarSesion\IniciodeSesion.cshtml" />
     <Content Include="Views\Licitacion\Licitaciones.cshtml" />
+    <Content Include="Views\Licitacion\CrearLicitaciones.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

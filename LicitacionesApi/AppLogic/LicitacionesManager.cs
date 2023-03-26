@@ -17,7 +17,7 @@ namespace AppLogic
 
             if (!v.ValidarNumero(lic.MontoPresupuestado))
             {
-                return "El monto presupuestado debe ser mallor que 0";
+                return "El monto presupuestado debe ser mayor a 0";
             }
 
 
@@ -50,7 +50,7 @@ namespace AppLogic
             if(licitacion != null ) { 
                 if (!v.ValidarNumero(lic.MontoPresupuestado))
                 {
-                    return "El monto presupuestado debe ser mallor que 0";
+                    return "El monto presupuestado debe ser mayor a 0";
                 }
                 var l = new Licitaciones
                 {
