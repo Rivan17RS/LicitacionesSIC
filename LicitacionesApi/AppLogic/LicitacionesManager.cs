@@ -69,7 +69,7 @@ namespace AppLogic
             }
             else
             {
-                return "La Licitacion no existe";
+                return "La Licitación no existe";
             }
             
 
@@ -82,10 +82,10 @@ namespace AppLogic
 
             if (licitacion == null)
             {
-                return "La Licitacion no existe";
+                return "La Licitación no existe";
             }
             lcf.Delete(licitacion);
-            return "Licitacion Eliminada";
+            return "Licitación Eliminada";
         }
 
         public List<Licitaciones> ObtenerLicitaciones()
