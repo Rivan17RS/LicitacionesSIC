@@ -64,6 +64,11 @@ namespace DataAccess.CRUD
             return default(T);
         }
 
+        public override List<T> RetrieveByLicitacion<T>(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
         public override void Update(BaseEntity entityDto)
         {
             var sqlOper = mapper.GetUpdateStatement(entityDto);
