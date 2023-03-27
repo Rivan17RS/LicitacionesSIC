@@ -54,7 +54,7 @@ namespace AppLogic
                 Identificacion = usr.Identificacion,
                 Telefono = usr.Telefono,
                 CorreoElectronico = usr.CorreoElectronico,
-                Contrasena = Hashing.hashPassword(usr.Contrasena),
+                Contrasena = Hashing.CreateHash(usr.Contrasena),
                 Estado = 0,
                 Otp = v.GenerarCodigoAlfanumerico(),
                 Rol = 3,
@@ -154,7 +154,7 @@ namespace AppLogic
                 usuario.Identificacion = usr.Identificacion;
                 usuario.Telefono = usr.Telefono;
                 usuario.CorreoElectronico = usr.CorreoElectronico;
-                usuario.Contrasena = Hashing.hashPassword(usr.Contrasena);
+                usuario.Contrasena = Hashing.CreateHash(usr.Contrasena);
                 usuario.IdUsrActualizacion = usr.IdUsrActualizacion;
                 usuario.FechaActualizacion = DateTime.Now;
 
@@ -240,12 +240,30 @@ namespace AppLogic
             return null;
         }
 
-        public Boolean VerificarSesion(String correo, String contrasena)
+        public Usuario BuscarUsuarioPorCorreo(string correo)
         {
-            Usuario usuario = buscarUsuarioPorCorreo(correo);
-            return Hashing.verifyPassword(contrasena, usuario.Contrasena);
+            UsuarioCrudFactory ucf = new UsuarioCrudFactory();
+            List<Usuario> listUsuarios = ObtenerUsuarios();
+
+            foreach (Usuario usuario in listUsuarios)
+            {
+                if (usuario.CorreoElectronico == correo)
+                {
+                    return usuario;
+                }
+            }
+            return null;
         }
 
+        public Boolean VerificarSesion(String correo, String contrasena)
+        {
+            Usuario usuario = BuscarUsuarioPorCorreo(correo);
+            if (usuario == null)
+            {
+                return false;
+            }
+            return Hashing.VerifyHash(contrasena, usuario.Contrasena);
+        }
 
         public bool SendEmail(string Dest, string code)
         {

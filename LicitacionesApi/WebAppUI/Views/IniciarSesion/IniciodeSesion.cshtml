@@ -1,8 +1,34 @@
-﻿
+﻿@model DTO.Usuario
 @{
-    ViewBag.Title = "IniciodeSesion";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutNoMenu.cshtml";
 }
 
-<h2>IniciodeSesion</h2>
+@using (Html.BeginForm("IniciodeSesion", "IniciarSesion", FormMethod.Post))
+{
+    <h2>Iniciar sesion</h2>
 
+    <div>
+        @if (ViewBag.Message != null)
+        {
+            <div>@ViewBag.Message</div>
+        }
+    </div>
+
+    <table>
+        <tr>
+            <td>@Html.LabelFor(u => u.CorreoElectronico, "Correo electronico:")</td>
+            <td>@Html.TextBoxFor(u => u.CorreoElectronico)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(u => u.Contrasena, "Password:")</td>
+            <td>@Html.PasswordFor(u => u.Contrasena)</td>
+        </tr>
+        <tr>
+            <td>
+                <button id="btnLogin" type="submit" class="btn btn-success">Iniciar sesión</button>
+                @Html.ActionLink("Cancel", "IniciarSesion", "IniciodeSesion", new { @class = "btn btn-success" })
+            </td>
+        </tr>
+    </table>
+}

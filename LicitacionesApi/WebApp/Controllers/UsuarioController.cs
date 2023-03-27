@@ -96,5 +96,29 @@ namespace WebApp.Controllers
             var usr = new UsuarioManager();
             return usr.VerificarSesion(correo, contrasena);
         }
+
+        [HttpGet]
+
+        public Usuario ValidareIniciarSesion(string correo, string contrasena)
+        {
+            if (ValidarUsuario(correo, contrasena))
+            {
+                UsuarioManager usuarioManager = new UsuarioManager();
+
+                Usuario usuario = usuarioManager.BuscarUsuarioPorCorreo(correo);
+
+                if (usuario != null)
+                {
+                    return usuario;
+                }
+
+                else
+                {
+                    return null;
+                }
+            }
+
+            return null;
+        }
     }
 }
