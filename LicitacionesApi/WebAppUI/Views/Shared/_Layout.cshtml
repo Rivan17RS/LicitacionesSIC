@@ -23,8 +23,20 @@
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Nosotros", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Iniciar Sesion", "IniciodeSesion", "IniciarSesion", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Licitaciones", "Licitaciones", "Licitacion", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+
+                <ul style="text-align:right">
+                    @if (Session["User"] == null)
+                    {
+                        <li>@Html.ActionLink("Iniciar Sesion", "IniciodeSesion", "IniciarSesion", null, new { @style = "color:white" })</li>
+                    }
+                    else
+                    {
+                        var user = "Bienvenido: " + Session["User"];
+                        <li style="color: white">@user</li>
+                        <li>@Html.ActionLink("Cerrar Sesion", "CierredeSesion", "IniciarSesion", null, new { @style = "color:white" })</li>
+                    }
                 </ul>
             </div>
         </div>

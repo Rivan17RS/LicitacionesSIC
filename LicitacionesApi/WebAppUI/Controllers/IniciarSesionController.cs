@@ -71,6 +71,13 @@ namespace WebAppUI.Controllers
 
         }
 
+        public ActionResult CierredeSesion()
+        {
+            Session["CurrentUser"] = null;
+            Session["User"] = null;
+            return RedirectToAction("GoBack");
+        }
+
         public ActionResult Cancel()
         {
             return View();
