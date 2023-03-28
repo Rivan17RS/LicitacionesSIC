@@ -13,7 +13,7 @@ namespace AppLogic
         public string GenerarCodigoAlfanumerico()
         {
             Random random = new Random();
-            const string caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
+            const string caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@$%^*()_+";
             char[] codigo = new char[8];
             for (int i = 0; i < codigo.Length; i++)
             {

@@ -167,5 +167,26 @@ namespace WebApp.Controllers
 
             return false;
         }
+
+        [HttpPost]
+        public string CambiarContrasena(string correo, string contrasenaNueva)
+        {
+            var usr = new UsuarioManager();
+
+            var usuario = usr.BuscarUsuarioPorCorreo(correo);
+
+            if (usuario == null)
+            {
+                return "No se encontró el usuario";
+            }
+
+            usuario.Contrasena = Hashing.CreateHash(contrasenaNueva);
+
+            usuario.Otp = (new Validaciones()).GenerarCodigoAlfanumerico(); // Se elimina el código de recuperación por seguridad.
+
+            usr.ActualizarUsuario(usuario);
+
+            return "Se actualizó la contraseña de manera exitosa";
+        }
     }
 }

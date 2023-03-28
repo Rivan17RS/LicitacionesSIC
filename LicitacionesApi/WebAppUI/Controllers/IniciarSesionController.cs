@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Diagnostics;
 
 namespace WebAppUI.Controllers
 {
@@ -124,7 +125,7 @@ namespace WebAppUI.Controllers
 
                 if (succesful)
                 {
-
+                    Session["CurrentUserToUpdate"] = correo;
                     return View();
                 }
 
@@ -140,6 +141,25 @@ namespace WebAppUI.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult CrearContrasenaNuevaForm(string contrasena, string contrasenaTwice)
+        {
+            string UrlApi = "https://localhost:44369/";
+
+            string api = $"api/Usuario/CambiarContrasena?correo={Session["CurrentUserToUpdate"]}&contrasenanueva={contrasena}";
+
+            string urlFinal = UrlApi + api;
+
+            var client = new HttpClient();
+
+            Debug.WriteLine(urlFinal);
+
+            client.BaseAddress = new Uri(urlFinal);
+
+            var response = client.PostAsync(urlFinal, new StringContent("", Encoding.UTF8, "application/json"));
+
+            return RedirectToAction("IniciodeSesion");
+        }
         public ActionResult Cancel()
         {
             return View();

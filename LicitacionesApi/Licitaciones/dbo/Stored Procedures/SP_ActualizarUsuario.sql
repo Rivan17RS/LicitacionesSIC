@@ -8,7 +8,7 @@
 @Estado BIT,
 @Otp VARCHAR(15),
 @IdRol INT,
-@Contrasena VARCHAR(30),
+@Contrasena VARCHAR(100),
 @IdUsrCreacion INT,
 @IdUsrActualizacion INT,
 @IdUsrEliminacion INT,
