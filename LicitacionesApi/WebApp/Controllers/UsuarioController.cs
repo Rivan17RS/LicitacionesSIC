@@ -120,5 +120,52 @@ namespace WebApp.Controllers
 
             return null;
         }
+
+        [HttpPost]
+        public string EnviarCorreoRecuperacion(string correo)
+        {
+            var usr = new UsuarioManager();
+
+            var usuario = usr.BuscarUsuarioPorCorreo(correo);
+
+            if (usuario == null)
+            {
+                return "No se encontró el usuario";
+            }
+
+            var validaciones = new Validaciones();
+
+            var otp = validaciones.GenerarCodigoAlfanumerico();
+
+            usuario.Otp = otp;
+
+            usr.ActualizarUsuario(usuario);
+
+            var URL = $"https://localhost:44304/IniciarSesion/CrearContrasenaNueva?correo={correo}&codigo={otp}";
+
+            usr.SendRecoveryEmail(correo, URL);
+
+            return "Se envió de manera exitosa";
+        }
+
+        [HttpGet]
+        public bool ValidarCodigoRecuperacion(string correo, string codigo)
+        {
+            var usr = new UsuarioManager();
+
+            var usuario = usr.BuscarUsuarioPorCorreo(correo);
+
+            if (usuario == null)
+            {
+                return false;
+            }
+
+            if (usuario.Otp == codigo)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

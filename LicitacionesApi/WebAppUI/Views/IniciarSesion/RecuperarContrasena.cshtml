@@ -1,12 +1,13 @@
 ﻿@model DTO.Usuario
+
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "Recuperar Contraseña";
     Layout = "~/Views/Shared/_LayoutNoMenu.cshtml";
 }
 
-@using (Html.BeginForm("IniciodeSesion", "IniciarSesion", FormMethod.Post))
+@using (Html.BeginForm("RecuperarContrasena", "IniciarSesion", FormMethod.Post))
 {
-    <h2>Iniciar sesion</h2>
+    <h2>Recuperar contraseña - Enviaremos un correo electronico con una contraseña nueva</h2>
 
     <div>
         @if (ViewBag.Message != null)
@@ -21,19 +22,11 @@
             <td>@Html.TextBoxFor(u => u.CorreoElectronico)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(u => u.Contrasena, "Password:")</td>
-            <td>@Html.PasswordFor(u => u.Contrasena)</td>
-        </tr>
-        <tr>
             <td>
-                <button id="btnLogin" type="submit" class="btn btn-success">Iniciar sesión</button>
+                <button id="btnLogin" type="submit" class="btn btn-success">Enviar correo de recuperación</button>
                 @Html.ActionLink("Cancel", "GoBack", "IniciarSesion", new { @class = "btn btn-success" })
-            </td>
-        </tr>
-        <tr>
-            <td>
-                 <a>@Html.ActionLink("Recuperar contraseña","RecuperarContrasena", "IniciarSesion")</a>
             </td>
         </tr>
     </table>
 }
+

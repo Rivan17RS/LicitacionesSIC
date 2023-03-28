@@ -78,6 +78,68 @@ namespace WebAppUI.Controllers
             return RedirectToAction("GoBack");
         }
 
+        [HttpPost]
+        public ActionResult RecuperarContrasena(Usuario usuario)
+        {
+            string UrlApi = "https://localhost:44369/";
+
+            string api = $"api/Usuario/EnviarCorreoRecuperacion?correo={usuario.CorreoElectronico}";
+
+            string urlFinal = UrlApi + api;
+
+            var client = new HttpClient();
+
+            client.BaseAddress = new Uri(urlFinal);
+
+            var response = client.PostAsync(urlFinal, new StringContent("", Encoding.UTF8, "application/json"));
+
+            return null;
+        }
+
+        public ActionResult RecuperarContrasena()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult CrearContrasenaNueva(string correo, string codigo)
+        {
+            string UrlApi = "https://localhost:44369/";
+
+            string api = $"api/Usuario/ValidarCodigoRecuperacion?correo={correo}&codigo={codigo}";
+
+            string urlFinal = UrlApi + api;
+
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(urlFinal);
+
+            //Llamamos al API que nos va retornar los datos
+            var result = client.GetAsync(urlFinal).Result;
+
+            if (result.IsSuccessStatusCode)
+            {
+                var responseContent = result.Content.ReadAsStringAsync().Result;
+
+                bool succesful = bool.Parse(responseContent);
+
+                if (succesful)
+                {
+
+                    return View();
+                }
+
+                else
+                {
+                    return RedirectToAction("IniciodeSesion");
+                }
+            }
+
+            else
+            {
+                return RedirectToAction("IniciodeSesion");
+            }
+        }
+
         public ActionResult Cancel()
         {
             return View();

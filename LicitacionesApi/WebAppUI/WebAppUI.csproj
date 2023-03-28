@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ErrorMessageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IniciarSesionController.cs" />
     <Compile Include="Controllers\LicitacionController.cs" />
@@ -186,10 +187,14 @@
     <Content Include="Views\Licitacion\Licitaciones.cshtml" />
     <Content Include="Views\Licitacion\CrearLicitaciones.cshtml" />
     <Content Include="Views\Shared\_LayoutNoMenu.cshtml" />
+    <Content Include="Views\IniciarSesion\RecuperarContrasena.cshtml" />
+    <Content Include="Views\Messages\ErrorMessage.cshtml" />
+    <Content Include="Views\IniciarSesion\CrearContrasenaNueva.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\ErrorMessage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
