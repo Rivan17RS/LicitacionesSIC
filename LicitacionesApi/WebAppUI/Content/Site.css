@@ -16,3 +16,8 @@ li.dropdown:last-child .dropdown-menu {
     right: 0;
     left: auto;
 }
+
+.licitation-card {
+    max-width: 48%;
+    min-width: 200px;
+}
