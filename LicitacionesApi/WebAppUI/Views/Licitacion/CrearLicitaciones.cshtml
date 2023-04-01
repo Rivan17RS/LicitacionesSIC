@@ -4,9 +4,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script src="~/Scripts/View/CrearLicitacion.js"></script>
+
 
 <h2>Crear Licitación</h2>
+<script src="~/Scripts/View/CrearLicitacion.js"></script>
 
 <div class="form-group">
 
@@ -15,34 +16,42 @@
 
 
 
-
         <div>
-            <lable for="txtId">Identificador:</lable>
-            <input id="txtId" type="text" class="form-control" ColumnDataName="Id" />
-        </div>
-
-        <div>
-            <lable for="txtProduct">Producto:</lable>
-            <input id="txtProduct" type="text" class="form-control" ColumnDataName="Product" />
+            <lable for="txtIdAnalista">ID Analista:</lable>
+            <input id="txtIdAnalista" type="text" class="form-control" ColumnDataName="IdAnalista" />
         </div>
 
 
         <div>
-            <lable for="txtDescription">Descriptor:</lable>
-            <textarea rows="3" id="txtDescription" type="text" class="form-control" ColumnDataName="Description"></textarea>
+            <lable for="txtTitulo">Titulo:</lable>
+            <input id="txtTitulo" type="text" class="form-control" ColumnDataName="Titulo" />
         </div>
 
 
         <div>
-            <lable for="txtQuantity">Cantidad:</lable>
-            <input id="txtQuantity" type="number" class="form-control" ColumnDataName="Quantity" />
+            <lable for="txtDescripcion">Descripción:</lable>
+            <textarea rows="3" id="txtDescripcion" type="text" class="form-control" ColumnDataName="Descripcion"></textarea>
         </div>
 
 
         <div>
-            <lable for="txtPrice">Precio:</lable>
-            <input id="txtPrice" type="number" class="form-control" ColumnDataName="Price" />
+            <lable for="txtLugarEntrega">Lugar de Entrega:</lable>
+            <input id="txtLugarEntrega" type="text" class="form-control" ColumnDataName="LugarEntrega" />
         </div>
+
+
+        <div>
+            <lable for="txtFechaCierreOfertas">Cierre de Ofertas:</lable>
+            <input id="txtFechaCierreOfertas" type="datetime" class="form-control" ColumnDataName="FechaCierreOfertas" />
+        </div>
+
+
+
+        <div>
+            <lable for="txtMontoPresupuestado">Presupuesto:</lable>
+            <input id="txtMontoPresupuestado" type="number" class="form-control" ColumnDataName="MontoPresupuestado" />
+        </div>
+
 
 
         <div class="form-group">
