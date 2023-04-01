@@ -96,5 +96,97 @@ namespace WebApp.Controllers
             var usr = new UsuarioManager();
             return usr.VerificarSesion(correo, contrasena);
         }
+
+        [HttpGet]
+
+        public Usuario ValidareIniciarSesion(string correo, string contrasena)
+        {
+            if (ValidarUsuario(correo, contrasena))
+            {
+                UsuarioManager usuarioManager = new UsuarioManager();
+
+                Usuario usuario = usuarioManager.BuscarUsuarioPorCorreo(correo);
+
+                if (usuario != null)
+                {
+                    return usuario;
+                }
+
+                else
+                {
+                    return null;
+                }
+            }
+
+            return null;
+        }
+
+        [HttpPost]
+        public string EnviarCorreoRecuperacion(string correo)
+        {
+            var usr = new UsuarioManager();
+
+            var usuario = usr.BuscarUsuarioPorCorreo(correo);
+
+            if (usuario == null)
+            {
+                return "No se encontró el usuario";
+            }
+
+            var validaciones = new Validaciones();
+
+            var otp = validaciones.GenerarCodigoAlfanumerico();
+
+            usuario.Otp = otp;
+
+            usr.ActualizarUsuario(usuario);
+
+            var URL = $"https://localhost:44304/IniciarSesion/CrearContrasenaNueva?correo={correo}&codigo={otp}";
+
+            usr.SendRecoveryEmail(correo, URL);
+
+            return "Se envió de manera exitosa";
+        }
+
+        [HttpGet]
+        public bool ValidarCodigoRecuperacion(string correo, string codigo)
+        {
+            var usr = new UsuarioManager();
+
+            var usuario = usr.BuscarUsuarioPorCorreo(correo);
+
+            if (usuario == null)
+            {
+                return false;
+            }
+
+            if (usuario.Otp == codigo)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        [HttpPost]
+        public string CambiarContrasena(string correo, string contrasenaNueva)
+        {
+            var usr = new UsuarioManager();
+
+            var usuario = usr.BuscarUsuarioPorCorreo(correo);
+
+            if (usuario == null)
+            {
+                return "No se encontró el usuario";
+            }
+
+            usuario.Contrasena = Hashing.CreateHash(contrasenaNueva);
+
+            usuario.Otp = (new Validaciones()).GenerarCodigoAlfanumerico(); // Se elimina el código de recuperación por seguridad.
+
+            usr.ActualizarUsuario(usuario);
+
+            return "Se actualizó la contraseña de manera exitosa";
+        }
     }
 }

@@ -121,6 +121,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CrearCuentaController.cs" />
+    <Compile Include="Controllers\ErrorMessageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IniciarSesionController.cs" />
     <Compile Include="Controllers\LicitacionController.cs" />
@@ -188,10 +189,15 @@
     <Content Include="Views\Licitacion\Licitaciones.cshtml" />
     <Content Include="Views\CrearCuenta\CrearCuenta.cshtml" />
     <Content Include="Views\Licitacion\CrearLicitaciones.cshtml" />
+    <Content Include="Views\Shared\_LayoutNoMenu.cshtml" />
+    <Content Include="Views\IniciarSesion\RecuperarContrasena.cshtml" />
+    <Content Include="Views\Messages\ErrorMessage.cshtml" />
+    <Content Include="Views\IniciarSesion\CrearContrasenaNueva.cshtml" />
+    <Content Include="Views\ErrorMessage\ErrorPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Models\Contrasena\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -219,6 +225,12 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{85085ca2-d93d-44d7-b73c-ec3af40f46f3}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

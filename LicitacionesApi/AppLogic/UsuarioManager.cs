@@ -54,7 +54,7 @@ namespace AppLogic
                 Identificacion = usr.Identificacion,
                 Telefono = usr.Telefono,
                 CorreoElectronico = usr.CorreoElectronico,
-                Contrasena = Hashing.hashPassword(usr.Contrasena),
+                Contrasena = Hashing.CreateHash(usr.Contrasena),
                 Estado = 0,
                 Otp = v.GenerarCodigoAlfanumerico(),
                 Rol = 3,
@@ -144,19 +144,15 @@ namespace AppLogic
                     return "El formato del correo electrónico es incorrecto";
                 }
 
-                if (!v.ValidContrasena(usr.Contrasena))
-                {
-                    return "El formato de la contraseña es incorrecto";
-                }
-
                 usuario.Nombre = usr.Nombre;
                 usuario.Apellidos = usr.Apellidos;
                 usuario.Identificacion = usr.Identificacion;
                 usuario.Telefono = usr.Telefono;
                 usuario.CorreoElectronico = usr.CorreoElectronico;
-                usuario.Contrasena = Hashing.hashPassword(usr.Contrasena);
+                usuario.Contrasena = usr.Contrasena;
                 usuario.IdUsrActualizacion = usr.IdUsrActualizacion;
                 usuario.FechaActualizacion = DateTime.Now;
+                usuario.Otp = usr.Otp;
 
                 ucf.Update(usuario);
                 return "Actualizado Correctamente";
@@ -211,7 +207,7 @@ namespace AppLogic
             {
                 usr.Estado = 1;
             }
-            
+
             usr.IdUsrEliminacion = 1;
             usr.FechaEliminacion = DateTime.Now;
             ucf.Update(usr);
@@ -240,12 +236,30 @@ namespace AppLogic
             return null;
         }
 
-        public Boolean VerificarSesion(String correo, String contrasena)
+        public Usuario BuscarUsuarioPorCorreo(string correo)
         {
-            Usuario usuario = buscarUsuarioPorCorreo(correo);
-            return Hashing.verifyPassword(contrasena, usuario.Contrasena);
+            UsuarioCrudFactory ucf = new UsuarioCrudFactory();
+            List<Usuario> listUsuarios = ObtenerUsuarios();
+
+            foreach (Usuario usuario in listUsuarios)
+            {
+                if (usuario.CorreoElectronico == correo)
+                {
+                    return usuario;
+                }
+            }
+            return null;
         }
 
+        public Boolean VerificarSesion(String correo, String contrasena)
+        {
+            Usuario usuario = BuscarUsuarioPorCorreo(correo);
+            if (usuario == null)
+            {
+                return false;
+            }
+            return Hashing.VerifyHash(contrasena, usuario.Contrasena);
+        }
 
         public bool SendEmail(string Dest, string code)
         {
@@ -255,7 +269,7 @@ namespace AppLogic
                 Dest = Dest,
                 Subject = "Codigo de Seguridad",
                 IsHtml = true,
-                Body =@"
+                Body = @"
                         <!DOCTYPE html>
                         <html>
                         <head>
@@ -307,8 +321,74 @@ namespace AppLogic
                         </body>
                         </html>
                         "
-        };
+            };
             return ed.Send(e);
+        }
+
+        public bool SendRecoveryEmail(string dest, string URL)
+        {
+            EmailDataManager emailDataManager = new EmailDataManager();
+
+            var email = new Email()
+            {
+                Dest = dest,
+                Subject = "Recuperación de contraseña",
+                IsHtml = true,
+                Body = @"
+                        <!DOCTYPE html>
+                        <html>
+                        <head>
+                            <meta charset='UTF-8'>
+                            <title>Recuperación de contraseña</title>
+                            <style>
+                                body {
+                                    font-family: Arial, sans-serif;
+                                    background-color: #f5f5f5;
+                                    padding: 20px;
+                                }
+
+                                .container {
+                                    background-color: #fff;
+                                    border-radius: 10px;
+                                    padding: 20px;
+                                    max-width: 600px;
+                                    margin: 0 auto;
+                                }
+
+                                h1 {
+                                    color: #0056b3;
+                                    font-size: 24px;
+                                    margin-top: 0;
+                                }
+
+                                p {
+                                    font-size: 16px;
+                                    line-height: 1.5;
+                                    margin: 0;
+                                    padding-bottom: 20px;
+                                }
+
+                                .code {
+                                    font-size: 28px;
+                                    font-weight: bold;
+                                    color: #0056b3;
+                                    margin-bottom: 20px;
+                                }
+                            </style>
+                        </head>
+                        <body>
+                            <div class='container'>
+                                <h1>Recuperación de contraseña</h1>
+                                <p>Se ha generado un URL donde podrás cambiar la contraseña:</p>
+                                <div class='code'>" + URL + @"</div>
+                                <p>Por favor, sigue las instrucciones en el URL y cambie su contraseña por una de su preferencia.</p>
+                            </div>
+                        </body>
+                        </html>
+                        "
+            };
+
+            return emailDataManager.Send(email);
         }
     }
 }

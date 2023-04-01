@@ -10,41 +10,45 @@ namespace AppLogic
 {
     public class Hashing
     {
-        public static string hashPassword(string password)
+        public static string CreateHash(string input)
         {
-            // creates a salta and crea
-            byte[] salt = new byte[16];
-            new RNGCryptoServiceProvider().GetBytes(salt);
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                // Convert the input string to a byte array and compute the hash.
+                byte[] data = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
 
-            var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 100000);
-            byte[] hash = pbkdf2.GetBytes(20);
+                // Create a new StringBuilder to collect the bytes
+                // and create a string.
+                StringBuilder sBuilder = new StringBuilder();
 
-            byte[] hashBytes = new byte[36];
-            Array.Copy(salt, 0, hashBytes, 0, 16);
-            Array.Copy(hash, 0, hashBytes, 16, 20);
+                // Loop through each byte of the hashed data 
+                // and format each one as a hexadecimal string.
+                for (int i = 0; i < data.Length; i++)
+                {
+                    sBuilder.Append(data[i].ToString("x2"));
+                }
 
-            string savedPasswordHash = Convert.ToBase64String(hashBytes);
-
-            return savedPasswordHash;
+                // Return the hexadecimal string.
+                return sBuilder.ToString();
+            }
         }
 
-        public static bool verifyPassword(string password, string savedPasswordHash)
+        public static bool VerifyHash(string input, string hash)
         {
-            /* Extract the bytes */
-            byte[] hashBytes = Convert.FromBase64String(savedPasswordHash);
-            /* Get the salt */
-            byte[] salt = new byte[16];
-            Array.Copy(hashBytes, 0, salt, 0, 16);
+            // Hash the input.
+            string hashOfInput = CreateHash(input);
 
-            /* Compute the hash on the password the user entered */
-            var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 100000);
-            byte[] hash = pbkdf2.GetBytes(20);
-            /* Compare the results */
-            for (int i = 0; i < 20; i++)
-                if (hashBytes[i + 16] != hash[i])
-                    return false;
+            // Create a StringComparer and compare the hashes.
+            StringComparer comparer = StringComparer.OrdinalIgnoreCase;
 
-            return false;
+            if (0 == comparer.Compare(hashOfInput, hash))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
