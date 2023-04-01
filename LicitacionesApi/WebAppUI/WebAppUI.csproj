@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CrearCuentaController.cs" />
     <Compile Include="Controllers\ErrorMessageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IniciarSesionController.cs" />
@@ -169,6 +170,7 @@
     <Content Include="Scripts\View\ActionsControl.js" />
     <Content Include="Scripts\View\CrearLicitacion.js" />
     <Content Include="Scripts\View\Licitaciones.js" />
+    <Content Include="Scripts\View\LocalValidation.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -185,6 +187,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\IniciarSesion\IniciodeSesion.cshtml" />
     <Content Include="Views\Licitacion\Licitaciones.cshtml" />
+    <Content Include="Views\CrearCuenta\CrearCuenta.cshtml" />
     <Content Include="Views\Licitacion\CrearLicitaciones.cshtml" />
     <Content Include="Views\Shared\_LayoutNoMenu.cshtml" />
     <Content Include="Views\IniciarSesion\RecuperarContrasena.cshtml" />

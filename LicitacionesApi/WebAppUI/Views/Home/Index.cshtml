@@ -3,31 +3,29 @@
 }
 
 <main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+    <section class="row">
+        <h1 id="title" class="my-5 text-primary">Sistema Integrado de Compras</h1>
+        <h2 class="my-5">¿Que es el SIC?</h2>
+        <p>
+            El Sistema Integrado de Compras del MEP (SIC) le permite a comerciantes, distribuidores y abastecedores aceptar y cumplir licitaciones realizadas por instituciones. Los vendedores pueden hacer ofertas para las listas de artículos que realizan las instituciones y hacer seguimiento de sus ofertas aceptadas en el sistema.
+            <br />
+            Además, el SIC les proporciona información detallada sobre los pedidos, como la fecha de entrega y la cantidad de artículos solicitados. Con esta herramienta, los vendedores pueden hacer ofertas competitivas y ajustadas a las necesidades de las instituciones del MEP, lo que les permite aumentar sus ventas y expandir su presencia en el mercado educativo.
+        </p>
+        <p>
+            No es necesario tener una cuenta en el SIC para acceder a las licitaciones, pero sí se requiere para hacer ofertas.
+        </p>
+        <div class="row gx-md-1">
+            <div class="col-xxl-2">
+                <a>@Html.ActionLink("Explorar Licitaciones", "Licitaciones", "Licitacion", new { area = "" }, new { @class = "btn btn-outline-primary mt-2" })</a>
+            </div>
+            <div class="col-xl-2">
+                <a>@Html.ActionLink("Crear Cuenta", "CrearCuenta", "CrearCuenta", new { area = "" }, new { @class = "btn btn-outline-secondary mt-2" })</a>
+            </div>
+        </div>
+
+
+
     </section>
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
-    </div>
+   
 </main>

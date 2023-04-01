@@ -4,13 +4,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<<<<<<< HEAD
 
+=======
+<script src="~/Scripts/View/Licitacion.js"></script>
+>>>>>>> e3a38bfda077edea0500a48d78b58815ff59b035
 
 <h2>Crear Licitación</h2>
 <script src="~/Scripts/View/CrearLicitacion.js"></script>
 
-<div class="form-group">
 
+<<<<<<< HEAD
     <!--Formulario para mostrar datos de la lista-->
     <form id="frmLicitacion">
 
@@ -61,4 +65,43 @@
 
     </form>
 
+=======
+<div class="row align-items-center justify-content-center">
+    <div class="col-lg-10">
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group">
+                    <form id="createLicitacion">
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="licitacionId" class="form-label mt-4">Identificador:</label>
+                                <input id="licitacionId" type="text" class="form-control" ColumnDataName="Id" />
+                            </div>
+                            <div class="form-group">
+                                <label for="licitacionProduct" class="form-label mt-4">Producto:</label>
+                                <input id="licitacionProduct" type="text" class="form-control" ColumnDataName="Product" />
+                            </div>
+                            <div class="form-group">
+                                <label for="licitacionDescription" class="form-label mt-4">Descriptor:</label>
+                                <textarea rows="3" id="licitacionDescription" type="text" class="form-control" ColumnDataName="Description"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="licitacionQuantity" class="form-label mt-4">Cantidad:</label>
+                                <input id="licitacionQuantity" type="number" class="form-control" ColumnDataName="Quantity" />
+                            </div>
+                            <div class="form-group">
+                                <label for="licitacionPrice" class="form-label mt-4">Precio:</label>
+                                <input id="licitacionPrice" type="number" class="form-control" ColumnDataName="Price" />
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary" id="CrearLicitacion">Enviar</button>
+                                <button type="reset" class="btn btn-info" id="btnReset">Limpiar</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+>>>>>>> e3a38bfda077edea0500a48d78b58815ff59b035
 </div>

@@ -7,6 +7,8 @@
 @using (Html.BeginForm("IniciodeSesion", "IniciarSesion", FormMethod.Post))
 {
     <h2>Iniciar sesion</h2>
+<script src="~/Scripts/View/LocalValidation.js"></script>
+<h2 class="my-5 text-primary">Inicio de Sesion</h2>
 
     <div>
         @if (ViewBag.Message != null)

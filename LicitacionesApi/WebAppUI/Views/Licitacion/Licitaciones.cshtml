@@ -6,62 +6,112 @@
 
 <script src="~/Scripts/View/Licitaciones.js"></script>
 
-<h2>Licitaciones</h2>
+<h2 class="my-5 text-primary">En su Inventario</h2>
 
-<!-- Boton para crear licitacion UI -->
 
-<div class="form-group">
-    <button id="btnCrearLicitacion" class="btn btn-success" type="button">Nueva Licitación</button>
+<div class="row d-flex align-items-center flex-wrap">
+    <div class="card m-2 licitation-card">
+        <div class="card-body">
+            <h4 class="card-title text-truncate">Titulo de licitacion</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Numero de licitacion</h6>
+            <p class="card-text text-truncate">Descripcion de la licitacion Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada velit eget posuere porttitor. Proin sit amet neque fermentum, luctus ex at, consectetur massa. Aliquam erat volutpat. In venenatis ut magna vel consequat. Nunc enim magna, placerat et tristique et, mattis ut quam. Sed porta enim in finibus consequat. Mauris vel nisl eu elit dictum scelerisque ac sit amet metus. Vivamus tellus nisi, commodo at hendrerit sed, scelerisque et ipsum. Phasellus sollicitudin porttitor sem. In ullamcorper felis nec turpis ultricies, nec rutrum est efficitur. Cras nec metus nisi. Donec viverra purus diam, id dapibus velit hendrerit non. Aliquam risus arcu, accumsan nec pharetra quis, sodales ac diam. Maecenas vel risus lacus. Proin rutrum enim libero. Nunc vitae tortor nulla. </p>
+        </div>
+        <div class="card-footer row justify-content-between pb-6">
+            <!--footer is currently WIP-->
+            <div class="col-3">
+                <span class="badge rounded-pill bg-info">Adjudicado</span>
+            </div>
+            <div class="col-8 text-end">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+    </div>
+    <div class="card m-2 licitation-card">
+        <div class="card-body">
+            <h4 class="card-title text-truncate">Titulo de licitacion</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Numero de licitacion</h6>
+            <p class="card-text text-truncate">Descripcion de la licitacion Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada velit eget posuere porttitor. Proin sit amet neque fermentum, luctus ex at, consectetur massa. Aliquam erat volutpat. In venenatis ut magna vel consequat. Nunc enim magna, placerat et tristique et, mattis ut quam. Sed porta enim in finibus consequat. Mauris vel nisl eu elit dictum scelerisque ac sit amet metus. Vivamus tellus nisi, commodo at hendrerit sed, scelerisque et ipsum. Phasellus sollicitudin porttitor sem. In ullamcorper felis nec turpis ultricies, nec rutrum est efficitur. Cras nec metus nisi. Donec viverra purus diam, id dapibus velit hendrerit non. Aliquam risus arcu, accumsan nec pharetra quis, sodales ac diam. Maecenas vel risus lacus. Proin rutrum enim libero. Nunc vitae tortor nulla. </p>
+        </div>
+        <div class="card-footer row justify-content-between pb-6">
+            <div class="col-3">
+                <span class="badge rounded-pill bg-info">Adjudicado</span>
+            </div>
+            <div class="col-8 text-end">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+    </div>
+    <div class="card m-2 licitation-card">
+        <div class="card-body">
+            <h4 class="card-title text-truncate">Titulo de licitacion</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Numero de licitacion</h6>
+            <p class="card-text text-truncate">Descripcion de la licitacion Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada velit eget posuere porttitor. Proin sit amet neque fermentum, luctus ex at, consectetur massa. Aliquam erat volutpat. In venenatis ut magna vel consequat. Nunc enim magna, placerat et tristique et, mattis ut quam. Sed porta enim in finibus consequat. Mauris vel nisl eu elit dictum scelerisque ac sit amet metus. Vivamus tellus nisi, commodo at hendrerit sed, scelerisque et ipsum. Phasellus sollicitudin porttitor sem. In ullamcorper felis nec turpis ultricies, nec rutrum est efficitur. Cras nec metus nisi. Donec viverra purus diam, id dapibus velit hendrerit non. Aliquam risus arcu, accumsan nec pharetra quis, sodales ac diam. Maecenas vel risus lacus. Proin rutrum enim libero. Nunc vitae tortor nulla. </p>
+        </div>
+        <div class="card-footer row justify-content-between pb-6">
+            <div class="col-3">
+                <span class="badge rounded-pill bg-info">Adjudicado</span>
+            </div>
+            <div class="col-8 text-end">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+    </div>
 </div>
 
+<h2 class="my-5 text-primary">Nuevo</h2>
 
-<!--Tabla general datos de la licitacion -->
-
-<div>
-    <table id="tblLicitacion" class="display" syle="width:100%">
-        <thead>
-            <tr>
-                <th>ID Analista</th>
-                <th>Título</th>
-                <th>Lugar de Entrega</th>
-                <th>Cierre de Oferta</th>
-                <th>Monto Presupuestado</th>
-                <th>Estado</th>
-            </tr>
-
-        </thead>
-    </table>
-
-    <!--Formulario para mostrar datos de la lista-->
-    <form id="frmLicitacion">
-        <h2>Detalles de la Licitación</h2>
-
-        <div>
-            <lable for="txtIdLicitacion">ID Licitación:</lable>
-            <input id="txtIdLicitacion" type="number" class="form-control" ColumnDataName="IdLicitacion" />
+<div class="row d-flex align-items-center flex-wrap">
+    <div class="card m-2 licitation-card">
+        <div class="card-body">
+            <h4 class="card-title text-truncate">Titulo de licitacion</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Numero de licitacion</h6>
+            <p class="card-text text-truncate">Descripcion de la licitacion Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada velit eget posuere porttitor. Proin sit amet neque fermentum, luctus ex at, consectetur massa. Aliquam erat volutpat. In venenatis ut magna vel consequat. Nunc enim magna, placerat et tristique et, mattis ut quam. Sed porta enim in finibus consequat. Mauris vel nisl eu elit dictum scelerisque ac sit amet metus. Vivamus tellus nisi, commodo at hendrerit sed, scelerisque et ipsum. Phasellus sollicitudin porttitor sem. In ullamcorper felis nec turpis ultricies, nec rutrum est efficitur. Cras nec metus nisi. Donec viverra purus diam, id dapibus velit hendrerit non. Aliquam risus arcu, accumsan nec pharetra quis, sodales ac diam. Maecenas vel risus lacus. Proin rutrum enim libero. Nunc vitae tortor nulla. </p>
         </div>
-
-        <div>
-            <lable for="txtIdAnalista">ID Analista:</lable>
-            <input id="txtIdAnalista" type="text" class="form-control" ColumnDataName="IdAnalista" />
+        <div class="card-footer row justify-content-between pb-6">
+            <div class="col-3">
+                <span class="badge rounded-pill bg-warning">Abierto</span>
+            </div>
+            <div class="col-8 text-end">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
         </div>
+    </div>
 
-        <div>
-            <lable for="txtIdproducto">ID Producto:</lable>
-            <input id="txtIdproducto" type="number" class="form-control" ColumnDataName="Idproducto" />
+    <div class="card m-2 licitation-card">
+        <div class="card-body">
+            <h4 class="card-title text-truncate">Titulo de licitacion</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Numero de licitacion</h6>
+            <p class="card-text text-truncate">Descripcion de la licitacion Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada velit eget posuere porttitor. Proin sit amet neque fermentum, luctus ex at, consectetur massa. Aliquam erat volutpat. In venenatis ut magna vel consequat. Nunc enim magna, placerat et tristique et, mattis ut quam. Sed porta enim in finibus consequat. Mauris vel nisl eu elit dictum scelerisque ac sit amet metus. Vivamus tellus nisi, commodo at hendrerit sed, scelerisque et ipsum. Phasellus sollicitudin porttitor sem. In ullamcorper felis nec turpis ultricies, nec rutrum est efficitur. Cras nec metus nisi. Donec viverra purus diam, id dapibus velit hendrerit non. Aliquam risus arcu, accumsan nec pharetra quis, sodales ac diam. Maecenas vel risus lacus. Proin rutrum enim libero. Nunc vitae tortor nulla. </p>
         </div>
-
-        <div>
-            <lable for="txtCantidad">Cantidad:</lable>
-            <input id="txtCantidad" type="number" class="form-control" ColumnDataName="Cantidad" />
+        <div class="card-footer row justify-content-between pb-6">
+            <div class="col-3">
+                <span class="badge rounded-pill bg-warning">Abierto</span>
+            </div>
+            <div class="col-8 text-end">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
         </div>
+    </div>
 
-        <div>
-            <lable for="txtDescripcion">Descripción:</lable>
-            <textarea rows="3" id="txtDescripcion" type="text" class="form-control" ColumnDataName="Descripcion"></textarea>
+    <div class="card m-2 licitation-card">
+        <div class="card-body">
+            <h4 class="card-title text-truncate">Titulo de licitacion</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Numero de licitacion</h6>
+            <p class="card-text text-truncate">Descripcion de la licitacion Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada velit eget posuere porttitor. Proin sit amet neque fermentum, luctus ex at, consectetur massa. Aliquam erat volutpat. In venenatis ut magna vel consequat. Nunc enim magna, placerat et tristique et, mattis ut quam. Sed porta enim in finibus consequat. Mauris vel nisl eu elit dictum scelerisque ac sit amet metus. Vivamus tellus nisi, commodo at hendrerit sed, scelerisque et ipsum. Phasellus sollicitudin porttitor sem. In ullamcorper felis nec turpis ultricies, nec rutrum est efficitur. Cras nec metus nisi. Donec viverra purus diam, id dapibus velit hendrerit non. Aliquam risus arcu, accumsan nec pharetra quis, sodales ac diam. Maecenas vel risus lacus. Proin rutrum enim libero. Nunc vitae tortor nulla. </p>
         </div>
-
-
-    </form>
-
+        <div class="card-footer row justify-content-between pb-6">
+            <div class="col-3">
+                <span class="badge rounded-pill bg-warning">Abierto</span>
+            </div>
+            <div class="col-8 text-end">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+    </div>
 </div>
