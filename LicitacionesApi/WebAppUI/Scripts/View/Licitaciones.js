@@ -11,7 +11,7 @@
     }
 
     this.IrCrearLicitacion = function () {
-        location.href = "../Views/Licitacion/CrearLicitaciones";
+        location.href = "/Licitacion/CrearLicitaciones";
 
     }
 

@@ -125,7 +125,11 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IniciarSesionController.cs" />
     <Compile Include="Controllers\LicitacionController.cs" />
+<<<<<<< HEAD
+    <Compile Include="Controllers\PremiumController.cs" />
+=======
     <Compile Include="Controllers\ReporteController.cs" />
+>>>>>>> 30512ddce447507a4f2320405862c5de4e7a4d47
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -173,8 +177,12 @@
     <Content Include="Scripts\View\CrearLicitacion.js" />
     <Content Include="Scripts\View\Licitaciones.js" />
     <Content Include="Scripts\View\LocalValidation.js" />
+<<<<<<< HEAD
+    <Content Include="Scripts\View\Premium.js" />
+=======
     <Content Include="Scripts\View\ReporteLicitaciones.js" />
     <Content Include="Scripts\View\ReporteUsuarios.js" />
+>>>>>>> 30512ddce447507a4f2320405862c5de4e7a4d47
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -198,7 +206,11 @@
     <Content Include="Views\Messages\ErrorMessage.cshtml" />
     <Content Include="Views\IniciarSesion\CrearContrasenaNueva.cshtml" />
     <Content Include="Views\ErrorMessage\ErrorPage.cshtml" />
+<<<<<<< HEAD
+    <Content Include="Views\Premium\Premium.cshtml" />
+=======
     <Content Include="Views\Reporte\Reportes.cshtml" />
+>>>>>>> 30512ddce447507a4f2320405862c5de4e7a4d47
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
