@@ -125,6 +125,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IniciarSesionController.cs" />
     <Compile Include="Controllers\LicitacionController.cs" />
+    <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -150,6 +151,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\SIC_Logo.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -171,6 +173,8 @@
     <Content Include="Scripts\View\CrearLicitacion.js" />
     <Content Include="Scripts\View\Licitaciones.js" />
     <Content Include="Scripts\View\LocalValidation.js" />
+    <Content Include="Scripts\View\ReporteLicitaciones.js" />
+    <Content Include="Scripts\View\ReporteUsuarios.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -194,6 +198,7 @@
     <Content Include="Views\Messages\ErrorMessage.cshtml" />
     <Content Include="Views\IniciarSesion\CrearContrasenaNueva.cshtml" />
     <Content Include="Views\ErrorMessage\ErrorPage.cshtml" />
+    <Content Include="Views\Reporte\Reportes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -83,6 +83,7 @@ namespace DataAccess.MAPPER
 
         public BaseEntity BuildObject(Dictionary<string, object> row)
         {
+            DetalleLicitacionesMapper dl = new DetalleLicitacionesMapper();
             var licitacion = new Licitaciones()
             {
                 Id = Convert.ToInt32(row["Id"]),
@@ -94,7 +95,6 @@ namespace DataAccess.MAPPER
                 MontoPresupuestado = Convert.ToDouble(row["MontoPresupuestado"]),
                 Estado = Convert.ToString(row["Estado"]),
                 CodigoQR = Convert.ToString(row["CodigoQR"]),
-
 
 
                 //necesario para todas las tablas

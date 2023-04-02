@@ -1,0 +1,143 @@
+﻿
+@{
+    ViewBag.Title = "Reportes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts {
+    <script src="~/Scripts/View/ReporteUsuarios.js"></script>
+    <script src="~/Scripts/View/ReporteLicitaciones.js"></script>
+    <script src="https://kit.fontawesome.com/b76191ee63.js" crossorigin="anonymous"></script>
+}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor03">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" onclick="mostrarTabla('tblUsuarios');" style="font-size: 18px; cursor: pointer; border-right: 1px solid #ccc; ">Usuarios</a>
+
+                <li class="nav-item">
+                    <a class="nav-link" onclick="mostrarTabla('tblLicitaciones'); LicitacionesTable();" style="font-size: 18px; cursor: pointer; border-right: 1px solid #ccc;">Licitaciones</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+    <section id="seccionLicitaciones" style="display: none;">
+        <div>
+            <br><h2>Listado de Licitaciones</h2><br>
+            <table id="tblLicitaciones" class="table table-hover table-light">
+                <thead>
+                    <tr>
+                        <th>Analista</th>
+                        <th>Id Licitación</th>
+                        <th>Título</th>
+                        <th>Descripción</th>
+                        <th>Lugar de Entrega</th>
+                        <th>Cierre de Ofertas</th>
+                        <th>Monto Presupuestado</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </section>
+
+
+
+    <section id="seccionUsuarios">
+        <div>
+            <br><h2>Listado de Usuarios</h2><br>
+            <table id="tblUsuarios" class="table table-hover table-light" onclick="DesactivarBoton()">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Identificación</th>
+                        <th>Teléfono</th>
+                        <th>Correo Eléctronico</th>
+                        <th>Estado</th>
+                        <th>Rol</th>
+                    </tr>
+                </thead>
+            </table>
+            <form id="frmUsuarios" class="form-group" style="display: none;">
+                <h2>Datos de Usuario</h2>
+                <div class="form-group">
+                    <label for="txtNombre" class="form-label mt-4">Nombre</label>
+                    <input id="txtNombre" type="text" class="form-control" ColumnDataName="Nombre" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label for="txtApellidos" class="form-label mt-4">Apellidos</label>
+                    <input id="txtApellidos" type="text" class="form-control" ColumnDataName="Apellidos" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label for="txtIdentificacion" class="form-label mt-4">Identificación</label>
+                    <input id="txtIdentificacion" type="text" class="form-control" ColumnDataName="Identificacion" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label for="txtTelefono" class="form-label mt-4">Teléfono</label>
+                    <input id="txtTelefono" type="text" class="form-control" ColumnDataName="Telefono" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label for="txtCorreoElectronico" class="form-label mt-4">Correo Electrónico</label>
+                    <input id="txtCorreoElectronico" type="text" class="form-control" ColumnDataName="CorreoElectronico" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label for="ddlRol" class="col-form-label">Rol</label>
+                    <select id="ddlRol" class="form-select" ColumnDataName="Rol">
+                        <option value="1">Admin</option>
+                        <option value="2">Analista</option>
+                        <option value="3">Usuario</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary" style="margin-top:20px" onclick="actualizarRol(txtIdentificacion.value, ddlRol.value)">Actualizar</button>
+                </div>
+
+                <div>
+                    <label for="txtEstado" class="col-form-label">Estado</label>
+                    <input id="txtEstado" type="text" class="form-control" ColumnDataName="Estado" readonly hidden />
+                    <br>
+                    <button type="submit" class="btn btn-primary" onclick="actualizarEstado(txtIdentificacion.value)">
+                        <span id="btnEstado">
+                        </span>
+
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+
+
+    <script>
+        function mostrarTabla(idTabla) {
+            if (idTabla === 'tblUsuarios') {
+                document.getElementById('seccionUsuarios').style.display = 'block';
+                document.getElementById('seccionLicitaciones').style.display = 'none';
+            } else {
+                document.getElementById('seccionUsuarios').style.display = 'none';
+                document.getElementById('seccionLicitaciones').style.display = 'block';
+            }
+        }
+
+        function DesactivarBoton() {
+            const estado = document.getElementById("txtEstado").value;
+            if (estado === "1") {
+                btnEstado = "Desactivar Usuario";
+            } else if (estado === "0") {
+                btnEstado = "Activar Usuario";
+            }
+            document.getElementById("btnEstado").innerHTML = btnEstado;
+        }
+
+    </script>

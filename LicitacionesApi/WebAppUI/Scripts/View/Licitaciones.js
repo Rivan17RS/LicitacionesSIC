@@ -1,6 +1,6 @@
 ﻿function Licitaciones() {
 
-    this.initView = function () {
+    this.InitView = function () {
 
         $("#btnCrearLicitacion").click(function () {
             var lic = new Licitaciones();
