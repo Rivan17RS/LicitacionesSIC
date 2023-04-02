@@ -11,7 +11,7 @@
     }
 
     this.IrCrearLicitacion = function () {
-        location.href = "/Licitacion/CrearLicitaciones";
+        location.href = "../Views/Licitacion/CrearLicitaciones";
 
     }
 
@@ -64,6 +64,6 @@
 }
 
 $(document).ready(function () {
-    var view = new Licitaciones(); //Crea una instancia de nuestra funcion principal
-    view.InitView(); //Llama a nuestro metodos para inicializar propiedades
+    var views = new Licitaciones(); //Crea una instancia de nuestra funcion principal
+    views.InitView(); //Llama a nuestro metodos para inicializar propiedades
 })
