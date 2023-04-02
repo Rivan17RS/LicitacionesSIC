@@ -152,7 +152,7 @@ namespace AppLogic
                 usuario.Contrasena = usr.Contrasena;
                 usuario.IdUsrActualizacion = usr.IdUsrActualizacion;
                 usuario.FechaActualizacion = DateTime.Now;
-                usuario.Otp = usr.Otp;
+                //usuario.Otp = usr.Otp;
 
                 ucf.Update(usuario);
                 return "Actualizado Correctamente";
