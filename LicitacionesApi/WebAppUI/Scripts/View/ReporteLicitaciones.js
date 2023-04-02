@@ -37,7 +37,6 @@
 function mostrarDetallesLicitacion(idLicitacion) {
     $('#tblDetallesLicitacion').remove();
     $('#titleDetallesLicitacion').remove();
-
     $.ajax({
         method: "GET",
         url: "https://localhost:44369/api/DetalleLicitaciones/ObtenerDetalleLicitacionesId?IdLicitacion=" + idLicitacion,
@@ -64,19 +63,57 @@ function mostrarDetallesLicitacion(idLicitacion) {
 
 
 
+//function LicitacionesTable() {
+//    var arrColumns = [];
+//    arrColumns[0] = { 'data': 'IdAnalista' }
+//    arrColumns[1] = { 'data': 'Id' }
+//    arrColumns[2] = { 'data': 'Titulo' }
+//    arrColumns[3] = { 'data': 'Descripcion' }
+//    arrColumns[4] = { 'data': 'LugarEntrega' }
+//    arrColumns[5] = { 'data': 'FechaCierreOfertas' }
+//    arrColumns[6] = { 'data': 'MontoPresupuestado' }
+//    arrColumns[7] = { 'data': 'Estado' }
+
+
+
+
+//    $('#tblLicitaciones').DataTable().destroy();
+
+
+//    var tablaLicitaciones = $('#tblLicitaciones').DataTable({
+//        ajax: {
+//            method: "GET",
+//            url: "https://localhost:44369/api/Licitacion/ObtenerLicitaciones",
+//            contentType: "application/json;charset=utf-8",
+//            dataSrc: function (json) {
+//                console.log(json);
+//                var jsonResult = { 'data': json };
+//                console.log(jsonResult);
+//                return jsonResult.data;
+//            }
+//        },
+//        columns: arrColumns
+//    });
+
+//    $('#tblLicitaciones tbody').on('click', 'tr', function () {
+//        var data = tablaLicitaciones.row(this).data();
+//        var licitacionId = data.Id;
+//        mostrarDetallesLicitacion(licitacionId);
+//    }).css('cursor', 'pointer').attr('title', 'Click para ver detalles');
+//}
+
+
 function LicitacionesTable() {
-    var arrColumns = [];
-    arrColumns[0] = { 'data': 'IdAnalista' }
-    arrColumns[1] = { 'data': 'Id' }
-    arrColumns[2] = { 'data': 'Titulo' }
-    arrColumns[3] = { 'data': 'Descripcion' }
-    arrColumns[4] = { 'data': 'LugarEntrega' }
-    arrColumns[5] = { 'data': 'FechaCierreOfertas' }
-    arrColumns[6] = { 'data': 'MontoPresupuestado' }
-    arrColumns[7] = { 'data': 'Estado' }
-
-
-
+    var arrColumns = [
+        { 'data': 'IdAnalista' },
+        { 'data': 'Id' },
+        { 'data': 'Titulo' },
+        { 'data': 'Descripcion' },
+        { 'data': 'LugarEntrega' },
+        { 'data': 'FechaCierreOfertas' },
+        { 'data': 'MontoPresupuestado' },
+        { 'data': 'Estado' }
+    ];
     if ($.fn.DataTable.isDataTable('#tblLicitaciones')) {
         $('#tblLicitaciones').DataTable().destroy();
     }
@@ -95,23 +132,11 @@ function LicitacionesTable() {
         },
         columns: arrColumns
     });
-
-    $('#tblLicitaciones tbody').on('click', 'tr', function () {
-        var data = tablaLicitaciones.row(this).data();
-        var licitacionId = data.Id;
+    $('#tblLicitaciones tbody').off('click', 'tr').on('click', 'tr', function () {
+        var licitacionId = $(this).find('td:eq(1)').text();
         mostrarDetallesLicitacion(licitacionId);
     }).css('cursor', 'pointer').attr('title', 'Click para ver detalles');
 }
-
-
-
-
-$(document).ready(function () {
-    var view = new UsuariosTable();
-
-    view.InitView();
-
-});
 
 
 
