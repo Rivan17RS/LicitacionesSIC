@@ -172,6 +172,8 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\View\ActionsControl.js" />
     <Content Include="Scripts\View\CrearLicitacion.js" />
+    <Content Include="Scripts\View\DataTesting.js" />
+    <Content Include="Scripts\View\InventarioProductos.js" />
     <Content Include="Scripts\View\Licitaciones.js" />
     <Content Include="Scripts\View\LocalValidation.js" />
     <Content Include="Scripts\View\Premium.js" />

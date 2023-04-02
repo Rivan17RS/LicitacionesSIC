@@ -4,8 +4,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Scripts {
+    <script src="~/Scripts/View/InventarioProductos.js"></script>
+    <script src="~/Scripts/View/DataTesting.js"></script>
     <script src="~/Scripts/View/ReporteUsuarios.js"></script>
     <script src="~/Scripts/View/ReporteLicitaciones.js"></script>
+    <script src="~/Scripts/View/InventarioProductos.js"></script>
+
     <script src="https://kit.fontawesome.com/b76191ee63.js" crossorigin="anonymous"></script>
 }
 <br />
@@ -17,7 +21,7 @@
         <a class="nav-link" data-bs-toggle="tab" onclick="mostrarTabla('tblLicitaciones'); LicitacionesTable();" aria-selected="false" role="tab" tabindex="-1">Listado Licitaciones</a>
     </li>
     <li class="nav-item flex-grow-1 text-center" role="presentation">
-        <a class="nav-link" data-bs-toggle="tab" onclick="mostrarTabla('tblInventario');" aria-selected="false" role="tab" tabindex="-1">Inventario Productos</a>
+        <a class="nav-link" data-bs-toggle="tab" onclick="mostrarTabla('tblInventario'); MostarInventario(Products);" aria-selected="false" role="tab" tabindex="-1">Inventario Productos</a>
     </li>
 </ul>
 <br />
@@ -51,6 +55,7 @@
                     <th>Id Producto</th>
                     <th>Producto</th>
                     <th>Descripción</th>
+                    <th>Precio</th>
                     <th>Cantidad</th>
                     <th>Estado</th>
                 </tr>
