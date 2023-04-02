@@ -6,23 +6,17 @@ using System.Web.Mvc;
 
 namespace WebAppUI.Controllers
 {
-    public class LicitacionController : Controller
+    public class PremiumController : Controller
     {
-        // GET: Licitacion
+        // GET: Premium
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Licitaciones() 
-        { 
-            return View();
-        }
-
-        public ActionResult CrearLicitaciones()
+        public ActionResult Premium()
         {
             return View();
         }
-
     }
 }
