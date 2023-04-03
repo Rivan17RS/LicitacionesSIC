@@ -8,7 +8,7 @@
     [Estado]             BIT           DEFAULT ((1)) NOT NULL,
     [Otp]                VARCHAR (15)  NOT NULL,
     [IdRol]              INT           NOT NULL,
-    [Contrasena]         VARCHAR (30)  NOT NULL,
+    [Contrasena]         VARCHAR (100)  NOT NULL,
     [IdUsrCreacion]      INT           NOT NULL,
     [IdUsrActualizacion] INT           NULL,
     [IdUsrEliminacion]   INT           NULL,
