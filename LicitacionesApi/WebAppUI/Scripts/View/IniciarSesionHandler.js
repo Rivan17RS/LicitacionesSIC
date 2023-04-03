@@ -1,5 +1,12 @@
 ﻿$(document).ready(function () {
 
+    // hide validations until user inputs data
+    validacionContrasena = $('#validacionContrasena');
+    validacionCorreoElectronico = $('#validacionCorreoElectronico');
+    validacionContrasena.hide();
+    validacionCorreoElectronico.hide();
+
+
     $('#correoElectronicoInput').on('input', function () {
         var contrasena = $('#contrasenaInput').val();
         var correoElectronico = $(this).val();
