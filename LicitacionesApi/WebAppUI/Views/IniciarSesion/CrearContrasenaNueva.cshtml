@@ -1,4 +1,5 @@
-﻿@{
+﻿@model DTO.Usuario
+@{
     ViewBag.Title = "Contraseña nueva";
     Layout = "~/Views/Shared/_LayoutNoMenu.cshtml";
 }
@@ -17,19 +18,22 @@
                     <div class="card-header">Digita una contraseña nueva</div>
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="contrasenaInput">Correo electrónico</label>
-                            @Html.Password("contrasena", new { id = "contrasenaInput", @class = "form-control" })
+                            <label for="contrasenaInput">Contraseña nueva</label>
+                            @Html.Password("contrasena", "", new { id = "contrasenaInput", @class = "form-control" })
+                            @Html.ValidationMessage("contrasenaCorrectFormat", "Mínimo 8 dígitos, números y símbolos, no puede repetir contraseñas anteriores.", new { @class = "text-muted" })
                             @Html.ValidationMessage("contrasenaVal", "El campo contraseña es requerido.", new { id = "validacionContrasena", @class = "text-danger" })
+                            @Html.ValidationMessage("contrasenaFormatValSuccess", "Su contraseña es segura.", new { id = "validacionContrasenaSuccess", @class = "text-success" })
                         </div>
                         <div class="form-group">
                             <label for="contrasenaTwiceInput">Repetir contraseña</label>
-                            @Html.Password("contrasenaTwice", new { id = "contrasenaTwiceInput", @class = "form-control" })
-                            @Html.ValidationMessage("contrasenaTwiceVal", "El campo repetir contraseña tiene que coincidir.", new { id = "validacionContrasenaTwice", @class = "text-danger" })
+                            @Html.Password("contrasenaTwice", "", new { id = "contrasenaTwiceInput", @class = "form-control" })
+                            @Html.ValidationMessage("contrasenaTwiceVal", "La contraseña tiene que coincidir.", new { id = "validacionContrasenaTwice", @class = "text-danger" })
                         </div>
-                        <button type="submit" class="btn btn-primary" id="btnLogin" disabled>Enviar</button>
+                        <button type="submit" class="btn btn-primary mt-3" id="btnSubmit" disabled>Enviar</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 }

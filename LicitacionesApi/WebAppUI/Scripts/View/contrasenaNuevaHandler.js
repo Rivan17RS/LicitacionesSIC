@@ -1,50 +1,72 @@
 ﻿$(document).ready(function () {
+    // hide validations until user inputs data
+    var validacionContrasena = $('#validacionContrasena').hide();
+    var validacionContrasenaTwice = $('#validacionContrasenaTwice').hide();
+    var validacionContrasenaSuccess = $('#validacionContrasenaSuccess').hide();
 
-    $('#contrasenaTwiceInput').on('input', function () {
-        var contrasena = $('#contrasenaInput').val();
-        var contrasenaTwice = $(this).val();
-        var contrasenaMismatchError = $('#validacionContrasenaTwice');
+    var contrasena = $('#contrasenaInput');
+    var contrasenaTwice = $('#contrasenaTwiceInput');
+    var btnSubmit = $('#btnSubmit').addClass('disabled');
 
-        console.log("processing");
-        var submitButton = $('#btnLogin');
+    // helper function to check if the passwords match
+    function passwordsMatch() {
+        return contrasena.val() === contrasenaTwice.val();
+    }
 
-        if (contrasena !== '' && contrasena !== contrasenaTwice) {
-            contrasenaMismatchError.show();
-            submitButton.prop('disabled', true);
+    // helper function to check if the password is valid
+    function isValidPassword(password) {
+        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,21}$/.test(password);
+    }
+
+    // handler for contrasenaTwice input
+    contrasenaTwice.on('input', function () {
+        if (contrasenaTwice.val() !== '' && passwordsMatch()) {
+            validacionContrasenaTwice.hide();
+            contrasenaTwice.addClass('is-valid').removeClass('is-invalid');
+            if (isValidPassword(contrasena.val())) {
+                btnSubmit.prop('disabled', false).removeClass('disabled');
+            }
         } else {
-            contrasenaMismatchError.hide();
-            submitButton.prop('disabled', false);
+            validacionContrasenaTwice.show();
+            btnSubmit.prop('disabled', true).addClass('disabled');
+            contrasenaTwice.addClass('is-invalid').removeClass('is-valid');
         }
     });
 
-    $('#contrasenaInput').on('input', function () {
-        var contrasena = $(this).val();
-        var contrasenaTwice = $('#contrasenaTwiceInput').val();
-        var contrasenaMismatchError = $('#contrasenaMismatchError');
-        var submitButton = $('#btnLogin');
+    // handler for contrasena input
+    contrasena.on('input', function () {
+        var password = contrasena.val();
+        if (password !== '') {
+            validacionContrasena.hide();
 
-        if (contrasenaTwice !== '' || contrasena !== contrasenaTwice) {
-            contrasenaMismatchError.show();
-            submitButton.prop('disabled', true);
+            if (isValidPassword(password)) {
+                contrasena.addClass('is-valid').removeClass('is-invalid');
+
+                validacionContrasenaSuccess.show();
+                if (contrasenaTwice.val() !== '' && passwordsMatch()) {
+                    contrasenaTwice.addClass('is-valid').removeClass('is-invalid');
+                    validacionContrasenaTwice.hide();
+                    btnSubmit.prop('disabled', false).removeClass('disabled');
+                }
+
+                else {
+                    contrasenaTwice.addClass('is-invalid').removeClass('is-valid');
+                    validacionContrasenaTwice.show();
+                    btnSubmit.prop('disabled', true).addClass('disabled');
+                }
+
+            } else {
+                contrasena.removeClass('is-valid').addClass('is-invalid');
+                validacionContrasenaSuccess.hide();
+                contrasenaTwice.addClass('is-invalid').removeClass('is-valid');
+                btnSubmit.prop('disabled', true).addClass('disabled');
+
+            }
         } else {
-            contrasenaMismatchError.hide();
-            submitButton.prop('disabled', false);
-        }
-    });
-
-    $("#btnLogin").on("click", function () {
-        var contrasena = $('#contrasenaInput').val();
-
-        contrasenaFormatError = $('#contrasenaFormatError');
-        submitButton = $('#btnLogin');
-
-        if (contrasena == '' || !contrasena.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,21}$/)) {
-            event.preventDefault();
-            contrasenaFormatError.show();
-
-
-        } else {
-            contrasenaFormatError.hide();
+            validacionContrasena.show();
+            validacionContrasenaSuccess.hide();
+            contrasena.addClass('is-invalid').removeClass('is-valid');
+            btnSubmit.prop('disabled', true).addClass('disabled');
         }
     });
 });
