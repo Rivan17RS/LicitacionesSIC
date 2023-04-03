@@ -152,7 +152,8 @@ namespace AppLogic
                 usuario.Contrasena = usr.Contrasena;
                 usuario.IdUsrActualizacion = usr.IdUsrActualizacion;
                 usuario.FechaActualizacion = DateTime.Now;
-                //usuario.Otp = usr.Otp;
+                // es necesario tener la opción de actualizar el OTP. Se usa para poder crear el codigo de recuperación (un one-time URL para poder actualizar el usuario)
+                usuario.Otp = usr.Otp;
 
                 ucf.Update(usuario);
                 return "Actualizado Correctamente";

@@ -22,11 +22,15 @@ namespace WebAppUI.Controllers
 
         public ActionResult GoBack()
         {
+            if (Session["LastPage"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             // retornar a la pagina anterior (necesito trabajar en una manera de generalizar mejor esto
             return Redirect(((Uri)Session["LastPage"]).ToString());
         }
 
-        public ActionResult IniciodeSesion()
+        public ActionResult IniciarSesion()
         {
             Session["LastPage"] = System.Web.HttpContext.Current.Request.UrlReferrer;
 
@@ -34,7 +38,7 @@ namespace WebAppUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult IniciodeSesion(Usuario usuario)
+        public ActionResult IniciarSesion(Usuario usuario)
         {
 
             if (usuario.CorreoElectronico == null || usuario.Contrasena == null)
@@ -57,23 +61,32 @@ namespace WebAppUI.Controllers
 
             if (result.IsSuccessStatusCode)
             {
+
                 var jsonObject = result.Content.ReadAsStringAsync().Result;
 
                 var dataObject = JsonConvert.DeserializeObject<Usuario>(jsonObject);
 
-                // guardar los datos en sesion
+
+                if (dataObject == null)
+                {
+                    ViewBag.UserFound = false;
+                    return View();
+                }
+                // guardar los datos en sesion para uso general
                 Session["CurrentUser"] = dataObject.CorreoElectronico;
                 Session["User"] = dataObject.Nombre;
                 Session["Role"] = dataObject.Rol;
+                return RedirectToAction("GoBack");
             }
-            else
-                return View();
 
-            return RedirectToAction("GoBack");
+            else
+            {
+                return RedirectToAction("ErrorMessage", "ErrorMessage", new { message = "API Error: " + result.ToString() });
+            }
 
         }
 
-        public ActionResult CierredeSesion()
+        public ActionResult CerrarSesion()
         {
             Session["CurrentUser"] = null;
             Session["User"] = null;
@@ -83,6 +96,7 @@ namespace WebAppUI.Controllers
         [HttpPost]
         public ActionResult RecuperarContrasena(Usuario usuario)
         {
+            Session["LastPage"] = System.Web.HttpContext.Current.Request.UrlReferrer;
             string UrlApi = "https://localhost:44369/";
 
             string api = $"api/Usuario/EnviarCorreoRecuperacion?correo={usuario.CorreoElectronico}";
@@ -95,7 +109,7 @@ namespace WebAppUI.Controllers
 
             var response = client.PostAsync(urlFinal, new StringContent("", Encoding.UTF8, "application/json"));
 
-            return null;
+            return View();
         }
 
         public ActionResult RecuperarContrasena()
@@ -106,6 +120,7 @@ namespace WebAppUI.Controllers
         [HttpGet]
         public ActionResult CrearContrasenaNueva(string correo, string codigo)
         {
+            Session["LastPage"] = System.Web.HttpContext.Current.Request.UrlReferrer;
             string UrlApi = "https://localhost:44369/";
 
             string api = $"api/Usuario/ValidarCodigoRecuperacion?correo={correo}&codigo={codigo}";
@@ -132,13 +147,13 @@ namespace WebAppUI.Controllers
 
                 else
                 {
-                    return RedirectToAction("IniciodeSesion");
+                    return RedirectToAction("IniciarSesion");
                 }
             }
 
             else
             {
-                return RedirectToAction("IniciodeSesion");
+                return RedirectToAction("IniciarSesion");
             }
         }
 
@@ -159,7 +174,7 @@ namespace WebAppUI.Controllers
 
             var response = client.PostAsync(urlFinal, new StringContent("", Encoding.UTF8, "application/json"));
 
-            return RedirectToAction("IniciodeSesion");
+            return RedirectToAction("IniciarSesion");
         }
         public ActionResult Cancel()
         {

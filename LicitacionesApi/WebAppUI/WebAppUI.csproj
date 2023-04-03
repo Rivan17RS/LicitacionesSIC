@@ -171,8 +171,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\View\ActionsControl.js" />
+    <Content Include="Scripts\View\ContrasenaNuevaHandler.js" />
     <Content Include="Scripts\View\CrearLicitacion.js" />
     <Content Include="Scripts\View\DataTesting.js" />
+    <Content Include="Scripts\View\IniciarSesionHandler.js" />
     <Content Include="Scripts\View\InventarioProductos.js" />
     <Content Include="Scripts\View\Licitaciones.js" />
     <Content Include="Scripts\View\LocalValidation.js" />
@@ -193,7 +195,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\IniciarSesion\IniciodeSesion.cshtml" />
+    <Content Include="Views\IniciarSesion\IniciarSesion.cshtml" />
     <Content Include="Views\Licitacion\Licitaciones.cshtml" />
     <Content Include="Views\CrearCuenta\CrearCuenta.cshtml" />
     <Content Include="Views\Licitacion\CrearLicitaciones.cshtml" />
