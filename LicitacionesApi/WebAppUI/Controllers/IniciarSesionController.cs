@@ -64,6 +64,7 @@ namespace WebAppUI.Controllers
                 // guardar los datos en sesion
                 Session["CurrentUser"] = dataObject.CorreoElectronico;
                 Session["User"] = dataObject.Nombre;
+                Session["Role"] = dataObject.Rol;
             }
             else
                 return View();
