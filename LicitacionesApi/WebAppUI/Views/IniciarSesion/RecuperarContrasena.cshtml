@@ -28,5 +28,22 @@
             </td>
         </tr>
     </table>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-header">Introduce tus credenciales</div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="correoElectronicoInput">Correo electrónico</label>
+                            @Html.TextBoxFor(u => u.CorreoElectronico, new { id = "correoElectronicoInput", @class = "form-control" })
+                            @Html.ValidationMessage("usuario", "El campo correo electrónico es requerido.", new { id = "validacionCorreoElectronico", @class = "text-danger" })
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3" id="btn-login" disabled>Enviar correo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
