@@ -21,7 +21,7 @@
         <a class="nav-link" data-bs-toggle="tab" onclick="mostrarTabla('tblLicitaciones'); LicitacionesTable();" aria-selected="false" role="tab" tabindex="-1">Listado Licitaciones</a>
     </li>
     <li class="nav-item flex-grow-1 text-center" role="presentation">
-        <a class="nav-link" data-bs-toggle="tab" onclick="mostrarTabla('tblInventario'); MostrarInventario(Products);" aria-selected="false" role="tab" tabindex="-1">Inventario Productos</a>
+        <a class="nav-link" data-bs-toggle="tab" onclick="mostrarTabla('tblInventario'); MostrarInventario();" aria-selected="false" role="tab" tabindex="-1">Inventario Productos</a>
     </li>
 </ul>
 <br />
@@ -57,12 +57,13 @@
                     <th>Precio</th>
                     <th>Fecha de creación</th>
                     <th>Cantidad</th>
+                    <th>Acciones <button class="btn btn-sm btn-success crear" data-toggle="tooltip" title="Crear"><i class="fas fa-plus"></i></button></th>
                 </tr>
             </thead>
         </table>
-        <form id="frmProducto" class="form-group">
+        <form id="frmProducto" class="form-group" style="display: none;">
             <h2>Datos del Producto</h2>
-            <div class="form-group">
+            <div class="form-group" id="IdProduct">
                 <label for="txtIdProducto" class="form-label mt-4">Id Producto</label>
                 <input id="txtIdProducto" type="text" class="form-control" data-column-name="Id" />
             </div>
@@ -78,13 +79,17 @@
                 <label for="txtPrecio" class="form-label mt-4">Precio</label>
                 <input id="txtPrecio" type="text" class="form-control" data-column-name="Precio" />
             </div>
-            <div class="form-group">
+            <div class="form-group" id="FechaCreacion">
                 <label for="txtFechaCreacion" class="form-label mt-4">Fecha de creación</label>
                 <input id="txtFechaCreacion" type="text" class="form-control" data-column-name="FechaRegistro" />
             </div>
             <div class="form-group">
                 <label for="txtCantidad" class="form-label mt-4">Cantidad</label>
                 <input id="txtCantidad" type="text" class="form-control" data-column-name="Stock_Cantidad" />
+            </div>
+            <div class="form-group">
+                <button type="reset" class="btn btn-primary mt-4"> Guardar</button>
+                <button type="button" id="btnCancelar" class="btn btn-primary mt-4"> Cancelar</button>
             </div>
         </form>
 
@@ -165,29 +170,29 @@
 <script>
     function mostrarTabla(idTabla) {
         if (idTabla === 'tblUsuarios') {
-            document.getElementById('seccionUsuarios').style.display = 'block';
-            document.getElementById('seccionLicitaciones').style.display = 'none';
-            document.getElementById('seccionInventario').style.display = 'none';
+            $('#seccionUsuarios').show();
+            $('#seccionLicitaciones').hide();
+            $('#seccionInventario').hide();
         } else if (idTabla === 'tblInventario') {
-            document.getElementById('seccionUsuarios').style.display = 'none';
-            document.getElementById('seccionLicitaciones').style.display = 'none';
-            document.getElementById('seccionInventario').style.display = 'block';
+            $('#seccionUsuarios').hide();
+            $('#seccionLicitaciones').hide();
+            $('#seccionInventario').show();
         } else {
-            document.getElementById('seccionUsuarios').style.display = 'none';
-            document.getElementById('seccionLicitaciones').style.display = 'block';
-            document.getElementById('seccionInventario').style.display = 'none';
+            $('#seccionUsuarios').hide();
+            $('#seccionLicitaciones').show();
+            $('#seccionInventario').hide();
         }
     }
-
 
     function DesactivarBoton() {
-        const estado = document.getElementById("txtEstado").value;
-        if (estado === "1") {
-            btnEstado = "Desactivar Usuario";
-        } else if (estado === "0") {
-            btnEstado = "Activar Usuario";
+        const estado = $('#txtEstado').val();
+        let btnEstado = '';
+        if (estado === '1') {
+            btnEstado = 'Desactivar Usuario';
+        } else if (estado === '0') {
+            btnEstado = 'Activar Usuario';
         }
-        document.getElementById("btnEstado").innerHTML = btnEstado;
+        $('#btnEstado').text(btnEstado);
     }
-
 </script>
+
