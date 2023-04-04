@@ -179,6 +179,7 @@
     <Content Include="Scripts\View\Licitaciones.js" />
     <Content Include="Scripts\View\LocalValidation.js" />
     <Content Include="Scripts\View\Premium.js" />
+    <Content Include="Scripts\View\RecuperarContrasenaHandler.js" />
     <Content Include="Scripts\View\ReporteLicitaciones.js" />
     <Content Include="Scripts\View\ReporteUsuarios.js" />
     <Content Include="Web.config" />

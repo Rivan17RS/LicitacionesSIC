@@ -75,8 +75,22 @@ namespace WebAppUI.Controllers
                 // guardar los datos en sesion para uso general
                 Session["CurrentUser"] = dataObject.CorreoElectronico;
                 Session["User"] = dataObject.Nombre;
-                Session["Role"] = dataObject.Rol;
-                return RedirectToAction("GoBack");
+                var Rol = dataObject.Rol;
+                switch (Rol)
+                {
+                    case 1:
+                        Session["Role"] = "Administrador";
+                        break;
+                    case 2:
+                        Session["Role"] = "Analista";
+                        break;
+                    case 3:
+                        Session["Role"] = "Usuario";
+                        break;
+                    default:
+                        Session["Role"] = "Usuario";
+                        break;
+                }
             }
 
             else
