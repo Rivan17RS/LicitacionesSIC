@@ -91,6 +91,8 @@ namespace WebAppUI.Controllers
                         Session["Role"] = "Usuario";
                         break;
                 }
+
+                return RedirectToAction("GoBack");
             }
 
             else
@@ -122,6 +124,8 @@ namespace WebAppUI.Controllers
             client.BaseAddress = new Uri(urlFinal);
 
             var response = client.PostAsync(urlFinal, new StringContent("", Encoding.UTF8, "application/json"));
+
+            ViewBag.RecoveryEmailSent = "Sent";
 
             return View();
         }

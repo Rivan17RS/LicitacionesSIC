@@ -124,6 +124,7 @@
     <Compile Include="Controllers\ErrorMessageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IniciarSesionController.cs" />
+    <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\LicitacionController.cs" />
     <Compile Include="Controllers\PremiumController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />
@@ -173,8 +174,10 @@
     <Content Include="Scripts\View\ActionsControl.js" />
     <Content Include="Scripts\View\ContrasenaNuevaHandler.js" />
     <Content Include="Scripts\View\CrearLicitacion.js" />
+    <Content Include="Scripts\View\ProductUser_DataTesting.js" />
     <Content Include="Scripts\View\DataTesting.js" />
     <Content Include="Scripts\View\IniciarSesionHandler.js" />
+    <Content Include="Scripts\View\InventarioHandler.js" />
     <Content Include="Scripts\View\InventarioProductos.js" />
     <Content Include="Scripts\View\Licitaciones.js" />
     <Content Include="Scripts\View\LocalValidation.js" />
@@ -207,6 +210,8 @@
     <Content Include="Views\ErrorMessage\ErrorPage.cshtml" />
     <Content Include="Views\Premium\Premium.cshtml" />
     <Content Include="Views\Reporte\Reportes.cshtml" />
+    <Content Include="Views\Inventario\Inventario.cshtml" />
+    <Content Include="Views\Inventario\_PopupView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,4 @@
-﻿function MostrarInventario() {
+﻿$(document).ready(function () {
     var tablaHTML = $('#tblInventario').DataTable();
     tablaHTML.clear().draw();
 
@@ -7,9 +7,6 @@
             producto.Id,
             producto.Nombre,
             producto.Descripcion,
-            producto.Precio,
-            producto.FechaRegistro,
-            producto.Stock_Cantidad,
             '<div class="btn-group" role="group">' +
             '<button class="btn btn-sm btn-primary editar" data-toggle="tooltip" title="Editar"><i class="fas fa-pencil-alt"></i></button>' +
             '<button class="btn btn-sm btn-danger eliminar" data-toggle="tooltip" title="Eliminar"><i class="fas fa-trash-alt"></i></button>' +
@@ -18,10 +15,13 @@
     });
 
     $('#tblInventario thead').on('click', 'tr .crear', function () {
-        $('#frmProducto')[0].reset();
-        $('#ProductoForm').show();a
-        $('#frmProducto #IdProduct').hide();
-        $('#frmProducto #FechaCreacion').hide();
+        $.ajax({
+            url: "/Inventario/PopupView",
+            success: function (data) {
+                $("#popupContent").html(data);
+                $("#popupModal").modal("show");
+            }
+        });
     });
 
     $('#tblInventario tbody').on('click', 'tr .editar', function () {
@@ -32,9 +32,6 @@
             $('#txtIdProducto').val(data[0]);
             $('#txtProducto').val(data[1]);
             $('#txtDescripcion').val(data[2]);
-            $('#txtPrecio').val(data[3]);
-            $('#txtFechaCreacion').val(data[4]);
-            $('#txtCantidad').val(data[5]);
 
             $('#ProductoForm').show();
             $('#frmProducto #IdProduct').show();
@@ -44,14 +41,11 @@
 
     $('#tblInventario tbody').on('click', 'tr .eliminar', function () {
         // lógica para eliminar el producto seleccionado
-    }).css('cursor', 'pointer').attr('title', 'Click para ver detalles');
-}
+    })
 
 
-
-
-
-$('#frmProducto').on('click', '#btnCancelarProducto', function () {
-    $('#frmProducto')[0].reset();
-    $('#ProductoForm').hide();
+    $('#frmProducto').on('click', '#btnCancelarProducto', function () {
+        $('#frmProducto')[0].reset();
+        $('#ProductoForm').hide();
+    })
 });

@@ -7,7 +7,9 @@
 
 @using (Html.BeginForm("RecuperarContrasena", "IniciarSesion", FormMethod.Post))
 {
-    <h2>Recuperar contraseña - Enviaremos un correo electronico con una contraseña nueva</h2>
+    <h2>Recuperar contraseña</h2>
+    <h4 class="mb-3">Enviaremos un correo electronico con una contraseña nueva</h4>
+    <script src="~/Scripts/View/RecuperarContrasenaHandler.js"></script>
 
     <div>
         @if (ViewBag.Message != null)
@@ -16,30 +18,26 @@
         }
     </div>
 
-    <table>
-        <tr>
-            <td>@Html.LabelFor(u => u.CorreoElectronico, "Correo electronico:")</td>
-            <td>@Html.TextBoxFor(u => u.CorreoElectronico)</td>
-        </tr>
-        <tr>
-            <td>
-                <button id="btnLogin" type="submit" class="btn btn-success">Enviar correo de recuperación</button>
-                @Html.ActionLink("Cancel", "GoBack", "IniciarSesion", new { @class = "btn btn-success" })
-            </td>
-        </tr>
-    </table>
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="card">
-                    <div class="card-header">Introduce tus credenciales</div>
+                    <div class="card-header">Introduce tus contraseña</div>
                     <div class="card-body">
                         <div class="form-group">
+                            @if (ViewBag.RecoveryEmailSent != null)
+                            {
+
+                                <div class="alert alert-dismissible alert-success">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                    <p class="mb-0">Hemos enviado las instrucciones a su correo eléctronico.</p>
+                                </div>
+                            }
                             <label for="correoElectronicoInput">Correo electrónico</label>
                             @Html.TextBoxFor(u => u.CorreoElectronico, new { id = "correoElectronicoInput", @class = "form-control" })
                             @Html.ValidationMessage("usuario", "El campo correo electrónico es requerido.", new { id = "validacionCorreoElectronico", @class = "text-danger" })
                         </div>
-                        <button type="submit" class="btn btn-primary mt-3" id="btn-login" disabled>Enviar correo</button>
+                        <button type="submit" class="btn btn-primary mt-3 disabled" id="btnLogin" disabled>Enviar correo</button>
                     </div>
                 </div>
             </div>
