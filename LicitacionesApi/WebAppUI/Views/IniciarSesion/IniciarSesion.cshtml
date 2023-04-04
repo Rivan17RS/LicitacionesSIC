@@ -1,0 +1,46 @@
+﻿@model DTO.Usuario
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutNoMenu.cshtml";
+}
+
+<script src="~/Scripts/View/IniciarSesionHandler.js"></script>
+
+@using (Html.BeginForm("IniciarSesion", "IniciarSesion", FormMethod.Post))
+{
+    <script src="~/Scripts/View/LocalValidation.js"></script>
+    <h2 class="my-5 text-primary">Inicio de sesión</h2>
+    if (ViewBag.UserFound != null)
+    {
+
+        <div class="alert alert-dismissible alert-warning">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <h4 class="alert-heading">Error en la entrada!</h4>
+            <p class="mb-0">Usuario no encontrado o las credenciales son incorrectas.</p>
+        </div>
+    }
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-header">Introduce tus credenciales</div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="correoElectronicoInput">Correo electrónico</label>
+                            @Html.TextBoxFor(u => u.CorreoElectronico, new { id = "correoElectronicoInput", @class = "form-control" })
+                            @Html.ValidationMessage("usuario", "El campo correo electrónico es requerido.", new { id ="validacionCorreoElectronico", @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label for="contrasenaInput">Contraseña</label>
+                            @Html.PasswordFor(u => u.Contrasena, new { id = "contrasenaInput", @class = "form-control" })
+                            @Html.ValidationMessage("contrasena", "El campo contraseña es requerido.", new { id = "validacionContrasena", @class = "text-danger" })
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3" id="btn-login" disabled>Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

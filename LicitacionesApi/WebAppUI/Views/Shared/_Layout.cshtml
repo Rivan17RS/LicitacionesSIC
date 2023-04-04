@@ -57,13 +57,26 @@
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown ml-auto">
-                        <a class="nav-link dropdown-toggle text-info" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            Ingresar
-                        </a>
-                        <div class="dropdown-menu">
-                            <a>@Html.ActionLink("Crear Cuenta", "CrearCuenta", "CrearCuenta", new { area = "" }, new { @class = "dropdown-item" })</a>
-                            <a>@Html.ActionLink("Iniciar Sesión", "IniciodeSesion", "IniciarSesion", new { area = "" }, new { @class = "dropdown-item" })</a> <!--Text classes can be added to dropdown items and links. ex. text-danger to the log-out button-->
-                        </div>
+
+                        @if (Session["User"] != null)
+                        {
+                            <a class="nav-link dropdown-toggle text-info" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                 ¡Bienvenido @Session["User"]!
+                            </a>
+                            <div class="dropdown-menu">
+                                <a>@Html.ActionLink("Cerrar Sesión", "CerrarSesion", "IniciarSesion", new { area = "" }, new { @class = "dropdown-item" })</a> <!--Text classes can be added to dropdown items and links. ex. text-danger to the log-out button-->
+                            </div>
+                        }
+                        else
+                        {
+                            <a class="nav-link dropdown-toggle text-info" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                Ingresar
+                            </a>
+                            <div class="dropdown-menu">
+                                <a>@Html.ActionLink("Crear Cuenta", "CrearCuenta", "CrearCuenta", new { area = "" }, new { @class = "dropdown-item" })</a>
+                                <a>@Html.ActionLink("Iniciar Sesión", "IniciarSesion", "IniciarSesion", new { area = "" }, new { @class = "dropdown-item" })</a> <!--Text classes can be added to dropdown items and links. ex. text-danger to the log-out button-->
+                            </div>
+                        }
                     </li>
                 </ul>
             </div>

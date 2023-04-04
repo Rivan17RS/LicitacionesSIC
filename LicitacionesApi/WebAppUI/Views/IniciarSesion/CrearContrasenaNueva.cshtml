@@ -1,90 +1,39 @@
-﻿@{
-    ViewBag.Title = "CrearContrasenaNueva";
+﻿@model DTO.Usuario
+@{
+    ViewBag.Title = "Contraseña nueva";
     Layout = "~/Views/Shared/_LayoutNoMenu.cshtml";
 }
 
+<script src="~/Scripts/View/ContrasenaNuevaHandler.js"></script>
+
 @using (Html.BeginForm("CrearContrasenaNuevaForm", "IniciarSesion", FormMethod.Post, new { id = "crearContrasenaForm" }))
 {
-    <h2>Iniciar sesion</h2>
+    <script src="~/Scripts/View/LocalValidation.js"></script>
+    <h2 class="my-5 text-primary">Crear contraseña nueva</h2>
 
-    <div>
-        @Html.ValidationSummary(true)
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-header">Digita una contraseña nueva</div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="contrasenaInput">Contraseña nueva</label>
+                            @Html.Password("contrasena", "", new { id = "contrasenaInput", @class = "form-control" })
+                            @Html.ValidationMessage("contrasenaCorrectFormat", "Mínimo 8 dígitos, números y símbolos, no puede repetir contraseñas anteriores.", new { @class = "text-muted" })
+                            @Html.ValidationMessage("contrasenaVal", "El campo contraseña es requerido.", new { id = "validacionContrasena", @class = "text-danger" })
+                            @Html.ValidationMessage("contrasenaFormatValSuccess", "Su contraseña es segura.", new { id = "validacionContrasenaSuccess", @class = "text-success" })
+                        </div>
+                        <div class="form-group">
+                            <label for="contrasenaTwiceInput">Repetir contraseña</label>
+                            @Html.Password("contrasenaTwice", "", new { id = "contrasenaTwiceInput", @class = "form-control" })
+                            @Html.ValidationMessage("contrasenaTwiceVal", "La contraseña tiene que coincidir.", new { id = "validacionContrasenaTwice", @class = "text-danger" })
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3" id="btnSubmit" disabled>Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <table>
-        <tr>
-            <td>@Html.Label("contrasena", "Contraseña nueva:")</td>
-            <td>
-                @Html.Password("contrasena", null, new { id = "contrasenaInput" })
-                @Html.ValidationMessage("contrasena", "El campo contraseña es requerido.")
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.Label("contrasenaTwice", "Repetir contraseña:")</td>
-            <td>
-                @Html.Password("contrasenaTwice", null, new { id = "contrasenaTwiceInput" })
-                @Html.ValidationMessage("contrasenaTwice", "El campo repetir contraseña es requerido.")
-                <div id="contrasenaMismatchError" style="display:none; color:red;">Las contraseñas no coinciden.</div>
-                <div id="contrasenaFormatError" style="display:none; color:red">La contraseña tienen no tiene el formato correcto<br />- Minimo inclur 1 número, 1 carácter especial, 1 mayuscula <br />- Minimo 8 cáracteres</div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button id="btnLogin" type="submit" class="btn btn-success" disabled>Cambiar contraseña</button>
-                @Html.ActionLink("Cancel", "GoBack", "IniciarSesion", new { @class = "btn btn-success" })
-            </td>
-        </tr>
-    </table>
-}
-
-@section Scripts {
-    <script>
-        $(document).ready(function() {
-            $('#contrasenaTwiceInput').on('input', function() {
-                var contrasena = $('#contrasenaInput').val();
-                var contrasenaTwice = $(this).val();
-                var contrasenaMismatchError = $('#contrasenaMismatchError');
-                var submitButton = $('#btnLogin');
-
-                if (contrasena !== '' && contrasena !== contrasenaTwice) {
-                    contrasenaMismatchError.show();
-                    submitButton.prop('disabled', true);
-                } else {
-                    contrasenaMismatchError.hide();
-                    submitButton.prop('disabled', false);
-                }
-            });
-
-            $('#contrasenaInput').on('input', function () {
-                var contrasena = $(this).val();
-                var contrasenaTwice = $('#contrasenaTwiceInput').val();
-                var contrasenaMismatchError = $('#contrasenaMismatchError');
-                var submitButton = $('#btnLogin');
-
-                if (contrasenaTwice !== '' || contrasena !== contrasenaTwice) {
-                    contrasenaMismatchError.show();
-                    submitButton.prop('disabled', true);
-                } else {
-                    contrasenaMismatchError.hide();
-                    submitButton.prop('disabled', false);
-                }
-            });
-
-            $("#btnLogin").on("click", function () {
-                var contrasena = $('#contrasenaInput').val();
-
-                contrasenaFormatError = $('#contrasenaFormatError');
-                submitButton = $('#btnLogin');
-
-                if (contrasena == '' || !contrasena.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,21}$/)) {
-                    event.preventDefault();
-                    contrasenaFormatError.show();
-
-                    
-                } else {
-                    contrasenaFormatError.hide();
-                }
-            });
-        });
-    </script>
 }
