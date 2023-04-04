@@ -1,28 +1,54 @@
-﻿function MostarInventario(Products) {
+﻿function MostrarInventario() {
+    var tablaHTML = $('#tblInventario').DataTable();
+    tablaHTML.clear().draw();
 
-    var arrColumns = [
-        { 'data': 'Id' },
-        { 'data': 'Nombre' },
-        { 'data': 'Descripcion' },
-        { 'data': 'Precio' },
-        { 'data': 'FechaRegistro' },
-        { 'data': 'Stock_Cantidad' },
-        { 'data': 'IdUsrCreacion' },
-        { 'data': 'FechaCreacion' }
-    ];
-
-    // Creamos la tabla con DataTables
-    var tablaProductos = $('#tblInventario').DataTable({
-        data: Products,
-        columns: arrColumns
+    $.each(Products, function (index, producto) {
+        tablaHTML.row.add([
+            producto.Id,
+            producto.Nombre,
+            producto.Descripcion,
+            producto.Precio,
+            producto.FechaRegistro,
+            producto.Stock_Cantidad,
+            '<div class="btn-group" role="group">' +
+            '<button class="btn btn-sm btn-primary editar" data-toggle="tooltip" title="Editar"><i class="fas fa-pencil-alt"></i></button>' +
+            '<button class="btn btn-sm btn-danger eliminar" data-toggle="tooltip" title="Eliminar"><i class="fas fa-trash-alt"></i></button>' +
+            '</div>'
+        ]).draw();
     });
 
-    // Añadimos el evento onclick a las filas de la tabla
-    $('#tblInventario tbody').off('click', 'tr').on('click', 'tr', function () {
-        // Obtenemos el ID del producto de la fila clickeada
-        var productId = $(this).find('td:eq(0)').text();
+    $('#tblInventario thead').on('click', 'tr .crear', function () {
+        $('#frmProducto')[0].reset();
+        $('#frmProducto').show();
+        $('#frmProducto #IdProduct').hide();
+        $('#frmProducto #FechaCreacion').hide();
+    });
 
-        // Mostramos los detalles del producto en un modal o en otra sección de la página
-        mostrarDetallesProducto(productId);
+    $('#tblInventario tbody').on('click', 'tr .editar', function () {
+        $('#tblInventario tbody').on('click', 'tr .editar', function () {
+            var tr = $(this).closest('tr');
+
+            var data = tablaHTML.row(tr).data();
+            $('#txtIdProducto').val(data[0]);
+            $('#txtProducto').val(data[1]);
+            $('#txtDescripcion').val(data[2]);
+            $('#txtPrecio').val(data[3]);
+            $('#txtFechaCreacion').val(data[4]);
+            $('#txtCantidad').val(data[5]);
+
+            $('#frmProducto').show();
+            $('#frmProducto #IdProduct').show();
+            $('#frmProducto #FechaCreacion').show();
+        });
+    });
+
+    $('#tblInventario tbody').on('click', 'tr .eliminar', function () {
+        // lógica para eliminar el producto seleccionado
     }).css('cursor', 'pointer').attr('title', 'Click para ver detalles');
 }
+
+
+$('#frmProducto').on('click', '#btnCancelarProducto', function () {
+    $('#frmProducto')[0].reset();
+    $('#frmProducto').hide();
+});
