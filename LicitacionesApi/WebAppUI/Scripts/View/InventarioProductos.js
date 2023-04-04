@@ -18,6 +18,7 @@
     });
 
     $('#tblInventario thead').on('click', 'tr .crear', function () {
+        $('#frmProducto')[0].reset();
         $('#frmProducto').show();
         $('#frmProducto #IdProduct').hide();
         $('#frmProducto #FechaCreacion').hide();
@@ -36,6 +37,8 @@
             $('#txtCantidad').val(data[5]);
 
             $('#frmProducto').show();
+            $('#frmProducto #IdProduct').show();
+            $('#frmProducto #FechaCreacion').show();
         });
     });
 
@@ -45,7 +48,7 @@
 }
 
 
-$('#frmProducto').on('click', '#btnCancelar', function () {
+$('#frmProducto').on('click', '#btnCancelarProducto', function () {
     $('#frmProducto')[0].reset();
     $('#frmProducto').hide();
 });

@@ -102,6 +102,11 @@ function actualizarEstado(identificacion) {
     });
 }
 
+$('#frmUsuarios').on('click', '#btnCancelarUsuario', function () {
+    $('#frmUsuarios')[0].reset();
+    $('#frmUsuarios').hide();
+});
+
 $(document).ready(function () {
     var view = new UsuariosTable();
 
