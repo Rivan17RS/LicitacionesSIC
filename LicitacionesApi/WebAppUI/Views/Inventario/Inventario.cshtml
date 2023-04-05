@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Inventario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Inventario</h2>
+
+<script src="~/Scripts/View/InventarioHandler.js"></script>
+
+<script src="~/Scripts/View/DataTesting.js"></script>
+
+<script src="https://kit.fontawesome.com/b76191ee63.js" crossorigin="anonymous"></script>
+
+<script>
+    var userId = "@Session["CurrentUser"]";
+</script>
+
+<section id="seccionInventario">
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text text-danger d-none" id="inputWarning">Hubo un error en la entrada. Por favor, verifique sus datos e intente de nuevo.</p>
+            <div class="form-group">
+                <select class="form-select mb-3" name="productos[]" id="inventarioDropdown">
+                    <option value="0">Seleccione un producto</option>
+
+                </select>
+            </div>
+            <div class="form-group">
+
+                <input type="number" class="form-control" id="cantidadInput" placeholder="Cantidad" />
+                <button type="button" class="btn btn-primary mt-3" id="agregarProducto">Agregar Producto</button>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <table id="tblInventario" class="table table-hover table-light" data-user=Session["User"]>
+        <thead>
+            <tr>
+                <th>Id Producto</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+    </table>
+</section>

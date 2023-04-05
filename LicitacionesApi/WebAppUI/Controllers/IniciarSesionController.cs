@@ -75,7 +75,23 @@ namespace WebAppUI.Controllers
                 // guardar los datos en sesion para uso general
                 Session["CurrentUser"] = dataObject.CorreoElectronico;
                 Session["User"] = dataObject.Nombre;
-                Session["Role"] = dataObject.Rol;
+                var Rol = dataObject.Rol;
+                switch (Rol)
+                {
+                    case 1:
+                        Session["Role"] = "Administrador";
+                        break;
+                    case 2:
+                        Session["Role"] = "Analista";
+                        break;
+                    case 3:
+                        Session["Role"] = "Usuario";
+                        break;
+                    default:
+                        Session["Role"] = "Usuario";
+                        break;
+                }
+
                 return RedirectToAction("GoBack");
             }
 
@@ -90,6 +106,7 @@ namespace WebAppUI.Controllers
         {
             Session["CurrentUser"] = null;
             Session["User"] = null;
+            Session["Role"] = null;
             return RedirectToAction("GoBack");
         }
 
@@ -108,6 +125,8 @@ namespace WebAppUI.Controllers
             client.BaseAddress = new Uri(urlFinal);
 
             var response = client.PostAsync(urlFinal, new StringContent("", Encoding.UTF8, "application/json"));
+
+            ViewBag.RecoveryEmailSent = "Sent";
 
             return View();
         }

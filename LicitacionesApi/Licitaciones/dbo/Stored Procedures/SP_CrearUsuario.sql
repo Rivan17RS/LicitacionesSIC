@@ -8,7 +8,7 @@
 	@Estado bit,
 	@Otp varchar(15),
 	@IdRol int,
-	@Contrasena varchar(30),
+	@Contrasena varchar(100),
 	@IdusrCreacion int
 
 

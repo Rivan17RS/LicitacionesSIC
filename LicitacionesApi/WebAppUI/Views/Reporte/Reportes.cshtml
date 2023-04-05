@@ -61,39 +61,45 @@
                 </tr>
             </thead>
         </table>
-        <form id="frmProducto" class="form-group" style="display: none;">
-            <h2>Datos del Producto</h2>
-            <div class="form-group" id="IdProduct">
-                <label for="txtIdProducto" class="form-label mt-4">Id Producto</label>
-                <input id="txtIdProducto" type="text" class="form-control" data-column-name="Id" />
+        <div class="row align-items-center justify-content-center" id="ProductoForm" style="display: none;">
+            <div class="col-lg-10">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="frmProducto" class="form-group">
+                            <h2>Datos del Producto</h2>
+                            <div class="form-group" id="IdProduct">
+                                <label for="txtIdProducto" class="form-label mt-4">Id Producto</label>
+                                <input id="txtIdProducto" type="text" class="form-control" data-column-name="Id" />
+                            </div>
+                            <div class="form-group">
+                                <label for="txtProducto" class="form-label mt-4">Producto</label>
+                                <input id="txtProducto" type="text" class="form-control" data-column-name="Nombre" />
+                            </div>
+                            <div class="form-group">
+                                <label for="txtDescripcion" class="form-label mt-4">Descripción</label>
+                                <input id="txtDescripcion" type="text" class="form-control" data-column-name="Descripcion" />
+                            </div>
+                            <div class="form-group">
+                                <label for="txtPrecio" class="form-label mt-4">Precio</label>
+                                <input id="txtPrecio" type="text" class="form-control" data-column-name="Precio" />
+                            </div>
+                            <div class="form-group" id="FechaCreacion">
+                                <label for="txtFechaCreacion" class="form-label mt-4">Fecha de creación</label>
+                                <input id="txtFechaCreacion" type="text" class="form-control" data-column-name="FechaRegistro" />
+                            </div>
+                            <div class="form-group">
+                                <label for="txtCantidad" class="form-label mt-4">Cantidad</label>
+                                <input id="txtCantidad" type="text" class="form-control" data-column-name="Stock_Cantidad" />
+                            </div>
+                            <div class="form-group">
+                                <button type="reset" class="btn btn-primary mt-4"> Guardar</button>
+                                <button type="button" id="btnCancelarProducto" class="btn btn-primary mt-4"> Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="txtProducto" class="form-label mt-4">Producto</label>
-                <input id="txtProducto" type="text" class="form-control" data-column-name="Nombre" />
-            </div>
-            <div class="form-group">
-                <label for="txtDescripcion" class="form-label mt-4">Descripción</label>
-                <input id="txtDescripcion" type="text" class="form-control" data-column-name="Descripcion" />
-            </div>
-            <div class="form-group">
-                <label for="txtPrecio" class="form-label mt-4">Precio</label>
-                <input id="txtPrecio" type="text" class="form-control" data-column-name="Precio" />
-            </div>
-            <div class="form-group" id="FechaCreacion">
-                <label for="txtFechaCreacion" class="form-label mt-4">Fecha de creación</label>
-                <input id="txtFechaCreacion" type="text" class="form-control" data-column-name="FechaRegistro" />
-            </div>
-            <div class="form-group">
-                <label for="txtCantidad" class="form-label mt-4">Cantidad</label>
-                <input id="txtCantidad" type="text" class="form-control" data-column-name="Stock_Cantidad" />
-            </div>
-            <div class="form-group">
-                <button type="reset" class="btn btn-primary mt-4"> Guardar</button>
-                <button type="button" id="btnCancelarProducto" class="btn btn-primary mt-4"> Cancelar</button>
-            </div>
-        </form>
-
-
+        </div>
     </div>
 </section>
 
@@ -114,55 +120,63 @@
                 </tr>
             </thead>
         </table>
-        <form id="frmUsuarios" class="form-group" style="display: none;">
-            <h2>Datos de Usuario</h2>
-            <div class="form-group">
-                <label for="txtNombre" class="form-label mt-4">Nombre</label>
-                <input id="txtNombre" type="text" class="form-control" ColumnDataName="Nombre" readonly />
-            </div>
+        <div class="row align-items-center justify-content-center" id="UsuarioForm" style="display: none;">
+            <div class="col-lg-10">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="frmUsuarios" class="form-group">
+                            <h2>Datos de Usuario</h2>
+                            <div class="form-group">
+                                <label for="txtNombre" class="form-label mt-4">Nombre</label>
+                                <input id="txtNombre" type="text" class="form-control" ColumnDataName="Nombre" readonly />
+                            </div>
 
-            <div class="form-group">
-                <label for="txtApellidos" class="form-label mt-4">Apellidos</label>
-                <input id="txtApellidos" type="text" class="form-control" ColumnDataName="Apellidos" readonly />
-            </div>
+                            <div class="form-group">
+                                <label for="txtApellidos" class="form-label mt-4">Apellidos</label>
+                                <input id="txtApellidos" type="text" class="form-control" ColumnDataName="Apellidos" readonly />
+                            </div>
 
-            <div class="form-group">
-                <label for="txtIdentificacion" class="form-label mt-4">Identificación</label>
-                <input id="txtIdentificacion" type="text" class="form-control" ColumnDataName="Identificacion" readonly />
-            </div>
+                            <div class="form-group">
+                                <label for="txtIdentificacion" class="form-label mt-4">Identificación</label>
+                                <input id="txtIdentificacion" type="text" class="form-control" ColumnDataName="Identificacion" readonly />
+                            </div>
 
-            <div class="form-group">
-                <label for="txtTelefono" class="form-label mt-4">Teléfono</label>
-                <input id="txtTelefono" type="text" class="form-control" ColumnDataName="Telefono" readonly />
-            </div>
+                            <div class="form-group">
+                                <label for="txtTelefono" class="form-label mt-4">Teléfono</label>
+                                <input id="txtTelefono" type="text" class="form-control" ColumnDataName="Telefono" readonly />
+                            </div>
 
-            <div class="form-group">
-                <label for="txtCorreoElectronico" class="form-label mt-4">Correo Electrónico</label>
-                <input id="txtCorreoElectronico" type="text" class="form-control" ColumnDataName="CorreoElectronico" readonly />
-            </div>
+                            <div class="form-group">
+                                <label for="txtCorreoElectronico" class="form-label mt-4">Correo Electrónico</label>
+                                <input id="txtCorreoElectronico" type="text" class="form-control" ColumnDataName="CorreoElectronico" readonly />
+                            </div>
 
-            <div class="form-group">
-                <label for="ddlRol" class="col-form-label">Rol</label>
-                <select id="ddlRol" class="form-select" ColumnDataName="Rol">
-                    <option value="1">Admin</option>
-                    <option value="2">Analista</option>
-                    <option value="3">Usuario</option>
-                </select>
-                <button type="submit" class="btn btn-primary" style="margin-top:20px" onclick="actualizarRol(txtIdentificacion.value, ddlRol.value)">Actualizar</button>
-                <button type="button" id="btnCancelarUsuario" class="btn btn-primary mt-4"> Cancelar</button>
-            </div>
+                            <div class="form-group">
+                                <label for="ddlRol" class="col-form-label">Rol</label>
+                                <select id="ddlRol" class="form-select" ColumnDataName="Rol">
+                                    <option value="1">Admin</option>
+                                    <option value="2">Analista</option>
+                                    <option value="3">Usuario</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary" style="margin-top:20px" onclick="actualizarRol(txtIdentificacion.value, ddlRol.value)">Actualizar</button>
+                                <button type="button" id="btnCancelarUsuario" class="btn btn-primary mt-4"> Cancelar</button>
+                            </div>
 
-            <div>
-                <label for="txtEstado" class="col-form-label">Estado</label>
-                <input id="txtEstado" type="text" class="form-control" ColumnDataName="Estado" readonly hidden />
-                <br>
-                <button type="submit" class="btn btn-primary" onclick="actualizarEstado(txtIdentificacion.value)">
-                    <span id="btnEstado">
-                    </span>
+                            <div>
+                                <label for="txtEstado" class="col-form-label">Estado</label>
+                                <input id="txtEstado" type="text" class="form-control" ColumnDataName="Estado" readonly hidden />
+                                <br>
+                                <button type="submit" class="btn btn-primary" onclick="actualizarEstado(txtIdentificacion.value)">
+                                    <span id="btnEstado">
+                                    </span>
 
-                </button>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </form>
+        </div>
     </div>
 </section>
 

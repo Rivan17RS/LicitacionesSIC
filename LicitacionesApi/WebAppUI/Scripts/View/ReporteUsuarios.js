@@ -67,7 +67,7 @@
 
             var actionsC = new ActionsControl();
             actionsC.BindFields("frmUsuarios", data);
-            $('#frmUsuarios').show();
+            $('#UsuarioForm').show();
         }).css('cursor', 'pointer').attr('title', 'Click para ver detalles');
 
     }
@@ -104,7 +104,7 @@ function actualizarEstado(identificacion) {
 
 $('#frmUsuarios').on('click', '#btnCancelarUsuario', function () {
     $('#frmUsuarios')[0].reset();
-    $('#frmUsuarios').hide();
+    $('#UsuarioForm').hide();
 });
 
 $(document).ready(function () {

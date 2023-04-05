@@ -124,6 +124,7 @@
     <Compile Include="Controllers\ErrorMessageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IniciarSesionController.cs" />
+    <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\LicitacionController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\PremiumController.cs" />
@@ -177,10 +178,12 @@
     <Content Include="Scripts\View\DataTesting.js" />
     <Content Include="Scripts\View\EditarPerfil.js" />
     <Content Include="Scripts\View\IniciarSesionHandler.js" />
+    <Content Include="Scripts\View\InventarioHandler.js" />
     <Content Include="Scripts\View\InventarioProductos.js" />
     <Content Include="Scripts\View\Licitaciones.js" />
     <Content Include="Scripts\View\LocalValidation.js" />
     <Content Include="Scripts\View\Premium.js" />
+    <Content Include="Scripts\View\RecuperarContrasenaHandler.js" />
     <Content Include="Scripts\View\ReporteLicitaciones.js" />
     <Content Include="Scripts\View\ReporteUsuarios.js" />
     <Content Include="Web.config" />
@@ -208,7 +211,12 @@
     <Content Include="Views\ErrorMessage\ErrorPage.cshtml" />
     <Content Include="Views\Premium\Premium.cshtml" />
     <Content Include="Views\Reporte\Reportes.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Perfil\MiPerfil.cshtml" />
+=======
+    <Content Include="Views\Inventario\Inventario.cshtml" />
+    <Content Include="Views\Inventario\_PopupView.cshtml" />
+>>>>>>> 3c21cd82fab7844037b77393033467ff0aaa1226
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
