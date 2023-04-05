@@ -174,7 +174,6 @@
     <Content Include="Scripts\View\ActionsControl.js" />
     <Content Include="Scripts\View\ContrasenaNuevaHandler.js" />
     <Content Include="Scripts\View\CrearLicitacion.js" />
-    <Content Include="Scripts\View\ProductUser_DataTesting.js" />
     <Content Include="Scripts\View\DataTesting.js" />
     <Content Include="Scripts\View\IniciarSesionHandler.js" />
     <Content Include="Scripts\View\InventarioHandler.js" />

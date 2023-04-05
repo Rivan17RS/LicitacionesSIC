@@ -25,7 +25,7 @@
         var productoFound = {};
 
         producto_user.forEach((producto) => {
-            if (producto.Id === id) {
+            if (userId === producto.userId && producto.Id === id) {
                 productoFound = producto;
             }
         });
@@ -37,7 +37,6 @@
 
         tablaHTML.rows().every((rowIndex, TableLoop, ColumnLoop) => {
             if (tablaHTML.row(rowIndex).data()[0] === id) {
-                console.log(tablaHTML.row(rowIndex).data()[0], id, cantidad);
                 tablaHTML.cell(rowIndex, 2).data(cantidad).draw();
             }
         });
@@ -62,21 +61,6 @@
         option.text = producto.Nombre + " : " + producto.Descripcion;
 
         dropdown.append(option);
-    });
-
-    $('#tblInventario tbody').on('click', 'tr .editar', function () {
-        $('#tblInventario tbody').on('click', 'tr .editar', function () {
-            var tr = $(this).closest('tr');
-
-            var data = tablaHTML.row(tr).data();
-            $('#txtIdProducto').val(data[0]);
-            $('#txtProducto').val(data[1]);
-            $('#txtDescripcion').val(data[2]);
-
-            $('#ProductoForm').show();
-            $('#frmProducto #IdProduct').show();
-            $('#frmProducto #FechaCreacion').show();
-        });
     });
 
     $('#tblInventario tbody').on('click', 'tr .eliminar', function () {
@@ -109,7 +93,7 @@
     $('#tblInventario tbody').on('click', 'tr .add', function () {
         var row = $(this).closest('tr');
         var rowData = tablaHTML.row(row).data();
-        var cantidad = rowData[2];
+        var cantidad = parseInt(rowData[2]);
         tablaHTML.cell(row, 2).data(cantidad + 1).draw();
     })
 
@@ -133,6 +117,7 @@
         var productoUser = LookupProductoUser(parseInt(dropwdownValue));
 
         if (productoUser.Id === producto.Id) {
+            console.log(productoUser.Id, producto.Id, ": verifying if producto: " + producto.Nombre + " exists")
             productoUser.cantidad += parseInt(cantidadInput.val());
             updateProductoUser(productoUser.Id, productoUser.cantidad);
         }
