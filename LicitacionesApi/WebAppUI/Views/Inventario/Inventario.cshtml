@@ -10,30 +10,37 @@
 <script src="~/Scripts/View/DataTesting.js"></script>
 
 <script src="https://kit.fontawesome.com/b76191ee63.js" crossorigin="anonymous"></script>
+
+<script>
+    var userId = "@Session["CurrentUser"]";
+</script>
+
 <section id="seccionInventario">
-    <div>
-        <table id="tblInventario" class="table table-hover table-light">
-            <thead>
-                <tr>
-                    <th>Id Producto</th>
-                    <th>Producto</th>
-                    <th>Descripción</th>
-                    <th>Acciones <button class="btn btn-sm btn-success crear" data-toggle="tooltip" title="Crear"><i class="fas fa-plus"></i></button></th>
-                </tr>
-            </thead>
-        </table>
-        <div id="popupModal" class="modal fade" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Popup View</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body" id="popupContent"></div>
-                </div>
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text text-danger d-none" id="inputWarning">Hubo un error en la entrada. Por favor, verifique sus datos e intente de nuevo.</p>
+            <div class="form-group">
+                <select class="form-select mb-3" name="productos[]" id="inventarioDropdown">
+                    <option value="0">Seleccione un producto</option>
+
+                </select>
+            </div>
+            <div class="form-group">
+
+                <input type="number" class="form-control" id="cantidadInput" placeholder="Cantidad" />
+                <button type="button" class="btn btn-primary mt-3" id="agregarProducto">Agregar Producto</button>
             </div>
         </div>
     </div>
+    <hr>
+    <table id="tblInventario" class="table table-hover table-light" data-user=Session["User"]>
+        <thead>
+            <tr>
+                <th>Id Producto</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+    </table>
 </section>
