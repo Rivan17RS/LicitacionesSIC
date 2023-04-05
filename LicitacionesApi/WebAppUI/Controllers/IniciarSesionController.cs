@@ -106,6 +106,7 @@ namespace WebAppUI.Controllers
         {
             Session["CurrentUser"] = null;
             Session["User"] = null;
+            Session["Role"] = null;
             return RedirectToAction("GoBack");
         }
 
