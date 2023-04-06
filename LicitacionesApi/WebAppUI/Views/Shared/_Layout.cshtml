@@ -28,6 +28,8 @@
 
                 <a>@Html.ActionLink("Mi Perfil", "Perfil", "MiPerfil", new { area = "" }, new { @class = "nav-link" })</a>
 
+ 
+
                 <ul class="navbar-nav me-auto">
                     @if (Session["Role"] != null)
                     {
@@ -64,6 +66,9 @@
                             </li>
                             <li class="nav-item">
                                 <a>@Html.ActionLink("Premium", "Premium", "Premium", new { area = "" }, new { @class = "nav-link" })</a>
+                            </li>
+                            <li>
+                                <a>@Html.ActionLink("Entregas", "Entregas", "Entregas", new { area = "" }, new { @class = "nav-link" })</a>
                             </li>
                         }
                     }
