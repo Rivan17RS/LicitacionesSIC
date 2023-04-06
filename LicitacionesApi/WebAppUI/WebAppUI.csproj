@@ -211,12 +211,9 @@
     <Content Include="Views\ErrorMessage\ErrorPage.cshtml" />
     <Content Include="Views\Premium\Premium.cshtml" />
     <Content Include="Views\Reporte\Reportes.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Perfil\MiPerfil.cshtml" />
-=======
     <Content Include="Views\Inventario\Inventario.cshtml" />
     <Content Include="Views\Inventario\_PopupView.cshtml" />
->>>>>>> 3c21cd82fab7844037b77393033467ff0aaa1226
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
