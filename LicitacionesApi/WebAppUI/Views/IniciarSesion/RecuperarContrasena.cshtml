@@ -19,12 +19,13 @@
     </div>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-10">
                 <div class="card">
-                    <div class="card-header">Introduce tu correo electrónico</div>
                     <div class="card-body">
-                        <div class="form-group">
+                        <fieldset>
+                            <legend>Ingrese su correo electrónico</legend>
+
                             @if (ViewBag.RecoveryEmailSent != null)
                             {
 
@@ -33,11 +34,16 @@
                                     <p class="mb-0">Hemos enviado las instrucciones a su correo eléctronico.</p>
                                 </div>
                             }
-                            <label for="correoElectronicoInput">Correo electrónico</label>
-                            @Html.TextBoxFor(u => u.CorreoElectronico, new { id = "correoElectronicoInput", @class = "form-control" })
-                            @Html.ValidationMessage("usuario", "El campo correo electrónico es requerido.", new { id = "validacionCorreoElectronico", @class = "text-danger" })
-                        </div>
-                        <button type="submit" class="btn btn-primary mt-3 disabled" id="btnLogin" disabled>Enviar correo</button>
+
+                            <div class="form-label">
+                                <label for="correoElectronicoInput">Correo electrónico</label>
+                                @Html.TextBoxFor(u => u.CorreoElectronico, new { id = "correoElectronicoInput", @class = "form-control" })
+                                @Html.ValidationMessage("usuario", "El campo correo electrónico es requerido.", new { id = "validacionCorreoElectronico", @class = "text-danger" })
+                            </div>
+
+                            <button type="submit" class="btn btn-primary mt-3 disabled" id="btnLogin" disabled>Enviar correo</button>
+
+                        </fieldset>
                     </div>
                 </div>
             </div>

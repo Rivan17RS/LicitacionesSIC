@@ -24,5 +24,9 @@ namespace WebAppUI.Controllers
             return View();
         }
 
+        public ActionResult AbrirLicitacion()
+        {
+            return View();
+        }
     }
 }
