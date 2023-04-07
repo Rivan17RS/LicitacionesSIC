@@ -12,6 +12,7 @@
 <script src="https://kit.fontawesome.com/b76191ee63.js" crossorigin="anonymous"></script>
 
 <script>
+    // !important this is to get the current user id for convenience in js file.
     var userId = "@Session["CurrentUser"]";
 </script>
 
@@ -19,6 +20,7 @@
     <div class="card">
         <div class="card-body">
             <p class="card-text text-danger d-none" id="inputWarning">Hubo un error en la entrada. Por favor, verifique sus datos e intente de nuevo.</p>
+            <p class="card-text text-success d-none" id="inputSuccess">¡Producto añadido con éxito!</p>
             <div class="form-group">
                 <select class="form-select mb-3" name="productos[]" id="inventarioDropdown">
                     <option value="0">Seleccione un producto</option>

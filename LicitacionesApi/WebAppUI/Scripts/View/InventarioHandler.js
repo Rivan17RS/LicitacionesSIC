@@ -1,16 +1,35 @@
-﻿$(document).ready(function () {
+﻿/**
+ * @fileoverview Logic for the inventario page. 
+ * @version 1.0
+ * @todo add more comments, implement the backend interface.
+ * @requires jQuery, DataTables, Bootstrap, FontAwesome
+ * @requires WebAppUI\Scripts\Products.js
+ * @requires WebAppUI\Scripts\producto_user.js
+ */
+
+
+$(document).ready(function () {
     var tablaHTML = $('#tblInventario').DataTable();
+    // adding buttons for each inventario table rows, such as adding, substracting, and deleting.
     var actionsRow = '<div class="btn-group" role="group">' +
         '<button class="btn btn-sm btn-danger eliminar" data-toggle="tooltip" title="Eliminar"><i class="fas fa-trash-alt"></i></button>' +
-        '<button class="btn btn-sm btn-danger substract" data-toggle="tooltip" title="Remove"><i class="fas fa-minus"></i></button>' +
-        '<button class="btn btn-sm btn-danger add" data-toggle="tooltip" title="Remove"><i class="fas fa-plus"></i></button>' +
+        '<button class="btn btn-sm btn-danger substract" data-toggle="tooltip" title="Substract"><i class="fas fa-minus"></i></button>' +
+        '<button class="btn btn-sm btn-danger add" data-toggle="tooltip" title="Add"><i class="fas fa-plus"></i></button>' +
         '</div>';
     var dropdown = $("#inventarioDropdown");
     var cantidadInput = $("#cantidadInput");
     var inputWarning = $("#inputWarning");
+    var inputSuccess = $("#inputSuccess");
 
+    // aqui se limpia la tabla y se dibuja de nuevo.
     tablaHTML.clear().draw();
 
+    /**
+     * This will loop throgh the Producto json array and will return the producto that matches the id parameter
+     * @param {integer} id the return value will match this parameter using the producto.Id
+     * @returns {integer} an integer containing the id of the producto matching the id parameter.
+     * 
+     */
     function LookupProducto(id) {
         var productoFound = {};
         Products.forEach((producto) => {
@@ -18,9 +37,14 @@
                 productoFound = producto;
             }
         });
-        return productoFound;
+        return parseInt(productoFound);
     }
 
+    /**
+     * 
+     * @param {integer} id
+     * @returns {integer}
+     */
     function LookupProductoUser(id) {
         var productoFound = {};
 
@@ -104,12 +128,14 @@
         if (parseInt(dropwdownValue) === 0 || parseInt(cantidadInput.val()) === 0 || parseInt(cantidadInput.val()) < 0 || cantidadInput.val() === "") {
             console.log(inputWarning);
             inputWarning.removeClass("d-none");
+            inputSucess.addClass("d-none");
             return
         }
 
         else {
             console.log(cantidadInput.val(), dropwdownValue);
             inputWarning.addClass("d-none");
+            inputSuccess.removeClass("d-none");
         }
 
         var producto = LookupProducto(parseInt(dropwdownValue));
