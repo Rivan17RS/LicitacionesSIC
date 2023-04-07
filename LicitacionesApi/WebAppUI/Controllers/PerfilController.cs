@@ -14,7 +14,7 @@ namespace WebAppUI.Controllers
             return View();
         }
 
-        public ActionResult Perfil() 
+        public ActionResult MiPerfil() 
         {
             return View();
         }

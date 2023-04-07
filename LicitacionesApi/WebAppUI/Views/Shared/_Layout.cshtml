@@ -26,7 +26,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarColor03">
 
-                <a>@Html.ActionLink("Mi Perfil", "Perfil", "MiPerfil", new { area = "" }, new { @class = "nav-link" })</a>
 
                 <ul class="navbar-nav me-auto">
                     @if (Session["Role"] != null)
@@ -48,6 +47,9 @@
                             <li class="nav-item">
                                 <a>@Html.ActionLink("Inventario", "Inventario", "Inventario", new { area = "" }, new { @class = "nav-link" })</a>
                             </li>
+                            <li>
+                                <a>@Html.ActionLink("Mi Perfil", "MiPerfil", "Perfil", new { area = "" }, new { @class = "nav-link" })</a>
+                            </li>
 
                         }
 
@@ -64,6 +66,9 @@
                             </li>
                             <li class="nav-item">
                                 <a>@Html.ActionLink("Premium", "Premium", "Premium", new { area = "" }, new { @class = "nav-link" })</a>
+                            </li>
+                            <li>
+                                <a>@Html.ActionLink("Mi Perfil", "MiPerfil", "Perfil", new { area = "" }, new { @class = "nav-link" })</a>
                             </li>
                         }
                     }
