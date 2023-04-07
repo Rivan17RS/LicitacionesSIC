@@ -21,3 +21,7 @@ li.dropdown:last-child .dropdown-menu {
     max-width: 48%;
     min-width: 200px;
 }
+
+.material-icons.md-60 {
+    font-size: 60px;
+}

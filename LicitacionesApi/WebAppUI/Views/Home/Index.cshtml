@@ -1,19 +1,30 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Índice";
 }
 
 <main>
-    <section class="row">
-        <h1 id="title" class="my-5 text-primary">Sistema Integrado de Compras</h1>
-        <h2 class="my-5">¿Que es el SIC?</h2>
+    <section class="row">      
+        <div class="jumbotron">
+            <h1 id="title" class="my-5 text-primary">Sistema Integrado de Compras</h1>
+            <p>
+                Bienvenido al Sistema Integrado de Compras del MEP, o SIC.
+
+                El SIC es la nueva plataforma en línea creada por el Ministerio de Educación Pública (MEP) con el objetivo de hacer más eficiente el proceso de licitación, pago y entrega de productos requeridos por instituciones.
+            </p>
+        </div>
+        <h2 class="my-5">¿Que hace el SIC?</h2>
         <p>
             El Sistema Integrado de Compras del MEP (SIC) le permite a comerciantes, distribuidores y abastecedores aceptar y cumplir licitaciones realizadas por instituciones. Los vendedores pueden hacer ofertas para las listas de artículos que realizan las instituciones y hacer seguimiento de sus ofertas aceptadas en el sistema.
             <br />
             Además, el SIC les proporciona información detallada sobre los pedidos, como la fecha de entrega y la cantidad de artículos solicitados. Con esta herramienta, los vendedores pueden hacer ofertas competitivas y ajustadas a las necesidades de las instituciones del MEP, lo que les permite aumentar sus ventas y expandir su presencia en el mercado educativo.
         </p>
-        <p>
-            No es necesario tener una cuenta en el SIC para acceder a las licitaciones, pero sí se requiere para hacer ofertas.
-        </p>
+        <h2 class="my-5">
+            ¿Cómo utilizo el SIC?
+        </h2>
+        <p>Una vez que haya elegido una licitación, ábrala y se le presentara un menú conteniendo un formulario para realizar una oferta.</p>
+        <p>En el formulario de oferta, deberán proporcionar la información necesaria, como la cantidad de artículos que pueden suministrar, el precio solicitado para realizar la entrega y cualquier otra información relevante que se solicite. Después de presentar su oferta, nuestro equipo administrativo evaluará todas las ofertas recibidas y elegirá la oferta ganadora según los criterios preestablecidos. Si su oferta resulta ganadora, se les asignará la licitación y podrán proceder con la entrega de los artículos correspondientes.</p>
+        <p>Para aquellos usuarios con nuestra membresía Premium, ofrecemos la oportunidad de manejar un sistema de inventario dentro de nuestra aplicación. De esta forma, tendrán un mayor control y seguimiento de sus artículos disponibles para suministrar y podrán participar en licitaciones de manera más eficiente. Además, nuestro sistema puede adjudicar automáticamente las licitaciones disponibles en función de la información de su inventario, lo que les ayudará a ahorrar tiempo en la gestión de licitaciones.</p>
+        <p>No es necesario tener una cuenta en el SIC para acceder a las licitaciones, pero sí se requiere para hacer ofertas.</p>
         <div class="row gx-md-1">
             <div class="col-xxl-2">
                 <a>@Html.ActionLink("Explorar Licitaciones", "Licitaciones", "Licitacion", new { area = "" }, new { @class = "btn btn-outline-primary mt-2" })</a>

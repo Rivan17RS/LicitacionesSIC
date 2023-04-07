@@ -4,8 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script src="~/Scripts/View/ContrasenaNuevaHandler.js"></script>
 
-<!--  <script src="~/Scripts/View/EditarPerfil.js"></script> -->
+<script src="~/Scripts/View/EditarPerfil.js"></script>
 
 
 <h2 class="my-5 text-primary">Mi Perfil</h2>
@@ -14,44 +15,102 @@
     <div class="col-lg-10">
         <div class="card">
             <div class="card-body">
-                <form id="MiPerfil">
+                <form id="TblDatosPerfil" class="form-group">
                     <fieldset>
-                        <legend>Puede actualizar la siguiente información</legend>
+                        <legend>Tus Datos Actuales</legend>
+                            <table id="TblPerfil" class="table table-borderless table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Apellidos</th>
+                                        <th>Identificación</th>
+                                        <th>Correo Electrónico</th>
+                                        <th>Teléfono</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>@Session["User"]</td>
+                                        <td>@Session["UserLastName"]</td>
+                                        <td>@Session["UserId"]</td>
+                                        <td>@Session["CurrentUser"]</td>
+                                        <td>@Session["UserTel"]</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
+
+
+
+<div class="row align-items-center justify-content-center">
+    <div class="col-lg-10">
+        <div class="card">
+            <div class="card-body">
+                <form id="EditarPerfil" class="form-group">
+                    <fieldset>
+                        <legend>Puedes actualizar la siguiente información:</legend>
 
                         <div class="form-group">
-                            <label for="userPicture" class="form-label mt-4">Imagen de Perfil</label>
-                            <input class="form-control" type="file" id="userPicture">
+                            <label for="userPicture" class="form-label mt-4">Actualizar Imagen de Perfil</label>
+                            <input class="form-control" type="file" id="updatePicture">
                         </div>
 
 
                         <div class="form-group">
                             <label for="userFirstName" class="form-label mt-4">Primer Nombre</label>
-                            <input type="text" class="form-control" id="userFirstName" placeholder="Ingrese su primer Nombre">
+                            <input type="text" class="form-control" id="uName" placeholder="Actualiza tu primer nombre">
                         </div>
 
                         <div class="form-group">
                             <label for="userSurnames" class="form-label mt-4">Apellidos</label>
-                            <input type="text" class="form-control" id="userSurnames" placeholder="Ingrese sus apellidos">
+                            <input type="text" class="form-control" id="uSurnames" placeholder="Actualiza tus apellidos">
                         </div>
 
                         <div class="form-group">
-                            <label for="userEmail" class="form-label mt-4">Correo Electronico</label>
-                            <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp" placeholder="Ingrese su correo electronico">
+                            <label for="userEmail" class="form-label mt-4">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="uEmail" placeholder="Actualiza tu correo electrónico">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="userPhone" class="form-label mt-4">Teléfono</label>
+                            <input type="text" class="form-control" id="uPhone" placeholder="Actualiza tu número telefónico">
                         </div>
 
                         <div class="form-group">
-                            <label for="userPassword" class="form-label mt-4">Contraseña</label>
-                            <input type="password" class="form-control" id="userPassword" placeholder="Ingrese su contraseña">
-                            <small id="passwordHelp" class="form-text text-muted">
-                                Mínimo 8 dígitos, números y símbolos, no puede repetir contraseñas anteriores
-                            </small>
+                            <br><span class="h5">Cambiar Contraseña</span><br />
+                            <label for="userPassword" class="form-label mt-4">Nueva contraseña</label>
+                            <input type="password" class="form-control" id="contrasenaInput" placeholder="Mínimo 8 dígitos, números y símbolos, no puede repetir contraseñas anteriores.">
                         </div>
 
 
+                        <!--    <div class="form-group">
+                                <br><span class="h5">Cambiar Contraseña</span><br />
+                                <br><label for="contrasenaInput">Contraseña nueva</label>
+                                @Html.Password("contrasena", "", new { id = "contrasenaInput", @class = "form-control" })
+                                @Html.ValidationMessage("contrasenaCorrectFormat", "Mínimo 8 dígitos, números y símbolos, no puede repetir contraseñas anteriores.", new { @class = "text-muted" })
+                                <br>
+                                @Html.ValidationMessage("contrasenaVal", "El campo contraseña es requerido.", new { id = "validacionContrasena", @class = "text-danger" })
+                                @Html.ValidationMessage("contrasenaFormatValSuccess", "Su contraseña es segura.", new { id = "validacionContrasenaSuccess", @class = "text-success" })
+                                <br />
+                                <br />
+                            </div>
+                            <div class="form-group">
+                                <label for="contrasenaTwiceInput">Repetir contraseña</label>
+                                @Html.Password("contrasenaTwice", "", new { id = "contrasenaTwiceInput", @class = "form-control" })
+                                @Html.ValidationMessage("contrasenaTwiceVal", "La contraseña tiene que coincidir.", new { id = "validacionContrasenaTwice", @class = "text-danger" })
 
-                        <button type="button" class="btn btn-danger mt-4" id="btnCancelUpdate">Cancelar</button>
-                        <button type="button" class="btn btn-primary mt-4" id="btnUpdateProfile">Actualizar</button>
+                            </div>
+                     -->
+
+                        <button type="reset" class="btn btn-warning mt-4" id="btnClear">Limpiar</button>
+                        <button type="submit" class="btn btn-primary mt-4" id="btnUpdateProfile" disabled">Actualizar </button>
                     </fieldset>
                 </form>
 

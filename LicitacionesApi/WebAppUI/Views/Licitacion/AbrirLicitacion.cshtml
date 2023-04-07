@@ -1,0 +1,183 @@
+﻿
+@{
+    ViewBag.Title = "AbrirLicitacion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,1,0" />
+<div class="row align-items-center justify-content-center">
+    <h2 class="my-2 text-primary">
+        <small class="text-muted mt-5">000000</small>
+        <br />
+        Titulo de Licitación
+    </h2>
+    <div class="bs-component">
+        <span class="badge rounded-pill bg-info mb-4">Adjudicado</span>
+    </div>
+    <div class="col-lg-10">
+        <div class="form-group">
+            <label class="form-label pt-1">Descripción</label>
+            <textarea class="form-control" readonly rows="10">Descripción de la licitación Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada velit eget posuere porttitor. Proin sit amet neque fermentum, luctus ex at, consectetur massa. Aliquam erat volutpat. In venenatis ut magna vel consequat. Nunc enim magna, placerat et tristique et, mattis ut quam. Sed porta enim in finibus consequat. Mauris vel nisl eu elit dictum scelerisque ac sit amet metus. Vivamus tellus nisi, commodo at hendrerit sed, scelerisque et ipsum. Phasellus sollicitudin porttitor sem. In ullamcorper felis nec turpis ultricies, nec rutrum est efficitur. Cras nec metus nisi. Donec viverra purus diam, id dapibus velit hendrerit non. Aliquam risus arcu, accumsan nec pharetra quis, sodales ac diam. Maecenas vel risus lacus. Proin rutrum enim libero. Nunc vitae tortor nulla.</textarea>
+        </div>
+    </div>
+    <div class="col-lg-10 d-flex mt-5">
+        <div class="col-4">
+            <p><strong>Dirección</strong></p>
+            <p>Dirección de licitación</p>
+            <p><strong>Fecha de expiración</strong></p>
+            <p>XX/XX/23</p>
+            <p><strong>Presupuesto</strong></p>
+            <p>CRC 750,000</p>
+        </div>
+        <div class="vr"></div>
+        <div class="col-6">
+            <table class="table mx-5">
+                <thead>
+                    <tr>
+                        <th scope="col">Articulo</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Unidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Cemento</th>
+                        <td>250</td>
+                        <td>KG</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Madera</th>
+                        <td>1150</td>
+                        <td>Tabla(s)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="d-inline">
+            <button type="button" class="btn btn-outline-danger mt-4" id="btnAnularLicitacion">Anular</button>
+        </div>
+
+    </div>
+    <div class="row d-flex align-items-center flex-wrap">
+
+        <h2 class="my-2 text-primary">Ofertas</h2>
+
+        <div class="card m-2 licitation-card">
+            <div class="card-header">
+                <h3 class="mt-2">Elizabeth Allen</h3>
+            </div>
+            <div class="card-body">
+                <form>
+                    <fieldset>
+                        <div class="form-check">
+                            <input class="form-check-input" readonly type="checkbox" value="" checked id="offerChecksForm" />
+                            <label class="form-check-label" for="offerChecksForm">Presupuesto</label>
+                            <p>CRC 210,000</p>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" readonly type="checkbox" value="" checked id="offerChecksForm" />
+                            <label class="form-check-label" for="offerChecksForm">Fecha de Entrega</label>
+                            <p>23/01/23</p>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" readonly type="checkbox" value="" id="offerChecksForm" />
+                            <label class="form-check-label" for="offerChecksForm">Orden Completa</label>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="card-footer row justify-content-between pb-6">
+                <button type="button" class="btn btn-primary my-4" id="btnAceptarLicitacion">Aceptar</button>
+            </div>
+        </div>
+
+        <div class="card m-2 licitation-card">
+            <div class="card-header">
+                <h3 class="mt-2">Elizabeth Allen</h3>
+            </div>
+            <div class="card-body">
+                <form>
+                    <fieldset>
+                        <div class="form-check">
+                            <input class="form-check-input" readonly type="checkbox" value="" checked id="offerChecksForm" />
+                            <label class="form-check-label" for="offerChecksForm">Presupuesto</label>
+                            <p>CRC 210,000</p>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" readonly type="checkbox" value="" checked id="offerChecksForm" />
+                            <label class="form-check-label" for="offerChecksForm">Fecha de Entrega</label>
+                            <p>23/01/23</p>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" readonly type="checkbox" value="" id="offerChecksForm" />
+                            <label class="form-check-label" for="offerChecksForm">Orden Completa</label>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="card-footer row justify-content-between pb-6">
+                <button type="button" class="btn btn-primary my-4" id="btnAceptarLicitacion">Aceptar</button>
+            </div>
+        </div>
+
+        <div class="card m-2 licitation-card">
+            <div class="card-header">
+                <h3 class="mt-2">Elizabeth Allen</h3>
+            </div>
+            <div class="card-body">
+                <form>
+                    <fieldset>
+                        <div class="form-check">
+                            <input class="form-check-input" readonly type="checkbox" value="" checked id="offerChecksForm" />
+                            <label class="form-check-label" for="offerChecksForm">Presupuesto</label>
+                            <p>CRC 210,000</p>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" readonly type="checkbox" value="" checked id="offerChecksForm" />
+                            <label class="form-check-label" for="offerChecksForm">Fecha de Entrega</label>
+                            <p>23/01/23</p>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" readonly type="checkbox" value="" id="offerChecksForm" />
+                            <label class="form-check-label" for="offerChecksForm">Orden Completa</label>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="card-footer row justify-content-between pb-6">
+                <button type="button" class="btn btn-primary my-4" id="btnAceptarLicitacion">Aceptar</button>
+            </div>
+        </div>
+
+        <div class="card m-2 licitation-card">
+            <div class="card-header">
+                <h3 class="mt-2">Elizabeth Allen</h3>
+            </div>
+            <div class="card-body">
+                <form>
+                    <fieldset>
+                        <div class="form-check">
+                            <input class="form-check-input" readonly type="checkbox" value="" checked id="offerChecksForm" />
+                            <label class="form-check-label" for="offerChecksForm">Presupuesto</label>
+                            <p>CRC 210,000</p>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" readonly type="checkbox" value="" checked id="offerChecksForm" />
+                            <label class="form-check-label" for="offerChecksForm">Fecha de Entrega</label>
+                            <p>23/01/23</p>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" readonly type="checkbox" value="" id="offerChecksForm" />
+                            <label class="form-check-label" for="offerChecksForm">Orden Completa</label>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="card-footer row justify-content-between pb-6">
+                <button type="button" class="btn btn-primary my-4" id="btnAceptarLicitacion">Aceptar</button>
+            </div>
+        </div>
+
+
+    </div>

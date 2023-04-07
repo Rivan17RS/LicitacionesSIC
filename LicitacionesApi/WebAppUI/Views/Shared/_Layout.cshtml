@@ -26,7 +26,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarColor03">
 
-                <a>@Html.ActionLink("Mi Perfil", "Perfil", "MiPerfil", new { area = "" }, new { @class = "nav-link" })</a>
+
+ 
 
                 <ul class="navbar-nav me-auto">
                     @if (Session["Role"] != null)
@@ -48,7 +49,6 @@
                             <li class="nav-item">
                                 <a>@Html.ActionLink("Inventario", "Inventario", "Inventario", new { area = "" }, new { @class = "nav-link" })</a>
                             </li>
-
                         }
 
                         else
@@ -60,10 +60,10 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link disabled" href="#">Notificaciones</a>
-                            </li>
-                            <li class="nav-item">
                                 <a>@Html.ActionLink("Premium", "Premium", "Premium", new { area = "" }, new { @class = "nav-link" })</a>
+                            </li>
+                            <li>
+                                <a>@Html.ActionLink("Entregas", "Entregas", "Entregas", new { area = "" }, new { @class = "nav-link" })</a>
                             </li>
                         }
                     }
@@ -75,9 +75,6 @@
                                 @Html.ActionLink("Índice", "Index", "Home", new { area = "" }, new { @class = "nav-link active" })
                                 <span class="visually-hidden">(current)</span>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#">Notificaciones</a>
                         </li>
                         <li class="nav-item">
                             <a>@Html.ActionLink("Premium", "Premium", "Premium", new { area = "" }, new { @class = "nav-link" })</a>
@@ -95,8 +92,8 @@
                                 ¡Bienvenido @Session["User"]!
                             </a>
                             <div class="dropdown-menu">
-                                <a>@Html.ActionLink("Cerrar Sesión", "CerrarSesion", "IniciarSesion", new { area = "" }, new { @class = "dropdown-item" })</a> <!--Text classes can be added to dropdown items and links. ex. text-danger to the log-out button-->
-
+                                <a>@Html.ActionLink("Mi Perfil", "MiPerfil", "Perfil", new { area = "" }, new { @class = "nav-link" })</a>
+                                <a>@Html.ActionLink("Cerrar Sesión", "CerrarSesion", "IniciarSesion", new { area = "" }, new { @class = "dropdown-item text-danger" })</a>
                             </div>
                         }
                         else
@@ -106,26 +103,20 @@
                             </a>
                             <div class="dropdown-menu">
                                 <a>@Html.ActionLink("Crear Cuenta", "CrearCuenta", "CrearCuenta", new { area = "" }, new { @class = "dropdown-item" })</a>
-                                <a>@Html.ActionLink("Iniciar Sesión", "IniciarSesion", "IniciarSesion", new { area = "" }, new { @class = "dropdown-item" })</a> <!--Text classes can be added to dropdown items and links. ex. text-danger to the log-out button-->
+                                <a>@Html.ActionLink("Iniciar Sesión", "IniciarSesion", "IniciarSesion", new { area = "" }, new { @class = "dropdown-item" })</a>
                             </div>
                         }
                     </li>
                 </ul>
-
-
-
             </div>
         </div>
     </nav>
 
-
-
-
-    <div class="container body-content">
+    <div class="container-xl body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - DevAces - Coding On Wings</p>
+            <p>&copy; @DateTime.Now.Year - DevAces</p>
         </footer>
     </div>
 

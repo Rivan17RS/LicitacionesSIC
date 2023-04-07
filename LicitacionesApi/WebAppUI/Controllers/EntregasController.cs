@@ -6,15 +6,15 @@ using System.Web.Mvc;
 
 namespace WebAppUI.Controllers
 {
-    public class PerfilController : Controller
+    public class EntregasController : Controller
     {
-        // GET: Perfil
+        // GET: Entregas
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult MiPerfil() 
+        public ActionResult Entregas()
         {
             return View();
         }
