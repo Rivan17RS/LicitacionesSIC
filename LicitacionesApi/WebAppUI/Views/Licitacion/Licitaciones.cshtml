@@ -6,152 +6,169 @@
 
 <script src="~/Scripts/View/Licitaciones.js"></script>
 
-<h2 class="my-5 text-primary">En su Inventario</h2>
+
+@if (Session["Role"] != null)
+{
+    if ((Session["Role"].ToString() == "Administrador" || Session["Role"].ToString() == "Analista"))
+    {
+        <div class="row d-flex align-items-center flex-wrap">
+
+            <button type="submit" class="btn mt-4 btn-bg-info">@Html.ActionLink("Crear licitación", "CrearLicitaciones", "Licitacion", new { area = "" }, new { @style = "text-decoration: none" })</button>
+           </div>
+            }
+            }
+
+            @if (Session["Role"] != null)
+            {
+                if (Session["Role"].ToString() == "Usuario")
+                {
+                    <h2 class="my-5 text-primary">En su Inventario</h2>
+
+                    <div class="row d-flex align-items-center flex-wrap">
+                        <div class="card m-2 licitation-card">
+                            <div class="card-body">
+                                <h4 class="card-title text-truncate">
+                                    Licitación de suministro de materiales de construcción para proyectos educativos
+                                </h4>
+                                <h6 class="card-subtitle mb-2 text-muted">613846</h6>
+                                <p class="card-text text-truncate">Estamos buscando proveedores para suministrar 250kg de cemento y 1150 tablones de madera para nuestras próximas construcciones en la institución. La entrega de estos materiales es vital para garantizar el avance de nuestros proyectos de construcción y mejora de infraestructuras.</p>
+                            </div>
+                            <div class="card-footer row justify-content-between pb-6">
+                                <!--footer is currently WIP-->
+                                <div class="col-3">
+                                    <span class="badge rounded-pill bg-info">Adjudicado</span>
+                                </div>
+                                <div class="col-8 text-end">
+                                    <a>@Html.ActionLink("Ver Licitación", "AbrirLicitacion", "Licitacion", new { area = "" }, new { @class = "card-link" })</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card m-2 licitation-card">
+                            <div class="card-body">
+                                <h4 class="card-title text-truncate">Proveedores de alimentos frescos para comedores escolares en San José.</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Numero de licitación</h6>
+                                <p class="card-text text-truncate">stamos buscando proveedores locales de alimentos frescos para nuestros comedores escolares en San José. Los proveedores interesados deberán proporcionar información detallada sobre la variedad de alimentos, plazo de entrega y cualquier otra información relevante que sea necesaria.</p>
+                            </div>
+                            <div class="card-footer row justify-content-between pb-6">
+                                <!--footer is currently WIP-->
+                                <div class="col-3">
+                                    <span class="badge rounded-pill bg-info">Adjudicado</span>
+                                </div>
+                                <div class="col-8 text-end">
+                                    <a>@Html.ActionLink("Ver Licitación", "AbrirLicitacion", "Licitacion", new { area = "" }, new { @class = "card-link" })</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card m-2 licitation-card">
+                            <div class="card-body">
+                                <h4 class="card-title text-truncate">Suministro de materiales de construcción para la renovación de escuelas en la región de Limón, Costa Rica</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Numero de licitación</h6>
+                                <p class="card-text text-truncate">Estamos buscando proveedores locales de materiales de construcción para la renovación de las escuelas en la región de Limón. Los proveedores interesados deberán proporcionar información detallada sobre la cantidad de materiales disponibles, plazo de entrega y cualquier otra información relevante que sea necesaria.</p>
+                            </div>
+                            <div class="card-footer row justify-content-between pb-6">
+                                <!--footer is currently WIP-->
+                                <div class="col-3">
+                                    <span class="badge rounded-pill bg-info">Adjudicado</span>
+                                </div>
+                                <div class="col-8 text-end">
+                                    <a>@Html.ActionLink("Ver Licitación", "AbrirLicitacion", "Licitacion", new { area = "" }, new { @class = "card-link" })</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            }
 
 
-<div class="row d-flex align-items-center flex-wrap">
-    <button type="submit" class="btn btn-primary mt-4" id="btn-login" >@Html.ActionLink("Crear licitación", "CrearLicitaciones", "Licitacion", new {area=""}, new {@style="text-decoration: none"})</button>
-    <div class="card m-2 licitation-card">
-        <div class="card-body">
-            <h4 class="card-title text-truncate">
-                Licitación de suministro de materiales de construcción para proyectos educativos
-            </h4>
-            <h6 class="card-subtitle mb-2 text-muted">613846</h6>
-            <p class="card-text text-truncate">Estamos buscando proveedores para suministrar 250kg de cemento y 1150 tablones de madera para nuestras próximas construcciones en la institución. La entrega de estos materiales es vital para garantizar el avance de nuestros proyectos de construcción y mejora de infraestructuras.</p>
-        </div>
-        <div class="card-footer row justify-content-between pb-6">
-            <!--footer is currently WIP-->
-            <div class="col-3">
-                <span class="badge rounded-pill bg-info">Adjudicado</span>
-            </div>
-            <div class="col-8 text-end">
-                <a>@Html.ActionLink("Ver Licitación", "AbrirLicitacion", "Licitacion", new { area = "" }, new { @class = "card-link" })</a>
-            </div>
-        </div>
-    </div>
+            <h2 class="my-5 text-primary">Nuevo</h2>
 
-    <div class="card m-2 licitation-card">
-        <div class="card-body">
-            <h4 class="card-title text-truncate">Proveedores de alimentos frescos para comedores escolares en San José.</h4>
-            <h6 class="card-subtitle mb-2 text-muted">Numero de licitación</h6>
-            <p class="card-text text-truncate">stamos buscando proveedores locales de alimentos frescos para nuestros comedores escolares en San José. Los proveedores interesados deberán proporcionar información detallada sobre la variedad de alimentos, plazo de entrega y cualquier otra información relevante que sea necesaria.</p>
-        </div>
-        <div class="card-footer row justify-content-between pb-6">
-            <!--footer is currently WIP-->
-            <div class="col-3">
-                <span class="badge rounded-pill bg-info">Adjudicado</span>
-            </div>
-            <div class="col-8 text-end">
-                <a>@Html.ActionLink("Ver Licitación", "AbrirLicitacion", "Licitacion", new { area = "" }, new { @class = "card-link" })</a>
-            </div>
-        </div>
-    </div>
+            <div class="row d-flex align-items-center flex-wrap">
+                <div class="card m-2 licitation-card">
+                    <div class="card-body">
+                        <h4 class="card-title text-truncate">Proveedores de material didáctico para la educación primaria en Alajuela, Costa Rica</h4>
+                        <h6 class="card-subtitle mb-2 text-muted">Numero de licitación</h6>
+                        <p class="card-text text-truncate">Buscamos proveedores locales de material didáctico para la educación primaria en Alajuela. Los proveedores interesados deberán proporcionar información detallada sobre la variedad de materiales disponibles, plazo de entrega y cualquier otra información relevante que sea necesaria.</p>
+                    </div>
+                    <div class="card-footer row justify-content-between pb-6">
+                        <!--footer is currently WIP-->
+                        <div class="col-3">
+                            <span class="badge rounded-pill bg-warning">Abierto</span>
+                        </div>
+                        <div class="col-8 text-end">
+                            <a>@Html.ActionLink("Ver Licitación", "AbrirLicitacion", "Licitacion", new { area = "" }, new { @class = "card-link" })</a>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="card m-2 licitation-card">
-        <div class="card-body">
-            <h4 class="card-title text-truncate">Suministro de materiales de construcción para la renovación de escuelas en la región de Limón, Costa Rica</h4>
-            <h6 class="card-subtitle mb-2 text-muted">Numero de licitación</h6>
-            <p class="card-text text-truncate">Estamos buscando proveedores locales de materiales de construcción para la renovación de las escuelas en la región de Limón. Los proveedores interesados deberán proporcionar información detallada sobre la cantidad de materiales disponibles, plazo de entrega y cualquier otra información relevante que sea necesaria.</p>
-        </div>
-        <div class="card-footer row justify-content-between pb-6">
-            <!--footer is currently WIP-->
-            <div class="col-3">
-                <span class="badge rounded-pill bg-info">Adjudicado</span>
-            </div>
-            <div class="col-8 text-end">
-                <a>@Html.ActionLink("Ver Licitación", "AbrirLicitacion", "Licitacion", new { area = "" }, new { @class = "card-link" })</a>
-            </div>
-        </div>
-    </div>
+                <div class="card m-2 licitation-card">
+                    <div class="card-body">
+                        <h4 class="card-title text-truncate">Suministro de equipos de informática para las escuelas públicas en Puntarenas, Costa Rica</h4>
+                        <h6 class="card-subtitle mb-2 text-muted">Numero de licitación</h6>
+                        <p class="card-text text-truncate">Estamos buscando proveedores locales de equipos de informática para nuestras escuelas públicas en Puntarenas. Los proveedores interesados deberán proporcionar información detallada sobre la cantidad de equipos disponibles, plazo de entrega y cualquier otra información relevante que sea necesaria.</p>
+                    </div>
+                    <div class="card-footer row justify-content-between pb-6">
+                        <!--footer is currently WIP-->
+                        <div class="col-3">
+                            <span class="badge rounded-pill bg-warning">Abierto</span>
+                        </div>
+                        <div class="col-8 text-end">
+                            <a>@Html.ActionLink("Ver Licitación", "AbrirLicitacion", "Licitacion", new { area = "" }, new { @class = "card-link" })</a>
+                        </div>
+                    </div>
+                </div>
 
-</div>
+                <div class="card m-2 licitation-card">
+                    <div class="card-body">
+                        <h4 class="card-title text-truncate">Proveedores de mobiliario escolar para las escuelas primarias</h4>
+                        <h6 class="card-subtitle mb-2 text-muted">Numero de licitación</h6>
+                        <p class="card-text text-truncate">Estamos buscando proveedores locales de mobiliario escolar para nuestras escuelas primarias en Cartago. Los proveedores interesados deberán proporcionar información detallada sobre la variedad de muebles disponibles, plazo de entrega y cualquier otra información relevante que sea necesaria.</p>
+                    </div>
+                    <div class="card-footer row justify-content-between pb-6">
+                        <!--footer is currently WIP-->
+                        <div class="col-3">
+                            <span class="badge rounded-pill bg-warning">Abierto</span>
+                        </div>
+                        <div class="col-8 text-end">
+                            <a>@Html.ActionLink("Ver Licitación", "AbrirLicitacion", "Licitacion", new { area = "" }, new { @class = "card-link" })</a>
+                        </div>
+                    </div>
+                </div>
 
-<h2 class="my-5 text-primary">Nuevo</h2>
+                <div class="card m-2 licitation-card">
+                    <div class="card-body">
+                        <h4 class="card-title text-truncate">Suministro de materiales de arte para las escuelas secundarias en Guanacaste, Costa Rica</h4>
+                        <h6 class="card-subtitle mb-2 text-muted">Numero de licitación</h6>
+                        <p class="card-text text-truncate">Estamos buscando proveedores locales de equipos deportivos para nuestras escuelas secundarias en Guanacaste. Los proveedores interesados deberán proporcionar información detallada sobre la variedad de equipos deportivos disponibles, plazo de entrega y cualquier otra información relevante que sea necesaria.</p>
+                    </div>
+                    <div class="card-footer row justify-content-between pb-6">
+                        <!--footer is currently WIP-->
+                        <div class="col-3">
+                            <span class="badge rounded-pill bg-warning">Abierto</span>
+                        </div>
+                        <div class="col-8 text-end">
+                            <a>@Html.ActionLink("Ver Licitación", "AbrirLicitacion", "Licitacion", new { area = "" }, new { @class = "card-link" })</a>
+                        </div>
+                    </div>
+                </div>
 
-<div class="row d-flex align-items-center flex-wrap">
-    <div class="card m-2 licitation-card">
-        <div class="card-body">
-            <h4 class="card-title text-truncate">Proveedores de material didáctico para la educación primaria en Alajuela, Costa Rica</h4>
-            <h6 class="card-subtitle mb-2 text-muted">Numero de licitación</h6>
-            <p class="card-text text-truncate">Buscamos proveedores locales de material didáctico para la educación primaria en Alajuela. Los proveedores interesados deberán proporcionar información detallada sobre la variedad de materiales disponibles, plazo de entrega y cualquier otra información relevante que sea necesaria.</p>
-        </div>
-        <div class="card-footer row justify-content-between pb-6">
-            <!--footer is currently WIP-->
-            <div class="col-3">
-                <span class="badge rounded-pill bg-warning">Abierto</span>
-            </div>
-            <div class="col-8 text-end">
-                <a>@Html.ActionLink("Ver Licitación", "AbrirLicitacion", "Licitacion", new { area = "" }, new { @class = "card-link" })</a>
-            </div>
-        </div>
-    </div>
+                <div class="card m-2 licitation-card">
+                    <div class="card-body">
+                        <h4 class="card-title text-truncate">Suministro de equipos deportivos para escuelas secundarias en Guanacaste</h4>
+                        <h6 class="card-subtitle mb-2 text-muted">Numero de licitación</h6>
+                        <p class="card-text text-truncate">Proveedores de materiales para programas de educación ambiental en San Carlos, Costa Rica</p>
+                    </div>
+                    <div class="card-footer row justify-content-between pb-6">
+                        <!--footer is currently WIP-->
+                        <div class="col-3">
+                            <span class="badge rounded-pill bg-warning">Abierto</span>
+                        </div>
+                        <div class="col-8 text-end">
+                            <a>@Html.ActionLink("Ver Licitación", "AbrirLicitacion", "Licitacion", new { area = "" }, new { @class = "card-link" })</a>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="card m-2 licitation-card">
-        <div class="card-body">
-            <h4 class="card-title text-truncate">Suministro de equipos de informática para las escuelas públicas en Puntarenas, Costa Rica</h4>
-            <h6 class="card-subtitle mb-2 text-muted">Numero de licitación</h6>
-            <p class="card-text text-truncate">Estamos buscando proveedores locales de equipos de informática para nuestras escuelas públicas en Puntarenas. Los proveedores interesados deberán proporcionar información detallada sobre la cantidad de equipos disponibles, plazo de entrega y cualquier otra información relevante que sea necesaria.</p>
-        </div>
-        <div class="card-footer row justify-content-between pb-6">
-            <!--footer is currently WIP-->
-            <div class="col-3">
-                <span class="badge rounded-pill bg-warning">Abierto</span>
             </div>
-            <div class="col-8 text-end">
-                <a>@Html.ActionLink("Ver Licitación", "AbrirLicitacion", "Licitacion", new { area = "" }, new { @class = "card-link" })</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="card m-2 licitation-card">
-        <div class="card-body">
-            <h4 class="card-title text-truncate">Proveedores de mobiliario escolar para las escuelas primarias</h4>
-            <h6 class="card-subtitle mb-2 text-muted">Numero de licitación</h6>
-            <p class="card-text text-truncate">Estamos buscando proveedores locales de mobiliario escolar para nuestras escuelas primarias en Cartago. Los proveedores interesados deberán proporcionar información detallada sobre la variedad de muebles disponibles, plazo de entrega y cualquier otra información relevante que sea necesaria.</p>
-        </div>
-        <div class="card-footer row justify-content-between pb-6">
-            <!--footer is currently WIP-->
-            <div class="col-3">
-                <span class="badge rounded-pill bg-warning">Abierto</span>
-            </div>
-            <div class="col-8 text-end">
-                <a>@Html.ActionLink("Ver Licitación", "AbrirLicitacion", "Licitacion", new { area = "" }, new { @class = "card-link" })</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="card m-2 licitation-card">
-        <div class="card-body">
-            <h4 class="card-title text-truncate">Suministro de materiales de arte para las escuelas secundarias en Guanacaste, Costa Rica</h4>
-            <h6 class="card-subtitle mb-2 text-muted">Numero de licitación</h6>
-            <p class="card-text text-truncate">Estamos buscando proveedores locales de equipos deportivos para nuestras escuelas secundarias en Guanacaste. Los proveedores interesados deberán proporcionar información detallada sobre la variedad de equipos deportivos disponibles, plazo de entrega y cualquier otra información relevante que sea necesaria.</p>
-        </div>
-        <div class="card-footer row justify-content-between pb-6">
-            <!--footer is currently WIP-->
-            <div class="col-3">
-                <span class="badge rounded-pill bg-warning">Abierto</span>
-            </div>
-            <div class="col-8 text-end">
-                <a>@Html.ActionLink("Ver Licitación", "AbrirLicitacion", "Licitacion", new { area = "" }, new { @class = "card-link" })</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="card m-2 licitation-card">
-        <div class="card-body">
-            <h4 class="card-title text-truncate">Suministro de equipos deportivos para escuelas secundarias en Guanacaste</h4>
-            <h6 class="card-subtitle mb-2 text-muted">Numero de licitación</h6>
-            <p class="card-text text-truncate">Proveedores de materiales para programas de educación ambiental en San Carlos, Costa Rica</p>
-        </div>
-        <div class="card-footer row justify-content-between pb-6">
-            <!--footer is currently WIP-->
-            <div class="col-3">
-                <span class="badge rounded-pill bg-warning">Abierto</span>
-            </div>
-            <div class="col-8 text-end">
-                <a>@Html.ActionLink("Ver Licitación", "AbrirLicitacion", "Licitacion", new { area = "" }, new { @class = "card-link" })</a>
-            </div>
-        </div>
-    </div>
-
-</div>
