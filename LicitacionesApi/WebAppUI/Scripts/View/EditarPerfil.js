@@ -45,7 +45,7 @@ function EditarPerfil() {
             }
         });
 
-        var apiURL = "https://licitaciones-api.azurewebsites.net/api/Usuario/cambiarContrasena?correoelectronico=" + CorreoElectronico + "&contrasenanueva=" + Contrasena;
+        var apiURL = "https://licitaciones-api.azurewebsites.net/api/Usuario/cambiarContrasena?correo=" + CorreoElectronico + "&contrasenanueva=" + Contrasena;
 
         $.ajax({
             method: "POST",
