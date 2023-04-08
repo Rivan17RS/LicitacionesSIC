@@ -129,7 +129,7 @@ namespace WebAppUI.Controllers
         public ActionResult RecuperarContrasena(Usuario usuario)
         {
             Session["LastPage"] = System.Web.HttpContext.Current.Request.UrlReferrer;
-            string UrlApi = "https://localhost:44369/";
+            string UrlApi = "https://licitaciones-api.azurewebsites.net/";
 
             string api = $"api/Usuario/EnviarCorreoRecuperacion?correo={usuario.CorreoElectronico}";
 
