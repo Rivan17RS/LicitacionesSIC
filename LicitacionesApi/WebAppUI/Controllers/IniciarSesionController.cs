@@ -90,6 +90,9 @@ namespace WebAppUI.Controllers
                     case 3:
                         Session["Role"] = "Usuario";
                         break;
+                    case 4:
+                        Session["Role"] = "Premium";
+                        break;
                     default:
                         Session["Role"] = "Usuario";
                         break;

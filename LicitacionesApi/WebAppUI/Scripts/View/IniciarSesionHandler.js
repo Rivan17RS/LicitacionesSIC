@@ -5,6 +5,8 @@
     validacionCorreoElectronico = $('#validacionCorreoElectronico');
     validacionContrasena.hide();
     validacionCorreoElectronico.hide();
+    iniciarSesionButton = $('#btn-login');
+    iniciarSesionButton.addClass("disabled");
 
 
     $('#correoElectronicoInput').on('input', function () {
@@ -17,12 +19,17 @@
             validacionCorreoElectronico.hide();
             if (contrasena !== '') {
                 submitButton.prop('disabled', false);
+                submitButton.removeClass('disabled');
             }
+
         } else {
             validacionCorreoElectronico.show();
             if (contrasena === '') {
                 submitButton.prop('disabled', true);
+                submitButton.removeClass('disabled');
             }
+
+            submitButton.addClass("disabled");
         }
     });
     $('#contrasenaInput').on('input', function () {
@@ -35,12 +42,17 @@
             validacionContrasena.hide();
             if (correoElectronico !== '') {
                 submitButton.prop('disabled', false);
+                submitButton.removeClass('disabled');
+            }
+
+            else {
+                submitButton.prop('disabled', false);
+                submitButton.addClass('disabled');
             }
         } else {
             validacionContrasena.show();
-            if (contrasena === '') {
-                submitButton.prop('disabled', true);
-            }
+            submitButton.addClass("disabled");
         }
+
     });
 });
