@@ -17,6 +17,7 @@
         console.log("User ID:", identificacion.val());
         var apiURL =
             "https://licitaciones-api.azurewebsites.net/api/Usuario/CrearUsuario";
+        
 
         $.ajax({
             type: "POST",
@@ -33,7 +34,7 @@
                 // Show a success message
                 alert("Your account has been created successfully!");
             },
-            error: function (xhr, status, error) {
+            error: function (error) {
                 // Show an error message
                 console.log(error);
                 alert(
