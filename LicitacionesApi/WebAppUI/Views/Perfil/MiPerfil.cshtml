@@ -3,13 +3,21 @@
     ViewBag.Title = "MiPerfil";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<script src="~/Scripts/View/ContrasenaNuevaHandler.js"></script>
-
+<script src="~/Scripts/jquery-3.4.1.js"></script>
 <script src="~/Scripts/View/EditarPerfil.js"></script>
 
 
+
 <h2 class="my-5 text-primary">Mi perfil</h2>
+
+<script> var UserName = "@Session["User"]"</script>
+<script> var UserLastName = "@Session["UserLastName"]"</script>
+<script> var UserID = "@Session["UserId"]"</script>
+<script> var UserEmail = "@Session["CurrentUser"]"</script>
+<script> var UserPhone = "@Session["UserTel"]"</script>
+<script> var UserPass = "@Session["contrasenaInput"]"</script>
+<script> var UserOtp = "@Session["UserOtp"]"</script>
+
 
 <div class="row align-items-center justify-content-center">
     <div class="col-lg-10">
@@ -90,27 +98,8 @@
                         </div>
 
 
-                        <!--    <div class="form-group">
-                                <br><span class="h5">Cambiar Contraseña</span><br />
-                                <br><label for="contrasenaInput">Contraseña nueva</label>
-                                @Html.Password("contrasena", "", new { id = "contrasenaInput", @class = "form-control" })
-                                @Html.ValidationMessage("contrasenaCorrectFormat", "Mínimo 8 dígitos, números y símbolos, no puede repetir contraseñas anteriores.", new { @class = "text-muted" })
-                                <br>
-                                @Html.ValidationMessage("contrasenaVal", "El campo contraseña es requerido.", new { id = "validacionContrasena", @class = "text-danger" })
-                                @Html.ValidationMessage("contrasenaFormatValSuccess", "Su contraseña es segura.", new { id = "validacionContrasenaSuccess", @class = "text-success" })
-                                <br />
-                                <br />
-                            </div>
-                            <div class="form-group">
-                                <label for="contrasenaTwiceInput">Repetir contraseña</label>
-                                @Html.Password("contrasenaTwice", "", new { id = "contrasenaTwiceInput", @class = "form-control" })
-                                @Html.ValidationMessage("contrasenaTwiceVal", "La contraseña tiene que coincidir.", new { id = "validacionContrasenaTwice", @class = "text-danger" })
-
-                            </div>
-                     -->
-
                         <button type="reset" class="btn btn-warning mt-4" id="btnClear">Limpiar</button>
-                        <button type="submit" class="btn btn-primary mt-4" id="btnUpdateProfile" disabled">Actualizar </button>
+                        <button type="submit" class="btn btn-primary mt-4" id="btnUpdateProfile" onclick="EditarPerfil()">Actualizar </button>
                     </fieldset>
                 </form>
 

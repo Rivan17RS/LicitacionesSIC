@@ -9,6 +9,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Diagnostics;
+using ZXing;
 
 namespace WebAppUI.Controllers
 {
@@ -47,7 +48,7 @@ namespace WebAppUI.Controllers
             }
 
             // llamar API
-            string UrlApi = "https://localhost:44369/";
+            string UrlApi = "https://licitaciones-api.azurewebsites.net/";
 
             string api = $"api/Usuario/ValidareIniciarSesion?correo={usuario.CorreoElectronico}&contrasena={usuario.Contrasena}";
 
@@ -78,6 +79,7 @@ namespace WebAppUI.Controllers
                 Session["UserLastName"] = dataObject.Apellidos;
                 Session["UserTel"] = dataObject.Telefono;
                 Session["UserId"] = dataObject.Identificacion;
+                Session["UserOtp"] = dataObject.Otp;
                 var Rol = dataObject.Rol;
                 switch (Rol)
                 {
@@ -103,7 +105,7 @@ namespace WebAppUI.Controllers
 
             else
             {
-                return RedirectToAction("ErrorMessage", "ErrorMessage", new { message = "API Error: " + result.ToString() });
+                return RedirectToAction("ErrorMessage", "Messages", new { message = "API Error: " + result.ToString() });
             }
 
         }
@@ -146,7 +148,7 @@ namespace WebAppUI.Controllers
         public ActionResult CrearContrasenaNueva(string correo, string codigo)
         {
             Session["LastPage"] = System.Web.HttpContext.Current.Request.UrlReferrer;
-            string UrlApi = "https://localhost:44369/";
+            string UrlApi = "https://licitaciones-api.azurewebsites.net/";
 
             string api = $"api/Usuario/ValidarCodigoRecuperacion?correo={correo}&codigo={codigo}";
 
@@ -185,7 +187,7 @@ namespace WebAppUI.Controllers
         [HttpPost]
         public ActionResult CrearContrasenaNuevaForm(string contrasena, string contrasenaTwice)
         {
-            string UrlApi = "https://localhost:44369/";
+            string UrlApi = "https://licitaciones-api.azurewebsites.net/";
 
             string api = $"api/Usuario/CambiarContrasena?correo={Session["CurrentUserToUpdate"]}&contrasenanueva={contrasena}";
 
@@ -199,7 +201,7 @@ namespace WebAppUI.Controllers
 
             var response = client.PostAsync(urlFinal, new StringContent("", Encoding.UTF8, "application/json"));
 
-            return RedirectToAction("IniciarSesion");
+            return RedirectToAction("Index", "Home", new { area="" });
         }
         public ActionResult Cancel()
         {

@@ -47,7 +47,7 @@ namespace WebApp.Controllers
             return usr.ValidarOTP(identificacion, otp);
         }
 
-        public String ActualizarUsuario(string nombre, string apellidos, string identificacion, string telefono, string correo, string contrasena)
+        public String ActualizarUsuario(string Otp, string nombre, string apellidos, string identificacion, string telefono, string correo, string contrasena)
         {
             var usr = new UsuarioManager();
 
@@ -58,7 +58,8 @@ namespace WebApp.Controllers
                 Identificacion = identificacion,
                 Telefono = telefono,
                 CorreoElectronico = correo,
-                Contrasena = contrasena
+                Contrasena = contrasena,
+                Otp = Otp
 
             };
 
