@@ -17,7 +17,7 @@ namespace DataAccess.DAO
 
         public SqlDao()
         {
-            ConnectionString = ConfigurationManager.ConnectionStrings["Licitaciones-DB"].ConnectionString;
+            ConnectionString = ConfigurationManager.ConnectionStrings["LicitacionesAppDB"].ConnectionString;
 
             //nuguet connectionMnager, y creacion en web.config string
         }
