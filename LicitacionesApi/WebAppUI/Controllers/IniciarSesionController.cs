@@ -73,6 +73,12 @@ namespace WebAppUI.Controllers
                     ViewBag.UserFound = false;
                     return View();
                 }
+
+                if (dataObject.Estado == 0)
+                {
+                    ViewBag.UserFound = false;
+                    return View();
+                }
                 // guardar los datos en sesion para uso general
                 Session["CurrentUser"] = dataObject.CorreoElectronico;
                 Session["User"] = dataObject.Nombre;
@@ -80,6 +86,7 @@ namespace WebAppUI.Controllers
                 Session["UserTel"] = dataObject.Telefono;
                 Session["UserId"] = dataObject.Identificacion;
                 Session["UserOtp"] = dataObject.Otp;
+                Session["PasswordHashed"] = dataObject.Contrasena;
                 var Rol = dataObject.Rol;
                 switch (Rol)
                 {

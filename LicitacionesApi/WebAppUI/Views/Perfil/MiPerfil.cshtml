@@ -15,7 +15,7 @@
 <script> var UserID = "@Session["UserId"]"</script>
 <script> var UserEmail = "@Session["CurrentUser"]"</script>
 <script> var UserPhone = "@Session["UserTel"]"</script>
-<script> var UserPass = "@Session["contrasenaInput"]"</script>
+<script> var UserPass = "@Session["PasswordHashed"]"</script>
 <script> var UserOtp = "@Session["UserOtp"]"</script>
 
 
@@ -97,9 +97,8 @@
                             <input type="password" class="form-control" id="contrasenaInput" placeholder="Mínimo 8 dígitos, números y símbolos, no puede repetir contraseñas anteriores.">
                         </div>
 
-
-                        <button type="reset" class="btn btn-warning mt-4" id="btnClear">Limpiar</button>
                         <button type="submit" class="btn btn-primary mt-4" id="btnUpdateProfile" onclick="EditarPerfil()">Actualizar </button>
+                        <button type="reset" class="btn btn-warning mt-4" id="btnClear">Limpiar</button>
                     </fieldset>
                 </form>
 

@@ -39,7 +39,7 @@ function mostrarDetallesLicitacion(idLicitacion) {
     $('#titleDetallesLicitacion').remove();
     $.ajax({
         method: "GET",
-        url: "https://localhost:44369/api/DetalleLicitaciones/ObtenerDetalleLicitacionesId?IdLicitacion=" + idLicitacion,
+        url: "https://licitaciones-api.azurewebsites.net/api/DetalleLicitaciones/ObtenerDetalleLicitacionesId?IdLicitacion=" + idLicitacion,
         contentType: "application/json;charset=utf-8",
         success: function (data) {
             var tablaDetalles = "<br><h2 id='titleDetallesLicitacion' >Detalles Licitación</h2><br><table id='tblDetallesLicitacion' class='table table-hover table-light'>";
@@ -78,7 +78,7 @@ function LicitacionesTable() {
     var tablaLicitaciones = $('#tblLicitaciones').DataTable({
         ajax: {
             method: "GET",
-            url: "https://localhost:44369/api/Licitacion/ObtenerLicitaciones",
+            url: "https://licitaciones-api.azurewebsites.net/api/Licitacion/ObtenerLicitaciones",
             contentType: "application/json;charset=utf-8",
             dataSrc: function (json) {
                 console.log(json);
