@@ -45,12 +45,18 @@ namespace WebAppUI.Controllers
 
             ViewBag.Message = "Usuario creado exitosamente";
 
-            return View();
+            return RedirectToAction("ConfirmarRegistro");
         }
 
         public ActionResult ConfirmarRegistro()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult ConfirmaRegistro()
+        {
+            return RedirectToAction("Index", "Home", new { area = "" });
         }
     }
 }
