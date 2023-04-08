@@ -17,5 +17,10 @@ namespace WebAppUI.Controllers
         {
             return View();
         }
+
+        public ActionResult ConfirmarRegistro()
+        {
+            return View();
+        }
     }
 }
