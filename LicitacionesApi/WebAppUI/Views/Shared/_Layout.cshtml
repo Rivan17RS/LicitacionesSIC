@@ -35,9 +35,6 @@
                         if (Session["Role"].ToString() == "Administrador")
                         {
                             <li class="nav-item">
-                                <a href="#" class="nav-link disabled">Notificaciones</a>
-                            </li>
-                            <li class="nav-item">
                                 <a>
                                     @Html.ActionLink("Índice", "Index", "Home", new { area = "" }, new { @class = "nav-link active" })
                                     <span class="visually-hidden">(current)</span>
@@ -73,9 +70,6 @@
                         else if (Session["Role"].ToString() == "Usuario")
                         {
                             <li class="nav-item">
-                                <a href="#" class="nav-link disabled">Notificaciones</a>
-                            </li>
-                            <li class="nav-item">
                                 <a>
                                     @Html.ActionLink("Índice", "Index", "Home", new { area = "" }, new { @class = "nav-link active" })
                                     <span class="visually-hidden">(current)</span>
@@ -91,9 +85,6 @@
 
                         else if (Session["Role"].ToString() == "Premium")
                         {
-                            <li class="nav-item">
-                                <a href="#" class="nav-link disabled">Notificaciones</a>
-                            </li>
                             <li class="nav-item">
                                 <a>
                                     @Html.ActionLink("Índice", "Index", "Home", new { area = "" }, new { @class = "nav-link active" })
@@ -112,14 +103,13 @@
                     else
                     {
                         <li class="nav-item">
-                            <a href="#" class="nav-link disabled">Notificaciones</a>
-                        </li>
-                        <li class="nav-item">
                             <a>
                                 @Html.ActionLink("Índice", "Index", "Home", new { area = "" }, new { @class = "nav-link active" })
                                 <span class="visually-hidden">(current)</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a>@Html.ActionLink("Licitaciones", "Licitaciones", "Licitacion", new { area = "" }, new { @class = "nav-link" })</a></li>
                         <li class="nav-item">
                             <a>@Html.ActionLink("Premium", "Premium", "Premium", new { area = "" }, new { @class = "nav-link" })</a>
                         </li>
