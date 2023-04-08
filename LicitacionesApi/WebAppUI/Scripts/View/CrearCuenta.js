@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿/*$(document).ready(function () {
     var userName = $("#userFirstName");
     var userLastName = $("#userSurnames");
     var userEmail = $("#userEmail");
@@ -43,4 +43,4 @@
             },
         });
     });
-});
+});*/
