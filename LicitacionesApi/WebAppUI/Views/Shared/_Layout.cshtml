@@ -126,7 +126,7 @@
                                 ¡Bienvenido @Session["User"]!
                             </a>
                             <div class="dropdown-menu">
-                                <a>@Html.ActionLink("Mi Perfil", "MiPerfil", "Perfil", new { area = "" }, new { @class = "nav-link" })</a>
+                                <a>@Html.ActionLink("Mi Perfil", "MiPerfil", "Perfil", new { area = "" }, new { @class = "dropdown-item" })</a>
                                 <a>@Html.ActionLink("Cerrar Sesión", "CerrarSesion", "IniciarSesion", new { area = "" }, new { @class = "dropdown-item text-danger" })</a>
                             </div>
                         }
