@@ -29,7 +29,6 @@
         arrayColumns[8] = { 'data': 'DetalleLicitaciones.Idproducto' };
         arrayColumns[9] = { 'data': 'DetalleLicitaciones.Cantidad' };
 
-        alert('cargando tabla');
          
     
 
