@@ -3,6 +3,9 @@
     ViewBag.Title = "CrearCuenta";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
+<script src="~/Scripts/View/CrearCuenta.js"></script>
 <script src="~/Scripts/View/LocalValidation.js"></script>
 <h2 class="my-5 text-primary">Creación de cuenta</h2>
 
@@ -20,8 +23,18 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="userFirstName" class="form-label mt-4">Identificación</label>
+                            <input type="text" class="form-control" id="userID" placeholder="Ingrese su identificación">
+                        </div>
+
+                        <div class="form-group">
                             <label for="userSurnames" class="form-label mt-4">Apellidos</label>
                             <input type="text" class="form-control" id="userSurnames" placeholder="Ingrese sus apellidos">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="userSurnames" class="form-label mt-4">Teléfono</label>
+                            <input type="text" class="form-control" id="userPhone" placeholder="Ingrese sus número de teléfono">
                         </div>
 
                         <div class="form-group">
@@ -35,11 +48,6 @@
                             <small id="passwordHelp" class="form-text text-muted">
                                 Mínimo 8 dígitos, números y símbolos, no puede repetir contraseñas anteriores
                             </small>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="userPicture" class="form-label mt-4">Imagen de perfil</label>
-                            <input class="form-control" type="file" id="userPicture">
                         </div>
 
                         <button type="button" class="btn btn-primary mt-4" id="btnCreateAccount">Crear</button>
