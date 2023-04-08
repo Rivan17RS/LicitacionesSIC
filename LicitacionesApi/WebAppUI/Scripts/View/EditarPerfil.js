@@ -1,15 +1,39 @@
-﻿
+﻿$(document).ready( function () {
+    uNombre = $("#uName");
+    uLastName = $("#uSurnames");
+    uEmail = $("#uEmail");
+    uPhone = $("#uPhone");
+
+    uNombre.val(UserName);
+    console.log(UserName);
+    uLastName.val(UserLastName);
+    uEmail.val(UserEmail);
+    uPhone.val(UserPhone);
+})
+
+
 function EditarPerfil() {
 
-        var nombre = UserName;
-        var Apellidos = UserLastName;
+        console.log("corre")
+        var nombre = $("#uName").val();
+        var Apellidos = $("#uSurnames").val();
         var Identificacion = UserID;
-        var Telefono = UserPhone;
-        var CorreoElectronico = UserEmail;
-        var Contrasena = UserPass;
+        var Telefono = $("#uPhone").val();
+        var CorreoElectronico = $("#uEmail").val();
+
+        var contrasenanueva = $("#contrasenaInput").val();
         var Otp = UserOtp;
 
-        var apiURL = "https://localhost:44369/api/Usuario/ActualizarUsuario?nombre=" + nombre + "&apellidos=" + Apellidos + "&identificacion=" + Identificacion + "&telefono=" + Telefono + "&correo=" + CorreoElectronico + "&contrasena=" + Contrasena + "&Otp=" + Otp;
+        var Contrasena = UserPass;
+        if (contrasenanueva === undefined || contrasenanueva === "") {
+            Contrasena = UserPass;
+        }
+
+        else {
+            Contrasena = $("#contrasenaInput").val();
+        }
+
+    var apiURL = "https://licitaciones-api.azurewebsites.net/api/Usuario/ActualizarUsuario?nombre=" + nombre + "&apellidos=" + Apellidos + "&identificacion=" + Identificacion + "&telefono=" + Telefono + "&correo=" + CorreoElectronico + "&contrasena=" + UserPass + "&Otp=" + Otp;
 
         $.ajax({
             method: "POST",
@@ -20,6 +44,19 @@ function EditarPerfil() {
                 console.log(json);
             }
         });
+
+        var apiURL = "https://licitaciones-api.azurewebsites.net/api/Usuario/cambiarContrasena?correoelectronico=" + CorreoElectronico + "&contrasenanueva=" + Contrasena;
+
+        $.ajax({
+            method: "POST",
+            url: apiURL,
+            contentType: "application/json;charset=utf-8",
+            data: {},
+            success: function (json) {
+                console.log(json);
+            }
+        });
+
  }
 
 

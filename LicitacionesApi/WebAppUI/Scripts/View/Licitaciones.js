@@ -59,6 +59,8 @@
             actionsC.BindFields("frmLicitacion", data);
 
         })
+
+
     }
 }
 

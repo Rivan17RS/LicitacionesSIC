@@ -32,6 +32,8 @@
                     return 'Analista';
                 } else if (data == 3) {
                     return 'Usuario';
+                } else if (data == 4) {
+                    return 'Premium';
                 } else {
                     return '';
                 }
@@ -47,7 +49,7 @@
             ajax:
             {
                 method: "GET",
-                url: "https://localhost:44369/api/Usuario/ObtenerUsuarios",
+                url: "https://licitaciones-api.azurewebsites.net/api/Usuario/ObtenerUsuarios",
                 contentType: "application/json;charset=utf-8",
                 dataSrc: function (json) {
                     console.log(json);
@@ -77,7 +79,7 @@
 function actualizarRol(identificacion, rol) {
     $.ajax({
         method: "POST",
-        url: "https://localhost:44369/api/Usuario/CambiarRol?Identificacion=" + identificacion + "&rol=" + rol,
+        url: "https://licitaciones-api.azurewebsites.net/api/Usuario/CambiarRol?Identificacion=" + identificacion + "&rol=" + rol,
         contentType: "application/json;charset=utf-8",
         dataSrc: function (json) {
             console.log(json);
@@ -91,7 +93,7 @@ function actualizarRol(identificacion, rol) {
 function actualizarEstado(identificacion) {
     $.ajax({
         method: "POST",
-        url: "https://localhost:44369/api/Usuario/EstadoUsuario?Identificacion=" + identificacion,
+        url: "https://licitaciones-api.azurewebsites.net/api/Usuario/EstadoUsuario?Identificacion=" + identificacion,
         contentType: "application/json;charset=utf-8",
         dataSrc: function (json) {
             console.log(json);
