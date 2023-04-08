@@ -78,6 +78,7 @@ namespace WebAppUI.Controllers
                 Session["UserLastName"] = dataObject.Apellidos;
                 Session["UserTel"] = dataObject.Telefono;
                 Session["UserId"] = dataObject.Identificacion;
+                Session["UserOtp"] = dataObject.Otp;
                 var Rol = dataObject.Rol;
                 switch (Rol)
                 {
