@@ -3,6 +3,7 @@
         var identificationNumber = $("#identificationNumberInput").val();
         var otp = $("#otpInput").val();
 
+        console.log(identificationNumber, " ", otp);
         var apiURL = "https://licitaciones-api.azurewebsites.net/api/Usuario/ValidarOtp?identificacion=" + identificationNumber + "&otp=" + otp;
         $.ajax({
             method: "POST",
