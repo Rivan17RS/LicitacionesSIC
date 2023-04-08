@@ -360,5 +360,3 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/LicitacionesApi/DataAccess/DAO/SqlDao.cs
-/LicitacionesApi/WebApp/Web.config
