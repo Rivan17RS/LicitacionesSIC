@@ -87,9 +87,6 @@
                             <li class="nav-item">
                                 <a>@Html.ActionLink("Premium", "Premium", "Premium", new { area = "" }, new { @class = "nav-link" })</a>
                             </li>
-                            <li>
-                                <a>@Html.ActionLink("Entregas", "Entregas", "Entregas", new { area = "" }, new { @class = "nav-link" })</a>
-                            </li>
                         }
 
                         else if (Session["Role"].ToString() == "Premium")
@@ -105,9 +102,6 @@
                             </li>
                             <li class="nav-item">
                                 <a>@Html.ActionLink("Licitaciones", "Licitaciones", "Licitacion", new { area = "", @class = "nav-link" })</a>
-                            </li>
-                            <li>
-                                <a>@Html.ActionLink("Entregas", "Entregas", "Entregas", new { area = "" }, new { @class = "nav-link" })</a>
                             </li>
                             <li class="nav-item">
                                 <a>@Html.ActionLink("Inventario", "Inventario", "Inventario", new { area = "" }, new { @class = "nav-link" })</a>
