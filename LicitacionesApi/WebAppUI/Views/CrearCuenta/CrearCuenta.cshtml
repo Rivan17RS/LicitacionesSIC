@@ -1,4 +1,6 @@
 ﻿
+@model DTO.Usuario
+
 @{
     ViewBag.Title = "CrearCuenta";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,54 +9,59 @@
 
 <script src="~/Scripts/View/CrearCuenta.js"></script>
 <script src="~/Scripts/View/LocalValidation.js"></script>
+
 <h2 class="my-5 text-primary">Creación de cuenta</h2>
 
-<div class="row align-items-center justify-content-center">
-    <div class="col-lg-10">
-        <div class="card">
-            <div class="card-body">
-                <form id="createAccount">
-                    <fieldset>
-                        <legend>Ingrese sus datos</legend>
 
-                        <div class="form-group">
-                            <label for="userFirstName" class="form-label mt-4">Primer nombre</label>
-                            <input type="text" class="form-control" id="userFirstName" placeholder="Ingrese su primer nombre">
-                        </div>
+@using (Html.BeginForm("CrearCuenta", "CrearCuenta", FormMethod.Post, new { @id = "createAccount" }))
+{
+    <div class="row align-items-center justify-content-center">
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-body">
+                    <form id="createAccount">
+                        <fieldset>
+                            <legend>Ingrese sus datos</legend>
 
-                        <div class="form-group">
-                            <label for="userFirstName" class="form-label mt-4">Identificación</label>
-                            <input type="text" class="form-control" id="userID" placeholder="Ingrese su identificación">
-                        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Nombre, new { @class = "form-label mt-4" })
+                                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @placeholder = "Ingrese su primer nombre", @id = "userFirstName" })
+                            </div>
 
-                        <div class="form-group">
-                            <label for="userSurnames" class="form-label mt-4">Apellidos</label>
-                            <input type="text" class="form-control" id="userSurnames" placeholder="Ingrese sus apellidos">
-                        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Identificacion, new { @class = "form-label mt-4" })
+                                @Html.TextBoxFor(model => model.Identificacion, new { @class = "form-control", @placeholder = "Ingrese su identificación", @id = "userID" })
+                            </div>
 
-                        <div class="form-group">
-                            <label for="userSurnames" class="form-label mt-4">Teléfono</label>
-                            <input type="text" class="form-control" id="userPhone" placeholder="Ingrese sus número de teléfono">
-                        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Apellidos, new { @class = "form-label mt-4" })
+                                @Html.TextBoxFor(model => model.Apellidos, new { @class = "form-control", @placeholder = "Ingrese sus apellidos", @id = "userSurnames" })
+                            </div>
 
-                        <div class="form-group">
-                            <label for="userEmail" class="form-label mt-4">Correo electrónico</label>
-                            <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp" placeholder="Ingrese su correo electrónico">
-                        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Telefono, new { @class = "form-label mt-4" })
+                                @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control", @placeholder = "Ingrese sus número de teléfono", @id = "userPhone" })
+                            </div>
 
-                        <div class="form-group">
-                            <label for="userPassword" class="form-label mt-4">Contraseña</label>
-                            <input type="password" class="form-control" id="userPassword" placeholder="Ingrese su contraseña">
-                            <small id="passwordHelp" class="form-text text-muted">
-                                Mínimo 8 dígitos, números y símbolos, no puede repetir contraseñas anteriores
-                            </small>
-                        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CorreoElectronico, new { @class = "form-label mt-4" })
+                                @Html.TextBoxFor(model => model.CorreoElectronico, new { @class = "form-control", @placeholder = "Ingrese su correo electrónico", @id = "userEmail" })
+                            </div>
 
-                        <button type="button" class="btn btn-primary mt-4" id="btnCreateAccount">Crear</button>
-                    </fieldset>
-                </form>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Contrasena, new { @class = "form-label mt-4" })
+                                @Html.PasswordFor(model => model.Contrasena, new { @class = "form-control", @placeholder = "Ingrese su contraseña", @id = "userPassword" })
+                                <small id="passwordHelp" class="form-text text-muted">
+                                    Mínimo 8 dígitos, números y símbolos, no puede repetir contraseñas anteriores
+                                </small>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-4" id="btnCreateAccount">Crear</button>
+                        </fieldset>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+}
+
 
