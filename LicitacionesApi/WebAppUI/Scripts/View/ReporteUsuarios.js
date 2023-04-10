@@ -5,47 +5,20 @@
 
     this.LoadUsuariosTable = function () {
 
-
         var arrColumns = [];
-        arrColumns[0] = { 'data': 'Nombre' }
-        arrColumns[1] = { 'data': 'Apellidos' }
-        arrColumns[2] = { 'data': 'Identificacion' }
-        arrColumns[3] = { 'data': 'Telefono' }
-        arrColumns[4] = { 'data': 'CorreoElectronico' }
-        arrColumns[5] = {
-            'data': 'Estado',
-            'render': function (data, type, full, meta) {
-                if (data) {
-                    return 'Activo';
-                } else {
-                    return 'Inactivo';
-                }
-            }
-        }
-        arrColumns[6] =
-        {
-            'data': 'Rol',
-            'render': function (data, type, full, meta) {
-                if (data == 1) {
-                    return 'Admin';
-                } else if (data == 2) {
-                    return 'Analista';
-                } else if (data == 3) {
-                    return 'Usuario';
-                } else if (data == 4) {
-                    return 'Premium';
-                } else {
-                    return '';
-                }
-            }
-        }
+ 
 
+        // Verificar si la tabla ya existe, destruirla si es el caso.
         if ($.fn.DataTable.isDataTable('#tblUsuarios')) {
             $('#tblUsuarios').DataTable().destroy();
         }
 
+        // Inicializar la tabla con la opción searching.
         $('#tblUsuarios').DataTable({
-
+            searching: true,
+            language: {
+                search: "Filtrar por: _INPUT_",
+            },
             ajax:
             {
                 method: "GET",
@@ -58,11 +31,10 @@
                     return jsonResult.data;
                 }
             },
-
             columns: arrColumns
+        });
 
-        })
-
+        // Definir el evento click en cada fila de la tabla
         $('#tblUsuarios tbody').on('click', 'tr', function () {
             var tr = $(this).closest('tr');
             var data = $('#tblUsuarios').DataTable().row(tr).data();
@@ -71,8 +43,8 @@
             actionsC.BindFields("frmUsuarios", data);
             $('#UsuarioForm').show();
         }).css('cursor', 'pointer').attr('title', 'Click para ver detalles');
-
     }
+
 }
 
 
