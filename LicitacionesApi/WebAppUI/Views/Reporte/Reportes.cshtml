@@ -119,9 +119,69 @@
 
 
 <section id="seccionUsuarios">
-    <div class="text-end mb-4">
-        <button type="button" id="btnUserConfig" class="btn btn-primary bg-primary text-light"> Editar</button>
+    <div class="card mb-4">
+        <div class="card-body">
+            <form class="form-group">
+                <fieldset>
+                    <legend>Filtrado de datos</legend>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="filtroNombre">Nombre:</label>
+                                <input type="text" id="filtroNombre" class="form-control form-control-sm" onkeyup="filtrarTabla(0)">
+                            </div>
+                            <div class="form-group">
+                                <label for="filtroApellidos">Apellidos:</label>
+                                <input type="text" id="filtroApellidos" class="form-control form-control-sm" onkeyup="filtrarTabla(1)">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="filtroIdentificacion">Identificación:</label>
+                                <input type="text" id="filtroIdentificacion" class="form-control form-control-sm" onkeyup="filtrarTabla(2)">
+                            </div>
+                            <div class="form-group">
+                                <label for="filtroTelefono">Teléfono:</label>
+                                <input type="text" id="filtroTelefono" class="form-control form-control-sm" onkeyup="filtrarTabla(3)">
+                            </div>
+                            <div class="form-group">
+                                <label for="filtroEstado">Estado:</label>
+                                <select id="filtroEstado" class="form-control form-control-sm" onchange="filtrarTabla(5)">
+                                    <option value="">Todos</option>
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="filtroCorreo">Correo electrónico:</label>
+                                <input type="text" id="filtroCorreo" class="form-control form-control-sm" onkeyup="filtrarTabla(4)">
+                            </div>
+                            <div class="form-group">
+                                <label for="filtroRol">Rol:</label>
+                                <select id="filtroRol" class="form-control form-control-sm" onchange="filtrarTabla(6)">
+                                    <option value="">Todos</option>
+                                    <option value="Administrador">Administrador</option>
+                                    <option value="Usuario">Usuario</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row text-center mt-4">
+                        <div class="col-sm-12">
+                            <button type="button" class="btn btn-primary bg-primary text-light" onclick="filtrarTabla()">Buscar</button>
+                            <button type="button" class="btn btn-secondary bg-light" onclick="limpiarFiltros()">Limpiar</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
     </div>
+    <div class="text-end mb-4">
+        <button type="button" id="btnUserConfig" class="btn btn-primary bg-primary text-light btn-sm"> Método Configuración</button>
+    </div>
+
     <div>
 
         <table id="tblUsuarios" class="table table-hover table-light" onclick="DesactivarBoton()">
