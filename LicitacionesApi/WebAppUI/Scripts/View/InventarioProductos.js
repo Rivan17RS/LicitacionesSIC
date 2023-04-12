@@ -42,6 +42,11 @@
         // lógica para eliminar el producto seleccionado
     }).css('cursor', 'pointer').attr('title', 'Click para ver detalles');
 }
+//$('#btnProductConfig').on('click', function () {
+//    var table = $('#tblInventario').DataTable();
+//    var visible = table.column('.productConfig').visible();
+//    table.column('.productConfig').visible(!visible);
+//});
 
 $('#frmProducto').on('submit', function (e) {
     e.preventDefault();

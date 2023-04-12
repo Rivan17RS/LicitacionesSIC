@@ -5,62 +5,58 @@
 
     this.LoadUsuariosTable = function () {
 
-        var arrColumns = [];
-        arrColumns[0] = { 'data': 'Nombre' }
-        arrColumns[1] = { 'data': 'Apellidos' }
-        arrColumns[2] = { 'data': 'Identificacion' }
-        arrColumns[3] = { 'data': 'Telefono' }
-        arrColumns[4] = { 'data': 'CorreoElectronico' }
-        arrColumns[5] = {
-            'data': 'Estado',
-            'render': function (data, type, full, meta) {
-                if (data) {
-                    return 'Activo';
-                } else {
-                    return 'Inactivo';
+        var arrColumns = [
+            { 'data': 'Nombre' },
+            { 'data': 'Apellidos' },
+            { 'data': 'Identificacion' },
+            { 'data': 'Telefono' },
+            { 'data': 'CorreoElectronico' },
+            {
+                'data': 'Estado',
+                'render': function (data, type, full, meta) {
+                    if (data) {
+                        return 'Activo';
+                    } else {
+                        return 'Inactivo';
+                    }
                 }
-            }
-        }
-        arrColumns[6] =
-        {
-            'data': 'Rol',
-            'render': function (data, type, full, meta) {
-                if (data == 1) {
-                    return 'Admin';
-                } else if (data == 2) {
-                    return 'Analista';
-                } else if (data == 3) {
-                    return 'Usuario';
-                } else if (data == 4) {
-                    return 'Premium';
-                } else {
-                    return '';
+            },
+            {
+                'data': 'Rol',
+                'render': function (data, type, full, meta) {
+                    if (data == 1) {
+                        return 'Admin';
+                    } else if (data == 2) {
+                        return 'Analista';
+                    } else if (data == 3) {
+                        return 'Usuario';
+                    } else if (data == 4) {
+                        return 'Premium';
+                    } else {
+                        return '';
+                    }
                 }
+            },
+            {
+                'data': 'Configuracion',
+                'render': function (data, type, full, meta) {
+                    return '<div class="text-center "><button id="btnConfig" class="btn btn-sm btn-primary editar"  data-toggle="tooltip" title="Editar"><i class="fas fa-pencil-alt"></i></button></div>';
+                },
+                className: 'userConfig',
+                visible: false
             }
-        }
-        arrColumns[7] = {
-            'data': 'Configuracion',
-            'render': function (data, type, full, meta) {
-                return '<div class="text-center"><button id="btnConfig" class="btn btn-sm btn-primary editar" data-toggle="tooltip" title="Configurar"><i class="fas fa-cog"></i></button></div>';
-            }
-        };
+        ];
 
-
- 
-
-        // Verificar si la tabla ya existe, destruirla si es el caso.
         if ($.fn.DataTable.isDataTable('#tblUsuarios')) {
             $('#tblUsuarios').DataTable().destroy();
         }
 
-        // Inicializar la tabla con la opción searching.
-        $('#tblUsuarios').DataTable({
+        var tablaUsuarios = $('#tblUsuarios').DataTable({
             searching: true,
             language: {
                 url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
             },
-            ajax:
-            {
+            ajax: {
                 method: "GET",
                 url: "https://licitaciones-api.azurewebsites.net/api/Usuario/ObtenerUsuarios",
                 contentType: "application/json;charset=utf-8",
@@ -74,10 +70,9 @@
             columns: arrColumns
         });
 
-        // Definir el evento click en cada fila de la tabla
-        $('#tblUsuarios tbody').on('click', '#btnConfig', function () {
+        $('#tblUsuarios tbody').off('click', '#btnConfig').on('click', '#btnConfig', function () {
             var tr = $(this).closest('tr');
-            var data = $('#tblUsuarios').DataTable().row(tr).data();
+            var data = tablaUsuarios.row(tr).data();
 
             var actionsC = new ActionsControl();
             actionsC.BindFields("frmUsuarios", data);
@@ -86,6 +81,20 @@
     }
 
 }
+
+
+$(document).ready(function () {
+    var view = new UsuariosTable();
+    view.InitView();
+
+});
+
+
+$('#btnUserConfig').on('click', function () {
+    var table = $('#tblUsuarios').DataTable();
+    var visible = table.column('.userConfig').visible();
+    table.column('.userConfig').visible(!visible);
+});
 
 
 
@@ -137,9 +146,6 @@ $('#frmUsuarios').on('click', '#btnCancelarUsuario', function () {
     $('#UsuarioForm').hide();
 });
 
-$(document).ready(function () {
-    var view = new UsuariosTable();
 
-    view.InitView();
 
-});
+

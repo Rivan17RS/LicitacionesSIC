@@ -47,6 +47,9 @@
 
 
 <section id="seccionInventario" style="display: none;">
+    <div class="text-end mb-4">
+        <button type="button" id="btnProductConfig" class="btn btn-primary bg-primary text-light"> Configuraciones</button>
+    </div>
     <div>
         <table id="tblInventario" class="table table-hover table-light">
             <thead>
@@ -57,7 +60,7 @@
                     <th>Precio</th>
                     <th>Fecha de creación</th>
                     <th>Cantidad</th>
-                    <th>Configuración<button class="btn btn-sm btn-success crear" data-toggle="tooltip" title="Crear"><i class="fas fa-plus"></i></button></th>
+                    <th>Configuración  <button class="btn btn-sm btn-success crear" data-toggle="tooltip" title="Crear"><i class="fas fa-plus"></i></button></th>
                 </tr>
             </thead>
         </table>
@@ -116,6 +119,9 @@
 
 
 <section id="seccionUsuarios">
+    <div class="text-end mb-4">
+        <button type="button" id="btnUserConfig" class="btn btn-primary bg-primary text-light"> Editar</button>
+    </div>
     <div>
 
         <table id="tblUsuarios" class="table table-hover table-light" onclick="DesactivarBoton()">
@@ -128,7 +134,7 @@
                     <th>Correo eléctronico</th>
                     <th>Estado</th>
                     <th>Rol</th>
-                    <th>Configuración</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
         </table>

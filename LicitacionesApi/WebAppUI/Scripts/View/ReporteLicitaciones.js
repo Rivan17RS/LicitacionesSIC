@@ -43,7 +43,7 @@ function mostrarDetallesLicitacion(idLicitacion) {
         contentType: "application/json;charset=utf-8",
         success: function (data) {
             var tablaDetalles = "<br><h2 id='titleDetallesLicitacion' >Detalles Licitación</h2><br><table id='tblDetallesLicitacion' class='table table-hover table-light'>";
-            tablaDetalles += "<thead><tr><th>IdLicitación</th><th>IdProducto</th><th>Producto</th><th>Cantidad</th></tr></thead>";
+            tablaDetalles += "<thead><tr><th>Id Licitación</th><th>Id Producto</th><th>Producto</th><th>Cantidad</th></tr></thead>";
             tablaDetalles += "<tbody>";
             $.each(data, function (index, value) {
                 var product = Products.find(p => p.Id === value.Idproducto);
@@ -73,9 +73,14 @@ function LicitacionesTable() {
     ];
     if ($.fn.DataTable.isDataTable('#tblLicitaciones')) {
         $('#tblLicitaciones').DataTable().destroy();
+
     }
 
     var tablaLicitaciones = $('#tblLicitaciones').DataTable({
+        searching: true,
+        language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
+        },
         ajax: {
             method: "GET",
             url: "https://licitaciones-api.azurewebsites.net/api/Licitacion/ObtenerLicitaciones",
@@ -87,7 +92,7 @@ function LicitacionesTable() {
                 return jsonResult.data;
             }
         },
-        columns: arrColumns
+        columns: arrColumns,
     });
     $('#tblLicitaciones tbody').off('click', 'tr').on('click', 'tr', function () {
         var licitacionId = $(this).find('td:eq(1)').text();
