@@ -147,9 +147,9 @@
                             <div class="form-group">
                                 <label for="filtroEstado">Estado:</label>
                                 <select id="filtroEstado" class="form-control form-control-sm" onchange="filtrarTabla(5)">
-                                    <option value="">Todos</option>
-                                    <option value="Activo">Activo</option>
-                                    <option value="Inactivo">Inactivo</option>
+                                    <option value="2">Todos</option>
+                                    <option value="1">Activo</option>
+                                    <option value="0">Inactivo</option>
                                 </select>
                             </div>
                         </div>
@@ -161,16 +161,18 @@
                             <div class="form-group">
                                 <label for="filtroRol">Rol:</label>
                                 <select id="filtroRol" class="form-control form-control-sm" onchange="filtrarTabla(6)">
-                                    <option value="">Todos</option>
-                                    <option value="Administrador">Administrador</option>
-                                    <option value="Usuario">Usuario</option>
+                                    <option value="0">Todos</option>
+                                    <option value="1">Administrador</option>
+                                    <option value="2">Analista</option>
+                                    <option value="3">Usuario</option>
+                                    <option value="4">Premium</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="row text-center mt-4">
                         <div class="col-sm-12">
-                            <button type="button" class="btn btn-primary bg-primary text-light" onclick="filtrarTabla()">Buscar</button>
+                            <button type="button" class="btn btn-primary bg-primary text-light" id="btnBuscarUsr">Buscar</button>
                             <button type="button" class="btn btn-secondary bg-light" onclick="limpiarFiltros()">Limpiar</button>
                         </div>
                     </div>

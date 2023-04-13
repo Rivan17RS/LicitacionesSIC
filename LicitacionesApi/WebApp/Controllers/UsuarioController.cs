@@ -7,6 +7,7 @@ using System.Web.Http;
 using DTO;
 using AppLogic;
 using System.Security.Cryptography.X509Certificates;
+using Newtonsoft.Json;
 
 namespace WebApp.Controllers
 {
@@ -91,6 +92,18 @@ namespace WebApp.Controllers
             var usr = new UsuarioManager();
             return usr.ObtenerUsuarios();
         }
+
+
+        [HttpPost]
+
+        public List<Usuario> ObtenerUsuariosFiltro(Usuario usr)
+        {
+            var um = new UsuarioManager();
+            return um.ObtenerUsuarios(usr);
+        }
+
+
+
 
         public bool ValidarUsuario(string correo, string contrasena)
         {

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DTO;
 using DataAccess.CRUD;
+using Newtonsoft.Json;
 
 
 
@@ -218,11 +219,22 @@ namespace AppLogic
 
         }
 
+        public List<Usuario> ObtenerUsuarios(Usuario usr)
+        {
+            UsuarioCrudFactory ucf = new UsuarioCrudFactory();
+            return ucf.RetrieveAll<Usuario>(usr);
+        }
+
+
         public List<Usuario> ObtenerUsuarios()
         {
-            UsuarioCrudFactory usr = new UsuarioCrudFactory();
-            return usr.RetrieveAll<Usuario>();
+            UsuarioCrudFactory ucf = new UsuarioCrudFactory();
+            return ucf.RetrieveAll<Usuario>();
         }
+
+
+
+
 
         public Usuario buscarUsuarioPorCorreo(string correo)
         {

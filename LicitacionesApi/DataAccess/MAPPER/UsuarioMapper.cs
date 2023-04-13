@@ -54,6 +54,23 @@ namespace DataAccess.MAPPER
             return oper;
         }
 
+        public SqlOperation GetRetrieveAllStatement(Usuario usr)
+        {
+            var oper = new SqlOperation()
+            {
+                ProcedureName = "SP_ObtenerUsuariosFiltro"
+            };
+
+            oper.AddVarcharParam("Nombre", usr?.Nombre);
+            oper.AddVarcharParam("Apellidos", usr?.Apellidos);
+            oper.AddVarcharParam("Identificacion", usr?.Identificacion);
+            oper.AddVarcharParam("Telefono", usr?.Telefono);
+            oper.AddVarcharParam("CorreoElectronico", usr?.CorreoElectronico);
+            oper.AddIntegerParam("Estado", usr?.Estado ?? 2);
+            oper.AddIntegerParam("IdRol", usr?.Rol ?? 0);
+            return oper;
+        }
+
         public SqlOperation GetRetrieveByIDStatement(string ID)
         {
             var oper = new SqlOperation();

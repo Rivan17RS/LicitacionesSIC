@@ -4,6 +4,15 @@
     }
 
     this.LoadUsuariosTable = function () {
+        var usr = {};
+        usr.Nombre = $('filtroNombre').val();
+        usr.Apellidos = $('filtroApellidos').val();
+        usr.Identificacion = $('filtroIdentificacion').val();
+        usr.Telefono = $('filtroTelefono').val();
+        usr.CorreoElectronico = $('filtroCorreo').val();
+        usr.Estado = $('filtroEstado').val();
+        usr.IdRol = $('filtroRol').val();
+
 
         var arrColumns = [
             { 'data': 'Nombre' },
@@ -57,9 +66,15 @@
                 url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
             },
             ajax: {
+                headers: {
+                    'Accept': "application/json",
+                    'Content-Type': "application/json"
+                    },
                 method: "GET",
-                url: "https://licitaciones-api.azurewebsites.net/api/Usuario/ObtenerUsuarios",
-                contentType: "application/json;charset=utf-8",
+                url: "https://licitaciones-api.azurewebsites.net/api/Usuario/ObtenerUsuariosFiltro",
+                contentType: "application/json",
+                data: JSON.stringify(usr),
+                hasContent: true,
                 dataSrc: function (json) {
                     console.log(json);
                     var jsonResult = { 'data': json };
@@ -88,6 +103,10 @@ $(document).ready(function () {
     view.InitView();
 
 });
+
+$('#btnBuscarUsr').on('click', function () {
+    LoadUsuariosTable();
+})
 
 
 $('#btnUserConfig').on('click', function () {
