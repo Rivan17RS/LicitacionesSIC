@@ -76,3 +76,9 @@ VALUES
 ('Huevos', 'Huevos frescos de gallinas libres de jaula', 2.50, getdate(), 120, 1, getdate()),
 ('Frijoles', 'Frijoles negros cocidos y enlatados', 1.99, getdate(), 150, 1, getdate()),
 ('Arroz', 'Arroz integral de grano largo', 4.75, getdate(), 100, 1, getdate());
+
+
+INSERT INTO Licitaciones (IdAnalista, Titulo, Descripcion, LugarEntrega, FechaCierreOfertas, MontoPresupuestado, IdUsrCreacion)
+VALUES
+('170007000', 'Proveedores de mobiliario escolar', 'Buscamos proveedores locales de mobiliario escolar para nuestras escuelas en Cartago. Los proveedores interesados deberán proporcionar información detallada sobre la variedad de mobiliario disponible, plazo de entrega y cualquier otra información relevante que sea necesaria.', 'Calle 1, Avenida 2', '27 Apr 23', '1500000', '170007000'),
+('170007000', 'Suministro de materiales de construcción para la renovación de escuelas en la región de Limón, Costa Rica', 'Estamos buscando proveedores locales de materiales de construcción para la renovación de las escuelas en la región de Limón. Los proveedores interesados deberán proporcionar información detallada sobre la cantidad de materiales disponibles, plazo de entrega y cualquier otra información relevante que sea necesaria.', 'Calle 8, Avenida 5', '12 May 23', '750000', '170007000')
