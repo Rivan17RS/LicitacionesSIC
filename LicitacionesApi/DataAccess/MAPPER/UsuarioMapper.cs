@@ -68,6 +68,7 @@ namespace DataAccess.MAPPER
             oper.AddVarcharParam("CorreoElectronico", usr?.CorreoElectronico == "" ? null : usr?.CorreoElectronico);
             oper.AddIntegerParam("Estado", usr?.Estado ?? 2);
             oper.AddIntegerParam("IdRol", usr?.Rol ?? 0);
+
             return oper;
         }
 
