@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -23,7 +24,7 @@ namespace WebAppUI.Controllers
 
 
         [HttpPost]
-        public ActionResult CrearCuenta(Usuario usuario)
+        async public Task<ActionResult> CrearCuenta(Usuario usuario)
         {
             // crear usuario
 
@@ -35,17 +36,29 @@ namespace WebAppUI.Controllers
 
             string urlFinal = UrlApi + api;
 
-            var client = new HttpClient();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(urlFinal);
 
-            client.BaseAddress = new Uri(urlFinal);
+                //Llamamos al API que nos va retornar los datos
 
-            //Llamamos al API que nos va retornar los datos
+                var response = await client.PostAsync(urlFinal, new StringContent("", Encoding.UTF8, "application/json"));
+                var responseContent = await response.Content.ReadAsStringAsync();
 
-            var response = client.PostAsync(urlFinal, new StringContent("", Encoding.UTF8, "application/json"));
+                var finalResponse =  DTO.Response.CreateResponse(responseContent);
 
-            ViewBag.Message = "Usuario creado exitosamente";
+                ViewBag.Message = "Usuario creado exitosamente";
+                if (finalResponse != null)
+                {
+                    if (finalResponse.ResponseType == ResponseType.ERROR)
+                    {
+                        ViewBag.Error = finalResponse;
+                    }
+                }
+                return RedirectToAction("ConfirmarRegistro");
+                //return Content(responseContent, "application/json"); // Return the response content as a JSON string
 
-            return RedirectToAction("ConfirmarRegistro");
+            }
         }
 
         public ActionResult ConfirmarRegistro()

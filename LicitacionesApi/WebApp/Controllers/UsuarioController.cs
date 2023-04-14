@@ -14,7 +14,7 @@ namespace WebApp.Controllers
     public class UsuarioController : ApiController
     {
         [HttpPost]
-        public string CrearUsuario(string nombre, string apellidos, string identificacion, string telefono, string correo, string contrasena)
+        public Response CrearUsuario(string nombre, string apellidos, string identificacion, string telefono, string correo, string contrasena)
         {
             var usr = new UsuarioManager();
 

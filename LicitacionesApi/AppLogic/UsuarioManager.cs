@@ -6,46 +6,45 @@ using System.Threading.Tasks;
 using DTO;
 using DataAccess.CRUD;
 using Newtonsoft.Json;
-
-
+using System.Data.SqlClient;
 
 namespace AppLogic
 {
     public class UsuarioManager
     {
-        public string AnadirCuenta(Usuario usr)
+        public Response AnadirCuenta(Usuario usr)
         {
             UsuarioCrudFactory ucf = new UsuarioCrudFactory();
             var v = new Validaciones();
 
             if (!v.ValidTexto(usr.Nombre))
             {
-                return "El formato del nombre es incorrecto";
+                return new Response("Error de entrada", "El formato del nombre es incorrecto", ResponseType.ERROR);
             }
 
             if (!v.ValidTexto(usr.Apellidos))
             {
-                return "El formato del apellido es incorrecto";
+                return new Response("Error de entrada", "El formato del apellidos es incorrecto", ResponseType.ERROR);
             }
 
             if (!v.ValidarIdentificacion(usr.Identificacion))
             {
-                return "El formato de la identificación es incorrecto";
+                return new Response("Error de entrada", "El formato del identificación es incorrecto", ResponseType.ERROR);
             }
 
             if (!v.ValidarTelefono(usr.Telefono))
             {
-                return "El formato del teléfono es incorrecto";
+                return new Response("Error de entrada", "El formato del teléfono es incorrecto", ResponseType.ERROR);
             }
 
             if (!v.ValidCorreo(usr.CorreoElectronico))
             {
-                return "El formato del correo electrónico es incorrecto";
+                return new Response("Error de entrada", "El formato del correo electrónico es incorrecto", ResponseType.ERROR);
             }
 
             if (!v.ValidContrasena(usr.Contrasena))
             {
-                return "El formato de la contraseña es incorrecto";
+                return new Response("Error de entrada", "El formato de la contrasena es incorrecto", ResponseType.ERROR);
             }
 
             var u = new Usuario
@@ -64,9 +63,21 @@ namespace AppLogic
 
             };
 
-            ucf.Create(u);
+            try
+            {
+                ucf.Create(u);
+
+            }
+
+            catch (SqlException ex)
+            {
+                if (ex.Number == 2601)
+                {
+                    return new Response("Error en la entrada", $"El usuario de identificación {u.Identificacion} ya existe en nuestras bases de datos", ResponseType.ERROR);
+                }
+            }
             SendEmail(u.CorreoElectronico, u.Otp);
-            return "Realizado correctamente";
+            return new Response("Success", "Usuario creado exitosamente", ResponseType.SUCCESS);
         }
 
 
