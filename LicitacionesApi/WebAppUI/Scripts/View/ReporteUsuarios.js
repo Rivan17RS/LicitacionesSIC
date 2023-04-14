@@ -12,8 +12,6 @@
         usr.CorreoElectronico = $('#filtroCorreo').val();
         usr.Estado = $('#filtroEstado').val();
         usr.Rol = $('#filtroRol').val();
-
-
         var arrColumns = [
             { 'data': 'Nombre' },
             { 'data': 'Apellidos' },
@@ -59,36 +57,29 @@
         if ($.fn.DataTable.isDataTable('#tblUsuarios')) {
             $('#tblUsuarios').DataTable().destroy();
         }
+        //debugger;
 
         var tablaUsuarios = $('#tblUsuarios').DataTable({
-            searching: true,
-            language: {
+            "processing": true,
+            "serverSide": true,
+            "bDestroy": true,
+            "bJQueryUI": true,
+            "language": {
                 url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
             },
-            processing: true,
-            serverSide: true,
-            ajax: {
-                headers: {
-                    'Accept': "application/json",
-                    'Content-Type': "application/json"
-                    },
-                type: "POST",
-                //url: "https://licitacionesapp.azurewebsites.net/api/Usuario/ObtenerUsuariosFiltro",
-                url: "https://localhost:44369/api/Usuario/ObtenerUsuariosFiltro",
-                contentType: "application/json",
-                data: JSON.stringify(usr),
-                hasContent: true,
+            "columns": arrColumns,
+            "ajax": {
+                'type': 'POST',
+                'url': 'https://localhost:44369/api/Usuario/ObtenerUsuariosFiltro',
+                'data': usr,
                 dataSrc: function (json) {
                     console.log(json);
                     var jsonResult = { 'data': json };
                     console.log(jsonResult);
                     return jsonResult.data;
                 }
-            },
-            columns: arrColumns
+            }
         });
-
-
 
         $('#tblUsuarios tbody').off('click', '#btnConfig').on('click', '#btnConfig', function () {
             var tr = $(this).closest('tr');
@@ -101,7 +92,6 @@
     }
 
 }
-
 
 $(document).ready(function () {
     var view = new UsuariosTable();
