@@ -4,80 +4,26 @@
     }
 
     this.LoadUsuariosTable = function () {
-        var usr = {};
-        usr.Nombre = $('#filtroNombre').val();
-        usr.Apellidos = $('#filtroApellidos').val();
-        usr.Identificacion = $('#filtroIdentificacion').val();
-        usr.Telefono = $('#filtroTelefono').val();
-        usr.CorreoElectronico = $('#filtroCorreo').val();
-        usr.Estado = $('#filtroEstado').val();
-        usr.Rol = $('#filtroRol').val();
-
-
-        var arrColumns = [
-            { 'data': 'Nombre' },
-            { 'data': 'Apellidos' },
-            { 'data': 'Identificacion' },
-            { 'data': 'Telefono' },
-            { 'data': 'CorreoElectronico' },
-            {
-                'data': 'Estado',
-                'render': function (data, type, full, meta) {
-                    if (data) {
-                        return 'Activo';
-                    } else {
-                        return 'Inactivo';
-                    }
-                }
-            },
-            {
-                'data': 'Rol',
-                'render': function (data, type, full, meta) {
-                    if (data == 1) {
-                        return 'Admin';
-                    } else if (data == 2) {
-                        return 'Analista';
-                    } else if (data == 3) {
-                        return 'Usuario';
-                    } else if (data == 4) {
-                        return 'Premium';
-                    } else {
-                        return '';
-                    }
-                }
-            },
-            {
-                'data': 'Configuracion',
-                'render': function (data, type, full, meta) {
-                    return '<div class="text-center "><button id="btnConfig" class="btn btn-sm btn-primary editar"  data-toggle="tooltip" title="Editar"><i class="fas fa-pencil-alt"></i></button></div>';
-                },
-                className: 'userConfig',
-                visible: false
-            }
-        ];
 
         if ($.fn.DataTable.isDataTable('#tblUsuarios')) {
             $('#tblUsuarios').DataTable().destroy();
         }
-
         var tablaUsuarios = $('#tblUsuarios').DataTable({
             searching: true,
             language: {
                 url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
             },
-            processing: true,
-            serverSide: true,
             ajax: {
                 headers: {
                     'Accept': "application/json",
                     'Content-Type': "application/json"
-                    },
+                },
                 type: "POST",
-                //url: "https://licitacionesapp.azurewebsites.net/api/Usuario/ObtenerUsuariosFiltro",
                 url: "https://localhost:44369/api/Usuario/ObtenerUsuariosFiltro",
                 contentType: "application/json",
-                data: JSON.stringify(usr),
-                hasContent: true,
+                data: function (d) {
+                    return JSON.stringify(getFiltros());
+                },
                 dataSrc: function (json) {
                     console.log(json);
                     var jsonResult = { 'data': json };
@@ -85,10 +31,45 @@
                     return jsonResult.data;
                 }
             },
-            columns: arrColumns
+            columns: [
+                { 'data': 'Nombre' },
+                { 'data': 'Apellidos' },
+                { 'data': 'Identificacion' },
+                { 'data': 'Telefono' },
+                { 'data': 'CorreoElectronico' },
+                {
+                    'data': 'Estado',
+                    'render': function (data, type, full, meta) {
+                        return data ? 'Activo' : 'Inactivo';
+                    }
+                },
+                {
+                    'data': 'Rol',
+                    'render': function (data, type, full, meta) {
+                        switch (data) {
+                            case 1:
+                                return 'Admin';
+                            case 2:
+                                return 'Analista';
+                            case 3:
+                                return 'Usuario';
+                            case 4:
+                                return 'Premium';
+                            default:
+                                return '';
+                        }
+                    }
+                },
+                {
+                    'data': 'Configuracion',
+                    'render': function (data, type, full, meta) {
+                        return '<div class="text-center "><button id="btnConfig" class="btn btn-sm btn-primary editar"  data-toggle="tooltip" title="Editar"><i class="fas fa-pencil-alt"></i></button></div>';
+                    },
+                    className: 'userConfig',
+                    visible: false
+                }
+            ]
         });
-
-
 
         $('#tblUsuarios tbody').off('click', '#btnConfig').on('click', '#btnConfig', function () {
             var tr = $(this).closest('tr');
@@ -100,7 +81,121 @@
         });
     }
 
+    // Función para obtener los filtros de búsqueda
+    function getFiltros() {
+        var usr = {};
+        usr.Nombre = $('#filtroNombre').val();
+        usr.Apellidos = $('#filtroApellidos').val();
+        usr.Identificacion = $('#filtroIdentificacion').val();
+        usr.Telefono = $('#filtroTelefono').val();
+        usr.CorreoElectronico = $('#filtroCorreo').val();
+        usr.Estado = $('#filtroEstado').val();
+        usr.Rol = $('#filtroRol').val();
+
+        return usr;
+    }
+
 }
+
+
+
+//function UsuariosTable() {
+//    this.InitView = function () {
+//        this.LoadUsuariosTable();
+//    }
+
+//    this.LoadUsuariosTable = function () {
+//        var usr = {};
+//        usr.Nombre = $('#filtroNombre').val();
+//        usr.Apellidos = $('#filtroApellidos').val();
+//        usr.Identificacion = $('#filtroIdentificacion').val();
+//        usr.Telefono = $('#filtroTelefono').val();
+//        usr.CorreoElectronico = $('#filtroCorreo').val();
+//        usr.Estado = $('#filtroEstado').val();
+//        usr.Rol = $('#filtroRol').val();
+
+//        var arrColumns = [
+//            { 'data': 'Nombre' },
+//            { 'data': 'Apellidos' },
+//            { 'data': 'Identificacion' },
+//            { 'data': 'Telefono' },
+//            { 'data': 'CorreoElectronico' },
+//            {
+//                'data': 'Estado',
+//                'render': function (data, type, full, meta) {
+//                    if (data) {
+//                        return 'Activo';
+//                    } else {
+//                        return 'Inactivo';
+//                    }
+//                }
+//            },
+//            {
+//                'data': 'Rol',
+//                'render': function (data, type, full, meta) {
+//                    if (data == 1) {
+//                        return 'Admin';
+//                    } else if (data == 2) {
+//                        return 'Analista';
+//                    } else if (data == 3) {
+//                        return 'Usuario';
+//                    } else if (data == 4) {
+//                        return 'Premium';
+//                    } else {
+//                        return '';
+//                    }
+//                }
+//            },
+//            {
+//                'data': 'Configuracion',
+//                'render': function (data, type, full, meta) {
+//                    return '<div class="text-center "><button id="btnConfig" class="btn btn-sm btn-primary editar"  data-toggle="tooltip" title="Editar"><i class="fas fa-pencil-alt"></i></button></div>';
+//                },
+//                className: 'userConfig',
+//                visible: false
+//            }
+//        ];
+
+//        if ($.fn.DataTable.isDataTable('#tblUsuarios')) {
+//            $('#tblUsuarios').DataTable().destroy();
+//        }
+
+//        var tablaUsuarios = $('#tblUsuarios').DataTable({
+//            searching: true,
+//            language: {
+//                url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
+//            },
+//            processing: true,
+//            serverSide: true,
+//            ajax: {
+//                headers: {
+//                    'Accept': "application/json",
+//                    'Content-Type': "application/json"
+//                },
+//                type: "GET",
+//                url: "https://localhost:44369/api/Usuario/ObtenerUsuariosFiltro?Nombre=" + usr.Nombre + "&Apellidos=" + usr.Apellidos + "&Identificacion=" + usr.Identificacion + "&Telefono=" + usr.Telefono + "&CorreoElectronico=" + usr.CorreoElectronico + "&Estado=" + usr.Estado + "&Rol=" + usr.Rol,
+//                data: {},
+//                hasContent: false,
+//                dataSrc: function (json) {
+//                    console.log(json);
+//                    var jsonResult = { 'data': json };
+//                    console.log(jsonResult);
+//                    return jsonResult.data;
+//                }
+//            },
+//            columns: arrColumns
+//        });
+
+//        $('#tblUsuarios tbody').off('click', '#btnConfig').on('click', '#btnConfig', function () {
+//            var tr = $(this).closest('tr');
+//            var data = tablaUsuarios.row(tr).data();
+
+//            var actionsC = new ActionsControl();
+//            actionsC.BindFields("frmUsuarios", data);
+//            $('#usuarioModal').modal('show');
+//        });
+//    }
+//}
 
 
 $(document).ready(function () {
@@ -120,7 +215,10 @@ $('#btnUserConfig').on('click', function () {
     table.column('.userConfig').visible(!visible);
 });
 
+$('#btnLimpiarUsr').on('click',function () {
+    $("#filtroUsr")[0].reset();
 
+})
 
 $('#frmUsuarios').on('submit', function (e) {
     e.preventDefault();

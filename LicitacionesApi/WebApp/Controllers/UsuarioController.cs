@@ -101,7 +101,13 @@ namespace WebApp.Controllers
             var um = new UsuarioManager();
             return um.ObtenerUsuarios(usr);
         }
-
+        //[HttpGet]
+        //public List<Usuario> ObtenerUsuariosFiltro(string Nombre, string Apellidos, string Identificacion, string Telefono, string CorreoElectronico, int Estado, int Rol)
+        //{
+        //    var um = new UsuarioManager();
+        //    var usr = new Usuario { Nombre = Nombre, Apellidos = Apellidos, Identificacion = Identificacion, Telefono = Telefono, CorreoElectronico = CorreoElectronico, Estado = Estado, Rol = Rol };
+        //    return um.ObtenerUsuarios(usr);
+        //    }
 
 
 
