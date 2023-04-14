@@ -102,9 +102,6 @@ namespace WebApp.Controllers
             return um.ObtenerUsuarios(usr);
         }
 
-
-
-
         public bool ValidarUsuario(string correo, string contrasena)
         {
             var usr = new UsuarioManager();

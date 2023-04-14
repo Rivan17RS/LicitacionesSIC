@@ -4,17 +4,7 @@
     }
 
     this.LoadUsuariosTable = function () {
-        var usr = {};
-        usr.Nombre = $('filtroNombre').val();
-        usr.Apellidos = $('filtroApellidos').val();
-        usr.Identificacion = $('filtroIdentificacion').val();
-        usr.Telefono = $('filtroTelefono').val();
-        usr.CorreoElectronico = $('filtroCorreo').val();
-        usr.Estado = $('filtroEstado').val();
-        usr.IdRol = $('filtroRol').val();
-
-
-        var arrColumns = [
+        arrColumns = [
             { 'data': 'Nombre' },
             { 'data': 'Apellidos' },
             { 'data': 'Identificacion' },
@@ -23,26 +13,23 @@
             {
                 'data': 'Estado',
                 'render': function (data, type, full, meta) {
-                    if (data) {
-                        return 'Activo';
-                    } else {
-                        return 'Inactivo';
-                    }
+                    return data ? 'Activo' : 'Inactivo';
                 }
             },
             {
                 'data': 'Rol',
                 'render': function (data, type, full, meta) {
-                    if (data == 1) {
-                        return 'Admin';
-                    } else if (data == 2) {
-                        return 'Analista';
-                    } else if (data == 3) {
-                        return 'Usuario';
-                    } else if (data == 4) {
-                        return 'Premium';
-                    } else {
-                        return '';
+                    switch (data) {
+                        case 1:
+                            return 'Admin';
+                        case 2:
+                            return 'Analista';
+                        case 3:
+                            return 'Usuario';
+                        case 4:
+                            return 'Premium';
+                        default:
+                            return '';
                     }
                 }
             },
@@ -55,11 +42,9 @@
                 visible: false
             }
         ];
-
         if ($.fn.DataTable.isDataTable('#tblUsuarios')) {
             $('#tblUsuarios').DataTable().destroy();
         }
-
         var tablaUsuarios = $('#tblUsuarios').DataTable({
             searching: true,
             language: {
@@ -69,12 +54,13 @@
                 headers: {
                     'Accept': "application/json",
                     'Content-Type': "application/json"
-                    },
-                method: "GET",
+                },
+                type: "POST",
                 url: "https://licitaciones-api.azurewebsites.net/api/Usuario/ObtenerUsuariosFiltro",
                 contentType: "application/json",
-                data: JSON.stringify(usr),
-                hasContent: true,
+                data: function (d) {
+                    return JSON.stringify(getFiltros());
+                },
                 dataSrc: function (json) {
                     console.log(json);
                     var jsonResult = { 'data': json };
@@ -95,6 +81,20 @@
         });
     }
 
+    // Función para obtener los filtros de búsqueda
+    function getFiltros() {
+        var usr = {};
+        usr.Nombre = $('#filtroNombre').val();
+        usr.Apellidos = $('#filtroApellidos').val();
+        usr.Identificacion = $('#filtroIdentificacion').val();
+        usr.Telefono = $('#filtroTelefono').val();
+        usr.CorreoElectronico = $('#filtroCorreo').val();
+        usr.Estado = $('#filtroEstado').val();
+        usr.Rol = $('#filtroRol').val();
+
+        return usr;
+    }
+
 }
 
 
@@ -102,11 +102,11 @@ $(document).ready(function () {
     var view = new UsuariosTable();
     view.InitView();
 
+    $('#btnBuscarUsr').on('click', function () {
+        view.LoadUsuariosTable();
+    });
 });
 
-$('#btnBuscarUsr').on('click', function () {
-    LoadUsuariosTable();
-})
 
 
 $('#btnUserConfig').on('click', function () {
@@ -115,7 +115,10 @@ $('#btnUserConfig').on('click', function () {
     table.column('.userConfig').visible(!visible);
 });
 
+$('#btnLimpiarUsr').on('click',function () {
+    $("#filtroUsr")[0].reset();
 
+})
 
 $('#frmUsuarios').on('submit', function (e) {
     e.preventDefault();

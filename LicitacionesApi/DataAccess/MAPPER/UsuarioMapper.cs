@@ -61,13 +61,14 @@ namespace DataAccess.MAPPER
                 ProcedureName = "SP_ObtenerUsuariosFiltro"
             };
 
-            oper.AddVarcharParam("Nombre", usr?.Nombre);
-            oper.AddVarcharParam("Apellidos", usr?.Apellidos);
-            oper.AddVarcharParam("Identificacion", usr?.Identificacion);
-            oper.AddVarcharParam("Telefono", usr?.Telefono);
-            oper.AddVarcharParam("CorreoElectronico", usr?.CorreoElectronico);
+            oper.AddVarcharParam("Nombre", usr?.Nombre == "" ? null: usr?.Nombre);
+            oper.AddVarcharParam("Apellidos", usr?.Apellidos == "" ? null : usr?.Apellidos);
+            oper.AddVarcharParam("Identificacion", usr?.Identificacion == "" ? null : usr?.Identificacion);
+            oper.AddVarcharParam("Telefono", usr?.Telefono == "" ? null : usr?.Telefono);
+            oper.AddVarcharParam("CorreoElectronico", usr?.CorreoElectronico == "" ? null : usr?.CorreoElectronico);
             oper.AddIntegerParam("Estado", usr?.Estado ?? 2);
             oper.AddIntegerParam("IdRol", usr?.Rol ?? 0);
+
             return oper;
         }
 
