@@ -15,14 +15,14 @@ namespace DataAccess.MAPPER
         {
             var oper = new SqlOperation()
             {
-                ProcedureName = "SP"
+                ProcedureName = "SP_CrearProducto"
             };
             var p = (Producto) entyDTO;
             oper.AddVarcharParam("Nombre", p.Nombre);
             oper.AddVarcharParam("Descripcion", p.Descripcion);
             oper.AddDecimalParam("Precio", p.Precio);
-            oper.AddIntegerParam("StockCantidad", p.StockCantidad);
-            oper.AddIntegerParam("IdAdmin", p.IdAdmin);
+            oper.AddIntegerParam("Stock_Cantidad", p.StockCantidad);
+            oper.AddIntegerParam("IdUsrCreacion", p.IdUsrCreacion);
 
             return oper;
         }
@@ -31,7 +31,7 @@ namespace DataAccess.MAPPER
         {
             var oper = new SqlOperation()
             {
-                ProcedureName = "SP"
+                ProcedureName = "SP_EliminarProducto"
             };
             var p = (Producto) entyDTO;
             oper.AddIntegerParam("Id", p.Id);
@@ -43,8 +43,24 @@ namespace DataAccess.MAPPER
         {
             var oper = new SqlOperation()
             {
-                ProcedureName = "SP"
+                ProcedureName = "SP_ObtenerProductos"
             };
+            return oper;
+        }
+
+        public SqlOperation GetRetrieveAllStatement(Producto p)
+        {
+            var oper = new SqlOperation()
+            {
+                ProcedureName = "SP_ObtenerProductosFiltro"
+            };
+            oper.AddIntegerParam("Id", p?.Id ?? 0);
+            oper.AddVarcharParam("Nombre", p?.Nombre== "" ?null: p?.Nombre);
+            oper.AddDecimalParam("Precio", p?.Precio ?? 0);
+            DateTime fechaCreacion = p.FechaCreacion == new DateTime(1, 1, 1, 0, 0, 0) ? new DateTime(1753, 1, 1, 0, 0, 0) : p.FechaCreacion;
+            oper.AddDateTimeParam("FechaCreacion", fechaCreacion);
+            oper.AddIntegerParam("Stock_Cantidad", p?.StockCantidad ?? -1);
+            oper.AddIntegerParam("IdUsrCreacion", p?.IdUsrCreacion?? 0);
             return oper;
         }
 
@@ -52,7 +68,7 @@ namespace DataAccess.MAPPER
         {
             var oper = new SqlOperation()
             {
-                ProcedureName = "SP"
+                ProcedureName = "SP_ObtenerProductoId"
             };
             oper.AddIntegerParam("Id", ID);
 
@@ -63,13 +79,14 @@ namespace DataAccess.MAPPER
         {
             var oper = new SqlOperation()
             {
-                ProcedureName = "SP"
+                ProcedureName = "SP_ActualizarProducto"
             };
             var p = (Producto)entyDTO;
+            oper.AddIntegerParam("Id", p.Id);
             oper.AddVarcharParam("Nombre", p.Nombre);
             oper.AddVarcharParam("Descripcion", p.Descripcion);
             oper.AddDecimalParam("Precio", p.Precio);
-            oper.AddIntegerParam("StockCantidad", p.StockCantidad);
+            oper.AddIntegerParam("Stock_Cantidad", p.StockCantidad);
             oper.AddIntegerParam("IdUsrActualizacion", p.IdUsrActualizacion);
            
 
@@ -80,11 +97,10 @@ namespace DataAccess.MAPPER
             var p = new Producto()
             {
                 Id = Convert.ToInt32(row["Id"]),
-                Nombre = (row["Nombre"]).ToString(),
-                Descripcion = (row["Descripcion"].ToString()),
+                Nombre = row["Nombre"].ToString(),
+                Descripcion = row["Descripcion"].ToString(),
                 Precio = Convert.ToDecimal(row["Precio"]),
-                StockCantidad = Convert.ToInt32("StockCantidad"),
-                IdAdmin = Convert.ToInt32(row["IdAdmin"]),
+                StockCantidad = Convert.ToInt32(row["Stock_Cantidad"]),
                 //necesario para todas las tablas
                 IdUsrCreacion = row["IdUsrCreacion"] != DBNull.Value ? Convert.ToInt32(row["IdUsrCreacion"]) : 0,
                 IdUsrActualizacion = row["IdUsrActualizacion"] != DBNull.Value ? Convert.ToInt32(row["IdUsrActualizacion"]) : 0,

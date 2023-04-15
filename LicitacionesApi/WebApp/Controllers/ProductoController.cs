@@ -1,4 +1,5 @@
-﻿using DTO;
+﻿using AppLogic;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,44 @@ namespace WebApp.Controllers
 {
     public class ProductoController : ApiController
     {
-        public string CrearProducto(Producto prod)
+        ProductoManager pm = new ProductoManager();
+
+        [HttpPost]
+        public Response CrearProducto(Producto prod)
         {
-            return "";
+            return pm.CrearProducto(prod);
         }
+
+        [HttpGet]
+
+        public Producto ObtenerProducto(int id)
+        {
+            return pm.ObtenerProducto(id);
+        }
+
+        public Response ActualizarProducto(Producto prod)
+        {
+            return pm.ActualizarProducto(prod);
+        }
+
+        [HttpPost]
+
+        public string EliminarProducto(int id)
+        {
+            return pm.EliminarProducto(id);
+        }
+
+        [HttpGet]
+
+        public List<Producto> ObtenerProductos()
+        {
+            return pm.ObtenerProductos();
+        }
+
+        public List<Producto> ObtenerProductosFiltro(Producto p)
+        {
+            return pm.ObtenerProductos(p);
+        }
+
     }
 }
