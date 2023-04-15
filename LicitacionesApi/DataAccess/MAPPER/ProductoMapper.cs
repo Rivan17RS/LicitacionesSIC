@@ -21,6 +21,7 @@ namespace DataAccess.MAPPER
             oper.AddVarcharParam("Nombre", p.Nombre);
             oper.AddVarcharParam("Descripcion", p.Descripcion);
             oper.AddDecimalParam("Precio", p.Precio);
+            oper.AddIntegerParam("StockCantidad", p.StockCantidad);
             oper.AddIntegerParam("IdAdmin", p.IdAdmin);
 
             return oper;
@@ -68,6 +69,7 @@ namespace DataAccess.MAPPER
             oper.AddVarcharParam("Nombre", p.Nombre);
             oper.AddVarcharParam("Descripcion", p.Descripcion);
             oper.AddDecimalParam("Precio", p.Precio);
+            oper.AddIntegerParam("StockCantidad", p.StockCantidad);
             oper.AddIntegerParam("IdUsrActualizacion", p.IdUsrActualizacion);
            
 
@@ -81,6 +83,7 @@ namespace DataAccess.MAPPER
                 Nombre = (row["Nombre"]).ToString(),
                 Descripcion = (row["Descripcion"].ToString()),
                 Precio = Convert.ToDecimal(row["Precio"]),
+                StockCantidad = Convert.ToInt32("StockCantidad"),
                 IdAdmin = Convert.ToInt32(row["IdAdmin"]),
                 //necesario para todas las tablas
                 IdUsrCreacion = row["IdUsrCreacion"] != DBNull.Value ? Convert.ToInt32(row["IdUsrCreacion"]) : 0,
