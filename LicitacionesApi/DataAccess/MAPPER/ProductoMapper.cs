@@ -1,41 +1,40 @@
-﻿using DataAccess.DAO;
-using DTO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataAccess.DAO;
+using DTO;
 
 namespace DataAccess.MAPPER
 {
-    public class DetalleLicitacionesMapper : ICrudStatements, IObjectMapper
+    public class ProductoMapper : ICrudStatements, IObjectMapper
     {
-
 
         public SqlOperation GetCreateStatement(BaseEntity entyDTO)
         {
             var oper = new SqlOperation()
             {
-                ProcedureName = "SP_CrearDetalleLicitacion" 
+                ProcedureName = "SP"
             };
-            var d = (DetalleLicitaciones) entyDTO;
-            oper.AddIntegerParam("IdLicitacion", d.IdLicitacion);
-            oper.AddIntegerParam("IdProducto", d.Idproducto);
-            oper.AddIntegerParam("Cantidad", d.Cantidad);
-            oper.AddIntegerParam("IdUsrCreacion", d.IdUsrCreacion);
+            var p = (Producto) entyDTO;
+            oper.AddVarcharParam("Nombre", p.Nombre);
+            oper.AddVarcharParam("Descripcion", p.Descripcion);
+            oper.AddDecimalParam("Precio", p.Precio);
+            oper.AddIntegerParam("IdAdmin", p.IdAdmin);
 
             return oper;
-
         }
 
         public SqlOperation GetDeleteStatement(BaseEntity entyDTO)
         {
             var oper = new SqlOperation()
             {
-                ProcedureName = "SP_EliminarDetalleLicitacion"
+                ProcedureName = "SP"
             };
-            var d = (DetalleLicitaciones)entyDTO;
-            oper.AddIntegerParam("IdDetalleLicitacion", d.Id);
+            var p = (Producto) entyDTO;
+            oper.AddIntegerParam("Id", p.Id);
+
             return oper;
         }
 
@@ -43,7 +42,7 @@ namespace DataAccess.MAPPER
         {
             var oper = new SqlOperation()
             {
-                ProcedureName = "SP_ObtenerDetallesLicitaciones"
+                ProcedureName = "SP"
             };
             return oper;
         }
@@ -52,9 +51,10 @@ namespace DataAccess.MAPPER
         {
             var oper = new SqlOperation()
             {
-                ProcedureName = "SP_ObtenerDetalleLicitacion"
+                ProcedureName = "SP"
             };
-            oper.AddIntegerParam("IdDetalleLicitacion", ID);
+            oper.AddIntegerParam("Id", ID);
+
             return oper;
         }
 
@@ -62,36 +62,26 @@ namespace DataAccess.MAPPER
         {
             var oper = new SqlOperation()
             {
-                ProcedureName = "SP_ActualizarDetalleLicitacion"
+                ProcedureName = "SP"
             };
-            var d = (DetalleLicitaciones)entyDTO;
-            oper.AddIntegerParam("IdLicitacion", d.IdLicitacion);
-            oper.AddIntegerParam("IdProducto", d.Idproducto);
-            oper.AddIntegerParam("Cantidad", d.Cantidad);
-            oper.AddIntegerParam("IdUsrActualizacion", d.IdUsrActualizacion);
+            var p = (Producto)entyDTO;
+            oper.AddVarcharParam("Nombre", p.Nombre);
+            oper.AddVarcharParam("Descripcion", p.Descripcion);
+            oper.AddDecimalParam("Precio", p.Precio);
+            oper.AddIntegerParam("IdUsrActualizacion", p.IdUsrActualizacion);
+           
 
             return oper;
         }
-
-        public SqlOperation GetRetrieveByIDLicStatement(int ID)
-        {
-            var oper = new SqlOperation()
-            {
-                ProcedureName = "SP_ObtenerDetallesLicitacionId"
-            };
-            oper.AddIntegerParam("IdLicitacion", ID);
-            return oper;
-        }
-
         public BaseEntity BuildObject(Dictionary<string, object> row)
         {
-            var detalle = new DetalleLicitaciones()
+            var p = new Producto()
             {
                 Id = Convert.ToInt32(row["Id"]),
-                IdLicitacion = Convert.ToInt32(row["IdLicitacion"]),
-                Idproducto = Convert.ToInt32(row["IdProducto"]),
-                Cantidad = Convert.ToInt32(row["Cantidad"]),
-
+                Nombre = (row["Nombre"]).ToString(),
+                Descripcion = (row["Descripcion"].ToString()),
+                Precio = Convert.ToDecimal(row["Precio"]),
+                IdAdmin = Convert.ToInt32(row["IdAdmin"]),
                 //necesario para todas las tablas
                 IdUsrCreacion = row["IdUsrCreacion"] != DBNull.Value ? Convert.ToInt32(row["IdUsrCreacion"]) : 0,
                 IdUsrActualizacion = row["IdUsrActualizacion"] != DBNull.Value ? Convert.ToInt32(row["IdUsrActualizacion"]) : 0,
@@ -100,8 +90,7 @@ namespace DataAccess.MAPPER
                 FechaActualizacion = row["FechaActualizacion"] != DBNull.Value ? Convert.ToDateTime(row["FechaActualizacion"]) : new DateTime(1753, 1, 1, 0, 0, 0),
                 FechaEliminacion = row["FechaEliminacion"] != DBNull.Value ? Convert.ToDateTime(row["FechaEliminacion"]) : new DateTime(1753, 1, 1, 0, 0, 0)
             };
-
-            return detalle;
+            return p;
         }
 
         public List<BaseEntity> BuildObjects(List<Dictionary<string, object>> lstRows)
@@ -110,8 +99,8 @@ namespace DataAccess.MAPPER
 
             foreach (var row in lstRows)
             {
-                var dl = BuildObject(row);
-                lstResults.Add(dl);
+                var p = BuildObject(row);
+                lstResults.Add(p);
             }
             return lstResults;
         }

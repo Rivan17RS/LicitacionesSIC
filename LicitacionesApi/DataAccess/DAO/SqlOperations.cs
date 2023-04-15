@@ -31,6 +31,10 @@ namespace DataAccess.DAO
         {
             parameters.Add(new SqlParameter("@" + name, value));
         }
+        public void AddDecimalParam(string name, decimal value)
+        {
+            parameters.Add(new SqlParameter("@" + name, value));
+        }
 
         public void AddDateTimeParam(string name, DateTime value)
         {
