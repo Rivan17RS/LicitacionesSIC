@@ -58,14 +58,14 @@ namespace DataAccess.MAPPER
             {
                 ProcedureName = "SP_ObtenerLicitacionesFiltro"
             };
-            oper.AddIntegerParam("Id", l.Id);
-            oper.AddIntegerParam("IdAnalista", l.IdAnalista);
-            oper.AddVarcharParam("Titulo", l.Titulo);
-            oper.AddVarcharParam("LugarEntrega", l.LugarEntrega);
+            oper.AddIntegerParam("Id", l?.Id ?? 0);
+            oper.AddIntegerParam("IdAnalista", l?.IdAnalista ?? 0);
+            oper.AddVarcharParam("Titulo", l?.Titulo == "" ? null : l?.Titulo);
+            oper.AddVarcharParam("LugarEntrega", l?.LugarEntrega == "" ? null : l?.LugarEntrega);
             DateTime fechaCierre = l.FechaCierreOfertas == new DateTime(1, 1, 1, 0, 0, 0) ? new DateTime(1753, 1, 1, 0, 0, 0) : l.FechaCierreOfertas;
             oper.AddDateTimeParam("FechaCierreOfertas", fechaCierre);
-            oper.AddDoubleParam("MontoPresupuestado", l.MontoPresupuestado);
-            oper.AddVarcharParam("Estado", l.Estado);
+            oper.AddDoubleParam("MontoPresupuestado", l?.MontoPresupuestado ?? 0);
+            oper.AddVarcharParam("Estado", l?.Estado == "" ? null : l?.Estado);
 
             return oper;
 

@@ -82,9 +82,16 @@ function LicitacionesTable() {
             url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
         },
         ajax: {
-            method: "GET",
-            url: "https://licitaciones-api.azurewebsites.net/api/Licitacion/ObtenerLicitaciones",
-            contentType: "application/json;charset=utf-8",
+            headers: {
+                'Accept': "application/json",
+                'Content-Type': "application/json"
+            },
+            method: "POST",
+            url: "https://licitaciones-api.azurewebsites.net/api/Licitacion/ObtenerLicitacionesFiltro",
+            contentType: "application/json",
+            data: function (d) {
+                return JSON.stringify(getFiltros())
+            },
             dataSrc: function (json) {
                 console.log(json);
                 var jsonResult = { 'data': json };
@@ -98,7 +105,29 @@ function LicitacionesTable() {
         var licitacionId = $(this).find('td:eq(1)').text();
         mostrarDetallesLicitacion(licitacionId);
     }).css('cursor', 'pointer').attr('title', 'Click para ver detalles');
+
+    function getFiltros() {
+        var lic = {};
+        lic.IdAnalista = $('#filtroAnalista').val();
+        lic.Id = $('#filtroIdLicitacion').val();
+        lic.LugarEntrega = $('#filtroLugarEntrega').val();
+        lic.Titulo = $('#filtroTitulo').val();
+        lic.MontoPresupuestado = $('#filtroMontoPresupuestado').val();
+        lic.Estado = $('#filtroEstadoLic').val();
+        lic.FechaCierreOfertas = $('#filtroCierreOfertas').val();
+
+        return lic;
+    }
 }
+
+$('#btnBuscarLicitaciones').on('click', function () {
+    LicitacionesTable();
+});
+
+$('#btnLimpiarLicitaciones').on('click', function () {
+    $("#filtroLicitaciones")[0].reset();
+
+})
 
 
 

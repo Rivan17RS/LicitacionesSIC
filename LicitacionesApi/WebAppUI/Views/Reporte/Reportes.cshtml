@@ -50,10 +50,6 @@
                             <label for="filtroTitulo">Título:</label>
                             <input type="text" id="filtroTitulo" class="form-control form-control-sm">
                         </div>
-                        <div class="form-group">
-                            <label for="filtroDescripcion">Descripción:</label>
-                            <input type="text" id="filtroDescripcion" class="form-control form-control-sm">
-                        </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
@@ -63,23 +59,15 @@
                         <div class="form-group">
                             <label for="filtroEstadoLic">Estado:</label>
                             <select id="filtroEstadoLic" class="form-control form-control-sm">
-                                <option value="2">Todos</option>
-                                <option value="1">Abierta</option>
-                                <option value="0">Cerrada</option>
+                                <option value="">Todos</option>
+                                <option value="Abierta">Abierta</option>
+                                <option value="Cerrada">Cerrada</option>
+                                <option value="Asignada">Asignada</option>
                             </select>
                         </div>
-                        <div class="form-group text-center">
+                        <div class="form-group">
                             <label for="filtroCierreOfertas">Cierre de ofertas:</label>
-                            <div class="d-flex align-items-center justify-content-center" id="filtroCierreOfertas">
-                                <div>
-                                    <label for="desde">Desde:</label>
-                                    <input type="date" class="form-control form-control-sm" id="desde">
-                                </div>
-                                <div >
-                                    <label for="hasta">Hasta:</label>
-                                    <input type="date" class="form-control form-control-sm" id="hasta">
-                                </div>
-                            </div>
+                            <input type="date" class="form-control form-control-sm" id="filtroCierreOfertas">
                         </div>
                     </div>
                     <div class="form-group text-center mt-4">
