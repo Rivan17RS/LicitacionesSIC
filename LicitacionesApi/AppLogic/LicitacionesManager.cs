@@ -92,5 +92,11 @@ namespace AppLogic
             LicitacionCrudFactory lcf = new LicitacionCrudFactory();
             return lcf.RetrieveAll<Licitaciones>();
         }
+
+        public List<Licitaciones> ObtenerLicitaciones(Licitaciones l)
+        {
+            LicitacionCrudFactory lcf = new LicitacionCrudFactory();
+            return lcf.RetrieveAll<Licitaciones>(l);
+        }
     }
 }

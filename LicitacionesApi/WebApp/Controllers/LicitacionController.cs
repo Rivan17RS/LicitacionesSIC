@@ -67,5 +67,12 @@ namespace WebApp.Controllers
             var lm  = new LicitacionesManager();
             return lm.ObtenerLicitaciones();
         }
+
+        [HttpPost]
+        public List<Licitaciones> ObtenerLicitacionesFiltro(Licitaciones Licitacion)
+        {
+            var lm = new LicitacionesManager();
+            return lm.ObtenerLicitaciones(Licitacion);
+        }
     }
 }

@@ -44,10 +44,10 @@ namespace WebApp.Controllers
         {
             return pm.ObtenerProductos();
         }
-
-        public List<Producto> ObtenerProductosFiltro(Producto p)
+        [HttpPost]
+        public List<Producto> ObtenerProductosFiltro(Producto producto)
         {
-            return pm.ObtenerProductos(p);
+            return pm.ObtenerProductos(producto);
         }
 
     }

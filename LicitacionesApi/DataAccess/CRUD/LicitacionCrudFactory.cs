@@ -46,6 +46,22 @@ namespace DataAccess.CRUD
  
         }
 
+        public  List<T> RetrieveAll<T>(Licitaciones l)
+        {
+            var lstResult = new List<T>();
+            var dataResult = dao.ExecuteQueryProcedureWithQuery(mapper.GetRetrieveAllStatement(l));
+            if (dataResult.Count > 0)
+            {
+                var objPO = mapper.BuildObjects(dataResult);
+                foreach (var po in objPO)
+                {
+                    lstResult.Add((T)Convert.ChangeType(po, typeof(T)));
+                }
+            }
+            return lstResult;
+
+        }
+
         public override T RetrieveByID<T>(int Id)
         {
             var data = dao.ExecuteQueryProcedureWithQuery(mapper.GetRetrieveByIDStatement(Id));

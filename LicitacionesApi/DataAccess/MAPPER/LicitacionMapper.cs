@@ -52,6 +52,25 @@ namespace DataAccess.MAPPER
             return oper;
         }
 
+        public SqlOperation GetRetrieveAllStatement(Licitaciones l)
+        {
+            var oper = new SqlOperation()
+            {
+                ProcedureName = "SP_ObtenerLicitacionesFiltro"
+            };
+            oper.AddIntegerParam("Id", l.Id);
+            oper.AddIntegerParam("IdAnalista", l.IdAnalista);
+            oper.AddVarcharParam("Titulo", l.Titulo);
+            oper.AddVarcharParam("LugarEntrega", l.LugarEntrega);
+            DateTime fechaCierre = l.FechaCierreOfertas == new DateTime(1, 1, 1, 0, 0, 0) ? new DateTime(1753, 1, 1, 0, 0, 0) : l.FechaCierreOfertas;
+            oper.AddDateTimeParam("FechaCierreOfertas", fechaCierre);
+            oper.AddDoubleParam("MontoPresupuestado", l.MontoPresupuestado);
+            oper.AddVarcharParam("Estado", l.Estado);
+
+            return oper;
+
+        }
+
         public SqlOperation GetRetrieveByIDStatement(int ID)
         {
             var oper = new SqlOperation()
