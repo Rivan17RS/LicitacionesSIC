@@ -71,8 +71,8 @@
                         </div>
                     </div>
                     <div class="form-group text-center mt-4">
-                        <button type="button" class="btn btn-primary bg-primary text-light" id="btnBuscarLicitaciones">Buscar</button>
-                        <button type="button" class="btn btn-secondary bg-light" id="btnLimpiarLicitaciones">Limpiar</button>
+                        <button type="button" class="btn btn-outline-primary bg-primary text-light" id="btnBuscarLicitaciones">Buscar</button>
+                        <button type="button" class="btn btn-outline-secondary bg-light" id="btnLimpiarLicitaciones">Limpiar</button>
                     </div>
                 </div>
             </form>
@@ -99,7 +99,7 @@
 
 <section id="seccionInventario" style="display: none;">
     <div class="text-end mb-4">
-        <button type="button" id="btnProductConfig" class="btn btn-primary bg-primary text-light"> Configuraciones</button>
+        <button type="button" id="btnProductConfig" class="btn btn-outline-primary bg-primary text-light"> Configuraciones</button>
     </div>
     <div>
         <table id="tblInventario" class="table table-hover table-light">
@@ -111,7 +111,7 @@
                     <th>Precio</th>
                     <th>Fecha de creación</th>
                     <th>Cantidad</th>
-                    <th>Configuración  <button class="btn btn-sm btn-success crear" data-toggle="tooltip" title="Crear"><i class="fas fa-plus"></i></button></th>
+                    <th>Configuración  <button class="btn btn-sm btn-outline-success crear" data-toggle="tooltip" title="Crear"><i class="fas fa-plus"></i></button></th>
                 </tr>
             </thead>
         </table>
@@ -156,7 +156,7 @@
                                         <input id="txtCantidad" type="text" class="form-control" data-column-name="Stock_Cantidad" />
                                     </div>
                                     <div class="form-group">
-                                        <button type="reset" class="btn btn-primary mt-4 bg-primary text-light">Guardar</button>
+                                        <button type="reset" class="btn btn-outline-primary mt-4 bg-primary text-light">Guardar</button>
                                     </div>
                                 </div>
                             </div>
@@ -223,8 +223,8 @@
                     </div>
                     <div class="row text-center mt-4">
                         <div class="col-sm-12">
-                            <button type="button" class="btn btn-primary bg-primary text-light" id="btnBuscarUsr">Buscar</button>
-                            <button type="button" class="btn btn-secondary bg-light" id="btnLimpiarUsr">Limpiar</button>
+                            <button type="button" class="btn btn-outline-primary bg-primary text-light" id="btnBuscarUsr">Buscar</button>
+                            <button type="button" class="btn btn-outline-secondary bg-light" id="btnLimpiarUsr">Limpiar</button>
                         </div>
                     </div>
                 </fieldset>
@@ -232,7 +232,7 @@
         </div>
     </div>
     <div class="text-end mb-4">
-        <button type="button" id="btnUserConfig" class="btn btn-primary bg-primary text-light btn-sm"> Método Configuración</button>
+        <button type="button" id="btnUserConfig" class="btn btn-outline-primary bg-primary text-light btn-sm"> Método Configuración</button>
     </div>
 
     <div>
@@ -287,7 +287,7 @@
                                         <label for="txtEstado" class="col-form-label" hidden>Estado</label>
                                         <input id="txtEstado" type="text" class="form-control" ColumnDataName="Estado" readonly hidden />
                                         <br />
-                                        <button type="button" class="btn btn-primary" onclick="actualizarEstado(txtIdentificacion.value)">
+                                        <button type="button" class="btn btn-outline-primary" onclick="actualizarEstado(txtIdentificacion.value)">
                                             <span id="btnEstado"></span>
                                         </button>
                                     </div>
@@ -312,7 +312,7 @@
                                             <option value="3">Usuario</option>
                                             <option value="4">Premium</option>
                                         </select>
-                                        <button type="button" class="btn btn-primary" style="margin-top:20px" onclick="actualizarRol(txtIdentificacion.value, ddlRol.value)">Actualizar rol</button>
+                                        <button type="button" class="btn btn-outline-primary" style="margin-top:20px" onclick="actualizarRol(txtIdentificacion.value, ddlRol.value)">Actualizar rol</button>
                                     </div>
                                 </div>
                             </div>

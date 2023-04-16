@@ -11,8 +11,8 @@
             producto.FechaRegistro,
             producto.Stock_Cantidad,
             '<div class="btn-group" role="group">' +
-            '<button class="btn btn-sm btn-primary editar" data-toggle="tooltip" title="Editar"><i class="fas fa-pencil-alt"></i></button>' +
-            '<button class="btn btn-sm btn-danger eliminar" data-toggle="tooltip" title="Eliminar"><i class="fas fa-trash-alt"></i></button>' +
+            '<button class="btn btn-sm btn-outline-primary editar" data-toggle="tooltip" title="Editar"><i class="fas fa-pencil-alt"></i></button>' +
+            '<button class="btn btn-sm btn-outline-danger eliminar" data-toggle="tooltip" title="Eliminar"><i class="fas fa-trash-alt"></i></button>' +
             '</div>'
         ]).draw();
     });

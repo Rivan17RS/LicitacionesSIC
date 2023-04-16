@@ -30,7 +30,7 @@
                     ¡Usuario activado correctamente!
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="window.location.href='@Url.Action("Index", "Home", new { area = ""})'">Aceptar</button>
+                    <button type="button" class="btn btn-outline-primary" onclick="window.location.href='@Url.Action("Index", "Home", new { area = ""})'">Aceptar</button>
                 </div>
             </div>
         </div>
@@ -76,7 +76,7 @@
                                 @Html.ValidationMessage("nombre", "Otp no puede ser mayor a 20 carácteres", new { @class = "text-danger formatValidationMessage" })
                             </div>
 
-                            <button type="submit" class="btn btn-primary mt-4" id="btn-confirmar-registro" data-toggle="modal" data-target="exampleModal">Confirmar registro</button>
+                            <button type="submit" class="btn btn-outline-primary mt-4" id="btn-confirmar-registro" data-toggle="modal" data-target="exampleModal">Confirmar registro</button>
                         </fieldset>
                     </div>
                 </div>
