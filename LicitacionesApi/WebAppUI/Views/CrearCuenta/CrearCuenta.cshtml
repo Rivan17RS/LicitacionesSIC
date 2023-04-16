@@ -12,6 +12,15 @@
 
 <h2 class="my-5 text-primary">Creación de cuenta</h2>
 
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-dismissible alert-warning">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <h4 class="alert-heading">¡Error en la entrada!</h4>
+        <p class="mb-0">Usuario no encontrado o las credenciales son incorrectas.</p>
+        <p class="mb-0">Details (debuggin mode): @ViewBag.Error</p>
+    </div>
+}
 
 @using (Html.BeginForm("CrearCuenta", "CrearCuenta", FormMethod.Post, new { @id = "createAccount" }))
 {
@@ -23,26 +32,26 @@
                         <fieldset>
                             <legend>Ingrese sus datos</legend>
 
-                            @{ 
+                            @{
                                 var emptyErrorMessage = "Campo no puede quedar vacio";
                             }
                             <div class="form-group" id="userFirstName">
                                 @Html.LabelFor(model => model.Nombre, new { @class = "form-label mt-4" })
-                                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @placeholder = "Ingrese su primer nombre"})
+                                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @placeholder = "Ingrese su primer nombre" })
                                 @Html.ValidationMessage("nombre", emptyErrorMessage, new { @class = "text-danger emptyValidationMessage" })
                                 @Html.ValidationMessage("nombre", "Nombre tiene que contener solo letras y no espacios al final ni al principio", new { @class = "text-danger formatValidationMessage" })
                             </div>
 
                             <div class="form-group" id="userSurnames">
                                 @Html.LabelFor(model => model.Apellidos, new { @class = "form-label mt-4" })
-                                @Html.TextBoxFor(model => model.Apellidos, new { @class = "form-control", @placeholder = "Ingrese sus apellidos"})
+                                @Html.TextBoxFor(model => model.Apellidos, new { @class = "form-control", @placeholder = "Ingrese sus apellidos" })
                                 @Html.ValidationMessage("nombre", emptyErrorMessage, new { @class = "text-danger emptyValidationMessage" })
                                 @Html.ValidationMessage("apellidos", "Apellidos tiene que tener carácteres", new { @class = "text-danger formatValidationMessage" })
                             </div>
 
                             <div class="form-group" id="userID">
                                 @Html.LabelFor(model => model.Identificacion, new { @class = "form-label mt-4" })
-                                @Html.TextBoxFor(model => model.Identificacion, new { @class = "form-control", @placeholder = "Ingrese su identificación"})
+                                @Html.TextBoxFor(model => model.Identificacion, new { @class = "form-control", @placeholder = "Ingrese su identificación" })
                                 @Html.ValidationMessage("nombre", emptyErrorMessage, new { @class = "text-danger emptyValidationMessage" })
                                 @Html.ValidationMessageFor(model => model.Identificacion, "Identificación tiene que tener números y de longitud de 7 caracteres", new { @class = "text-danger formatValidationMessage" })
                                 <small id="passwordHelp" class="form-text text-muted">
@@ -52,7 +61,7 @@
 
                             <div class="form-group" id="userPhone">
                                 @Html.LabelFor(model => model.Telefono, new { @class = "form-label mt-4" })
-                                @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control", @placeholder = "Ingrese sus número de teléfono"})
+                                @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control", @placeholder = "Ingrese sus número de teléfono" })
                                 @Html.ValidationMessage("nombre", emptyErrorMessage, new { @class = "text-danger emptyValidationMessage" })
                                 @Html.ValidationMessageFor(model => model.Telefono, "Teléfono tiene que tener números", new { @class = "text-danger formatValidationMessage" })
                             </div>
@@ -66,8 +75,22 @@
 
                             <div class="form-group" id="userPassword">
                                 @Html.LabelFor(model => model.Contrasena, new { @class = "form-label mt-4" })
-                                @Html.PasswordFor(model => model.Contrasena, new { @class = "form-control", @placeholder = "Ingrese su contraseña" })
-                                @Html.ValidationMessage("nombre", emptyErrorMessage, new { @class = "text-danger emptyValidationMessage" })
+                                <div class="input-group ps-4">
+                                    @Html.PasswordFor(model => model.Contrasena, new { @class = "form-control", @placeholder = "Ingrese su contraseña" })
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="show-password" style="cursor: pointer; user-select: none;">
+                                            <span class="material-symbols-outlined">
+                                                visibility_off
+                                            </span>
+                                        </span>
+                                        <span class="input-group-text d-none" id="hide-password" style="cursor: pointer; user-select: none;">
+                                            <span class="material-symbols-outlined">
+                                                visibility
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                @Html.ValidationMessage("contrasena", emptyErrorMessage, new { @class = "text-danger emptyValidationMessage" })
                                 @Html.ValidationMessageFor(model => model.Contrasena, "Contraseña es requerida y debe tener mínimo 8 caracteres", new { @class = "text-danger formatValidationMessage" })
                                 <small id="passwordHelp" class="form-text text-muted">
                                     Mínimo 8 dígitos, números y símbolos, incluyendo como minimo una mayúscula.

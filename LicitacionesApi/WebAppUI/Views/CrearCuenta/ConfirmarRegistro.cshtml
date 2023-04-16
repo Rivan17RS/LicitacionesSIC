@@ -1,19 +1,51 @@
 ﻿
+@model DTO.Usuario
+
 @{
     ViewBag.Title = "Confirmar Registro";
     Layout = "~/Views/Shared/_LayoutNoMenu.cshtml";
 }
 
 <h2 class="my-5 text-primary">Confirmar Registro</h2>
+
 <script src="~/Scripts/View/ConfirmarRegistro.js"></script>
-@if (ViewBag.IdentificationNumber != null && ViewBag.OTP != null)
+
+
+@if (ViewBag.ConfirmationModal is bool confirmationModal && confirmationModal)
+{
+
+    <script type="text/javascript">
+        $(window).ready(function () {
+            $("#confirmationModal").modal("show");
+        })
+
+    </script>
+    <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Registro completo</h5>
+                </div>
+                <div class="modal-body">
+                    ¡Usuario activado correctamente!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="window.location.href='@Url.Action("Index", "Home", new { area = ""})'">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@if (ViewBag.Error != null)
 {
     <div class="alert alert-dismissible alert-warning">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         <h4 class="alert-heading">¡Error en la entrada!</h4>
-        <p class="mb-0">El número de identificación o el OTP son incorrectos.</p>
+        <p class="mb-0">Por favor checa los siguientes detalles:.</p>
+        <p class="mb-0">Detalles: @ViewBag.Error</p>
     </div>
-
 }
 
 @using (Html.BeginForm("ConfirmarRegistro", "CrearCuenta", FormMethod.Post))
@@ -26,23 +58,29 @@
                         <fieldset>
                             <legend>Ingrese sus credenciales</legend>
 
-                            <div class="form-group">
-                                <label for="identificationNumberInput" class="form-label mt-4">Número de identificación</label>
-                                <input type="text" id="identificationNumberInput" class="form-control" name="identificationNumber" required>
+                            @{
+                                var emptyErrorMessage = "Campo no puede quedar vacio";
+                            }
+
+                            <div class="form-group" id="identificationNumberInput">
+                                @Html.LabelFor(model => model.Identificacion, new { @class = "form-label mt-4" })
+                                @Html.TextBoxFor(model => model.Identificacion, new { @class = "form-control", @placeholder = "Ingrese su identificación" })
+                                @Html.ValidationMessage("nombre", emptyErrorMessage, new { @class = "text-danger emptyValidationMessage" })
+                                @Html.ValidationMessage("nombre", "Solo se permite numeros", new { @class = "text-danger formatValidationMessage" })
                             </div>
 
-                            <div class="form-group">
-                                <label for="otpInput" class="form-label mt-4">OTP</label>
-                                <input type="text" id="otpInput" class="form-control" name="otp" required>
+                            <div class="form-group" id="otpInput">
+                                @Html.LabelFor(model => model.Otp, new { @class = "form-label mt-4" })
+                                @Html.TextBoxFor(model => model.Otp, new { @class = "form-control", @placeholder = "Ingrese su identificación" })
+                                @Html.ValidationMessage("nombre", emptyErrorMessage, new { @class = "text-danger emptyValidationMessage" })
+                                @Html.ValidationMessage("nombre", "Otp no puede ser mayor a 20 carácteres", new { @class = "text-danger formatValidationMessage" })
                             </div>
 
-                            <button type="submit" class="btn btn-primary mt-4" id="btn-confirmar-registro">Confirmar registro</button>
-
+                            <button type="submit" class="btn btn-primary mt-4" id="btn-confirmar-registro" data-toggle="modal" data-target="exampleModal">Confirmar registro</button>
                         </fieldset>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 }

@@ -1,14 +1,34 @@
 ﻿/**
  * Created by Zachary
- * Believe or not, este código fue diseño por mi. Con ayuda de la investigación de los principios de programacíón funcional en Javascript.
  * Queda hacer ciertas mejoras de diseño, y abstracción.
  * Sin embargo, el sistema es muy escalable y fácil de mantener.
+ * TODO:
+ * 1. input password logic in input-logic.js for reusability.
+ * 2. input regex verification abstraction layer (function of autofiller starts to look too long and convoluted)
  */
 
 $(document).ready(function () {
 
+    // toggle password setup
+    showPassword = $("#show-password");
+    hidePassword = $("#hide-password");
+    showPassword.on("click", function() {
+        // show password
+        $("#userPassword input").attr("type", "text");
+        $(this).addClass("d-none");
+        hidePassword.removeClass("d-none");
+    })
+
+    hidePassword.on("click", function () {
+        // hide password
+        $("#userPassword input").attr("type", "password");
+        $(this).addClass("d-none");
+        showPassword.removeClass("d-none");
+    })
+
+    // validaciones
     emptyValidationMessage = ".emptyValidationMessage";
-    formatValidationMessage = ".formatValidationMessage"
+    formatValidationMessage = ".formatValidationMessage";
     inputTextbox = {
         firstName: {
             input: '#userFirstName',
@@ -90,7 +110,6 @@ $(document).ready(function () {
                 }
 
                 if (text.length >= 11) {
-                    console.log("too big");
                     return text.substring(0, 11);
                 }
                 // unformat code
@@ -120,7 +139,6 @@ $(document).ready(function () {
                 }
 
                 else if (text.length > 8) {
-                    console.log(text)
                     return "+506-" + text.substring(0, 4) + "-" + text.substring(4, 8)
                 }
 

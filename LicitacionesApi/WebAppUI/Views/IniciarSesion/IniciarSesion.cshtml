@@ -37,7 +37,21 @@
 
                             <div class="form-group">
                                 <label for="contrasenaInput" class="form-label mt-4">Contraseña</label>
-                                @Html.PasswordFor(u => u.Contrasena, new { id = "contrasenaInput", @class = "form-control" })
+                                <div class="input-group ps-4">
+                                    @Html.PasswordFor(u => u.Contrasena, new { id = "contrasenaInput", @class = "form-control" })
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="show-password" style="cursor: pointer; user-select: none;">
+                                            <span class="material-symbols-outlined">
+                                                visibility_off
+                                            </span>
+                                        </span>
+                                        <span class="input-group-text d-none" id="hide-password" style="cursor: pointer; user-select: none;">
+                                            <span class="material-symbols-outlined">
+                                                visibility
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
                                 @Html.ValidationMessage("contrasena", "El campo contraseña es requerido.", new { id = "validacionContrasena", @class = "text-danger" })
                                 <a>@Html.ActionLink("Recuperar contraseña", "RecuperarContrasena", "IniciarSesion")</a>
                             </div>
