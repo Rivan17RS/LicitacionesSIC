@@ -33,38 +33,111 @@ $(document).ready(function () {
         id: {
             input: '#userID',
             validation: function (text) {
-                return (/^[0-9]+$/.test(text))
+                return (/^[0-9\s]+$/.test(text))
             },
             autofiller: function (text) {
 
+                function autoFormatCedula(str) {
+                    str = str.replace(/\s/g, '');
+
+                    const firstDigit = str.charAt(0);
+                    const sixthDigit = str.charAt(5);
+
+                    let formattedCode = "";
+
+                    if (str.length < 6) {
+                        formattedCode = `${firstDigit} ` + str.substring(1, 6);
+                    }
+
+                    else {
+                        formattedCode = `${firstDigit} ` + str.substring(1, 5) + ` ${sixthDigit}` + str.substring(6);
+                    }
+
+                    return formattedCode;
+                }
+
+                if (!(/^[0-9\s]+$/.test(text))) return text;
+
+                if (text.length < 3) {
+                    if (/^\d\s?$/.test(text)) {
+                        return text;
+                    }
+
+                    else {
+                        return autoFormatCedula(text);
+                    }
+                }
+
+                else if (text.length >= 3 && text.length < 8) {
+                    if (/\d\s(\d{1,4})?\s?$/.test(text)) {
+                        return text;
+                    }
+
+                    else {
+                        return autoFormatCedula(text);
+                    }
+                }
+
+                else if (text.length >= 8 && text.length < 11) {
+
+                    if (/^\d\s(\d{1,4})?\s(\d{1,4})?$/.test(text)) {
+                        return text
+                    }
+
+                    else {
+                        return autoFormatCedula(text);
+                    }
+                }
+
+                if (text.length >= 11) {
+                    console.log("too big");
+                    return text.substring(0, 11);
+                }
                 // unformat code
-                text = text.replace(/-/g, '');
-
-                if (text.length < 2) return text;
-                const firstDigit = text.charAt(0);
-                const sixthDigit = text.charAt(4);
-
-                let formattedCode = "";
-
-                if (text.length < 7) {
-                    formattedCode = `${firstDigit}-` + text.substring(1, 5) + `${sixthDigit}`;
-                }
-
-                else {
-                    formattedCode = `${firstDigit}-` + text.substring(1, 5) + `${sixthDigit}-` + text.substring(6);
-                }
-
-                return formattedCode;
             }
         },
         phone: {
-            input: '#userPhone'
+            input: '#userPhone',
+            validation: function (text) {
+                return (/^\+?[0-9\-\s?]+$/.test(text))
+            },
+            autofiller: function (text) {
+
+                if (text.substring(0, 4) === "+506" || text.substring(0, 4) === "+506") {
+
+                    number_only = text.replace(/\D/g, "")
+                    if (number_only.length >= 11) {
+                        text = number_only.substring(3);
+                    }
+
+                    else {
+                        return text;
+                    }
+                }
+                8
+                if (text.length === 8) {
+                    return "+506-" + text.substring(0, 4) + "-" + text.substring(4, 9)
+                }
+
+                else if (text.length > 8) {
+                    console.log(text)
+                    return "+506-" + text.substring(0, 4) + "-" + text.substring(4, 8)
+                }
+
+                else return text;
+            }
         },
         email: {
-            input: '#userEmail'
+            input: '#userEmail',
+            validation: function (text) {
+                return /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-]+)(\.[a-zA-Z]{2,5}){1,2}$/.test(text);
+            }
         },
         password: {
-            input: "#userPassword"
+            input: "#userPassword",
+            validation: function (text) {
+                return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,21}$/.test(text);
+            }
         }
     }
 
@@ -79,7 +152,6 @@ $(document).ready(function () {
 
         $(`${formInput.input} input`).on("input", function () {
 
-            console.log(formInput.input);
             let formValue = $(this).val();
 
             /**
@@ -101,7 +173,6 @@ $(document).ready(function () {
                 }
 
                 if (autofillerFunction !== undefined) {
-                    console.log(autofillerFunction(formValue))
                     $(`${formInput.input} input`).val(autofillerFunction(formValue));
                 }
             }

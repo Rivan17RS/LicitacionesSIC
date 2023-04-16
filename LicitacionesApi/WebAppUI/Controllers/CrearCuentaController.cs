@@ -32,6 +32,9 @@ namespace WebAppUI.Controllers
 
             string UrlApi = "https://licitaciones-api.azurewebsites.net/";
 
+            var telefono = usuario.Telefono.Substring(4);
+            var cedula = usuario.Identificacion.Replace(" ", "");
+
             string api = $"api/Usuario/CrearUsuario?nombre={usuario.Nombre}&apellidos={usuario.Apellidos}&identificacion={usuario.Identificacion}&telefono={usuario.Telefono}&correo={usuario.CorreoElectronico}&contrasena={usuario.Contrasena}";
 
             string urlFinal = UrlApi + api;
