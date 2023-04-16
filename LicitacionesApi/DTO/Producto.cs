@@ -12,8 +12,6 @@ namespace DTO
         public string Descripcion { get; set; }
         public decimal Precio { get; set; }
         public int StockCantidad { get; set; }
-        public int IdAdmin { get; set; }
-        public DateTime FechaRegistro { get; set; }
 
 
 

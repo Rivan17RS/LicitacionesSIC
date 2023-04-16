@@ -110,8 +110,8 @@ namespace DataAccess.MAPPER
 
             foreach (var row in lstRows)
             {
-                var purchaseOrder = BuildObject(row);
-                lstResults.Add(purchaseOrder);
+                var dl = BuildObject(row);
+                lstResults.Add(dl);
             }
             return lstResults;
         }

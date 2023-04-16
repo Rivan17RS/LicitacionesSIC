@@ -9,15 +9,17 @@ using System.Threading.Tasks;
 
 namespace DataAccess.CRUD
 {
-    public class LicitacionCrudFactory : CrudFactory
+    public class ProductoCrudFactory : CrudFactory
     {
-        private LicitacionMapper mapper;
+        private ProductoMapper mapper;
 
-        public LicitacionCrudFactory() : base()
+        public ProductoCrudFactory() : base()
         {
-            mapper = new LicitacionMapper();
+            mapper = new ProductoMapper();
             dao = SqlDao.GetInstance();
         }
+
+
         public override void Create(BaseEntity entityDto)
         {
             var sqlOper = mapper.GetCreateStatement(entityDto);
@@ -43,13 +45,12 @@ namespace DataAccess.CRUD
                 }
             }
             return lstResult;
- 
         }
 
-        public  List<T> RetrieveAll<T>(Licitaciones l)
+        public List<T> RetrieveAll<T>(Producto p)
         {
             var lstResult = new List<T>();
-            var dataResult = dao.ExecuteQueryProcedureWithQuery(mapper.GetRetrieveAllStatement(l));
+            var dataResult = dao.ExecuteQueryProcedureWithQuery(mapper.GetRetrieveAllStatement(p));
             if (dataResult.Count > 0)
             {
                 var objPO = mapper.BuildObjects(dataResult);
@@ -59,7 +60,6 @@ namespace DataAccess.CRUD
                 }
             }
             return lstResult;
-
         }
 
         public override T RetrieveByID<T>(int Id)

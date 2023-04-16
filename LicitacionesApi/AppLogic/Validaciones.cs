@@ -104,6 +104,15 @@ namespace AppLogic
             return false;
         }
 
+        public bool ValidarNumeroPositivo(int num)
+        {
+            if (num >= 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
 
 
     }

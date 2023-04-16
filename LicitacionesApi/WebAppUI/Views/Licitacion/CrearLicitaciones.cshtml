@@ -11,90 +11,104 @@
 
 
     <!--Formulario para mostrar datos de la lista-->
-    <form id="frmLicitacion">
-
-
-
-        <div>
-            <lable for="txtIdAnalista">ID Analista:</lable>
-            <input id="txtIdAnalista" type="text" class="form-control" ColumnDataName="IdAnalista" />
-        </div>
-
-
-        <div>
-            <lable for="txtTitulo">Título:</lable>
-            <input id="txtTitulo" type="text" class="form-control" ColumnDataName="Titulo" />
-        </div>
-
-
-        <div>
-            <lable for="txtDescripcion">Descripción:</lable>
-            <textarea rows="3" id="txtDescripcion" type="text" class="form-control" ColumnDataName="Descripcion"></textarea>
-        </div>
-
-
-        <div>
-            <lable for="txtLugarEntrega">Lugar de entrega:</lable>
-            <input id="txtLugarEntrega" type="text" class="form-control" ColumnDataName="LugarEntrega" />
-        </div>
-
-
-        <div>
-            <lable for="txtFechaCierreOfertas">Cierre de ofertas:</lable>
-            <input id="txtFechaCierreOfertas" type="datetime" class="form-control" ColumnDataName="FechaCierreOfertas" />
-        </div>
-
-
-
-        <div>
-            <lable for="txtMontoPresupuestado">Presupuesto:</lable>
-            <input id="txtMontoPresupuestado" type="number" class="form-control" ColumnDataName="MontoPresupuestado" />
-        </div>
-
-
-
-        <div class="form-group">
-            <button type="button" class="btn btn-success" id="btnCrearLicitacion">Enviar</button>
-            <button type="reset" class="btn btn-info" id="btnReset">Limpiar</button>
-        </div>
-
-    </form>
-
 <div class="row align-items-center justify-content-center">
     <div class="col-lg-10">
         <div class="card">
             <div class="card-body">
                 <div class="form-group">
-                    <form id="createLicitacion">
-                        <fieldset>
-                            <div class="form-group">
-                                <label for="licitacionId" class="form-label mt-4">Identificador:</label>
-                                <input id="licitacionId" type="text" class="form-control" ColumnDataName="Id" />
-                            </div>
-                            <div class="form-group">
-                                <label for="licitacionProduct" class="form-label mt-4">Producto:</label>
-                                <input id="licitacionProduct" type="text" class="form-control" ColumnDataName="Product" />
-                            </div>
-                            <div class="form-group">
-                                <label for="licitacionDescription" class="form-label mt-4">Descriptor:</label>
-                                <textarea rows="3" id="licitacionDescription" type="text" class="form-control" ColumnDataName="Description"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="licitacionQuantity" class="form-label mt-4">Cantidad:</label>
-                                <input id="licitacionQuantity" type="number" class="form-control" ColumnDataName="Quantity" />
-                            </div>
-                            <div class="form-group">
-                                <label for="licitacionPrice" class="form-label mt-4">Precio:</label>
-                                <input id="licitacionPrice" type="number" class="form-control" ColumnDataName="Price" />
-                            </div>
-                            <div class="form-group">
-                                <button type="button" class="btn btn-primary" id="CrearLicitacion">Enviar</button>
-                                <button type="reset" class="btn btn-info" id="btnReset">Limpiar</button>
-                            </div>
-                        </fieldset>
+                    <form id="frmLicitacion">
+
+                        <h3>Datos Generales</h3>
+
+                        <div>
+                            <lable for="txtIdAnalista">ID Analista:</lable>
+                            <input id="txtIdAnalista" type="text" class="form-control" ColumnDataName="IdAnalista" />
+                        </div>
+
+
+                        <div>
+                            <lable for="txtTitulo">Título:</lable>
+                            <input id="txtTitulo" type="text" class="form-control" ColumnDataName="Titulo" />
+                        </div>
+
+
+                        <div>
+                            <lable for="txtDescripcion">Descripción:</lable>
+                            <textarea rows="3" id="txtDescripcion" type="text" class="form-control" ColumnDataName="Descripcion"></textarea>
+                        </div>
+
+
+                        <div>
+                            <lable for="txtLugarEntrega">Lugar de entrega:</lable>
+                            <input id="txtLugarEntrega" type="text" class="form-control" ColumnDataName="LugarEntrega" />
+                        </div>
+
+
+                        <div>
+                            <lable for="txtFechaCierreOfertas">Cierre de ofertas:</lable>
+                            <input id="txtFechaCierreOfertas" type="datetime" class="form-control" ColumnDataName="FechaCierreOfertas" />
+                        </div>
+
+
+
+                        <div>
+                            <lable for="txtMontoPresupuestado">Presupuesto:</lable>
+                            <input id="txtMontoPresupuestado" type="number" class="form-control" ColumnDataName="MontoPresupuestado" />
+                        </div>
+
+
+
+                        <div class="form-group mt-5">
+                            <button type="button" class="btn btn-outline-success mx-2" id="btnCrearLicitacion">Enviar</button>
+                            <button type="reset" class="btn btn-outline-info" id="btnReset">Limpiar</button>
+                        </div>
+
                     </form>
+                </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+                    
+
+                    <div class="row align-items-center justify-content-center mt-5">
+                        <div class="col-lg-10">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <form id="createLicitacion">
+
+                                            <h3>Productos</h3>
+
+                                            <fieldset>
+                                                <div class="form-group">
+                                                    <label for="licitacionId" class="form-label mt-4">Identificador:</label>
+                                                    <input id="licitacionId" type="text" class="form-control" ColumnDataName="Id" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="licitacionProduct" class="form-label mt-4">Producto:</label>
+                                                    <input id="licitacionProduct" type="text" class="form-control" ColumnDataName="Product" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="licitacionDescription" class="form-label mt-4">Descriptor:</label>
+                                                    <textarea rows="3" id="licitacionDescription" type="text" class="form-control" ColumnDataName="Description"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="licitacionQuantity" class="form-label mt-4">Cantidad:</label>
+                                                    <input id="licitacionQuantity" type="number" class="form-control" ColumnDataName="Quantity" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="licitacionPrice" class="form-label mt-4">Precio:</label>
+                                                    <input id="licitacionPrice" type="number" class="form-control" ColumnDataName="Price" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="button" class="btn btn-outline-primary" id="CrearLicitacion">Enviar</button>
+                                                    <button type="reset" class="btn btn-outline-info" id="btnReset">Limpiar</button>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

@@ -11,9 +11,9 @@
 {
     if ((Session["Role"].ToString() == "Administrador" || Session["Role"].ToString() == "Analista"))
     {
-        <div class="row d-flex align-items-center flex-wrap">
+        <div class="row d-flex align-items-center flex-wrap justify-content-center mt-5">
 
-            <button type="submit" class="btn mt-4 btn-bg-info">@Html.ActionLink("Crear licitación", "CrearLicitaciones", "Licitacion", new { area = "" }, new { @style = "text-decoration: none" })</button>
+            <a>@Html.ActionLink("Crear licitación", "CrearLicitaciones", "Licitacion", new { area = "" }, new { @class = "btn btn-outline-primary" })</a>
            </div>
             }
             }
