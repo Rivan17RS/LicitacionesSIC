@@ -47,4 +47,18 @@
 $(document).ready(function () {
     var views = new CrearLicitacion();
     views.InitView();
-})
+
+    //Funcion para agregar bloques de codigo en el form de productos
+    $(".agregar-producto").click(function () {
+        var nuevoBloqueProducto = $(".bloque-producto:first").clone();
+        nuevoBloqueProducto.find("input").val("");
+        $(".col-producto").append(nuevoBloqueProducto);
+    });
+
+    //Funcion para borrar el bloque de codigo de un producto (hasta el card)
+    $(document).on("click", ".remover-producto", function () {
+        if ($(".bloque-producto").length > 1) {
+            $(this).closest(".bloque-producto").remove();
+        }
+    });
+});
