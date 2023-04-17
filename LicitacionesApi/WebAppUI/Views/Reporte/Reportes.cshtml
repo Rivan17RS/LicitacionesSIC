@@ -98,8 +98,48 @@
 
 
 <section id="seccionInventario" style="display: none;">
+    <div class="card mb-4">
+        <div class="card-body">
+
+            <form id="filtroProd">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="filtroIdProducto">Id producto:</label>
+                            <input type="text" id="filtroIdProducto" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label for="filtroPrecio">Precio:</label>
+                            <input type="number" id="filtroPrecio" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="filtroProducto">Producto:</label>
+                            <input type="text" id="filtroProducto" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label for="filtroFechaCreacion">Fecha de creación:</label>
+                            <input type="date" id="filtroFechaCreacion" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="filtroCantidad">Cantidad:</label>
+                            <input type="number" id="filtroCantidad" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group text-center mt-4">
+                    <button type="button" class="btn btn-primary bg-primary text-light btn-block" id="btnBuscarProductos">Buscar</button>
+                    <button type="button" class="btn btn-secondary bg-light" id="btnLimpiarProductos">Limpiar</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
     <div class="text-end mb-4">
-        <button type="button" id="btnProductConfig" class="btn btn-primary bg-primary text-light"> Configuraciones</button>
+        <button type="button" id="btnConfigProducto" class="btn btn-primary bg-primary text-light btn-sm"> Metodo configuración</button>
     </div>
     <div>
         <table id="tblInventario" class="table table-hover table-light">
@@ -111,7 +151,7 @@
                     <th>Precio</th>
                     <th>Fecha de creación</th>
                     <th>Cantidad</th>
-                    <th>Configuración  <button class="btn btn-sm btn-success crear" data-toggle="tooltip" title="Crear"><i class="fas fa-plus"></i></button></th>
+                    <th>Configuración <button  class="btn btn-sm btn-success crear" data-toggle="tooltip" title="Crear"><i class="fas fa-plus"></i></button></th>
                 </tr>
             </thead>
         </table>
@@ -131,11 +171,11 @@
                                 <div class="col-md-6">
                                     <div class="form-group" id="IdProduct">
                                         <label for="txtIdProducto" class="form-label mt-4">Id Producto</label>
-                                        <input id="txtIdProducto" type="text" class="form-control" data-column-name="Id" />
+                                        <input id="txtIdProducto" type="text" class="form-control form-control-sm" data-column-name="Id" readonly />
                                     </div>
                                     <div class="form-group">
                                         <label for="txtProducto" class="form-label mt-4">Producto</label>
-                                        <input id="txtProducto" type="text" class="form-control" data-column-name="Nombre" />
+                                        <input id="txtProducto" type="text" class="form-control form-control-sm" data-column-name="Nombre" />
                                     </div>
                                     <div class="form-group">
                                         <label for="txtDescripcion" class="form-label mt-4">Descripción</label>
@@ -145,18 +185,18 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="txtPrecio" class="form-label mt-4">Precio</label>
-                                        <input id="txtPrecio" type="text" class="form-control" data-column-name="Precio" />
+                                        <input id="txtPrecio" type="number" class="form-control form-control-sm" data-column-name="Precio" />
                                     </div>
                                     <div class="form-group" id="FechaCreacion">
                                         <label for="txtFechaCreacion" class="form-label mt-4">Fecha de creación</label>
-                                        <input id="txtFechaCreacion" type="text" class="form-control" data-column-name="FechaRegistro" />
+                                        <input id="txtFechaCreacion" type="date" class="form-control form-control-sm" data-column-name="FechaCreacion" />
                                     </div>
                                     <div class="form-group">
                                         <label for="txtCantidad" class="form-label mt-4">Cantidad</label>
-                                        <input id="txtCantidad" type="text" class="form-control" data-column-name="Stock_Cantidad" />
+                                        <input id="txtCantidad" type="number" class="form-control form-control-sm" data-column-name="StockCantidad" />
                                     </div>
                                     <div class="form-group">
-                                        <button type="reset" class="btn btn-primary mt-4 bg-primary text-light">Guardar</button>
+                                        <button type="button" id="btnGuardar" class="btn btn-primary mt-4 bg-primary text-light">Guardar</button>
                                     </div>
                                 </div>
                             </div>
@@ -236,7 +276,6 @@
     </div>
 
     <div>
-
         <table id="tblUsuarios" class="table table-hover table-light" onclick="DesactivarBoton()">
             <thead>
                 <tr>
@@ -251,7 +290,7 @@
                 </tr>
             </thead>
         </table>
-
+    </div>
 
 
         <div class="modal" id="usuarioModal">
@@ -270,23 +309,22 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="txtNombre" class="form-label mt-4">Nombre</label>
-                                        <input id="txtNombre" type="text" class="form-control" ColumnDataName="Nombre" readonly />
+                                        <input id="txtNombre" type="text" class="form-control" ColumnDataName="Nombre" readonly>
                                     </div>
-
                                     <div class="form-group">
                                         <label for="txtApellidos" class="form-label mt-4">Apellidos</label>
-                                        <input id="txtApellidos" type="text" class="form-control" ColumnDataName="Apellidos" readonly />
+                                        <input id="txtApellidos" type="text" class="form-control" ColumnDataName="Apellidos" readonly>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="txtIdentificacion" class="form-label mt-4">Identificación</label>
-                                        <input id="txtIdentificacion" type="text" class="form-control" ColumnDataName="Identificacion" readonly />
+                                        <input id="txtIdentificacion" type="text" class="form-control" ColumnDataName="Identificacion" readonly>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="txtEstado" class="col-form-label" hidden>Estado</label>
-                                        <input id="txtEstado" type="text" class="form-control" ColumnDataName="Estado" readonly hidden />
-                                        <br />
+                                        <input id="txtEstado" type="text" class="form-control" ColumnDataName="Estado" readonly hidden>
+                                        <br>
                                         <button type="button" class="btn btn-primary" onclick="actualizarEstado(txtIdentificacion.value)">
                                             <span id="btnEstado"></span>
                                         </button>
@@ -296,12 +334,12 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="txtTelefono" class="form-label mt-4">Teléfono</label>
-                                        <input id="txtTelefono" type="text" class="form-control" ColumnDataName="Telefono" readonly />
+                                        <input id="txtTelefono" type="text" class="form-control" ColumnDataName="Telefono" readonly>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="txtCorreoElectronico" class="form-label mt-4">Correo electrónico</label>
-                                        <input id="txtCorreoElectronico" type="text" class="form-control" ColumnDataName="CorreoElectronico" readonly />
+                                        <input id="txtCorreoElectronico" type="text" class="form-control" ColumnDataName="CorreoElectronico" readonly>
                                     </div>
 
                                     <div class="form-group">
@@ -321,7 +359,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 

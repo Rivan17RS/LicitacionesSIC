@@ -34,7 +34,7 @@
                 }
             },
             {
-                'data': 'Configuracion',
+                'data': 'Acciones',
                 'render': function (data, type, full, meta) {
                     return '<div class="text-center "><button id="btnConfig" class="btn btn-sm btn-primary editar"  data-toggle="tooltip" title="Editar"><i class="fas fa-pencil-alt"></i></button></div>';
                 },
@@ -138,29 +138,31 @@ function actualizarRol(identificacion, rol) {
     $.ajax({
         method: "POST",
         url: "https://licitaciones-api.azurewebsites.net/api/Usuario/CambiarRol?Identificacion=" + identificacion + "&rol=" + rol,
-        contentType: "application/json;charset=utf-8",
-        dataSrc: function (json) {
-            console.log(json);
-            var jsonResult = { 'data': json };
-            console.log(jsonResult);
-            return jsonResult.data;
+        success: function (response) {
+            alert('Usuario actualizado correctamente');
+            location.reload();
+        },
+        error: function (xhr, status, error) {
+            console.log(error);
+            alert('Error, no se pudo actualizar');
         }
     });
-    location.reload()
 }
 
 function actualizarEstado(identificacion) {
     $.ajax({
         method: "POST",
         url: "https://licitaciones-api.azurewebsites.net/api/Usuario/EstadoUsuario?Identificacion=" + identificacion,
-        contentType: "application/json;charset=utf-8",
-        dataSrc: function (json) {
-            console.log(json);
-            var jsonResult = { 'data': json };
-            return jsonResult.data;
+        success: function (response) {
+            alert('Usuario actualizado correctamente');
+            location.reload();
+        },
+        error: function (xhr, status, error) {
+            console.log(error);
+            alert('Error, no se pudo actualizar');
         }
     });
-    location.reload();
+
 }
 
 $('#frmUsuarios').on('click', '#btnCancelarUsuario', function () {
