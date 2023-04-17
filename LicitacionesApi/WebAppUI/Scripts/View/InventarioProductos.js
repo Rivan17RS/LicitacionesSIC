@@ -139,7 +139,7 @@ function CrearProducto() {
             'Content-Type': "application/json"
         },
         type: 'POST',
-        url: "https://localhost:44369/api/Producto/CrearProducto",
+        url: "https://licitaciones-api.azurewebsites.net/api/Producto/CrearProducto",
         contentType: "application/json",
         data: JSON.stringify(prod),
         success: function (response) {
@@ -170,7 +170,7 @@ function ActualizarProducto() {
                 'Content-Type': "application/json"
             },
             type: 'POST',
-            url: "https://localhost:44369/api/Producto/ActualizarProducto",
+            url: "https://licitaciones-api.azurewebsites.net/api/Producto/ActualizarProducto",
             contentType: "application/json",
             data: JSON.stringify(prod),
             success: function (response) {
@@ -196,7 +196,7 @@ function EliminarProducto(Id) {
                 'Content-Type': "application/json"
             },
             type: 'POST',
-            url: "https://localhost:44369/api/Producto/EliminarProducto/" + Id,
+            url: "https://licitaciones-api.azurewebsites.net/api/Producto/EliminarProducto/" + Id,
             success: function (response) {
                 $('#productoModal').modal('hide');
                 MostrarInventario();
