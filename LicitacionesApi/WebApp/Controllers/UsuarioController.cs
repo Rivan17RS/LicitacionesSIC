@@ -41,7 +41,7 @@ namespace WebApp.Controllers
 
         [HttpPost]
 
-        public String ValidarOtp(string identificacion, string otp)
+        public Response ValidarOtp(string identificacion, string otp)
         {
             var usr = new UsuarioManager();
 
@@ -152,7 +152,7 @@ namespace WebApp.Controllers
 
             usr.ActualizarUsuario(usuario);
 
-            var URL = $"https://localhost:44304/IniciarSesion/CrearContrasenaNueva?correo={correo}&codigo={otp}";
+            var URL = $"https://licitacionesapp.azurewebsites.net/IniciarSesion/CrearContrasenaNueva?correo={correo}&codigo={otp}";
 
             usr.SendRecoveryEmail(correo, URL);
 

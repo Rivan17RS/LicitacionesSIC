@@ -32,6 +32,9 @@ namespace WebAppUI.Controllers
 
             string UrlApi = "https://licitaciones-api.azurewebsites.net/";
 
+            usuario.Telefono = usuario.Telefono.Substring(4).Replace("-", "");
+            usuario.Identificacion = usuario.Identificacion.Replace(" ", "");
+
             string api = $"api/Usuario/CrearUsuario?nombre={usuario.Nombre}&apellidos={usuario.Apellidos}&identificacion={usuario.Identificacion}&telefono={usuario.Telefono}&correo={usuario.CorreoElectronico}&contrasena={usuario.Contrasena}";
 
             string urlFinal = UrlApi + api;
@@ -47,12 +50,13 @@ namespace WebAppUI.Controllers
 
                 var finalResponse =  DTO.Response.CreateResponse(responseContent);
 
-                ViewBag.Message = "Usuario creado exitosamente";
                 if (finalResponse != null)
                 {
                     if (finalResponse.ResponseType == ResponseType.ERROR)
                     {
-                        ViewBag.Error = finalResponse;
+                        ViewBag.Error = finalResponse.Content;
+
+                        return View();
                     }
                 }
                 return RedirectToAction("ConfirmarRegistro");
@@ -64,6 +68,43 @@ namespace WebAppUI.Controllers
         public ActionResult ConfirmarRegistro()
         {
             return View();
+        }
+
+        [HttpPost]
+        async public Task<ActionResult> ConfirmarRegistro(Usuario usuario)
+        {
+            var otp = usuario.Otp;
+            var id = usuario.Identificacion;
+
+            var urlApi = "https://licitaciones-api.azurewebsites.net/";
+
+            var api = "api/Usuario/ValidarOtp?identificacion=" + id + "&otp=" + otp;
+
+            var urlFinal = urlApi + api;
+
+            var client = new HttpClient();
+
+            using(client)
+            {
+                var response = await client.PostAsync(urlFinal, new StringContent("", Encoding.UTF8, "application/json"));
+
+                var responseContent = await response.Content.ReadAsStringAsync();
+
+                var finalResponse = DTO.Response.CreateResponse(responseContent);
+
+                if (finalResponse != null)
+                {
+                    if (finalResponse.ResponseType == ResponseType.ERROR)
+                    {
+                        ViewBag.Error = finalResponse.Content;
+                        return View();
+                    }
+                }
+
+                ViewBag.ConfirmationModal = true;
+                return View();
+                // return RedirectToAction("Index", "Home", new { area = "" });
+            }
         }
 
         [HttpPost]

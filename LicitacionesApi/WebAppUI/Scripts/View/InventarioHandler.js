@@ -12,9 +12,9 @@ $(document).ready(function () {
     var tablaHTML = $('#tblInventario').DataTable();
     // adding buttons for each inventario table rows, such as adding, substracting, and deleting.
     var actionsRow = '<div class="btn-group" role="group">' +
-        '<button class="btn btn-sm btn-danger eliminar" data-toggle="tooltip" title="Eliminar"><i class="fas fa-trash-alt"></i></button>' +
-        '<button class="btn btn-sm btn-danger substract" data-toggle="tooltip" title="Substract"><i class="fas fa-minus"></i></button>' +
-        '<button class="btn btn-sm btn-danger add" data-toggle="tooltip" title="Add"><i class="fas fa-plus"></i></button>' +
+        '<button class="btn btn-sm btn-outline-danger eliminar" data-toggle="tooltip" title="Eliminar"><i class="fas fa-trash-alt"></i></button>' +
+        '<button class="btn btn-sm btn-outline-danger substract" data-toggle="tooltip" title="Substract"><i class="fas fa-minus"></i></button>' +
+        '<button class="btn btn-sm btn-outline-danger add" data-toggle="tooltip" title="Add"><i class="fas fa-plus"></i></button>' +
         '</div>';
     var dropdown = $("#inventarioDropdown");
     var cantidadInput = $("#cantidadInput");

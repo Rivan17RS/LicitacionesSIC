@@ -88,17 +88,34 @@ namespace AppLogic
         }
 
 
-        public string ValidarOTP(string id, string otp)
+        public Response ValidarOTP(string id, string otp)
         {
             UsuarioCrudFactory ucf = new UsuarioCrudFactory();
-            Usuario usuario = ucf.RetrieveByIdent<Usuario>(id);
+
+
+            Usuario usuario = null;
+            try
+            {
+
+                usuario = ucf.RetrieveByIdent<Usuario>(id);
+            }
+
+            catch
+            {
+                return new Response("Error en la base de datos", "Error en la base de datos", ResponseType.ERROR);
+            }
+
+            if (usuario == null)
+            {
+                return new Response("Error en la entrada", "Usuario no encontrado", ResponseType.ERROR);
+            }
 
             if (usuario.Otp == otp)
             {
                 usuario.Estado = 1;
                 UsuarioCrudFactory ucf2 = new UsuarioCrudFactory();
                 ucf2.Update(usuario);
-                return "Usuario Validado Correctamente";
+                return new Response("Validación de usuario correcta", "", ResponseType.SUCCESS);
             }
             else
             {
@@ -108,13 +125,13 @@ namespace AppLogic
                 {
                     UsuarioCrudFactory ucf2 = new UsuarioCrudFactory();
                     ucf2.Delete(usuario);
-                    return "Usuario eliminado debido a tres intentos fallidos de validación.";
+                    return new Response("Intentos fallidos", "Usuario eliminado debido a tres intentos fallidos de validación.", ResponseType.ERROR);
                 }
                 else
                 {
                     UsuarioCrudFactory ucf2 = new UsuarioCrudFactory();
                     ucf2.Update(usuario);
-                    return "OTP incorrecto";
+                    return new Response("Entrada incorecta", "OTP incorrecto", ResponseType.ERROR);
                 }
             }
         }

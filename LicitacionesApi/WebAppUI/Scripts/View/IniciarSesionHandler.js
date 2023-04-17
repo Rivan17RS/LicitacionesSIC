@@ -1,5 +1,22 @@
 ﻿$(document).ready(function () {
 
+    // toggle password setup
+    showPassword = $("#show-password");
+    hidePassword = $("#hide-password");
+    showPassword.on("click", function () {
+        // show password
+        $("#contrasenaInput").attr("type", "text");
+        $(this).addClass("d-none");
+        hidePassword.removeClass("d-none");
+    })
+
+    hidePassword.on("click", function () {
+        // hide password
+        $("#contrasenaInput").attr("type", "password");
+        $(this).addClass("d-none");
+        showPassword.removeClass("d-none");
+    })
+
     // hide validations until user inputs data
     validacionContrasena = $('#validacionContrasena');
     validacionCorreoElectronico = $('#validacionCorreoElectronico');
