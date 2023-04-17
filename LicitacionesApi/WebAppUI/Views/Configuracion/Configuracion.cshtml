@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Configuracion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="my-5 text-primary">Módulo de Configuración</h2>
+
+<div class="row align-items-center justify-content-center">
+    <div class="col-lg-10">
+        <div class="card">
+            <div class="card-body">
+                <form id="EditarPremium" class="form-group">
+                    <fieldset>
+                        <legend>Actualiza el costo de la membresía Premium</legend>
+
+
+                        <div class="form-group">
+                            <label for="PremiumCosto" class="form-label mt-4">Precio: </label>
+                            <input type="text" class="form-control" id="costoP" placeholder="Ingrese el nuevo monto">
+                        </div>
+
+ 
+
+                        <button type="submit" class="btn btn-outline-success mt-4 bg-success text-bg-success" id="btnUpdatePremium">Actualizar </button>
+                        
+                    </fieldset>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
