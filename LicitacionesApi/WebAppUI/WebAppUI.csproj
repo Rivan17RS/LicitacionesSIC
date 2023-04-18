@@ -135,6 +135,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ConfiguracionController.cs" />
     <Compile Include="Controllers\CrearCuentaController.cs" />
     <Compile Include="Controllers\EntregasController.cs" />
     <Compile Include="Controllers\ErrorMessageController.cs" />
@@ -242,6 +243,7 @@
     <Content Include="Views\Entregas\Entregas.cshtml" />
     <Content Include="Views\Licitacion\AbrirLicitacion.cshtml" />
     <Content Include="Views\CrearCuenta\ConfirmarRegistro.cshtml" />
+    <Content Include="Views\Configuracion\Configuracion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
