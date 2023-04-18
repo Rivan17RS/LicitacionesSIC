@@ -49,9 +49,6 @@
                             <li class="nav-item">
                                 <a>@Html.ActionLink("Entregas", "Entregas", "Entregas", new { area = "" }, new { @class = "nav-link" })</a>
                             </li>
-                            <li class="nav-item">
-                                <a>@Html.ActionLink("Configuración", "Configuracion", "Configuracion", new { area = "" }, new { @class = "nav-link" })</a>
-                            </li>
                         }
 
                         else if (Session["Role"].ToString() == "Analista")

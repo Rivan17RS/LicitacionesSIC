@@ -1,43 +1,63 @@
-﻿function mostrarDetallesLicitacion(idLicitacion) {
-    // Crea un array para guardar las filas de la tabla que se van a mostrar en el modal
-    var filasDetalles = [];
+﻿
+//function mostrarDetallesLicitacion(idLicitacion) {
+//    $('#tblDetallesLicitacion').remove();
+//    $('#titleDetallesLicitacion').remove();
 
-    // Agrega la estructura de la tabla y los encabezados
-    filasDetalles.push('<table class="table"><thead><tr><th>ID Licitación</th><th>ID Producto</th><th>Producto</th><th>Cantidad</th></tr></thead><tbody>');
+//    $.ajax({
+//        method: "GET",
+//        url: "https://localhost:44369/api/DetalleLicitaciones/ObtenerDetalleLicitacionesId?IdLicitacion=" + idLicitacion,
+//        contentType: "application/json;charset=utf-8",
+//        success: function (data) {
 
+//            var promises = [];
+//            var tablaDetalles = "<br><h2 id='titleDetallesLicitación' >Detalles Licitacion</h2><br><table id='tblDetallesLicitacion' class='table table-hover table-light'>";
+//            tablaDetalles += "<thead><tr><th>IdLicitacion</th><th>IdProducto</th><th>Producto</th><th>Cantidad</th></tr></thead>";
+//            tablaDetalles += "<tbody>";
+//            $.each(data, function (index, value) {
+//                var promise = $.ajax({
+//                    method: "GET",
+//                    url: "#" + value.Idproducto,
+//                    contentType: "application/json;charset=utf-8"
+//                }).then(function (producto) {
+//                    tablaDetalles += "<tr><td>" + value.IdLicitacion + "</td><td>" + value.Idproducto + "</td><td>" + producto.Nombre + "</td><td>" + value.Cantidad + "</td></tr>";
+//                });
+//                promises.push(promise);
+//            });
+//            Promise.all(promises).then(function () {
+//                tablaDetalles += "</tbody></table>";
+//                $('#tblLicitaciones').after(tablaDetalles);
+//            });
+//        }
+//    });
+//}
+
+
+//funcion de testing
+
+function mostrarDetallesLicitacion(idLicitacion) {
+    $('#tblDetallesLicitacion').remove();
+    $('#titleDetallesLicitacion').remove();
     $.ajax({
-        searching: true,
-        language: {
-            url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
-        },
         method: "GET",
         url: "https://licitaciones-api.azurewebsites.net/api/DetalleLicitaciones/ObtenerDetalleLicitacionesId?IdLicitacion=" + idLicitacion,
         contentType: "application/json;charset=utf-8",
         success: function (data) {
-            // Itera sobre los detalles de la licitación
-            var promises = [];
+            var tablaDetalles = "<br><h2 id='titleDetallesLicitacion' >Detalles Licitación</h2><br><table id='tblDetallesLicitacion' class='table table-hover table-light'>";
+            tablaDetalles += "<thead><tr><th>Id Licitación</th><th>Id Producto</th><th>Producto</th><th>Cantidad</th></tr></thead>";
+            tablaDetalles += "<tbody>";
             $.each(data, function (index, value) {
-                var promise = $.getJSON("https://licitaciones-api.azurewebsites.net/api/Producto/ObtenerProducto/" + value.Idproducto)
-                    .then(function (product) {
-                        return "<tr><td>" + value.IdLicitacion + "</td><td>" + value.Idproducto + "</td><td>" + (product ? product.Nombre : "Error al obtener producto") + "</td><td>" + value.Cantidad + "</td></tr>";
-                    });
-                promises.push(promise);
+                var product = Products.find(p => p.Id === value.Idproducto);
+                if (product) {
+                    tablaDetalles += "<tr><td>" + value.IdLicitacion + "</td><td>" + value.Idproducto + "</td><td>" + product.Nombre + "</td><td>" + value.Cantidad + "</td></tr>";
+                } else {
+                    tablaDetalles += "<tr><td>" + value.IdLicitacion + "</td><td>" + value.Idproducto + "</td><td>Producto no encontrado</td><td>" + value.Cantidad + "</td></tr>";
+                }
             });
-
-            // Cuando todas las promesas hayan sido resueltas, cierra la estructura de la tabla y muestra el modal con la tabla
-            Promise.all(promises).then(function (filas) {
-                filasDetalles.push(filas.join(""));
-                filasDetalles.push("</tbody></table>");
-
-                // Actualiza el cuerpo de la tabla del modal con la nueva tabla creada
-                $("#tblDetallesLicitacionBody").html(filasDetalles.join(""));
-
-                $('#detalleModal').modal('show');
-            });
+            tablaDetalles += "</tbody></table>";
+            $('#tblLicitaciones').after(tablaDetalles);
         },
     });
 }
-
 
 
 function LicitacionesTable() {

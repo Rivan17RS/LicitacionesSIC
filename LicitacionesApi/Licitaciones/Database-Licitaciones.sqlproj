@@ -90,20 +90,12 @@
     <Build Include="dbo\Stored Procedures\SP_CrearDetalleLicitacion.sql" />
     <Build Include="dbo\Stored Procedures\SP_ActualizarDetalleLicitacion.sql" />
     <Build Include="dbo\Stored Procedures\SP_ObtenerDetallesLicitaciones.sql" />
-    <Build Include="dbo\Stored Procedures\SP_ObtenerUsuariosFiltro.sql" />
-    <Build Include="dbo\Stored Procedures\SP_ObtenerStockProductos_ID.sql" />
-    <Build Include="dbo\Stored Procedures\SP_ObtenerStockProductos.sql" />
-    <Build Include="dbo\Stored Procedures\SP_ObtenerProductosFiltro.sql" />
-    <Build Include="dbo\Stored Procedures\SP_ObtenerProductos.sql" />
-    <Build Include="dbo\Stored Procedures\SP_ObtenerProductoId.sql" />
-    <Build Include="dbo\Stored Procedures\SP_ObtenerLicitacionesFiltro.sql" />
-    <Build Include="dbo\Stored Procedures\SP_EliminarStockProductos.sql" />
-    <Build Include="dbo\Stored Procedures\SP_EliminarProducto.sql" />
     <Build Include="dbo\Stored Procedures\SP_CrearStockProductos.sql" />
-    <Build Include="dbo\Stored Procedures\SP_CrearProducto.sql" />
-    <Build Include="dbo\Stored Procedures\SP_ActualizarProductoUsuario.sql" />
-    <Build Include="dbo\Stored Procedures\SP_ActualizarProducto.sql" />
     <Build Include="dbo\Stored Procedures\EliminarStockProductos.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ObtenerStockProductos.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ObtenerStockProductos_ID.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ActualizarProductoUsuario.sql" />
+    <Build Include="dbo\Stored Procedures\SP_EliminarStockProductos.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="querys Datos\Inicial.sql" />
