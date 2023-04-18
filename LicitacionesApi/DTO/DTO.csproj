@@ -48,6 +48,7 @@
     <Compile Include="BaseEntity.cs" />
     <Compile Include="DetalleLicitaciones.cs" />
     <Compile Include="Email.cs" />
+    <Compile Include="GetResponse.cs" />
     <Compile Include="Licitaciones.cs" />
     <Compile Include="Ofertas.cs" />
     <Compile Include="OrderPaypal.cs" />
