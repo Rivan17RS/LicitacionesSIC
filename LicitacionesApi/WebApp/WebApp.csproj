@@ -180,8 +180,8 @@
     <Compile Include="Controllers\DetalleLicitacionesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LicitacionController.cs" />
+    <Compile Include="Controllers\PremiumController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
-    <Compile Include="Controllers\StockProductosController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -248,7 +248,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\StockProductos\" />
+    <Folder Include="Views\Premium\" />
     <Folder Include="Views\Usuario\" />
   </ItemGroup>
   <ItemGroup>
