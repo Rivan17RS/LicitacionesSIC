@@ -52,7 +52,4 @@
     }
 };
 
-
-(function () {
-    Table.init();
-})();
+Table.init();
