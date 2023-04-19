@@ -51,7 +51,6 @@
     <Compile Include="GetResponse.cs" />
     <Compile Include="Licitaciones.cs" />
     <Compile Include="Ofertas.cs" />
-    <Compile Include="OrderPaypal.cs" />
     <Compile Include="PagosUsuarios.cs" />
     <Compile Include="Producto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
