@@ -11,12 +11,39 @@ namespace DataAccess.MAPPER
 {
     public class PremiumMapper : IObjectMapper
     {
+
+        public SqlOperation GetCreateStatement(BaseEntity entyDTO)
+        {
+            var oper = new SqlOperation()
+            {
+                ProcedureName = "SP_CrearPremium"
+            };
+            var p = (Subscripcion)entyDTO;
+            oper.AddVarcharParam("Nombre", p.Nombre);
+            oper.AddVarcharParam("Descripcion", p.Descripcion);
+            oper.AddDecimalParam("PrecioMensual", p.PrecioMensual);
+            oper.AddIntegerParam("Estado", p.Estado);
+
+            return oper;
+        }
+
+        public SqlOperation GetDeleteStatement(BaseEntity entyDTO)
+        {
+            var oper = new SqlOperation()
+            {
+                ProcedureName = "SP_EliminarPremium"
+            };
+            var p = (Producto)entyDTO;
+            oper.AddIntegerParam("Id", p.Id);
+
+            return oper;
+        }
         public SqlOperation GetUpdateStatement(BaseEntity entyDTO)
         {
 
             var oper = new SqlOperation()
             {
-                ProcedureName = "SP_ActualizarMontoPremium"
+                ProcedureName = "SP_ActualizarPremium"
             };
             var p = (Subscripcion)entyDTO;
             oper.AddVarcharParam("Nombre", p.Nombre);
@@ -31,7 +58,7 @@ namespace DataAccess.MAPPER
         {
             var oper = new SqlOperation()
             {
-                ProcedureName = "SP_ObtenerMontoPremium"
+                ProcedureName = "SP_ObtenerPremiumId"
             };
             oper.AddIntegerParam("Id", ID);
 

@@ -21,18 +21,22 @@ namespace DataAccess.CRUD
 
         public override void Create(BaseEntity entityDto)
         {
-            throw new NotImplementedException();
+            var sqlOper = mapper.GetCreateStatement(entityDto);
+            dao.ExecuteStoreProcedure(sqlOper);
         }
 
         public override void Delete(BaseEntity entityDto)
         {
-            throw new NotImplementedException();
+            var sqlOper = mapper.GetDeleteStatement(entityDto);
+            dao.ExecuteStoreProcedure(sqlOper);
         }
 
-        public override List<T> RetrieveAll<T>()
+        public override void Update(BaseEntity entityDto)
         {
-            throw new NotImplementedException();
+            var sqlOper = mapper.GetUpdateStatement(entityDto);
+            dao.ExecuteStoreProcedure(sqlOper);
         }
+
 
         public override T RetrieveByID<T>(int Id)
         {
@@ -55,10 +59,9 @@ namespace DataAccess.CRUD
             throw new NotImplementedException();
         }
 
-        public override void Update(BaseEntity entityDto)
+        public override List<T> RetrieveAll<T>()
         {
-            var sqlOper = mapper.GetUpdateStatement(entityDto);
-            dao.ExecuteStoreProcedure(sqlOper);
+            throw new NotImplementedException();
         }
 
     }
