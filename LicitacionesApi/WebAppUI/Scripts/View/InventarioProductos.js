@@ -132,6 +132,7 @@ function CrearProducto() {
     prod.Precio = $('#txtPrecio').val();
     prod.StockCantidad = $('#txtCantidad').val()
     prod.IdUsrCreacion = 1;
+    //prod.IdUsrCreacion = parseInt(Id);
 
     $.ajax({
         headers: {

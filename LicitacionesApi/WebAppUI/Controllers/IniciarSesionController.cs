@@ -80,6 +80,7 @@ namespace WebAppUI.Controllers
                     return View();
                 }
                 // guardar los datos en sesion para uso general
+                Session["Id"] = dataObject.Id;
                 Session["CurrentUser"] = dataObject.CorreoElectronico;
                 Session["User"] = dataObject.Nombre;
                 Session["UserLastName"] = dataObject.Apellidos;
