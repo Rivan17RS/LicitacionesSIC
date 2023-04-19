@@ -64,7 +64,14 @@ namespace DataAccess.CRUD
 
         public override T RetrieveByID<T>(int Id)
         {
-            throw new NotImplementedException();
+            var data = dao.ExecuteQueryProcedureWithQuery(mapper.GetRetrieveByIDStatement(Id));
+
+            if (data.Count > 0)
+            {
+                var Obj = mapper.BuildObject(data[0]);
+                return (T)Convert.ChangeType(Obj, typeof(T));
+            }
+            return default(T);
         }
 
         public override T RetrieveByIdent<T>(string Id)

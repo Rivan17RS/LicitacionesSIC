@@ -104,6 +104,7 @@
     <Build Include="dbo\Stored Procedures\SP_ActualizarProductoUsuario.sql" />
     <Build Include="dbo\Stored Procedures\SP_ActualizarProducto.sql" />
     <Build Include="dbo\Stored Procedures\EliminarStockProductos.sql" />
+    <Build Include="dbo\SP_ObtenerUsuarioPorID.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="querys Datos\Inicial.sql" />
