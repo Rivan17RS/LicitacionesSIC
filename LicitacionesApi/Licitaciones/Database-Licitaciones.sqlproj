@@ -105,6 +105,10 @@
     <Build Include="dbo\Stored Procedures\SP_ActualizarProducto.sql" />
     <Build Include="dbo\Stored Procedures\EliminarStockProductos.sql" />
     <Build Include="dbo\SP_ObtenerUsuarioPorID.sql" />
+    <Build Include="dbo\Stored Procedures\SP_CrearPremium.sql" />
+    <Build Include="dbo\Stored Procedures\SP_EliminarPremium.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ActualizarPremium.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ObtenerPremiumId.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="querys Datos\Inicial.sql" />
