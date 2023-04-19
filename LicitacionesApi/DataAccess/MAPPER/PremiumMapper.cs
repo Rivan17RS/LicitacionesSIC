@@ -9,7 +9,7 @@ using DTO;
 
 namespace DataAccess.MAPPER
 {
-    public class PremiumMapper : ICrudStatements, IObjectMapper
+    public class PremiumMapper : IObjectMapper
     {
         public SqlOperation GetUpdateStatement(BaseEntity entyDTO)
         {
