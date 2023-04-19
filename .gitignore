@@ -360,3 +360,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/LicitacionesApi/WebApp/Properties/Settings.Designer.cs
+/LicitacionesApi/WebApp/Properties/Settings.settings
+/.gitignore
+/LicitacionesApi/WebAppUI/Properties/ServiceDependencies/LicitacionesUI - Web Deploy/profile.arm.json
+/.gitignore
+/LicitacionesApi/WebApp/WebApp.csproj
