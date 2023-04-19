@@ -1,0 +1,7 @@
+﻿CREATE PROCEDURE SP_ObtenerProductos
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT TOP 500 *
+    FROM Productos;
+END

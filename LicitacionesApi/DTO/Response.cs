@@ -14,6 +14,8 @@ namespace DTO
 
         public ResponseType ResponseType { get; set; }
 
+        public Response() { }
+
         public Response(string Title, string Content, ResponseType ResponseType) {
             this.Title = Title;
             this.Content = Content;

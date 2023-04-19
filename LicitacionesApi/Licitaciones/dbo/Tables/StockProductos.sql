@@ -3,7 +3,7 @@
     [IdUsuario]          INT             NOT NULL,
     [IdProducto]         INT             NOT NULL,
     [Cantidad]           INT             NOT NULL,
-    [Precio_Unidad]      DECIMAL (18, 2) NOT NULL,
+    [PrecioUnidad]      DECIMAL (18, 2) NOT NULL,
     [IdUsrCreacion]      INT             NOT NULL,
     [IdUsrActualizacion] INT             NULL,
     [IdUsrEliminacion]   INT             NULL,

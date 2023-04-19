@@ -1,27 +1,58 @@
-﻿class DataTableLogic {
-    constructor(tablaHTMLId, JsonTable) {
+﻿var Table = {
+    data: [
+        { data: "IdUsuario" },
+        { data: "IdProducto" },
+        { data: "Cantidad" },
+        {data: "PrecioUnidad"}
+    ],
 
-        this.tablaHTMLId = $(tablaHTMLId).DataTable();
+    init: function () {
+        this.cacheDom();
+        this.load();
+    },
 
-        this.JsonTable = JsonTable;
-    }
+    cacheDom: function () {
+        this.$tabla = "#tblInventario";
+        this.$tablaJ = $(this.$tabla);
+        this.$tablaBody = `#tblInventario tbody`;
+    },
 
-    // Crea la tabla en el HTML
-    crearTabla(columnsJson, columnsTable) {
-        $.each(this.JsonTable, function (index, data) {
-            
+    render: function () {
+
+    },
+
+    ajax: {
+        headers: {
+            'Accept': "application/json",
+            'Content-Type': "application/json"
+        },
+        type: "GET",
+        url: "https://licitaciones-api.azurewebsites.net/api/StockProductos/GetAllStockProductos",
+        contentType: "application/json;charset=utf-8",
+        error: function (request, status, error) {
+            console.log("oops");
+        },
+        dataSrc: function (json) {
+
+            var jsonResult = { 'data': json };
+            return jsonResult.data;
+        }
+    },
+
+    load: function () {
+
+        $(this.$tabla).DataTable({
+            searching: true,
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
+            },
+            ajax: this.ajax,
+            columns: this.data
         })
     }
+};
 
-    anadirFila(fila) {
-        this.tablaHTMLId.row.add(fila).draw();
-    }
 
-    eliminarFila(row) {
-        tablaHTML.row(row).remove().draw();
-    }
-
-    editarFila(row, data, id=0) {
-
-    }
-}
+(function () {
+    Table.init();
+})();

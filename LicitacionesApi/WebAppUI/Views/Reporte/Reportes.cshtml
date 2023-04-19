@@ -78,22 +78,47 @@
             </form>
         </div>
     </div>
-            <div>
-                <table id="tblLicitaciones" class="table table-hover table-light">
-                    <thead>
-                        <tr>
-                            <th>Analista</th>
-                            <th>Id licitación</th>
-                            <th>Título</th>
-                            <th>Descripción</th>
-                            <th>Lugar de entrega</th>
-                            <th>Cierre de ofertas</th>
-                            <th>Monto presupuestado</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-                </table>
+    <div>
+        <table id="tblLicitaciones" class="table table-hover table-light">
+            <thead>
+                <tr>
+                    <th>Analista</th>
+                    <th>Id licitación</th>
+                    <th>Título</th>
+                    <th>Descripción</th>
+                    <th>Lugar de entrega</th>
+                    <th>Cierre de ofertas</th>
+                    <th>Monto presupuestado</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div class="modal" id="detalleModal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detalle licitación</h5>
+                </div>
+                <div class="modal-body">
+                    <table id="tblDetallesLicitacion" class="table table-hover table-light">
+                        <tbody id="tblDetallesLicitacionBody">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-primary bg-primary text-light" data-bs-dismiss="modal">Aceptar</button>
+                </div>
             </div>
+        </div>
+    </div>
+
+
+
+
+
+
 </section>
 
 
