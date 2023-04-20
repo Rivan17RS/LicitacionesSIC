@@ -215,6 +215,5 @@ namespace WebAppUI.Controllers
         {
             return View();
         }
-
     }
 }

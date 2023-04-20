@@ -215,7 +215,7 @@
     <Content Include="Scripts\View\RecuperarContrasenaHandler.js" />
     <Content Include="Scripts\View\ReporteLicitaciones.js" />
     <Content Include="Scripts\View\ReporteUsuarios.js" />
-    <Content Include="Scripts\View\TablaLogic.js" />
+    <Content Include="Scripts\View\InventarioUsuario.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

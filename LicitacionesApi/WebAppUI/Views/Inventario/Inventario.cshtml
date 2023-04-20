@@ -6,12 +6,12 @@
 <h2>Inventario</h2>
 
 <script src="~/Scripts/View/DataTesting.js"></script>
-<script src="~/Scripts/View/TablaLogic.js"></script>
+<script src="~/Scripts/View/InventarioUsuario.js"></script>
 
 <script src="https://kit.fontawesome.com/b76191ee63.js" crossorigin="anonymous"></script>
 
-
-@if (Session["UserId"] == null) {
+@if (Session["UserId"] == null)
+{
     Response.Redirect(Url.Action("Index", "Home", new { area = "" }));
 }
 <script>
@@ -44,6 +44,7 @@
                 <th>Nombre Producto</th>
                 <th>Descripción</th>
                 <th>Cantidad</th>
+                <th>Precio unidad</th>
                 <th>Acciones</th>
             </tr>
         </thead>
