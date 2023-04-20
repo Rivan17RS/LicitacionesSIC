@@ -1,10 +1,22 @@
 ﻿var Table = {
-    data: [
-        { data: "IdUsuario" },
-        { data: "IdProducto" },
-        { data: "Cantidad" },
-        { data: "PrecioUnidad" }
-    ],
+    data: {
+        text: [
+            { data: "Nombre" },
+            { data: "Descripcion" },
+            { data: "Cantidad" },
+            { data: "PrecioUnidad" }
+        ],
+        actions: $('<div>').addClass('btn-group').attr('role', 'group')
+                    .append($('<button>').addClass('btn btn-sm btn-outline-danger eliminar')
+                    .attr('data-toggle', 'tooltip').attr('title', 'Eliminar')
+                    .append($('<i>').addClass('fas fa-trash-alt')))
+                    .append($('<button>').addClass('btn btn-sm btn-outline-danger substract')
+                    .attr('data-toggle', 'tooltip').attr('title', 'Substract')
+                    .append($('<i>').addClass('fas fa-minus')))
+                    .append($('<button>').addClass('btn btn-sm btn-outline-danger add')
+                    .attr('data-toggle', 'tooltip').attr('title', 'Add')
+                    .append($('<i>').addClass('fas fa-plus')))
+    },
     userData: {},
     productosData: {},
 
@@ -33,77 +45,57 @@
         })
     }),
 
-    loadUsuarios: new Promise((resolve, reject) => {
-        $.ajax({
-            type: "GET",
-            url: "https://licitaciones-api.azurewebsites.net/api/usuario/obtenerusuarios",
-            success: function (json) {
-                resolve(json)
-            },
-            error: function (request, status, error) {
-                reject(error);
-            }
-        })
-    }),
-
     getStockProductosAjax: function () {
 
-        let usrData = this.userData;
-        let productData = this.productosData;
         return {
             headers: {
                 'Accept': "application/json",
                     'Content-Type': "application/json"
             },
             type: "GET",
-                url: "https://licitaciones-api.azurewebsites.net/api/StockProductos/GetAllStockProductos",
+            url: "https://localhost:44369/api/StockProductos/GetProductoDetailsFromUser?userIdentificacion=" + userId,
                     contentType: "application/json;charset=utf-8",
-                        error: function (request, status, error) {
-                            console.log("oops");
-                        },
+            error: function (request, status, error) {
+                console.log("Error al cargar los datos detalles productos");
+                console.log(userId)
+            },
             dataSrc: function (json) {
 
-                console.log("datos obtenidos");
-                console.log(usrData);
-                console.log(productData);
-
+                console.log(userId)
                 console.log(json);
                 var jsonResult = { 'data': json };
                 return jsonResult.data;
             }
         }
     },
+    loadDetalleProductos: function (self) {
 
-    load: function () {
-
-        // cargar usuarios y productos en promesas
-        Promise.all([
-            this.loadUsuarios,
-            this.loadProductos
-        ]).then((json) => {
-
-            this.userData = json[0]
-            this.productosData = json[1]
-
-            this.$tablaJ.DataTable({
+        return new Promise((resolve, reject) => {
+           self.$tablaJ.DataTable({
                 searching: true,
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
                 },
-                ajax: this.getStockProductosAjax(),
-                columns: this.data
-            })
+                ajax: self.getStockProductosAjax(),
+                columns: self.data.text,
+               initComplete: () => {
+                   self.$tablaJ.row.every(() => {
+                       console.log("printing");
+                   })
+               }
+           })
 
-        }).catch((error) => {
-            console.log(error);
+           resolve("success")
         })
+    },
 
-        //this.loadProductos.then((json) => console.log(json)).catch((error) => console.log(error));
-
-        // cargar productos
-        //this.loadProductos();
-
-        // cargar stockproductos
+    load: function () {
+        this.loadDetalleProductos(this).then((resolve) => {
+            console.log("resolved")
+            
+        }).catch((error) => {
+            console.log(error)
+        })
     },
 
     transform: {

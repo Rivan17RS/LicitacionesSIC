@@ -32,59 +32,68 @@ namespace DataAccess.DAO
 
         public void ExecuteStoreProcedure(SqlOperation operation)
         {
-            var connection = new SqlConnection(ConnectionString);
-            var command = new SqlCommand();
-
-            command.Connection = connection;
-            command.CommandType = CommandType.StoredProcedure;
-            command.CommandText = operation.ProcedureName;
-
-            foreach (var p in operation.parameters)
+            using(var connection = new SqlConnection(ConnectionString))
             {
-                command.Parameters.Add(p);
-            }
+                var command = new SqlCommand();
 
-            connection.Open();
-            command.ExecuteNonQuery();
+                command.Connection = connection;
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = operation.ProcedureName;
+
+                foreach (var p in operation.parameters)
+                {
+                    command.Parameters.Add(p);
+                }
+
+                connection.Open();
+
+                command.ExecuteNonQuery();
+            }
+           
         }
 
         public List<Dictionary<string, object>> ExecuteQueryProcedureWithQuery(SqlOperation operation)
         {
             List<Dictionary<string, Object>> lstResults = new List<Dictionary<string, Object>>();
 
-            var connection = new SqlConnection(ConnectionString);
-            var command = new SqlCommand();
 
-            command.Connection = connection;
-            command.CommandType = CommandType.StoredProcedure;
-            command.CommandText = operation.ProcedureName;
-
-            foreach (var p in operation.parameters)
+            using (var connection = new SqlConnection(ConnectionString))
             {
-                command.Parameters.Add(p);
-            }
 
-            connection.Open();
+                connection.Open();
 
-            //Ejecuta el SP en la base de datos
-            //Nos devuelve que tenemos que procesar para mostrar en pantalla
-            var reader = command.ExecuteReader();
+                var command = new SqlCommand();
 
-            if (reader.HasRows)
-            {
-                while (reader.Read())
+                command.Connection = connection;
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = operation.ProcedureName;
+
+                foreach (var p in operation.parameters)
                 {
-                    var dicc = new Dictionary<string, object>();
-                    // se recorre el dataset y se obtiene un diccionario por cada linea de datos
-                    for (var fieldCounter = 0; fieldCounter < reader.FieldCount; fieldCounter++)
-                    {
-                        dicc.Add(reader.GetName(fieldCounter), reader.GetValue(fieldCounter));
-                    }
-                    //Se agrega a la lista
-                    lstResults.Add(dicc);
+                    command.Parameters.Add(p);
                 }
+
+
+                //Ejecuta el SP en la base de datos
+                //Nos devuelve que tenemos que procesar para mostrar en pantalla
+                var reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        var dicc = new Dictionary<string, object>();
+                        // se recorre el dataset y se obtiene un diccionario por cada linea de datos
+                        for (var fieldCounter = 0; fieldCounter < reader.FieldCount; fieldCounter++)
+                        {
+                            dicc.Add(reader.GetName(fieldCounter), reader.GetValue(fieldCounter));
+                        }
+                        //Se agrega a la lista
+                        lstResults.Add(dicc);
+                    }
+                }
+                return lstResults;
             }
-            return lstResults;
         }
     }
 }
