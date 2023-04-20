@@ -248,11 +248,11 @@
     <Content Include="Views\Licitacion\AbrirLicitacion.cshtml" />
     <Content Include="Views\CrearCuenta\ConfirmarRegistro.cshtml" />
     <Content Include="Views\Configuracion\Configuracion.cshtml" />
+    <Content Include="Views\Paypal\PaypalConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\Contrasena\" />
-    <Folder Include="Views\Paypal\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
