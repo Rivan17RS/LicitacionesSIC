@@ -152,7 +152,12 @@ namespace DataAccess.MAPPER
 
         public SqlOperation GetRetrieveByIDStatement(int ID)
         {
-            throw new NotImplementedException();
+            var oper = new SqlOperation();
+            oper.ProcedureName = "SP_ObtenerUsuarioPorID";
+
+            oper.AddIntegerParam("Id", ID);
+            
+            return oper;
         }
     }
 }

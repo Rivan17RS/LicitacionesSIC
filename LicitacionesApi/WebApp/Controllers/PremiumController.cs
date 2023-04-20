@@ -13,7 +13,30 @@ namespace WebApp.Controllers
     {
         PremiumManager pm = new PremiumManager();
 
+        [HttpPost]
+        public Response CrearPremium(Subscripcion prod)
+        {
+            return pm.CrearPremium(prod);
+        }
 
-        
+        [HttpGet]
+
+        public Subscripcion ObtenerPremium(int id)
+        {
+            return pm.ObtenerPremium(id);
+        }
+
+        public Response ActualizarPremium(Subscripcion prod)
+        {
+            return pm.ActualizarPremium(prod);
+        }
+
+        [HttpPost]
+
+        public string EliminarPremium(int id)
+        {
+            return pm.EliminarPremium(id);
+        }
+
     }
 }
