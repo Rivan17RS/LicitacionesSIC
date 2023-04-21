@@ -3,6 +3,7 @@
         this.cacheDom();
 
         this.loadProductos.then((productos) => {
+            this.productos = productos;
             this.load(this, productos);
         }).catch((error) => { console.log(error) })
     },
@@ -13,6 +14,7 @@
         this.$cantidadInput = $("#cantidadInput");
         this.$inputWarning = $("#inputWarning");
         this.$inputSuccess = $("#inputSuccess");
+        this.$precioInput = $("#precioInput");
     },
 
     load: function (self, productos) {
@@ -46,7 +48,22 @@
                 reject(error)
             }
         })
-    })
+    }),
+
+    buscarProducto: function (id, productos) {
+        var productoFound = {};
+
+        for (let i = 0; i < productos.length; i++) {
+            if (productos[i].Id === id) {
+                productoFound = productos[i];
+            }
+        };
+
+        if (productoFound === {}) {
+            return null;
+        }
+        return productoFound;
+    }
 }
 
 var Table = {
@@ -54,11 +71,11 @@ var Table = {
     // notes: data: null if to be used to wait for the final rendering of the action buttons of the rows.
     data: {
         text: [
+            { data: "IdProducto"},
             { data: "Nombre" },
             { data: "Descripcion" },
             { data: "Cantidad" },
-            { data: "PrecioUnidad" },
-            {data: null}
+            { data: "PrecioUnidad" }
         ]
     },
 
@@ -107,7 +124,9 @@ var Table = {
     loadDetalleProductos: function (self) {
 
         return new Promise((resolve, reject) => {
-           self.$tabla.DataTable({
+            self.$tabla.DataTable({
+                buttons: ["guardar"],
+                dom: "Blftip",
                 searching: true,
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
@@ -116,7 +135,7 @@ var Table = {
                 columns: self.data.text,
                 columnDefs: [
                     {
-                        targets: [4], render: () => {
+                        targets: [5], render: () => {
                             var actionsRow = $('<div>').addClass('btn-group').attr('role', 'group');
                             var eliminarBtn = $('<button>').addClass('btn btn-sm eliminar')
                                 .attr('data-toggle', 'tooltip').attr('title', 'Eliminar')
@@ -132,7 +151,7 @@ var Table = {
                             return actionsRow.prop("outerHTML");
                         }
                     }
-                ]
+               ]
            })
 
            resolve("success")
@@ -163,7 +182,74 @@ var Table = {
             }
         };
 
+        if (productoFound === {}) {
+            return null;
+        }
         return productoFound;
+    },
+
+    updateProducto: function updateProductoUser(id, cantidad, tablaHTML) {
+
+        self = this;
+        self.$tabla.DataTable().rows().every((rowIndex, TableLoop, ColumnLoop) => {
+
+            console.log("looping using " + id + " and cantidad: " + cantidad);
+            if (self.$tabla.DataTable().row(rowIndex).data()[0] === id) {
+                self.$tabla.DataTable().cell(rowIndex, 3).data(cantidad).draw();
+            }
+        });
+
+        self.$tabla.DataTable().draw();
+    },
+
+    updateProductoDB: function (producto) {
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "https://localhost:44369/api/StockProductos/ActualizarProductoUsuario",
+            data: JSON.stringify(producto),
+            sucess: (success) => {
+                console.log(success.Content);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        })
+    },
+
+    eliminarProductoDB: function (producto) {
+
+        var url = `https://localhost:44369/api/StockProductos/EliminarProductoUsuario?IdUsuario=${producto.IdUsuario}&IdProducto=${producto.IdProducto}`
+        console.log(url);
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: url,
+            sucess: (success) => {
+                console.log(success.Content);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        })
+    },
+
+    saveProductoDB: function (producto) {
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "https://localhost:44369/api/StockProductos/AnadirProductoUsuario?IdUsuario=",
+            data: JSON.stringify(producto),
+            success: (success) => {
+                console.log(success.Content)
+            },
+            error: (error) => {
+                console.log(error.Content)
+            }
+        })
+
     }
 };
 
@@ -181,23 +267,33 @@ $(document).ready(function () {
         var rowData = tablaHTML.row(row).data();
         var productId = rowData[0];
         var cantidad = rowData[2];
-        producto_user.forEach(function (producto) {
-            if (producto.Id === productId && producto.userId === $('#tblInventario').data('user')) {
-                producto.cantidad -= cantidad;
-                if (producto.cantidad <= 0) {
-                    producto_user.splice(producto_user.indexOf(producto), 1);
-                }
-            }
-        });
+
+        producto = {
+            IdUsuario: Id,
+            IdProducto: rowData.IdProducto
+        };
+
+        Table.eliminarProductoDB(producto);
+
         tablaHTML.row(row).remove().draw();
     })
 
     $('#tblInventario tbody').on('click', 'tr .substract', function () {
         var row = $(this).closest('tr');
         var rowData = tablaHTML.row(row).data();
-        var cantidad = rowData[2];
+        
+        var cantidad = rowData.Cantidad;
         if (cantidad > 1) {
-            tablaHTML.cell(row, 2).data(cantidad - 1).draw();
+            tablaHTML.cell(row, 3).data(cantidad - 1).draw();
+
+            var producto = {
+                IdUsuario: Id,
+                IdProducto: rowData.IdProducto,
+                Cantidad: rowData.Cantidad,
+                PrecioUnidad: rowData.PrecioUnidad
+            }
+
+            Table.updateProductoDB(producto);
         } else {
             tablaHTML.row(row).remove().draw();
         }
@@ -206,8 +302,17 @@ $(document).ready(function () {
     $('#tblInventario tbody').on('click', 'tr .add', function () {
         var row = $(this).closest('tr');
         var rowData = tablaHTML.row(row).data();
-        var cantidad = parseInt(rowData[2]);
-        tablaHTML.cell(row, 2).data(cantidad + 1).draw();
+        var cantidad = parseInt(rowData.Cantidad);
+        tablaHTML.cell(row, 3).data(cantidad + 1);
+
+        var producto = {
+            IdUsuario: Id,
+            IdProducto: rowData.IdProducto,
+            Cantidad: rowData.Cantidad,
+            PrecioUnidad: rowData.PrecioUnidad
+        }
+
+        Table.updateProductoDB(producto);
     })
 
 
@@ -220,10 +325,12 @@ $(document).ready(function () {
         var inputWarning = AddProductoSection.$inputWarning;
         var inputSucess = AddProductoSection.$inputSuccess;
 
+        var cantidadInput = AddProductoSection.$cantidadInput;
+
         var currentSelection = AddProductoSection.getCurreSelection();
 
 
-        console.log(currentSelection.val(), AddProductoSection.$cantidadInput.val());
+        console.log(AddProductoSection.$cantidadInput.val());
         if ((parseInt(currentSelection.val()) === 0 || parseInt(AddProductoSection.$cantidadInput.val()) === 0 || parseInt(AddProductoSection.$cantidadInput.val()) < 0 || AddProductoSection.$cantidadInput.val() === "")) {
             console.log(inputWarning);
             inputWarning.removeClass("d-none");
@@ -236,20 +343,89 @@ $(document).ready(function () {
             inputSucess.removeClass("d-none");
         }
 
-        //var producto = LookupProducto(parseInt(dropwdownValue));
+        var selection = parseInt(currentSelection.val())
 
-        var productoUser = Table.buscarProductoDetails(parseInt(currentSelection.val()), Table.getProductosDetails());
+        // obtiene los detalles de producto haciendo el match con el id seleccionado 
+        let producto = AddProductoSection.buscarProducto(selection, AddProductoSection.productos);
 
-        console.log(productoUser);
-        /*if (productoUser.Id === producto.Id) {
-            console.log(productoUser.Id, producto.Id, ": verifying if producto: " + producto.Nombre + " exists")
-            productoUser.cantidad += parseInt(cantidadInput.val());
-            updateProductoUser(productoUser.Id, productoUser.cantidad);
+        let productoExist = Table.buscarProductoDetails(parseInt(currentSelection.val()), Table.getProductosDetails());
+
+        console.log(Table.getProductosDetails());
+        console.log(productoExist);
+
+
+        let isempty = (productoExist // 👈 null and undefined check
+            && Object.keys(productoExist).length === 0
+            && Object.getPrototypeOf(productoExist) === Object.prototype)
+
+        console.log(productoExist);
+        console.log(isempty);
+
+        if (!isempty) {
+            productoExist.Cantidad += parseInt(cantidadInput.val());
+
+            Table.$tabla.DataTable().rows().every((rowIndex, TableLoop, ColumnLoop) => {
+
+                if (Table.$tabla.DataTable().row(rowIndex).data()[0] === productoExist.IdProducto) {
+
+                    Table.$tabla.DataTable().cell(rowIndex, 3).data(productoExist.Cantidad);
+
+                    this.invalidate();
+                }
+
+                Table.updateProductoDB(productoExist);
+
+                Table.$tabla.DataTable().ajax.reload();
+            });
+
+            Table.$tabla.DataTable().destroy();
+            Table.$tabla.DataTable().draw();
         }
 
         else {
             var cantidad = cantidadInput.val();
-            tablaHTML.row.add([producto.Id, producto.Nombre, cantidad, actionsRow]).draw();
-        }*/
+
+            var actionsRow = $('<div>').addClass('btn-group').attr('role', 'group');
+            var eliminarBtn = $('<button>').addClass('btn btn-sm eliminar')
+                .attr('data-toggle', 'tooltip').attr('title', 'Eliminar')
+                .append($('<i>').addClass('fas fa-trash-alt'));
+            var substractBtn = $('<button>').addClass('btn btn-sm substract')
+                .attr('data-toggle', 'tooltip').attr('title', 'Substract')
+                .append($('<i>').addClass('fas fa-minus'));
+            var addBtn = $('<button>').addClass('btn btn-sm add')
+                .attr('data-toggle', 'tooltip').attr('title', 'Add')
+                .append($('<i>').addClass('fas fa-plus'));
+
+            actionsRow.append(eliminarBtn).append(substractBtn).append(addBtn);
+
+            var precioInput = AddProductoSection.$precioInput.val()
+
+            // testing - have to delete
+            let idprod = producto.Id;
+            let nombreprod = producto.Nombre;
+
+            var parameters = {
+                "IdProducto": idprod,
+                "Nombre": nombreprod,
+                "Descripcion": producto.Descripcion,
+                "Cantidad": cantidad,
+                "PrecioUnidad": precioInput,
+                "Actions": actionsRow
+            };
+
+            var producto_new = {
+                "IdUsuario": Id,
+                "IdProducto": idprod.toString(),
+                "Cantidad": cantidad,
+                "PrecioUnidad": precioInput,
+                "IdUsrCreacion": Id
+            }
+
+
+            Table.saveProductoDB(producto_new);
+
+            tablaHTML.row.add(parameters).draw();
+        }
     });
 })
+
