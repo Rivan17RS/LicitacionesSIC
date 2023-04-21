@@ -9,7 +9,10 @@
     [FechaCreacion]      DATETIME        DEFAULT (getdate()) NULL,
     [FechaActualizacion] DATETIME        NULL,
     [FechaEliminacion]   DATETIME        NULL,
+    [Descripcion]        VARCHAR (200)   NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Pagos_Usuarios] FOREIGN KEY ([IdUsuario]) REFERENCES [dbo].[Usuarios] ([Id])
 );
+
+
 
