@@ -59,6 +59,7 @@ namespace WebAppUI.Controllers
                     PaypalTransaction objeto = JsonConvert.DeserializeObject<PaypalTransaction>(jsonRespuesta);
 
                     ViewData["IdTransaccion"] = objeto.purchase_units[0].payments.captures[0].id;
+
                     
                 }
 
