@@ -61,7 +61,17 @@ namespace DataAccess.CRUD
 
         public override List<T> RetrieveAll<T>()
         {
-            throw new NotImplementedException();
+            var lstResult = new List<T>();
+            var dataResult = dao.ExecuteQueryProcedureWithQuery(mapper.GetRetrieveAllStatement());
+            if (dataResult.Count > 0)
+            {
+                var objPO = mapper.BuildObjects(dataResult);
+                foreach (var po in objPO)
+                {
+                    lstResult.Add((T)Convert.ChangeType(po, typeof(T)));
+                }
+            }
+            return lstResult;
         }
 
     }

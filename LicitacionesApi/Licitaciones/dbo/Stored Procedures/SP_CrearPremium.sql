@@ -3,11 +3,12 @@
     @Nombre VARCHAR(50),
     @Descripcion TEXT,
     @PrecioMensual DECIMAL(18,2),
-    @Estado BIT
+    @Estado BIT,
+    @IdUsrCreacion INT
 )
 AS
 BEGIN
     SET NOCOUNT ON;
-    INSERT INTO Suscripciones (Nombre, Descripcion, PrecioMensual, Estado)
-    VALUES (@Nombre, @Descripcion, @PrecioMensual, @Estado);
+    INSERT INTO Suscripciones (Nombre, Descripcion, PrecioMensual, Estado, IdUsrCreacion, FechaCreacion)
+    VALUES (@Nombre, @Descripcion, @PrecioMensual, @Estado, @IdUsrCreacion, GETDATE());
 END

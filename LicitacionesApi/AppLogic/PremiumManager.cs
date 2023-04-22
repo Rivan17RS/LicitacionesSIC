@@ -31,9 +31,10 @@ namespace AppLogic
                 Nombre = p.Nombre,
                 Descripcion = p.Descripcion,
                 PrecioMensual = p.PrecioMensual,
-                Estado = p.Estado
-            
-            };
+                Estado = p.Estado,
+                IdUsrCreacion = p.IdUsrCreacion
+
+        };
 
             try
             {
@@ -68,7 +69,6 @@ namespace AppLogic
 
         public Subscripcion ObtenerPremium(int id)
         {
-            PremiumCrudFactory pcf = new PremiumCrudFactory();
             return pcf.RetrieveByID<Subscripcion>(id);
         }
 
@@ -105,6 +105,11 @@ namespace AppLogic
                 }
             }
             return new Response("Success", "Membresía Actualizada exitosamente", ResponseType.SUCCESS);
+        }
+
+        public List<Subscripcion> ObtenerTodosPremium()
+        {
+            return pcf.RetrieveAll<Subscripcion>();
         }
 
 
