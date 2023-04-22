@@ -17,7 +17,7 @@
                 <form id="EditarPremium" class="form-group">
                     <fieldset>
                         <legend>Membresía Premium</legend>
-                        
+
                         <h6 class="fw-bolder">Monto actual</h6>
                         <br> @Session["Premium"]<br />
 
@@ -40,9 +40,47 @@
                         <button type="submit" class="btn btn-outline-success mt-4 bg-success text-bg-success" id="btnUpdatePremium">Actualizar </button>
 
                     </fieldset>
+
                 </form>
 
             </div>
         </div>
     </div>
 </div>
+
+
+<br>.<br />
+
+<div class="row align-items-center justify-content-center">
+    <div class="col-lg-10">
+        <div class="card">
+            <div class="card-body">
+                <form id="EditarRole" class="form-group">
+                    <fieldset>
+                        <legend>Actualizar Role</legend>
+
+                        <h6 class="fw-bolder">Role actual</h6>
+                        <br> @Session["Premium"]<br />
+
+                        <div class="form-group">
+                            <label for="RoleOption">Editar Role:</label>
+                            <select id="RoleOption" class="form-control form-control-sm">
+                                <option value="0"> --Seleccione una opción-- </option>
+                                <option value="1">Administrador</option>
+                                <option value="2">Analista</option>
+                                <option value="3">Usuario</option>
+                                <option value="4">Premium</option>
+                            </select>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-outline-success mt-4 bg-success text-bg-success" id="btnUpdateRole">Actualizar </button>
+
+                    </fieldset>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+

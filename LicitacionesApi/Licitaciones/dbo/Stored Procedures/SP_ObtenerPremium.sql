@@ -1,4 +1,4 @@
-﻿ALTER PROCEDURE SP_ObtenerPremium
+﻿CREATE PROCEDURE SP_ObtenerPremium
 AS
 BEGIN
     SELECT *

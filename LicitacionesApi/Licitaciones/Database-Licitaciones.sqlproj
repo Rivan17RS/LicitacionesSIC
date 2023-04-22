@@ -114,6 +114,7 @@
     <Build Include="dbo\Stored Procedures\SP_CrearPago.sql" />
     <Build Include="dbo\Stored Procedures\SP_ActualizarPago.sql" />
     <Build Include="dbo\Stored Procedures\SP_ObtenerPago.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ObtenerPremium.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="querys Datos\Inicial.sql" />

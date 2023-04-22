@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
@@ -9,7 +10,7 @@ using DTO;
 
 namespace DataAccess.MAPPER
 {
-    public class PremiumMapper : IObjectMapper
+    public class PremiumMapper : IObjectMapper, ICrudStatements
     {
 
         public SqlOperation GetCreateStatement(BaseEntity entyDTO)
@@ -23,6 +24,7 @@ namespace DataAccess.MAPPER
             oper.AddVarcharParam("Descripcion", p.Descripcion);
             oper.AddDecimalParam("PrecioMensual", p.PrecioMensual);
             oper.AddIntegerParam("Estado", p.Estado);
+            oper.AddIntegerParam("IdUsrCreacion", p.IdUsrCreacion);
 
             return oper;
         }
@@ -66,17 +68,35 @@ namespace DataAccess.MAPPER
         }
 
 
+        public SqlOperation GetRetrieveAllStatement()
+        {
+            var oper = new SqlOperation()
+            {
+                ProcedureName = "SP_ObtenerPremium"
+            };
+            return oper;
+        }
+
         public BaseEntity BuildObject(Dictionary<string, object> row)
         {
             
             var PrecioMensual = new Subscripcion()
             {
-
+                Id = Convert.ToInt32(row["Id"]),
                 Nombre = Convert.ToString(row["Nombre"]),
                 Descripcion = Convert.ToString(row["Descripcion"]),
                 PrecioMensual = Convert.ToDecimal(row["PrecioMensual"]),
                 Estado = Convert.ToInt32(row["Estado"]),
-               
+
+                //necesario para todas las tablas
+                IdUsrCreacion = row["IdUsrCreacion"] != DBNull.Value ? Convert.ToInt32(row["IdUsrCreacion"]) : 0,
+                IdUsrActualizacion = row["IdUsrActualizacion"] != DBNull.Value ? Convert.ToInt32(row["IdUsrActualizacion"]) : 0,
+                IdUsrEliminacion = row["IdUsrEliminacion"] != DBNull.Value ? Convert.ToInt32(row["IdUsrEliminacion"]) : 0,
+                FechaCreacion = Convert.ToDateTime(row["FechaCreacion"]),
+                FechaActualizacion = row["FechaActualizacion"] != DBNull.Value ? Convert.ToDateTime(row["FechaActualizacion"]) : new DateTime(1753, 1, 1, 0, 0, 0),
+                FechaEliminacion = row["FechaEliminacion"] != DBNull.Value ? Convert.ToDateTime(row["FechaEliminacion"]) : new DateTime(1753, 1, 1, 0, 0, 0)
+
+
             };
             return PrecioMensual;
         }
@@ -92,6 +112,7 @@ namespace DataAccess.MAPPER
             }
             return lstResults;
         }
+
 
     }
 }

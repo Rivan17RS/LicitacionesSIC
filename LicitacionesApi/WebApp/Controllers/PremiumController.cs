@@ -26,6 +26,12 @@ namespace WebApp.Controllers
             return pm.ObtenerPremium(id);
         }
 
+        [HttpGet]
+        public List<Subscripcion> ObtenerTodosPremium() 
+        {
+            return pm.ObtenerTodosPremium();
+        }
+
         public Response ActualizarPremium(Subscripcion prod)
         {
             return pm.ActualizarPremium(prod);
