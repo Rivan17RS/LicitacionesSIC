@@ -11,6 +11,6 @@ namespace DTO
         public int IdUsuario { get; set; }
         public decimal Monto { get; set; }
         public int Estado { get; set; }
-
+        public string Descripcion { get; set; }
     }
 }

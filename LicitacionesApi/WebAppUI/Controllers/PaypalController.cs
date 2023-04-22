@@ -10,6 +10,8 @@ using System.Web;
 using System.Web.Mvc;
 using WebAppUI.Model.Paypal_Order;
 using WebAppUI.Model.Paypal_Transaction;
+using System.Configuration;
+using System.Web.Optimization;
 
 namespace WebAppUI.Controllers
 {
@@ -21,7 +23,7 @@ namespace WebAppUI.Controllers
             return View();
         }
 
-        public async Task<ActionResult> About()
+        public async Task<ActionResult> PaypalConfirm()
         {
 
             //id de la autorizacion para obtener el dinero
@@ -34,8 +36,8 @@ namespace WebAppUI.Controllers
             {
 
                 //credenciales de api paypal
-                var userName = "AcuboGNgITO4-BLXemm6Jy7fIEQCP5LgIYycRgH7uLuSaT7P06IBBX6TYelDB1_BK5tQy5H_mIXdgvXO";
-                var passwd = "EPB26gXxEMOZBJBqXWGzaIrjuJawpimeL-HWOQ5YcjbRizR9Ytupoha1tl13gEU48slxwy9fAwkT4vsQ";
+                var userName = ConfigurationManager.AppSettings["PayPal.ClientId"];
+                var passwd = ConfigurationManager.AppSettings["PayPal.ClientSecret"];
 
                 client.BaseAddress = new Uri("https://api-m.sandbox.paypal.com");
 
@@ -57,6 +59,8 @@ namespace WebAppUI.Controllers
                     PaypalTransaction objeto = JsonConvert.DeserializeObject<PaypalTransaction>(jsonRespuesta);
 
                     ViewData["IdTransaccion"] = objeto.purchase_units[0].payments.captures[0].id;
+
+                    
                 }
 
             }
@@ -65,12 +69,6 @@ namespace WebAppUI.Controllers
             return View();
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
 
         [HttpPost]
         //public JsonResult Paypal(string precio) ---> EDITAR POR LA LINEA DE ABAJO
@@ -84,9 +82,8 @@ namespace WebAppUI.Controllers
 
             using (var client = new HttpClient())
             {
-
-                var userName = "AcuboGNgITO4-BLXemm6Jy7fIEQCP5LgIYycRgH7uLuSaT7P06IBBX6TYelDB1_BK5tQy5H_mIXdgvXO";
-                var passwd = "EPB26gXxEMOZBJBqXWGzaIrjuJawpimeL-HWOQ5YcjbRizR9Ytupoha1tl13gEU48slxwy9fAwkT4vsQ";
+                var userName = ConfigurationManager.AppSettings["PayPal.ClientId"];
+                var passwd = ConfigurationManager.AppSettings["PayPal.ClientSecret"];
 
                 client.BaseAddress = new Uri("https://api-m.sandbox.paypal.com");
 
@@ -110,10 +107,10 @@ namespace WebAppUI.Controllers
                     },
                     application_context = new ApplicationContext()
                     {
-                        brand_name = "Mi Tienda",
+                        brand_name = "SIC-Premium",
                         landing_page = "NO_PREFERENCE",
                         user_action = "PAY_NOW", //Accion para que paypal muestre el monto de pago
-                        return_url = "https://localhost:44304/Premium/Premium",// cuando se aprovo la solicitud del cobro
+                        return_url = "https://localhost:44304/Paypal/PaypalConfirm",// cuando se aprobo la solicitud del cobro
                         cancel_url = "https://localhost:44304/Premium/Premium"// cuando cancela la operacion
                     }
                 };

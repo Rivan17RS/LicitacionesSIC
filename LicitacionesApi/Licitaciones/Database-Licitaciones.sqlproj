@@ -104,13 +104,21 @@
     <Build Include="dbo\Stored Procedures\SP_ActualizarProductoUsuario.sql" />
     <Build Include="dbo\Stored Procedures\SP_ActualizarProducto.sql" />
     <Build Include="dbo\Stored Procedures\EliminarStockProductos.sql" />
-    <Build Include="dbo\SP_ObtenerUsuarioPorID.sql" />
     <Build Include="dbo\Stored Procedures\SP_CrearPremium.sql" />
     <Build Include="dbo\Stored Procedures\SP_EliminarPremium.sql" />
     <Build Include="dbo\Stored Procedures\SP_ActualizarPremium.sql" />
     <Build Include="dbo\Stored Procedures\SP_ObtenerPremiumId.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ObtenerPagosId.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ObtenerPagos.sql" />
+    <Build Include="dbo\Stored Procedures\SP_EliminarPago.sql" />
+    <Build Include="dbo\Stored Procedures\SP_CrearPago.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ActualizarPago.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ObtenerPago.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="querys Datos\Inicial.sql" />
+    <None Include="Script1.sql" />
+    <None Include="Script2.sql" />
+    <None Include="Script3.sql" />
   </ItemGroup>
 </Project>
