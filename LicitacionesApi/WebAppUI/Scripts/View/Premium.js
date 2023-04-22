@@ -13,14 +13,32 @@
 
 }
 
-
-
+var Suscripcion;
+ObtenerSuscripcion(4)
+var Premium = 4;
+var Estado = 1;
+var monto ;
+var Descripcion;
+function ObtenerSuscripcion(IdSuscrip) {
+    $.ajax({
+        type: 'GET',
+        url: "https://localhost:44369/api/Premium/ObtenerPremium/" + IdSuscrip,
+        success: function (response) {
+            console.log(response)
+            Suscripcion = response;
+            monto = Suscripcion.PrecioMensual;
+            Descripcion = Suscripcion.Nombre;
+        },
+        error: function (xhr, status, error) {
+            console.log(error);
+        }
+    });
+}
 
 function pagarSubscripcion() {
     var body = {
-        //precio: $("#precio").val(),
-        precio: 5.00,
-        producto: "Suscripción premium"
+        precio: monto,
+        producto: Descripcion,
     }
     jQuery.ajax({
         url: '/Paypal/Paypal',
@@ -60,7 +78,36 @@ function actualizarRol(identificacion, rol) {
 }
 
 
+function RegistrarPago(IdUsuario,Monto,Estado,Descripcion) {
+    var ps = {};
+    ps.IdUsuario = IdUsuario;
+    ps.Monto = Monto;
+    ps.Estado = Estado;
+    ps.Descripcion = Descripcion;
+    ps.IdUsrCreacion = IdUsuario;
+
+    $.ajax({
+        headers: {
+            'Accept': "application/json",
+            'Content-Type': "application/json"
+        },
+        type: 'POST',
+        url: "https://localhost:44369/api/PagosUsuario/CrearPagoUsuario",
+        contentType: "application/json",
+        data: JSON.stringify(ps),
+        success: function (response) {
+            console.log(response)
+        },
+        error: function (xhr, status, error) {
+            console.log(error);
+        }
+    });
+}
 
 
 
+function PagoRealizado() {
+    actualizarRol(Identificacion, Premium);
+    RegistrarPago(Id, monto,Estado, Descripcion);
+}
 

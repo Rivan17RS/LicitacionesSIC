@@ -2,6 +2,8 @@
     ViewBag.Title = "About";
 }
 <script src="~/Scripts/View/Premium.js"></script>
+<script>var Identificacion = "@Session["UserId"]"</script>
+<script>var Id = "@Session["Id"]"</script>
 
 <div class="row">
     <div class="col-sm-12 text-center">
@@ -19,7 +21,7 @@
                 <br />
                 <a href="@Url.Action("Index", "Home")" class="btn btn-primary bg-primary text-light">Pagina Principal</a>
                 <script>
-                        actualizarRol('@Session["UserId"]', 4);
+                    PagoRealizado();
                 </script>
             }
             else
