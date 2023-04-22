@@ -88,6 +88,7 @@ namespace WebAppUI.Controllers
                 Session["UserId"] = dataObject.Identificacion;
                 Session["UserOtp"] = dataObject.Otp;
                 Session["PasswordHashed"] = dataObject.Contrasena;
+                
                 var Rol = dataObject.Rol;
                 switch (Rol)
                 {

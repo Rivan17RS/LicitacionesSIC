@@ -74,7 +74,7 @@ namespace AppLogic
 
         public Response ActualizarPremium(Subscripcion p)
         {
-            Subscripcion prem = pcf.RetrieveByID<Subscripcion>(p.Id);
+            Subscripcion prod = pcf.RetrieveByID<Subscripcion>(p.Id);
 
             if (!v.ValidTexto(p.Nombre))
             {
@@ -85,15 +85,15 @@ namespace AppLogic
             {
                 return new Response("Error de entrada", "El valor debe ser mayor a 0", ResponseType.ERROR);
             }
-    
-            prem.Nombre = p.Nombre;
-            prem.Descripcion = p.Descripcion;
-            prem.PrecioMensual = p.PrecioMensual;
-            prem.Estado = p.Estado;
+
+            prod.Nombre = p.Nombre;
+            prod.Descripcion = p.Descripcion;
+            prod.PrecioMensual = p.PrecioMensual;
+            prod.Estado = p.Estado;
 
             try
             {
-                pcf.Update(prem);
+                pcf.Update(prod);
 
             }
 

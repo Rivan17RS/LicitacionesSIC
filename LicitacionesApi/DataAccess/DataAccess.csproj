@@ -96,6 +96,7 @@
     <Compile Include="CRUD\LicitacionCrudFactory.cs" />
     <Compile Include="CRUD\PremiumCrudFactory.cs" />
     <Compile Include="CRUD\ProductoCrudFactory.cs" />
+    <Compile Include="CRUD\RoleCrudFactory.cs" />
     <Compile Include="CRUD\StockProductosCrudFactory.cs" />
     <Compile Include="CRUD\UsuarioCrudFactory.cs" />
     <Compile Include="DAO\SqlDao.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="MAPPER\LicitacionMapper.cs" />
     <Compile Include="MAPPER\PremiumMapper.cs" />
     <Compile Include="MAPPER\ProductoMapper.cs" />
+    <Compile Include="MAPPER\RoleMapper.cs" />
     <Compile Include="MAPPER\StockProductosMapper.cs" />
     <Compile Include="MAPPER\UsuarioMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
