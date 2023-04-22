@@ -12,33 +12,60 @@
     }
 
 }
+//variables globales
 
-var Suscripcion;
-ObtenerSuscripcion(4)
-var Premium = 4;
-var Estado = 1;
-var monto ;
-var Descripcion;
+
+var Suscripcion = localStorage.getItem('Suscripcion');
+var TipoSuscripcion = localStorage.getItem('TipoSuscripcion');
+var PremiumSubs = localStorage.getItem('PremiumSubs');
+var Estado = localStorage.getItem('Estado');
+var monto = localStorage.getItem('monto');;
+var descripcion = localStorage.getItem('descripcion');;
+
+function PremiumSuscripcion() {
+    TipoSuscripcion = 4;
+    PremiumSubs = 4;
+    Estado = 1;
+
+
+    Suscripcion = ObtenerSuscripcion(TipoSuscripcion);
+
+    // Guardamos los valores en localStorage
+    localStorage.setItem('Suscripcion', Suscripcion);
+    localStorage.setItem('TipoSuscripcion', TipoSuscripcion);
+    localStorage.setItem('PremiumSubs', PremiumSubs);
+    localStorage.setItem('Estado', Estado);
+ }
+
+
+//metodo que obtiene los datos de la suscripción en la bd
 function ObtenerSuscripcion(IdSuscrip) {
+    var suscripcion;
     $.ajax({
         type: 'GET',
-        url: "https://localhost:44369/api/Premium/ObtenerPremium/" + IdSuscrip,
+        url: "https://licitaciones-api.azurewebsites.net/api/Premium/ObtenerPremium/" + IdSuscrip,
+        async: false, // Hacemos la petición de manera síncrona para obtener el valor de retorno
         success: function (response) {
             console.log(response)
-            Suscripcion = response;
-            monto = Suscripcion.PrecioMensual;
-            Descripcion = Suscripcion.Nombre;
+            suscripcion = response;
+            monto = suscripcion.PrecioMensual;
+            descripcion = suscripcion.Nombre;
+            localStorage.setItem('monto', monto);
+            localStorage.setItem('descripcion', descripcion);
+            pagarSubscripcion(monto, descripcion)
         },
         error: function (xhr, status, error) {
             console.log(error);
         }
     });
+    return suscripcion;
 }
 
-function pagarSubscripcion() {
+
+function pagarSubscripcion(pMonto,pDescripcion) {
     var body = {
-        precio: monto,
-        producto: Descripcion,
+        precio: pMonto,
+        producto: pDescripcion,
     }
     jQuery.ajax({
         url: '/Paypal/Paypal',
@@ -92,7 +119,7 @@ function RegistrarPago(IdUsuario,Monto,Estado,Descripcion) {
             'Content-Type': "application/json"
         },
         type: 'POST',
-        url: "https://localhost:44369/api/PagosUsuario/CrearPagoUsuario",
+        url: "https://licitaciones-api.azurewebsites.net/api/PagosUsuario/CrearPagoUsuario",
         contentType: "application/json",
         data: JSON.stringify(ps),
         success: function (response) {
@@ -107,7 +134,6 @@ function RegistrarPago(IdUsuario,Monto,Estado,Descripcion) {
 
 
 function PagoRealizado() {
-    actualizarRol(Identificacion, Premium);
-    RegistrarPago(Id, monto,Estado, Descripcion);
+    actualizarRol(Identificacion, PremiumSubs);
+    RegistrarPago(Id, monto, Estado, descripcion);
 }
-
