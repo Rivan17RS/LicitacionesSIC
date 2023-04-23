@@ -11,8 +11,38 @@ namespace WebApp.Controllers
 {
     public class RoleController : ApiController
     {
-        RoleManager roleManager = new RoleManager();
+        RoleManager rm = new RoleManager();
 
+        [HttpPost]
+        public Response CrearRole(Roles rol)
+        {
+            return rm.CrearRole(rol);
+        }
 
+        [HttpGet]
+
+        public Roles ObtenerRoleId(int Id)
+        {
+            return rm.ObtenerRoleId(Id);
+        }
+
+        [HttpGet]
+        public List<Roles> ObtenerRoles()
+        {
+            return rm.ObtenerRoles();
+        }
+
+        [HttpPost]
+        public Response ActualizarRole(Roles rol)
+        {
+            return rm.ActualizarRole(rol);
+        }
+
+        [HttpPost]
+
+        public string EliminarRole(int Id)
+        {
+            return rm.EliminarRole(Id);
+        }
     }
 }

@@ -1,19 +1,15 @@
-﻿CREATE PROCEDURE SP_ActualizarPremium
+﻿CREATE PROCEDURE SP_ActualizarRoles
 (
     @Id INT,
     @Nombre VARCHAR(50),
-    @Descripcion TEXT,
-    @PrecioMensual DECIMAL(18,2),
-    @Estado BIT,
+    @Estado VARCHAR(50),
     @IdUsrActualizacion INT
 )
 AS
 BEGIN
     SET NOCOUNT ON;
-    UPDATE Suscripciones
+    UPDATE Roles
     SET Nombre = @Nombre,
-        Descripcion = @Descripcion,
-        PrecioMensual = @PrecioMensual,
         Estado = @Estado,
         IdUsrActualizacion = @IdUsrActualizacion,
         FechaActualizacion = GETDATE()

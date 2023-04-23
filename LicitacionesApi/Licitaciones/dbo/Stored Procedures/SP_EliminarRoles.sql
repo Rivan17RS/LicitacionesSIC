@@ -1,0 +1,7 @@
+﻿CREATE PROCEDURE SP_EliminarRoles
+@ID INT
+AS
+BEGIN
+    DELETE FROM Roles
+    WHERE Id = @ID
+END

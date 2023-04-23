@@ -32,6 +32,7 @@ namespace WebApp.Controllers
             return pm.ObtenerTodosPremium();
         }
 
+        [HttpPost]
         public Response ActualizarPremium(Subscripcion prod)
         {
             return pm.ActualizarPremium(prod);

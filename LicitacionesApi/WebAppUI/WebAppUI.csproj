@@ -199,6 +199,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\View\ActionsControl.js" />
+    <Content Include="Scripts\View\Configuracion.js" />
     <Content Include="Scripts\View\ConfirmarRegistro.js" />
     <Content Include="Scripts\View\ContrasenaNuevaHandler.js" />
     <Content Include="Scripts\View\CrearCuenta.js" />

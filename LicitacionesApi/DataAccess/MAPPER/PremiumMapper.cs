@@ -35,7 +35,7 @@ namespace DataAccess.MAPPER
             {
                 ProcedureName = "SP_EliminarPremium"
             };
-            var p = (Producto)entyDTO;
+            var p = (Subscripcion)entyDTO;
             oper.AddIntegerParam("Id", p.Id);
 
             return oper;
