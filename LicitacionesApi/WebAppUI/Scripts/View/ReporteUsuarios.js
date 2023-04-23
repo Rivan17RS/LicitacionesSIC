@@ -43,7 +43,7 @@
             }
         ];
         if ($.fn.DataTable.isDataTable('#tblUsuarios')) {
-            $('#tblUsuarios').DataTable().destroy();
+                $('#tblUsuarios').DataTable().ajax.reload();
         }
         var tablaUsuarios = $('#tblUsuarios').DataTable({
             searching: true,

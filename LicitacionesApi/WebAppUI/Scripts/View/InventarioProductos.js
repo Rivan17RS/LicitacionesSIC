@@ -1,4 +1,7 @@
-﻿function MostrarInventario()
+﻿
+var tablacargada = 0;
+
+function MostrarInventario()
 {
 
         arrColumns = [
@@ -23,14 +26,18 @@
         ];
         arrColumns[6].visible = false;
 
+
+
+    if (tablacargada === 1) {
+        var table = $('#tblInventario').DataTable();
+        table.ajax.reload();
+    } else {
+
+
         $('#btnConfigProducto').click(function () {
             var column = tablaProductos.column(6);
             column.visible(!column.visible());
         });
-
-        if ($.fn.DataTable.isDataTable('#tblInventario')) {
-            $('#tblInventario').DataTable().destroy();
-        }
 
         var tablaProductos = $('#tblInventario').DataTable({
             searching: true,
@@ -50,7 +57,9 @@
                 },
                 dataSrc: function (json) {
                     var jsonResult = { 'data': json };
+                    tablacargada = 1;
                     return jsonResult.data;
+
                 }
             },
             columns: arrColumns,
@@ -102,9 +111,10 @@
             prod.Nombre = $('#filtroProducto').val();
             prod.Precio = $('#filtroPrecio').val();
             prod.FechaCreacion = $('#filtroFechaCreacion').val();
-            prod.Stock_Cantidad = $('#filtroCantidad').val();
+            prod.StockCantidad = $('#filtroCantidad').val();
             return prod;
         }
+    }
 
 }
 
@@ -112,17 +122,19 @@
 
 
 
+$(document).ready(function () {
+    $('#btnBuscarProductos').on('click', function () {
+        MostrarInventario();
+    });
 
+    $('#btnLimpiarProductos').on('click', function () {
+        $("#filtroProd")[0].reset();
 
-
-$('#btnBuscarProductos').on('click', function () {
-    MostrarInventario();
+    })
 });
 
-$('#btnLimpiarProductos').on('click', function () {
-    $("#filtroUsr")[0].reset();
 
-})
+
 
 
 function CrearProducto() {
