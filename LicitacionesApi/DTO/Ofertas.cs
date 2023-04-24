@@ -8,10 +8,11 @@ namespace DTO
 {
     public class Ofertas:BaseEntity
     {
+        public int IdOferta { get; set; }
         public int IdLicitacion { get; set; }
         public int IdUsuario { get; set; }
         public DateTime FechaEntrega { get; set; }
         public decimal MontoTotal { get; set; }
-
+        public List<DetalleOfertas> DetalleOfertas { get; set;}
     }
 }

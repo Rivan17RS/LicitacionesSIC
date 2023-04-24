@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Ofertas] (
+CREATE TABLE [dbo].[Ofertas] (
     [Id]                 INT             IDENTITY (1, 1) NOT NULL,
     [IdUsuario]          INT             NOT NULL,
     [IdLicitacion]       INT             NOT NULL,

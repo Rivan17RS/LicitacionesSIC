@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DetalleLicitacionesManager.cs" />
+    <Compile Include="DetalleOfertasManager.cs" />
     <Compile Include="EmailDataManager.cs" />
     <Compile Include="Hashing.cs" />
     <Compile Include="LicitacionesManager.cs" />

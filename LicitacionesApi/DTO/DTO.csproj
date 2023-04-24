@@ -47,6 +47,7 @@
     <Compile Include="Adjudicaciones.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="DetalleLicitaciones.cs" />
+    <Compile Include="DetalleOfertas.cs" />
     <Compile Include="Email.cs" />
     <Compile Include="GetResponse.cs" />
     <Compile Include="Licitaciones.cs" />
