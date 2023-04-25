@@ -6,7 +6,7 @@
 @section Scripts {
     <script>var Id = "@Session["Id"]"</script>
     <script src="~/Scripts/View/InventarioProductos.js"></script>
-    <script src="~/Scripts/View/DataTesting.js"></script>
+    <script src="~/Scripts/View/PagosUsuarios.js"></script>
     <script src="~/Scripts/View/ReporteUsuarios.js"></script>
     <script src="~/Scripts/View/ReporteLicitaciones.js"></script>
     <script src="~/Scripts/View/InventarioProductos.js"></script>
@@ -16,13 +16,16 @@
 <br />
 <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item flex-grow-1 text-center" role="presentation">
-        <a class="nav-link active" data-bs-toggle="tab" onclick="mostrarTabla('tblUsuarios');" aria-selected="true" role="tab">Listado de usuarios</a>
+        <a class="nav-link active" data-bs-toggle="tab" onclick="mostrarTabla('tblUsuarios');" aria-selected="true" role="tab">Listado usuarios</a>
     </li>
     <li class="nav-item flex-grow-1 text-center" role="presentation">
         <a class="nav-link" data-bs-toggle="tab" onclick="mostrarTabla('tblLicitaciones');" aria-selected="false" role="tab" tabindex="-1">Listado licitaciones</a>
     </li>
     <li class="nav-item flex-grow-1 text-center" role="presentation">
-        <a class="nav-link" data-bs-toggle="tab" onclick="mostrarTabla('tblInventario');" aria-selected="false" role="tab" tabindex="-1">Inventario productos</a>
+        <a class="nav-link" data-bs-toggle="tab" onclick="mostrarTabla('tblInventario');" aria-selected="false" role="tab" tabindex="-1">Listado productos</a>
+    </li>
+    <li class="nav-item flex-grow-1 text-center" role="presentation">
+        <a class="nav-link" data-bs-toggle="tab" onclick="mostrarTabla('tblPagos');" aria-selected="false" role="tab" tabindex="-1">Listado Pagos</a>
     </li>
 </ul>
 <br />
@@ -391,6 +394,57 @@
         </div>
 </section>
 
+<section id="seccionPagos" style="display: none;">
+    <div class="card mb-4">
+        <div class="card-body">
+            <form id="filtroPago" class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="filtroIdUsuario">Id usuario:</label>
+                            <input type="text" id="filtroIdUsuarioPago" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="filtroMonto">Monto:</label>
+                            <input type="number" id="filtroMontoPago" class="form-control form-control-sm">
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            <label for="filtroDescripcion">Descripción:</label>
+                            <input type="text" id="filtroDescripcionPago" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label for="filtroFecha">Fecha:</label>
+                            <input type="date" id="filtroFechaPago" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group text-center mt-4">
+                    <button type="button" class="btn btn-primary bg-primary text-light btn-block" id="btnBuscarPagos">Buscar</button>
+                    <button type="button" class="btn btn-secondary bg-light" id="btnLimpiarPagos">Limpiar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+        <table id="tblPagos" class="table table-hover table-light">
+            <thead>
+                <tr>
+                    <th>Id Usuario</th>
+                    <th>Monto</th>
+                    <th>Descripcion</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</section>
+
 
 
 <script>
@@ -399,15 +453,24 @@
             $('#seccionUsuarios').show();
             $('#seccionLicitaciones').hide();
             $('#seccionInventario').hide();
+            $('#seccionPagos').hide();
         } else if (idTabla === 'tblInventario') {
             $('#seccionUsuarios').hide();
             $('#seccionLicitaciones').hide();
             $('#seccionInventario').show();
+            $('#seccionPagos').hide();
             MostrarInventario();
+        } else if (idTabla === 'tblPagos') {
+            $('#seccionUsuarios').hide();
+            $('#seccionLicitaciones').hide();
+            $('#seccionInventario').hide();
+            $('#seccionPagos').show();
+            PagosTable();
         } else {
             $('#seccionUsuarios').hide();
             $('#seccionLicitaciones').show();
             $('#seccionInventario').hide();
+            $('#seccionPagos').hide();
             LicitacionesTable();
         }
     }
