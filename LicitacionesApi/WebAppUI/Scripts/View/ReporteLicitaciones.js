@@ -49,12 +49,27 @@ function LicitacionesTable() {
         { 'data': 'LugarEntrega' },
         { 'data': 'FechaCierreOfertas' },
         { 'data': 'MontoPresupuestado' },
-        { 'data': 'Estado' }
+        { 'data': 'Estado' },
+        {
+            'data': null,
+            'render': function (data, type, row) {
+                return '<div class="btn-group " role="group">' +
+                    '<button class="btn btn-sm btn-primary Ver" data-toggle="tooltip" title="VerMas"><i class="fa fa-eye"></i></button>' +
+                    '</div>';
+            },
+            className: 'LicitacionConfig',
+            visible:false
+        },
     ];
     if ($.fn.DataTable.isDataTable('#tblLicitaciones')) {
         $('#tblLicitaciones').DataTable().destroy();
 
     }
+
+    $('#btnLicConfig').click(function () {
+        var column = tablaLicitaciones.column(8);
+        column.visible(!column.visible());
+    });
 
     var tablaLicitaciones = $('#tblLicitaciones').DataTable({
         searching: true,
@@ -80,11 +95,13 @@ function LicitacionesTable() {
             }
         },
         columns: arrColumns,
+
     });
-    $('#tblLicitaciones tbody').off('click', 'tr').on('click', 'tr', function () {
-        var licitacionId = $(this).find('td:eq(1)').text();
+    $('#tblLicitaciones tbody').off('click', 'tr .Ver').on('click', 'tr .Ver', function () {
+        var licitacionId = $(this).closest('tr').find('td:eq(1)').text();
         mostrarDetallesLicitacion(licitacionId);
-    }).css('cursor', 'pointer').attr('title', 'Click para ver detalles');
+    }).css('cursor', 'pointer');
+
 
     function getFiltros() {
         var lic = {};

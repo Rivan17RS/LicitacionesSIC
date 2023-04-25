@@ -19,7 +19,7 @@
         <a class="nav-link active" data-bs-toggle="tab" onclick="mostrarTabla('tblUsuarios');" aria-selected="true" role="tab">Listado de usuarios</a>
     </li>
     <li class="nav-item flex-grow-1 text-center" role="presentation">
-        <a class="nav-link" data-bs-toggle="tab" onclick="mostrarTabla('tblLicitaciones'); LicitacionesTable();" aria-selected="false" role="tab" tabindex="-1">Listado licitaciones</a>
+        <a class="nav-link" data-bs-toggle="tab" onclick="mostrarTabla('tblLicitaciones');" aria-selected="false" role="tab" tabindex="-1">Listado licitaciones</a>
     </li>
     <li class="nav-item flex-grow-1 text-center" role="presentation">
         <a class="nav-link" data-bs-toggle="tab" onclick="mostrarTabla('tblInventario');" aria-selected="false" role="tab" tabindex="-1">Inventario productos</a>
@@ -79,6 +79,9 @@
             </form>
         </div>
     </div>
+    <div class="text-end mb-4">
+        <button type="button" id="btnLicConfig" class="btn btn-primary bg-primary text-light btn-sm"> Método Configuración</button>
+    </div>
     <div>
         <table id="tblLicitaciones" class="table table-hover table-light">
             <thead>
@@ -91,6 +94,7 @@
                     <th>Cierre de ofertas</th>
                     <th>Monto presupuestado</th>
                     <th>Estado</th>
+                    <th>Configuración</th>
                 </tr>
             </thead>
         </table>
@@ -404,6 +408,7 @@
             $('#seccionUsuarios').hide();
             $('#seccionLicitaciones').show();
             $('#seccionInventario').hide();
+            LicitacionesTable();
         }
     }
 
