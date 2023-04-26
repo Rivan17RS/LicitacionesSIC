@@ -93,6 +93,7 @@
   <ItemGroup>
     <Compile Include="CRUD\CrudFactory.cs" />
     <Compile Include="CRUD\DetalleLicitacionesCrudFactory.cs" />
+    <Compile Include="CRUD\DetalleOfertasCrudFactory.cs" />
     <Compile Include="CRUD\LicitacionCrudFactory.cs" />
     <Compile Include="CRUD\PagosUsuarioCrudFactory.cs" />
     <Compile Include="CRUD\PremiumCrudFactory.cs" />
@@ -103,9 +104,11 @@
     <Compile Include="DAO\SqlDao.cs" />
     <Compile Include="DAO\SqlOperations.cs" />
     <Compile Include="MAPPER\DetalleLicitacionesMapper.cs" />
+    <Compile Include="MAPPER\DetalleOfertasMapper.cs" />
     <Compile Include="MAPPER\ICrudStatements.cs" />
     <Compile Include="MAPPER\IObjectMapper.cs" />
     <Compile Include="MAPPER\LicitacionMapper.cs" />
+    <Compile Include="MAPPER\OfertasMapper.cs" />
     <Compile Include="MAPPER\PagosUsuarioMapper.cs" />
     <Compile Include="MAPPER\PremiumMapper.cs" />
     <Compile Include="MAPPER\ProductoMapper.cs" />

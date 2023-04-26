@@ -36,7 +36,7 @@
             {
                 'data': 'Acciones',
                 'render': function (data, type, full, meta) {
-                    return '<div class="text-center "><button id="btnConfig" class="btn btn-sm btn-outline-primary editar"  data-toggle="tooltip" title="Editar"><i class="fas fa-pencil-alt"></i></button></div>';
+                    return '<div class="text-center "><button id="btnConfig" class="btn btn-sm  editar"  data-toggle="tooltip" title="Editar"><i class="fas fa-pencil-alt"></i></button></div>';
                 },
                 className: 'userConfig',
                 visible: false

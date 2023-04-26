@@ -46,5 +46,14 @@ namespace DataAccess.DAO
             parameters.Add(new SqlParameter("@" + name, value));
         }
 
+        internal void AddIntegerParam(string v, string iD)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void AddVarcharParam(string v, int iD)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
