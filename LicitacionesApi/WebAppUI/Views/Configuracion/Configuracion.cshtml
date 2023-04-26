@@ -7,38 +7,52 @@
 
 <h2 class="my-5 text-primary">Módulo de Configuración</h2>
 
-<script> var Premium = "@Session["Premium"]"</script>
-<script> var Plan = "@Session["NombrePlan"]"</script>
 
 
 <div class="row align-items-center justify-content-center">
     <div class="col-lg-10">
         <div class="card">
             <div class="card-body">
-                <form id="EditarPremium" class="form-group">
-                    <fieldset>
-                        <legend>Membresía Premium</legend>
+                <form id="frmPremium" class="form-group">
 
-                        <h6 class="fw-bolder">Monto actual</h6>
-                        <br> @Session["Premium"]<br />
+                    
+                        <fieldset>
+                            <legend>Plan Premium Actual</legend>
+                            <table id="TblPremium" class="table table-borderless table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Plan ID</th>
+                                        <th>Titulo del Plan</th>
+                                        <th>Monto Actual</th>
+                                        <th>Descripción Membresía</th>
+                                    </tr>
+                                </thead>
+
+                            </table>
+                        </fieldset>
+                    
+
+                    <fieldset>
+                        <legend>Actualizar Plan Premium</legend>
 
                         <div class="form-group">
                             <label for="PremiumNombre" class="form-label mt-4">Nombre Membresía</label>
-                            <input type="text" class="form-control" id="NombreP" placeholder="Ingrese el nuevo nombre">
+                            <input type="text" class="form-control" id="NombreP" placeholder="Actualice el nombre">
                         </div>
 
                         <div class="form-group">
-                            <label for="PremiumCosto" class="form-label mt-4">Nuevo monto</label>
-                            <input type="text" class="form-control" id="costoP" placeholder="Ingrese el nuevo costo mensual">
+                            <label for="PremiumCosto" class="form-label mt-4">Nuevo Monto</label>
+                            <input type="number" class="form-control" id="costoP" placeholder="Actualice el costo mensual">
                         </div>
 
                         <div class="form-group">
-                            <label for="PremiumDescripcion" class="form-label mt-4">Nueva Descripcion</label>
-                            <input type="text" class="form-control" id="descripcionP" placeholder="Actualizar descripcion">
+                            <label for="PremiumDescripcion" class="form-label mt-4">Nueva Descripción</label>
+                            <input type="text" class="form-control" id="descripcionP" placeholder="Actualizar la descripción">
                         </div>
 
+                        <br><small>Una vez actualizados los datos, por favor reinicie la sesión</small><br />
 
-                        <button type="submit" class="btn btn-outline-success mt-4 bg-success text-bg-success" id="btnUpdatePremium">Actualizar </button>
+                        <button type="submit" class="btn btn-outline-primary mt-4 bg-primary text-bg-primary" id="btnPremium">Actualizar </button>
 
                     </fieldset>
 
@@ -58,15 +72,15 @@
             <div class="card-body">
                 <form id="EditarRole" class="form-group">
                     <fieldset>
-                        <legend>Actualizar Role</legend>
+                        <legend>Actualizar Rol</legend>
 
-                        <h6 class="fw-bolder">Role actual</h6>
+                        <h5 class="fw-bolder">Rol actual</h5>
                         <br> @Session["Premium"]<br />
 
                         <div class="form-group">
-                            <label for="RoleOption">Editar Role:</label>
+                            <label for="RoleOption">Actualizar Rol</label>
                             <select id="RoleOption" class="form-control form-control-sm">
-                                <option value="0"> --Seleccione una opción-- </option>
+                                <option value="0"> -- Seleccione una opción -- </option>
                                 <option value="1">Administrador</option>
                                 <option value="2">Analista</option>
                                 <option value="3">Usuario</option>
@@ -75,7 +89,7 @@
                         </div>
 
 
-                        <button type="submit" class="btn btn-outline-success mt-4 bg-success text-bg-success" id="btnUpdateRole">Actualizar </button>
+                        <button type="submit" class="btn btn-outline-primary mt-4 bg-primary text-bg-primary" id="btnUpdateRole" onclick="ActualizarPremium()">Actualizar </button>
 
                     </fieldset>
                 </form>
