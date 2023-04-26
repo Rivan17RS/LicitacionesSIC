@@ -24,29 +24,6 @@ namespace WebAppUI.Controllers
         }
 
 
-        [HttpPost]
-        public ActionResult Configuracion(Subscripcion subscripcion)
-        {
-      
-            string UrlApi = "https://licitaciones-api.azurewebsites.net/";
 
-            string api = $"api/Premium/CrearPremium";
-
-            string urlFinal = UrlApi + api;
-
-            var client = new HttpClient();
-            client.BaseAddress = new Uri(urlFinal);
-
-            //Llamamos al API que nos va retornar los datos
-            var result = client.GetAsync(urlFinal).Result;
-            var jsonObject = result.Content.ReadAsStringAsync().Result;
-
-            var dataObject = JsonConvert.DeserializeObject<Subscripcion>(jsonObject);
-
-            Session["Premium"] = dataObject.PrecioMensual;
-            Session["NombrePlan"] = dataObject.Nombre;
-
-            return View();
-        }
     }
 }
