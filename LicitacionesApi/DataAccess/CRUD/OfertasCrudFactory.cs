@@ -9,25 +9,25 @@ using System.Threading.Tasks;
 
 namespace DataAccess.CRUD
 {
-    public class DetalleOfertasCrudFactory : CrudFactory
+    public class OfertasCrudFactory : CrudFactory
     {
-        private DetalleOfertasMapper mapper;
+        private OfertasMapper mapper;
 
-        public DetalleOfertasCrudFactory() : base()
-        {
-            mapper = new DetalleOfertasMapper();
+        public OfertasCrudFactory() : base() {
+            mapper = new OfertasMapper();
             dao = SqlDao.GetInstance();
         }
+
         public override void Create(BaseEntity entityDto)
         {
-            var SqlOper = mapper.GetCreateStatement(entityDto);
-            dao.ExecuteStoreProcedure(SqlOper);
+            var sqlOper = mapper.GetCreateStatement(entityDto);
+            dao.ExecuteStoreProcedure(sqlOper);
         }
 
         public override void Delete(BaseEntity entityDto)
         {
-            var SqlOper = mapper.GetDeleteStatement(entityDto);
-            dao.ExecuteStoreProcedure(SqlOper);
+            var sqlOper = mapper.GetDeleteStatement(entityDto);
+            dao.ExecuteStoreProcedure(sqlOper);
         }
 
         public override List<T> RetrieveAll<T>()
@@ -37,7 +37,7 @@ namespace DataAccess.CRUD
             if (dataResult.Count > 0)
             {
                 var objPO = mapper.BuildObjects(dataResult);
-                foreach (var po in  objPO)
+                foreach (var po in objPO)
                 {
                     lstResult.Add((T)Convert.ChangeType(po, typeof(T)));
                 }
@@ -53,7 +53,21 @@ namespace DataAccess.CRUD
                 var objPO = mapper.BuildObjects(dataResult);
                 foreach (var po in objPO)
                 {
-                    return (T)Convert.ChangeType(po, typeof(T)); 
+                    return (T)Convert.ChangeType(po, typeof(T));
+                }
+            }
+            return default(T);
+        }
+
+        public T RetrieveByIdLicitacion<T>(int IdLicitacion)
+        {
+            var dataResult = dao.ExecuteQueryProcedureWithQuery(mapper.GetRetrieveByIDStatement(IdLicitacion));
+            if (dataResult.Count > 0)
+            {
+                var objPO = mapper.BuildObjects(dataResult);
+                foreach (var po in objPO)
+                {
+                    return (T)Convert.ChangeType(po, typeof(T));
                 }
             }
             return default(T);

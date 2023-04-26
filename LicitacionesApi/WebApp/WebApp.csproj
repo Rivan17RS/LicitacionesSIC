@@ -182,6 +182,7 @@
     <Compile Include="Controllers\DetalleOfertasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LicitacionController.cs" />
+    <Compile Include="Controllers\OfertaController.cs" />
     <Compile Include="Controllers\PagosUsuarioController.cs" />
     <Compile Include="Controllers\PremiumController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
