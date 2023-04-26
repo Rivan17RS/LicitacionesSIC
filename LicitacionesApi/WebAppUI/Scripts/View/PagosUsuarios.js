@@ -21,10 +21,12 @@
                 'Accept': "application/json",
                 'Content-Type': "application/json"
             },
-            type: "GET",
-            url: "https://licitaciones-api.azurewebsites.net/api/PagosUsuario/ObtenerPagosUsuarios",
+            type: "POST",
+            url: "https://licitaciones-api.azurewebsites.net/api/PagosUsuario/ObtenerPagosUsuariosFiltro",
             contentType: "application/json",
-            data: {},
+            data: function (d) {
+                return JSON.stringify(getFiltros())
+            },
             dataSrc: function (json) {
                 console.log(json);
                 var jsonResult = { 'data': json };
@@ -34,6 +36,16 @@
         },
         columns: arrColumns
     });
+
+    function getFiltros() {
+        var pago = {};
+        pago.IdUsuario = $('#filtroIdUsuarioPago').val();
+        pago.Monto = $('#filtroMontoPago').val();
+        pago.Descripcion = $('#filtroDescripcionPago').val();
+        pago.FechaCreacion = $('#filtroFechaPago').val();
+
+        return pago;
+    }
 }
 
 

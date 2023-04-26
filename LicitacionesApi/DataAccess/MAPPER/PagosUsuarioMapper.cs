@@ -49,6 +49,21 @@ namespace DataAccess.MAPPER
             return oper;
         }
 
+        public SqlOperation GetRetrieveAllStatementFilter(PagosUsuarios p)
+        {
+            var oper = new SqlOperation()
+            {
+                ProcedureName = "SP_ObtenerPagosUsuariosFiltro"
+
+            };
+            oper.AddIntegerParam("IdUsuario", p.IdUsuario);
+            oper.AddDecimalParam("Monto", p.Monto);
+            oper.AddVarcharParam("Descripcion", p?.Descripcion=="" ? null : p?.Descripcion);
+            oper.AddDateTimeParam("FechaCreacion", p.FechaCreacion == new DateTime(1, 1, 1, 0, 0, 0) ? new DateTime(1753, 1, 1, 0, 0, 0): p.FechaCreacion);
+
+            return oper;
+        }
+
         public SqlOperation GetRetrieveByIDUserStatement(int ID)
         {
             var oper = new SqlOperation()

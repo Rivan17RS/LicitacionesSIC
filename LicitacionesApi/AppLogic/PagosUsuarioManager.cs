@@ -113,6 +113,22 @@ namespace AppLogic
             }
         }
 
+        public List<PagosUsuarios> ObtenerPagos(PagosUsuarios p)
+        {
+            try
+            {
+                return _factory.RetrieveAll<PagosUsuarios>(p);
+
+            }
+
+            catch (SqlException ex)
+            {
+
+                return null;
+
+            }
+        }
+
 
     }
 }
