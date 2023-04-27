@@ -1,4 +1,7 @@
-﻿function PagosTable() {
+﻿var tablacargadaPagos = 0;
+
+
+function PagosTable() {
 
     var arrColumns = [
         { "data": "IdUsuario" },
@@ -7,10 +10,11 @@
         { "data": "FechaCreacion" }
     ];
 
-
-    if ($.fn.DataTable.isDataTable('#tblPagos')) {
-        $('#tblPagos').DataTable().ajax.reload();
-    }
+    if (tablacargadaPagos== 1) {
+        if ($.fn.DataTable.isDataTable('#tblPagos')) {
+            $('#tblPagos').DataTable().ajax.reload();
+        }
+    } else { 
     var tablaPagos = $('#tblPagos').DataTable({
         searching: true,
         language: {
@@ -31,21 +35,29 @@
                 console.log(json);
                 var jsonResult = { 'data': json };
                 console.log(jsonResult);
+                tablacargadaPagos = 1;
                 return jsonResult.data;
             }
         },
         columns: arrColumns
     });
 
-    function getFiltros() {
-        var pago = {};
-        pago.IdUsuario = $('#filtroIdUsuarioPago').val();
-        pago.Monto = $('#filtroMontoPago').val();
-        pago.Descripcion = $('#filtroDescripcionPago').val();
-        pago.FechaCreacion = $('#filtroFechaPago').val();
+        function getFiltros() {
+            var pago = {};
+            pago.IdUsuario = $('#filtroIdUsuarioPago').val();
+            pago.Monto = $('#filtroMontoPago').val();
+            pago.Descripcion = $('#filtroDescripcionPago').val();
+            pago.FechaCreacion = $('#filtroFechaPago').val();
 
-        return pago;
+            return pago;
+        }
     }
 }
 
+$('#btnLimpiarPagos').on('click', function () {
+    $("#filtroPago")[0].reset();
+});
 
+$('#btnBuscarPagos').on('click', function () {
+    PagosTable();
+});
