@@ -5,36 +5,33 @@
 <script>var Identificacion = "@Session["UserId"]"</script>
 <script>var Id = "@Session["Id"]"</script>
 
-<div class="row">
-    <div class="col-sm-12 text-center">
-
-        @{
-            if ((bool)ViewData["Status"])
-            {
-                <br />
-                <h1 class="text-success">Gracias!</h1>
-
-                <i class="far fa-check-circle fa-9x text-success"></i>
-
-                <h2 class="text-success"> Su pago fue realizado con exito</h2>
-                <h4> ID de Transacción : @ViewData["IdTransaccion"]</h4>
-                <br />
-                <a href="@Url.Action("Index", "Home")" class="btn btn-primary bg-primary text-light">Pagina Principal</a>
-                <script>
-                    PagoRealizado();
-                </script>
-            }
-            else
-            {
-                <br />
-                <h1 class="text-danger">Lo sentimos</h1>
-                <i class="fas fa-exclamation-circle fa-9x text-danger"></i>
-                <h2 class="text-danger"> Su pago no fue realizado</h2>
-                <br />
-                <a href="@Url.Action("Index","Home")" class="btn btn-primary bg-primary text-light">Pagina Principal</a>
-            }
-
-        }
-
+<div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+        <div class="card shadow-lg">
+            <div class="card-body text-center">
+                @{ if ((bool)ViewData["Status"])
+                    {
+                    <h1 class="text-success"><i class="far fa-check-circle"></i></h1>
+                    <h2 class="card-title text-success">¡Gracias!</h2>
+                 
+                    <p class="card-text">¡Bienvenido a la versión Premium de nuestro servicio!</p>
+                    
+                    <p class="card-text">Su pago ha sido realizado con éxito.</p>
+                    <h4 class="card-subtitle mb-2 text-muted">ID de Transacción: @ViewData["IdTransaccion"]</h4>
+                    <a href="@Url.Action("Index", "Home")" class="btn btn-primary bg-primary text-light">Pagina Principal</a>
+                    <script>
+                        PagoRealizado();
+                    </script>
+                    }
+                    else
+                    {
+                    <h1 class="text-danger"><i class="fas fa-exclamation-circle"></i></h1>
+                    <h2 class="card-title text-danger">Lo sentimos</h2>
+                    <p class="card-text">Su pago no ha sido realizado.</p>
+                    <a href="@Url.Action("Index", "Home")" class="btn btn-primary bg-primary text-light">Pagina Principal</a>
+                        }
+                    }
+            </div>
+        </div>
     </div>
 </div>
