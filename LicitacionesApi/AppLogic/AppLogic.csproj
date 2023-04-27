@@ -57,6 +57,7 @@
     <Compile Include="EmailDataManager.cs" />
     <Compile Include="Hashing.cs" />
     <Compile Include="LicitacionesManager.cs" />
+    <Compile Include="OfertasManager.cs" />
     <Compile Include="PagosUsuarioManager.cs" />
     <Compile Include="PremiumManager.cs" />
     <Compile Include="ProductoManager.cs" />

@@ -46,6 +46,19 @@ namespace DataAccess.MAPPER
             return oper;
         }
 
+        public SqlOperation GetRetrieveAllStatement(DetalleOfertas d)
+        {
+            var oper = new SqlOperation()
+            {
+                ProcedureName = "SP_ObtenerDetalleOfertasFiltro"
+            };
+            oper.AddIntegerParam("IdOferta", d?.IdOferta ?? 0);
+            oper.AddIntegerParam("IdProducto", d?.IdProducto ?? 0);
+            oper.AddIntegerParam("Cantidad", d?.Cantidad ?? 0);
+
+            return oper;
+        }
+
         public SqlOperation GetRetrieveByIDStatement(int IdOferta)
         {
             var oper = new SqlOperation()

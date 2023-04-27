@@ -95,6 +95,7 @@
     <Compile Include="CRUD\DetalleLicitacionesCrudFactory.cs" />
     <Compile Include="CRUD\DetalleOfertasCrudFactory.cs" />
     <Compile Include="CRUD\LicitacionCrudFactory.cs" />
+    <Compile Include="CRUD\OfertasCrudFactory.cs" />
     <Compile Include="CRUD\PagosUsuarioCrudFactory.cs" />
     <Compile Include="CRUD\PremiumCrudFactory.cs" />
     <Compile Include="CRUD\ProductoCrudFactory.cs" />
