@@ -1,20 +1,24 @@
 ﻿function Premium() {
-
-    this.InitView = function () {
-        $('#updatePremium').click(function () {
-            var pm = new Premium();
-            pm.PagoPremium();
-        });
-    }
-
-    this.PagoPremium = function () {
-        var payPal = new this.PagoPremium();
-    }
-
+    $.ajax({
+        url: "https://licitaciones-api.azurewebsites.net/api/Premium/ObtenerTodosPremium",
+        type: "GET",
+        success: function (response) {
+            if (response && response.length > 0) {
+                var firstSubscription = response[0];
+                var price = firstSubscription.PrecioMensual;
+                console.log(price);
+                $("#PrecioPremium").text('$'+price);
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
 }
+
 //variables globales
 
-
+Premium();
 var Suscripcion = localStorage.getItem('Suscripcion');
 var TipoSuscripcion = localStorage.getItem('TipoSuscripcion');
 var PremiumSubs = localStorage.getItem('PremiumSubs');

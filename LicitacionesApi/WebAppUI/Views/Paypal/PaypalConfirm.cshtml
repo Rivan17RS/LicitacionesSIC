@@ -5,33 +5,44 @@
 <script>var Identificacion = "@Session["UserId"]"</script>
 <script>var Id = "@Session["Id"]"</script>
 
-<div class="row justify-content-center">
+<div class="row justify-content-center text-center">
     <div class="col-lg-6 col-md-8">
         <div class="card shadow-lg">
-            <div class="card-body text-center">
-                @{ if ((bool)ViewData["Status"])
+            <div class="card-body">
+                @{
+                    if ((bool)ViewData["Status"])
                     {
-                    <h1 class="text-success"><i class="far fa-check-circle"></i></h1>
-                    <h2 class="card-title text-success">¡Gracias!</h2>
-                 
-                    <p class="card-text">¡Bienvenido a la versión Premium de nuestro servicio!</p>
-                    
-                    <p class="card-text">Su pago ha sido realizado con éxito.</p>
-                    <h4 class="card-subtitle mb-2 text-muted">ID de Transacción: @ViewData["IdTransaccion"]</h4>
-                    <a href="@Url.Action("Index", "Home")" class="btn btn-primary bg-primary text-light">Pagina Principal</a>
-                    <script>
-                        PagoRealizado();
-                    </script>
+                        <h1 class="text-success"><i class="far fa-check-circle"></i></h1>
+                        <h2 class="card-title text-success">¡Gracias!</h2>
+
+                        <p class="card-text">¡Bienvenido a la versión Premium de nuestro servicio!</p>
+
+                        <p class="card-text">Su pago ha sido realizado con éxito.</p>
+                        <h4 class="card-subtitle mb-2 text-muted">ID de Transacción: @ViewData["IdTransaccion"]</h4>
+                        if ((bool)ViewData["Status"])
+                        {
+                            <p class="card-text mt-3">Para aplicar los cambios, cierre sesión e inicie nuevamente.</p>
+                        }
+
+                        <a href="@Url.Action("Index", "Home")" class="btn btn-primary bg-primary text-light">Pagina Principal</a>
+                        <script>
+                            PagoRealizado();
+                            // Redirecciona al usuario después de 5 segundos
+                            setTimeout(function(){
+                                window.location.href = '@Url.Action("Index", "Home")';
+                            }, 10000); // 10000 ms = 10 segundos
+                        </script>
                     }
                     else
                     {
-                    <h1 class="text-danger"><i class="fas fa-exclamation-circle"></i></h1>
-                    <h2 class="card-title text-danger">Lo sentimos</h2>
-                    <p class="card-text">Su pago no ha sido realizado.</p>
-                    <a href="@Url.Action("Index", "Home")" class="btn btn-primary bg-primary text-light">Pagina Principal</a>
-                        }
+                        <h1 class="text-danger"><i class="fas fa-exclamation-circle"></i></h1>
+                        <h2 class="card-title text-danger">Lo sentimos</h2>
+                        <p class="card-text">Su pago no ha sido realizado.</p>
+                        <a href="@Url.Action("Index", "Home")" class="btn btn-primary bg-primary text-light">Pagina Principal</a>
                     }
+                }
             </div>
         </div>
     </div>
 </div>
+
