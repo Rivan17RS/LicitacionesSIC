@@ -44,6 +44,13 @@ namespace WebApp.Controllers
             return _Manager.ObtenerPagos();
         }
 
+        [HttpPost]
+
+        public List<PagosUsuarios> ObtenerPagosUsuariosFiltro(PagosUsuarios PagosUsuarios)
+        {
+            return _Manager.ObtenerPagos(PagosUsuarios);
+        }
+
         [HttpGet]
 
         public List<PagosUsuarios> ObtenerPagosUsuarioIdUser(int IdUser)

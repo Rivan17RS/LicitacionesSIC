@@ -47,6 +47,20 @@ namespace DataAccess.CRUD
             }
             return lstResult;
         }
+        public List<T> RetrieveAll<T>(PagosUsuarios p)
+        {
+            var lstResult = new List<T>();
+            var dataResult = dao.ExecuteQueryProcedureWithQuery(mapper.GetRetrieveAllStatementFilter(p));
+            if (dataResult.Count > 0)
+            {
+                var objPO = mapper.BuildObjects(dataResult);
+                foreach (var po in objPO)
+                {
+                    lstResult.Add((T)Convert.ChangeType(po, typeof(T)));
+                }
+            }
+            return lstResult;
+        }
 
         public  List<T> RetrieveByUserID<T>(int IdUser)
         {
