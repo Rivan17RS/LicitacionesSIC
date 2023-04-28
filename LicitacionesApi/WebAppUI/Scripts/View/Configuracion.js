@@ -1,89 +1,55 @@
-﻿function PremiumView() {
+﻿function TablaPremium() {
+
     this.InitView = function () {
-        this.MostrarPremium();
+        this.LoadAllPremium();
     }
-    
 
-    this.MostrarPremium() = function(){
+    this.LoadAllPremium = function () {
+        var arrayColumns = [];
+        arrayColumns[0] = { 'data': 'Id' };
+        arrayColumns[1] = { 'data': 'Nombre' };
+        arrayColumns[2] = { 'data': 'Descripcion' };
+        arrayColumns[3] = { 'data': 'PrecioMensual' };
+        arrayColumns[4] = { 'data': 'Estado' };
+        arrayColumns[5] = {
+            'data': 'Configuracion',
+                'render': function (data, type, full, meta) {
+                    return '<div class="btn-group" role="group">' +
+                        '<button class="btn btn-sm btn-primary editar" data-toggle="tooltip" title="Editar"><i class="fas fa-pencil-alt"></i></button>' +
+                        '<button class="btn btn-sm btn-danger eliminar" data-toggle="tooltip" title="Eliminar"><i class="fas fa-trash-alt"></i></button>' +
+                        '</div>'
+                },
+            className: 'premiumConfig',
 
-        var arrColumns = [
-            { "data": "Id" },
-            { "data": "Nombre" },
-            { "data": "Descripcion" },
-            { "data": "PrecioMensual" },
-            { "data": "Estado" }
-        ];
+        },
 
-        var tablaPremium = $('#TblPremium').DataTable({
-            searching: true,
+        $('#TblPremium').DataTable({
             language: {
                 url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
             },
             ajax: {
-                headers: {
-                    'Accept': "application/json",
-                    'Content-Type': "application/json"
-                },
-                type: "GET",
+                method: "GET",
                 url: "https://licitaciones-api.azurewebsites.net/api/Premium/ObtenerTodosPremium",
-                contentType: "application/json",
-                data: {},
+                contentType: "application/json;charset=utf-8",
                 dataSrc: function (json) {
-                    console.log(json);
                     var jsonResult = { 'data': json };
-                    console.log(jsonResult);
                     return jsonResult.data;
-                }
+
+                 }
             },
-            columns: arrColumns
-        });
+            columns: arrayColumns
+            })
+  
     }
 
 
 }
 
 $(document).ready(function () {
-    var view = new PremiumView();
-    view.InitView();
-
+    var view = new TablaPremium(); //Crea una instancia de la funcion principal
+    view.InitView(); //Llama metodo inicializador de propiedades
 });
 
-//function ActualizarPremium() {
-//    var prod = {};
-//    prod.Id = $('#txtIdProducto').val();
-//    prod.Nombre = $('#NombreP').val();
-//    prod.Descripcion = $('#txtDescripcion').val();
-//    prod.PrecioMensual = $('#costoP').val();
-//    prod.IdUsrActualizacion = 1;
-//    if (confirm("¿Está seguro que desea actualizar la membresía?")) {
-//        $.ajax({
-//            headers: {
-//                'Accept': "application/json",
-//                'Content-Type': "application/json"
-//            },
-//            type: 'POST',
-//            url: "",
-//            contentType: "application/json",
-//            data: JSON.stringify(prod),
-//            success: function () {
-//                MostrarPremium();
-//                alert('Producto actualizado correctamente');
-//            },
-//            error: function (xhr, status, error) {
-//                console.log(error);
-//                alert('Error, no se pudo actualizar');
 
-//            }
-//        });
-//    }
-//}
-
-
-
-
-//$(document).ready(function () {
-    
-   
-//})
 
 

@@ -7,98 +7,97 @@
 
 <h2 class="my-5 text-primary">Módulo de Configuración</h2>
 
-
-
 <div class="row align-items-center justify-content-center">
-        <div class="col-lg-10">
-            <div class="card">
-                <div class="card-body">
-                    <form id="frmPremium" class="form-group">
+    <div class="col-lg-10">
+        <div class="card">
+            <div class="card-body">
+                <form id="frmPremium" class="form-group">
 
-                        <fieldset>
-                            <legend>Administrar Planes Premium</legend>
-                            <table id="TblPremium" class="table table-borderless table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Plan ID</th>
-                                        <th>Nombre Plan</th>
-                                        <th>Descripción</th>
-                                        <th>Costo Membresía</th>
-                                        <th>Estado Membresía</th>
-                                    </tr>
-                                </thead>
-
-                            </table>
-
-                        </fieldset>
-
-                            <fieldset>
-                                <legend>Actualizar Plan Premium</legend>
-
-                                <div class="form-group">
-                                    <label for="PremiumId" class="form-label mt-4">Premium ID</label>
-                                    <input type="text" class="form-control" id="IdPremium" readonly>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="PremiumNombre" class="form-label mt-4">Nombre Membresía</label>
-                                    <input type="text" class="form-control" id="NombreP" placeholder="Actualice el nombre">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="PremiumCosto" class="form-label mt-4">Nuevo Monto</label>
-                                    <input type="number" class="form-control" id="costoP" placeholder="Actualice el costo mensual">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="PremiumDescripcion" class="form-label mt-4">Nueva Descripción</label>
-                                    <input type="text" class="form-control" id="descripcionP" placeholder="Actualizar la descripción">
-                                </div>
-
-                                <button type="submit" class="btn btn-outline-primary mt-4 bg-primary text-bg-primary" id="btnPremium">Actualizar </button>
-
-                            </fieldset>
-
-                    </form>
-
-                </div>
-            </div>
-        </div>
-</div>
-
-
-    <br>.<br />
-
-    <div class="row align-items-center justify-content-center">
-        <div class="col-lg-10">
-            <div class="card">
-                <div class="card-body">
-                    <form id="EditarRole" class="form-group">
-                        <fieldset>
-                            <legend>Administrar Roles</legend>
-
-                            <h5 class="fw-bolder">Rol actual</h5>
-                            <br> @Session["Premium"]<br />
-
-                            <div class="form-group">
-                                <label for="RoleOption">Actualizar Rol</label>
-                                <select id="RoleOption" class="form-control form-control-sm">
-                                    <option value="0"> -- Seleccione una opción -- </option>
-                                    <option value="1">Administrador</option>
-                                    <option value="2">Analista</option>
-                                    <option value="3">Usuario</option>
-                                    <option value="4">Premium</option>
-                                </select>
-                            </div>
-
-
-                            <button type="submit" class="btn btn-outline-primary mt-4 bg-primary text-bg-primary" id="btnUpdateRole" onclick="ActualizarPremium()">Actualizar </button>
-
-                        </fieldset>
-                    </form>
-
-                </div>
+                    <fieldset>
+                        <legend>Administrar Planes Premium</legend>
+                        <table id="TblPremium" class="table table-borderless table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Plan ID</th>
+                                    <th>Nombre Plan</th>
+                                    <th>Descripción</th>
+                                    <th>Costo Membresía</th>
+                                    <th>Estado Membresía</th>
+                                    <th>Editar/Borrar</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </fieldset>
+                </form>
             </div>
         </div>
     </div>
+</div>
+
+
+<br>.
+<br />
+
+
+
+@*<fieldset>
+    <legend>Actualizar Plan Premium</legend>
+
+    <div class="form-group">
+        <label for="PremiumId" class="form-label mt-4">Premium ID</label>
+        <input type="text" class="form-control" id="IdPremium" readonly>
+    </div>
+
+    <div class="form-group">
+        <label for="PremiumNombre" class="form-label mt-4">Nombre Membresía</label>
+        <input type="text" class="form-control" id="NombreP" placeholder="Actualice el nombre">
+    </div>
+
+    <div class="form-group">
+        <label for="PremiumCosto" class="form-label mt-4">Nuevo Monto</label>
+        <input type="number" class="form-control" id="costoP" placeholder="Actualice el costo mensual">
+    </div>
+
+    <div class="form-group">
+        <label for="PremiumDescripcion" class="form-label mt-4">Nueva Descripción</label>
+        <input type="text" class="form-control" id="descripcionP" placeholder="Actualizar la descripción">
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary mt-4 bg-primary text-bg-primary" id="btnPremium">Actualizar </button>
+
+</fieldset>*@
+
+
+<div class="row align-items-center justify-content-center">
+    <div class="col-lg-10">
+        <div class="card">
+            <div class="card-body">
+                <form id="EditarRole" class="form-group">
+                    <fieldset>
+                        <legend>Administrar Roles</legend>
+
+                        <h5 class="fw-bolder">Rol actual</h5>
+                        <br> @Session["Premium"]<br />
+
+                        <div class="form-group">
+                            <label for="RoleOption">Actualizar Rol</label>
+                            <select id="RoleOption" class="form-control form-control-sm">
+                                <option value="0"> -- Seleccione una opción -- </option>
+                                <option value="1">Administrador</option>
+                                <option value="2">Analista</option>
+                                <option value="3">Usuario</option>
+                                <option value="4">Premium</option>
+                            </select>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-outline-primary mt-4 bg-primary text-bg-primary" id="btnUpdateRole" onclick="ActualizarPremium()">Actualizar </button>
+
+                    </fieldset>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
 
