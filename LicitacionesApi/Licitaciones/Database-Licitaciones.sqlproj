@@ -120,6 +120,8 @@
     <Build Include="dbo\Stored Procedures\SP_ObtenerRoles.sql" />
     <Build Include="dbo\Stored Procedures\SP_ObtenerRolesId.sql" />
     <Build Include="dbo\Stored Procedures\SP_ActualizarRoles.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ObtenerUsuarioPorID.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ObtenerPagosUsuariosFiltro.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="querys Datos\Inicial.sql" />

@@ -88,6 +88,12 @@ namespace AppLogic
         }
 
 
+        public Usuario ObtenerUsuario(int id)
+        {
+            UsuarioCrudFactory ucf = new UsuarioCrudFactory();
+            return ucf.RetrieveByID<Usuario>(id);
+        }
+
         public Response ValidarOTP(string id, string otp)
         {
             UsuarioCrudFactory ucf = new UsuarioCrudFactory();
