@@ -11,6 +11,5 @@ namespace DTO
         public int IdOferta { get; set; }
         public int IdUsuario { get; set; }
         public DateTime FechaAdjudicacion { get; set; }
-        //TEST
     }
 }

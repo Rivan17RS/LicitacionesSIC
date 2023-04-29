@@ -91,6 +91,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CRUD\AdjudicacionCrudFactory.cs" />
     <Compile Include="CRUD\CrudFactory.cs" />
     <Compile Include="CRUD\DetalleLicitacionesCrudFactory.cs" />
     <Compile Include="CRUD\DetalleOfertasCrudFactory.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="CRUD\UsuarioCrudFactory.cs" />
     <Compile Include="DAO\SqlDao.cs" />
     <Compile Include="DAO\SqlOperations.cs" />
+    <Compile Include="MAPPER\AdjudicacionesMapper.cs" />
     <Compile Include="MAPPER\DetalleLicitacionesMapper.cs" />
     <Compile Include="MAPPER\DetalleOfertasMapper.cs" />
     <Compile Include="MAPPER\ICrudStatements.cs" />

@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdjudicacionManager.cs" />
     <Compile Include="DetalleLicitacionesManager.cs" />
     <Compile Include="DetalleOfertasManager.cs" />
     <Compile Include="EmailDataManager.cs" />

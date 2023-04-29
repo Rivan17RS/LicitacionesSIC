@@ -11,21 +11,11 @@ namespace WebApp.Controllers
     public class LicitacionController : ApiController
     {
         [HttpPost]
-        public string CrearLicitacion(int IdAnalista ,string Titulo,string Descripcion, string LugarEntrega,DateTime FechaCierreOfertas,double MontoPresupuestado, int IdUsrCreacion)
+        public string CrearLicitacion(Licitaciones lic)
         {
             var lm = new LicitacionesManager();
-            var l = new Licitaciones()
-            {
-                IdAnalista = IdAnalista ,
-                Titulo = Titulo ,
-                Descripcion= Descripcion ,
-                LugarEntrega= LugarEntrega ,
-                FechaCierreOfertas= FechaCierreOfertas ,
-                MontoPresupuestado= MontoPresupuestado ,
-                IdUsrCreacion= IdUsrCreacion
-            };
 
-            return lm.CrearLicitacion(l);
+            return lm.CrearLicitacion(lic);
         }
         [HttpGet]
         public Licitaciones ObtenerLicitacion(int Id)
@@ -34,22 +24,11 @@ namespace WebApp.Controllers
             return lm.ObtenerLicitacion(Id);
         }
         [HttpPost]
-        public string ActualizarLicitacion(int Id, string Titulo, string Descripcion, string LugarEntrega, DateTime FechaCierreOfertas, double MontoPresupuestado,string Estado, int IdUsrActualizacion)
+        public string ActualizarLicitacion(Licitaciones lic)
         {
             var lm = new LicitacionesManager();
-            var l = new Licitaciones
-            {
-                Id= Id,
-                Titulo= Titulo,
-                Descripcion= Descripcion,
-                LugarEntrega= LugarEntrega,
-                FechaCierreOfertas=FechaCierreOfertas,
-                MontoPresupuestado= MontoPresupuestado,
-                Estado= Estado,
-                IdUsrActualizacion= IdUsrActualizacion
-            };
 
-            return lm.ActualizarLicitacion(l);
+            return lm.ActualizarLicitacion(lic);
         }
 
         [HttpPost]
