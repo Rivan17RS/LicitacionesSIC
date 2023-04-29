@@ -120,6 +120,10 @@
     <Build Include="dbo\Stored Procedures\SP_ObtenerRoles.sql" />
     <Build Include="dbo\Stored Procedures\SP_ObtenerRolesId.sql" />
     <Build Include="dbo\Stored Procedures\SP_ActualizarRoles.sql" />
+    <Build Include="dbo\SP_CrearAdjudicacion.sql" />
+    <Build Include="dbo\SP_EliminarAdjudicacion.sql" />
+    <Build Include="dbo\SP_ObtenerAdjudicaciones.sql" />
+    <Build Include="dbo\ObtenerAdjudicacionesPorUsuario.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="querys Datos\Inicial.sql" />

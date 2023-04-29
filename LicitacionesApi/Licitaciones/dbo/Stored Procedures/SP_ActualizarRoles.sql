@@ -1,17 +1,19 @@
-﻿CREATE PROCEDURE SP_ActualizarRoles
+﻿CREATE PROCEDURE SP_UpdateAdjudicacion
 (
-    @Id INT,
-    @Nombre VARCHAR(50),
-    @Estado VARCHAR(50),
-    @IdUsrActualizacion INT
+@Id INT,
+@IdOferta INT,
+@IdUsuario INT,
+@FechaAdjudicacion DATETIME,
+@IdUsrActualizacion INT
 )
 AS
 BEGIN
-    SET NOCOUNT ON;
-    UPDATE Roles
-    SET Nombre = @Nombre,
-        Estado = @Estado,
-        IdUsrActualizacion = @IdUsrActualizacion,
-        FechaActualizacion = GETDATE()
-    WHERE Id = @Id;
+SET NOCOUNT ON;
+UPDATE Adjudicaciones
+SET IdOferta = @IdOferta,
+IdUsuario = @IdUsuario,
+FechaAdjudicacion = @FechaAdjudicacion,
+IdUsrActualizacion = @IdUsrActualizacion,
+FechaActualizacion = GETDATE()
+WHERE Id = @Id;
 END
