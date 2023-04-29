@@ -6,7 +6,6 @@
     @FechaCierreOfertas DATETIME,
     @MontoPresupuestado DECIMAL(18,2),
     @Estado VARCHAR(20),
-    @CodigoQR VARBINARY(MAX),
     @IdUsrActualizacion INT
 AS
 BEGIN
@@ -17,7 +16,6 @@ BEGIN
         FechaCierreOfertas = @FechaCierreOfertas,
         MontoPresupuestado = @MontoPresupuestado,
         Estado = @Estado,
-        CodigoQR = @CodigoQR,
         IdUsrActualizacion = @IdUsrActualizacion,
         FechaActualizacion = GETDATE()
     WHERE Id = @Id
