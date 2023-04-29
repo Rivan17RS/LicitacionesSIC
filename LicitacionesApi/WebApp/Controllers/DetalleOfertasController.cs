@@ -23,9 +23,9 @@ namespace WebApp.Controllers
         {
             return _Manager.ActualizarDetalleOfertas(detalleOfertas);
         }
-        public Response EliminarDetalleOfertas(int IdOferta)
+        public Response EliminarDetalleOfertas(DetalleOfertas detalleOfertas)
         {
-            return _Manager.EliminarDetalleOfertas(IdOferta);
+            return _Manager.EliminarDetalleOfertas(detalleOfertas);
         }
 
         [HttpGet]

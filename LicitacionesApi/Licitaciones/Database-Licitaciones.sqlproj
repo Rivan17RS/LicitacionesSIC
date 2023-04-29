@@ -126,11 +126,25 @@
     <Build Include="dbo\ObtenerAdjudicacionesPorUsuario.sql" />
     <Build Include="dbo\Stored Procedures\SP_ObtenerUsuarioPorID.sql" />
     <Build Include="dbo\Stored Procedures\SP_ObtenerPagosUsuariosFiltro.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ObtenerOfertas.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ActualizarOfertas.sql" />
+    <Build Include="dbo\Stored Procedures\SP_EliminarOfertas.sql" />
+    <Build Include="dbo\Stored Procedures\SP_CrearOfertas.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ObtenerOfertasPorLicitacion.sql" />
+    <Build Include="dbo\Tables\DetalleOfertas.sql" />
+    <Build Include="dbo\Stored Procedures\SP_CrearDetalleOfertas.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ActualizarDetalleOfertas.sql" />
+    <Build Include="dbo\Stored Procedures\SP_EliminarDetalleOfertas.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ObtenerDetalleOfertas.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ObtenerDetalleOfertasPorOferta.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="querys Datos\Inicial.sql" />
     <None Include="Script1.sql" />
     <None Include="Script2.sql" />
     <None Include="Script3.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="Database-Licitaciones.refactorlog" />
   </ItemGroup>
 </Project>

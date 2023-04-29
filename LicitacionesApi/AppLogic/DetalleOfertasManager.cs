@@ -1,4 +1,5 @@
 ﻿using DataAccess.CRUD;
+using DataAccess.MAPPER;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -13,56 +14,46 @@ namespace AppLogic
     {
         DetalleOfertasCrudFactory _factory = new DetalleOfertasCrudFactory();
 
-        public Response CrearDetalleOfertas(DetalleOfertas DeOf)
+        public Response CrearDetalleOfertas(DetalleOfertas detalleOfertas)
         {
             try
             {
-                _factory.Create(DeOf);
+                _factory.Create(detalleOfertas);
+                return new Response("Success", "Producto agregado a la oferta exitosamente", ResponseType.SUCCESS);
+
             }
             catch (SqlException ex)
             {
-                if (ex.Number == 2601)
-                {
-                    return new Response("Error en la entrada", "No se pudo crear", ResponseType.ERROR);
-                }
+                return new Response("Error en la creacion del detalle de oferta", ex.Message , ResponseType.ERROR);
             }
-            return new Response("Success", "Producto agregado a la oferta exitosamente", ResponseType.SUCCESS);
 
         }
-        public Response ActualizarDetalleOfertas(DetalleOfertas DeOf)
+        public Response ActualizarDetalleOfertas(DetalleOfertas detalleOfertas)
         {
 
             try
             {
-                _factory.Update(DeOf);
-
+                _factory.Update(detalleOfertas);
+                return new Response("Success", "Producto en oferta actualizado exitosamente", ResponseType.SUCCESS);
             }
 
             catch (SqlException ex)
             {
-                if (ex.Number == 2601)
-                {
-                    return new Response("Error en la entrada", "No se pudo actualizar", ResponseType.ERROR);
-                }
+                return new Response("Error en la actualizacion del detalle de oferta", ex.Message, ResponseType.ERROR);
             }
-            return new Response("Success", "Producto en oferta actualizado exitosamente", ResponseType.SUCCESS);
 
         }
-        public Response EliminarDetalleOfertas(int IdOferta)
+        public Response EliminarDetalleOfertas(DetalleOfertas detalleOfertas)
         {
-            DetalleOfertas DeOf = _factory.RetrieveByIdOferta<DetalleOfertas>(IdOferta);
             try
             {
-                _factory.Delete(DeOf);
+                _factory.Delete(detalleOfertas);
+                return new Response("Success", "Producto en oferta eliminado exitosamente", ResponseType.SUCCESS);
             }
             catch (SqlException ex)
             {
-                if (ex.Number == 2601)
-                {
-                    return new Response("Error en la entrada", "No se pudo eliminar", ResponseType.ERROR);
-                }
+                return new Response("Error, no se pudo eliminar", ex.Message, ResponseType.ERROR);
             }
-            return new Response("Success", "Producto en oferta eliminado exitosamente", ResponseType.SUCCESS);
         }
         public DetalleOfertas ObtenerDetalleOfertasPorId(int IdOferta)
         {
@@ -71,14 +62,7 @@ namespace AppLogic
 
         public List<DetalleOfertas> ObtenerDetalleOfertas()
         {
-            try
-            {
-                return _factory.RetrieveAll<DetalleOfertas>();
-            }
-            catch (SqlException ex)
-            {
-                return null;
-            }
+            return _factory.RetrieveAll<DetalleOfertas>();
         }
     }
 }

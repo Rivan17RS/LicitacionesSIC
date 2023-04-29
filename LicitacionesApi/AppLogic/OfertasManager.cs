@@ -12,56 +12,44 @@ namespace AppLogic
     public class OfertasManager
     {
         OfertasCrudFactory _factory = new OfertasCrudFactory();
-        public Response CrearOfertas(Ofertas Of)
+        public Response CrearOfertas(Ofertas ofertas)
         {
             try
             {
-                _factory.Create(Of);
+                _factory.Create(ofertas);
+                return new Response("Success", "ofertas creada exitosamente", ResponseType.SUCCESS);
             }
             catch (SqlException ex)
             {
-                if (ex.Number == 2601)
-                {
-                    return new Response("Error en la entrada", "No se pudo crear", ResponseType.ERROR);
-                }
+                return new Response("Error en la entrada, no se pudo crear", ex.Message , ResponseType.ERROR);
             }
-            return new Response("Success", "Oferta creada exitosamente", ResponseType.SUCCESS);
 
         }
-        public Response ActualizarOfertas(Ofertas Of)
+        public Response ActualizarOfertas(Ofertas ofertas)
         {
 
             try
             {
-                _factory.Update(Of);
-
+                _factory.Update(ofertas);
+                return new Response("Success", "ofertas actualizada exitosamente", ResponseType.SUCCESS);
             }
 
             catch (SqlException ex)
             {
-                if (ex.Number == 2601)
-                {
-                    return new Response("Error en la entrada", "No se pudo actualizar", ResponseType.ERROR);
-                }
+                return new Response("Error en la entrada, no se pudo actualizar", ex.Message, ResponseType.ERROR);
             }
-            return new Response("Success", "Oferta actualizada exitosamente", ResponseType.SUCCESS);
-
         }
-        public Response EliminarOfertas(int IdOferta)
+        public Response EliminarOfertas(Ofertas ofertas)
         {
-            Ofertas Of = _factory.RetrieveByIdOferta<Ofertas>(IdOferta);
             try
             {
-                _factory.Delete(Of);
+                _factory.Delete(ofertas);
+                return new Response("Success", "ofertas eliminada exitosamente", ResponseType.SUCCESS);
             }
             catch (SqlException ex)
             {
-                if (ex.Number == 2601)
-                {
-                    return new Response("Error en la entrada", "No se pudo eliminar", ResponseType.ERROR);
-                }
+                return new Response("Error en la entrada, no se pudo eliminar", ex.Message, ResponseType.ERROR);
             }
-            return new Response("Success", "Oferta eliminada exitosamente", ResponseType.SUCCESS);
         }
 
         public Ofertas ObtenerOfertasPorId(int Id)
@@ -79,14 +67,7 @@ namespace AppLogic
 
         public List<Ofertas> ObtenerOfertas()
         {
-            try
-            {
-                return _factory.RetrieveAll<Ofertas>();
-            }
-            catch (SqlException ex)
-            {
-                return null;
-            }
+            return _factory.RetrieveAll<Ofertas>();
         }
     }
 }
