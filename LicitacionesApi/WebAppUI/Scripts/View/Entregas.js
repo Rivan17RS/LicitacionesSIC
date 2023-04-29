@@ -36,6 +36,12 @@ $(document).ready(function () {
         } catch (e) {
             alert("La licitación no existe")
         }
+
+
+    $('#completar-reporte').on('click', function () {
+        ActualizarLicitacion(estadoLicitacion);
+        ActualizarProductos();
+    });
     });
 })
 
@@ -60,7 +66,6 @@ function mostrarDetallesLicitacion(idLicitacion) {
         url: "https://licitaciones-api.azurewebsites.net/api/DetalleLicitaciones/ObtenerDetalleLicitacionesId?IdLicitacion=" + idLicitacion,
         contentType: "application/json;charset=utf-8",
         success: function (data) {
-            // Itera sobre los detalles de la licitación
             var promises = [];
             $.each(data, function (index, value) {
                 var promise = $.getJSON("https://licitaciones-api.azurewebsites.net/api/Producto/ObtenerProducto/" + value.Idproducto)
@@ -86,4 +91,43 @@ function mostrarDetallesLicitacion(idLicitacion) {
         },
     });
 }
+var estadoLicitacion = 'Finalizada';
+
+
+function ObtenerLicitacion() {
+    var lic = $('#LicNumber').val();
+    return $.ajax({
+        type: 'GET',
+        url: "https://licitaciones-api.azurewebsites.net/api/Licitacion/ObtenerLicitacion/" + lic,
+        contentType: "application/json"
+    });
+}
+
+function ActualizarLicitacion(estado) {
+    ObtenerLicitacion().then(function (lic) {
+        lic.Estado = estado;
+        if (confirm("¿Está seguro que desea actualizar esta Licitación?")) {
+            $.ajax({
+                headers: {
+                    'Accept': "application/json",
+                    'Content-Type': "application/json"
+                },
+                type: 'POST',
+                url: "https://localhost:44369/api/Licitacion/ActualizarLicitacion",
+                contentType: "application/json",
+                data: JSON.stringify(lic),
+                success: function (response) {
+                    alert('Producto actualizado correctamente');
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                    alert('Error, no se pudo actualizar');
+                }
+            });
+        }
+    });
+}
+
+
+
 
