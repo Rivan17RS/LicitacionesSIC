@@ -44,11 +44,11 @@
    
         //To be reviewed
 
-        $('#TblPremium thead').on('click', 'tr .crear', function () {
+        $('#btnCrearPremium').on('click', function () {
             $('#frmPremiumModal')[0].reset();
             $('#frmPremiumModal #IdPremium').hide();
    
-            $('#btnCrearPremium').off('click').on('click', function () {
+            $('#btnGuardarPremium').off('click').on('click', function () {
                 CrearPremium();
             });
             $('#premiumModal').modal('show');
