@@ -1,6 +1,6 @@
 ﻿var cameraOpen = false;
 var video;
-
+var productos;
 function openCamera() {
     if (cameraOpen) {
         // Si la cámara ya está abierta, detener el stream y eliminar el elemento de video
@@ -36,6 +36,12 @@ $(document).ready(function () {
         } catch (e) {
             alert("La licitación no existe")
         }
+
+
+    $('#completar-reporte').on('click', function () {
+        ActualizarLicitacion(estadoLicitacion);
+
+    });
     });
 })
 
@@ -60,12 +66,12 @@ function mostrarDetallesLicitacion(idLicitacion) {
         url: "https://licitaciones-api.azurewebsites.net/api/DetalleLicitaciones/ObtenerDetalleLicitacionesId?IdLicitacion=" + idLicitacion,
         contentType: "application/json;charset=utf-8",
         success: function (data) {
-            // Itera sobre los detalles de la licitación
+            productos = data;
             var promises = [];
             $.each(data, function (index, value) {
                 var promise = $.getJSON("https://licitaciones-api.azurewebsites.net/api/Producto/ObtenerProducto/" + value.Idproducto)
                     .then(function (product) {
-                        return '<tr><td><div class="form-check"><input class="form-check-input" type="checkbox" name="producto' + value.Idproducto + '"></div></td><td>' + (product ? product.Nombre : "Error al obtener producto") + '</td><td><input type="number" class="form-control form-control-sm" value="' + value.Cantidad + '" readonly></td><td><input type="number" class="form-control form-control-sm" name="producto' + value.Idproducto + '_cantidad"></td><td><select class="form-control form-control-sm" name="producto' + value.Idproducto + '_estado"><option value=""></option><option value="bien">Bien</option><option value="danado">Dañado</option><option value="incompleto">Incompleto</option><option value="faltante">Faltante</option></select></td></tr>';
+                        return '<tr><td><div class="form-check"><input class="form-check-input" type="checkbox" name="producto' + value.Idproducto + '"></div></td><td>' + (product ? product.Nombre : "Error al obtener producto") + '</td><td><input type="number" class="form-control form-control-sm" value="' + value.Cantidad + '" readonly></td><td><input  type="number" class="form-control form-control-sm"  name="producto' + value.Idproducto + '_cantidad" id="producto' + value.Idproducto + '"></td><td><select class="form-control form-control-sm" name="producto' + value.Idproducto + '_estado"><option value=""></option><option value="bien">Bien</option><option value="danado">Dañado</option><option value="incompleto">Incompleto</option><option value="faltante">Faltante</option></select></td></tr>';
                     });
                 promises.push(promise);
             });
@@ -86,4 +92,72 @@ function mostrarDetallesLicitacion(idLicitacion) {
         },
     });
 }
+var estadoLicitacion = 'Finalizada';
 
+
+function ObtenerLicitacion() {
+    var lic = $('#LicNumber').val();
+    return $.ajax({
+        type: 'GET',
+        url: "https://licitaciones-api.azurewebsites.net/api/Licitacion/ObtenerLicitacion/" + lic,
+        contentType: "application/json"
+    });
+}
+
+function ActualizarLicitacion(estado) {
+    ObtenerLicitacion().then(function (lic) {
+        lic.Estado = estado;
+        if (confirm("¿Está seguro que desea actualizar esta Licitación?")) {
+            $.ajax({
+                headers: {
+                    'Accept': "application/json",
+                    'Content-Type': "application/json"
+                },
+                type: 'POST',
+                url: "https://licitaciones-api.azurewebsites.net/api/Licitacion/ActualizarLicitacion",
+                contentType: "application/json",
+                data: JSON.stringify(lic),
+                success: function (response) {
+                    alert('Licitación actualizada correctamente');
+                    ActualizarProductos(productos);
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                    alert('Error, no se pudo actualizar');
+                }
+            });
+        }
+    });
+}
+
+
+function ObtenerProducto(id) {
+    return $.ajax({
+        type: 'GET',
+        url: `https://licitaciones-api.azurewebsites.net/api/Producto/ObtenerProducto/${id}`,
+        contentType: "application/json"
+    });
+}
+
+async function ActualizarProductos(products) {
+    for (let product of products) {
+        try {
+            var productDetails = await ObtenerProducto(product.Idproducto);
+            productDetails.StockCantidad = $(`#producto${product.Idproducto}`).val();
+            await $.ajax({
+                headers: {
+                    'Accept': "application/json",
+                    'Content-Type': "application/json"
+                },
+                type: 'POST',
+                url: "https://licitaciones-api.azurewebsites.net/api/Producto/ActualizarProducto",
+                contentType: "application/json",
+                data: JSON.stringify(productDetails)
+                
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    location.reload();
+}

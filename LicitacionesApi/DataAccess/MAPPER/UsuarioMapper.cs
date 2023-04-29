@@ -155,7 +155,7 @@ namespace DataAccess.MAPPER
             var oper = new SqlOperation();
             oper.ProcedureName = "SP_ObtenerUsuarioPorID";
 
-            oper.AddIntegerParam("Id", ID);
+            oper.AddIntegerParam("id", ID);
             
             return oper;
         }

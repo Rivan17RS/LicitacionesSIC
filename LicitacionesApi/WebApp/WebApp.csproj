@@ -181,6 +181,7 @@
     <Compile Include="Controllers\AdjudicacionesController.cs" />
     <Compile Include="Controllers\DetalleLicitacionesController.cs" />
     <Compile Include="Controllers\DetalleOfertasController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LicitacionController.cs" />
     <Compile Include="Controllers\OfertaController.cs" />

@@ -39,6 +39,13 @@ namespace WebApp.Controllers
             return usr.ObtenerUsuario(id);
         }
 
+        [HttpGet]
+        public Usuario ObtenerUsuarioID(int ID)
+        {
+            var usr = new UsuarioManager();
+            return usr.ObtenerUsuario(ID);
+        }
+
         [HttpPost]
 
         public Response ValidarOtp(string identificacion, string otp)

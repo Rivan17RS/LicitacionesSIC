@@ -66,6 +66,7 @@ namespace DataAccess.MAPPER
             oper.AddDateTimeParam("FechaCierreOfertas", fechaCierre);
             oper.AddDoubleParam("MontoPresupuestado", l?.MontoPresupuestado ?? 0);
             oper.AddVarcharParam("Estado", l?.Estado == "" ? null : l?.Estado);
+           
 
             return oper;
 
@@ -96,6 +97,7 @@ namespace DataAccess.MAPPER
             oper.AddDoubleParam("MontoPresupuestado", l.MontoPresupuestado);
             oper.AddVarcharParam("Estado", l.Estado);
             oper.AddIntegerParam("IdUsrActualizacion", l.IdUsrActualizacion);
+         
 
             return oper;
         }
