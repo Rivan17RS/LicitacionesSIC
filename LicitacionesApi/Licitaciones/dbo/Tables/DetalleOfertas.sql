@@ -10,6 +10,9 @@
     [FechaCreacion]      DATETIME        DEFAULT (getdate()) NULL,
     [FechaActualizacion] DATETIME        NULL,
     [FechaEliminacion]   DATETIME        NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+
+    CONSTRAINT [FK_DetalleOfertas_Licitaciones] FOREIGN KEY ([IdOferta]) REFERENCES [dbo].[Licitaciones] ([Id]),
+
 
 )

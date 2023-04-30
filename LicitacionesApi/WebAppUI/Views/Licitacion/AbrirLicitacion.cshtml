@@ -4,36 +4,39 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+<script src="~/Scripts/View/CargarLicitacionAbierta.js"></script>
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,1,0" />
 <div class="row align-items-center justify-content-center">
-    <h2 class="my-2 text-primary">
+    <h2 class="my-2 text-primary" id="topInfo">
         <small class="text-muted mt-5">613846</small>
         <br />
-        Licitación de suministro de materiales de construcción para proyectos educativos
+        --
     </h2>
     <div class="bs-component">
-        <span class="badge rounded-pill bg-info mb-4">Adjudicado</span>
+        <span class="badge rounded-pill bg-info mb-4" id="estadoLicitacion">--</span>
     </div>
     <div class="col-lg-10">
         <div class="form-group">
-            <label class="form-label pt-1">Descripción</label>
-            <textarea class="form-control" readonly rows="10">Estamos buscando proveedores para suministrar 250kg de cemento y 1150 tablones de madera para nuestras próximas construcciones en la institución. La entrega de estos materiales es vital para garantizar el avance de nuestros proyectos de construcción y mejora de infraestructuras.</textarea>
+            <label class="form-label pt-1" for="descripcionLicitacion">Descripción</label>
+            <textarea class="form-control" readonly rows="10" id="descripcionLicitacion">--</textarea>
         </div>
     </div>
     <div class="col-lg-10 d-flex mt-5">
         <div class="col-4">
             <p><strong>Dirección</strong></p>
-            <p>
-                Calle Los Pinos #456, Urbanización Los Cerezos
+            <p id="direccionLicitacion">
+                --
             </p>
             <p><strong>Fecha de expiración</strong></p>
-            <p>27/05/23</p>
+            <p id="expiracionLicitacion">--</p>
             @if (Session["Role"] != null)
             {
                 if ((Session["Role"].ToString() == "Administrador" || Session["Role"].ToString() == "Analista"))
                 {
                     <p><strong>Presupuesto</strong></p>
-                    <p>CRC 750,000</p>
+                    <p id="presupuestoLicitacion">--</p>
                 }
             }
         </div>
@@ -49,14 +52,9 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row">Cemento</th>
-                        <td>250</td>
-                        <td>KG</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Madera</th>
-                        <td>1150</td>
-                        <td>Tabla(s)</td>
+                        <th scope="row">--</th>
+                        <td>--</td>
+                        <td>--</td>
                     </tr>
                 </tbody>
             </table>
@@ -67,6 +65,9 @@
             {
                 <div class="d-inline">
                     <button type="button" class="btn btn-outline-danger mt-4" id="btnAnularLicitacion">Anular</button>
+                </div>
+                <div class="d-inline">
+                    <button type="button" class="btn btn-outline-info mt-4" id="btnEditarLicitacion">Editar</button>
                 </div>
             }
         }

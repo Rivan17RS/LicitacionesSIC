@@ -1,4 +1,4 @@
-﻿
+﻿@model DTO.Licitaciones
 @{
     ViewBag.Title = "Crear Licitaciones";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,8 +11,10 @@
 
 
 <!--Formulario para mostrar datos de la lista-->
-<div class="row">
-    <form id="frmlicitacion align-items-center justify-content-center">
+<div class="row" onload="cargarLicitaciones">
+    @using (Html.BeginForm("CrearLicitacion", "Licitacion", FormMethod.Post, new { @id = "frmlicitacion", @class = "align-items-center justify-content-center" }))
+    {
+
         <fieldset>
             <div class="col-lg-8">
                 <h3>Datos Generales</h3>
@@ -23,43 +25,37 @@
 
                             <div>
                                 <label for="txtIdAnalista">ID Analista:</label>
-                                <input id="txtIdAnalista" type="text" class="form-control" ColumnDataName="IdAnalista" />
+                                @Html.TextBoxFor(licitacion => licitacion.IdAnalista, new { @class = "form-control", @id = "txtIdAnalista", @ColumnDataName = "IdAnalista"} )
                             </div>
 
                             <div>
                                 <label for="txtTitulo">Título:</label>
-                                <input id="txtTitulo" type="text" class="form-control" ColumnDataName="Titulo" />
+                                @Html.TextBoxFor(licitacion => licitacion.Titulo, new { @class = "form-control", @id = "txtTitulo", @ColumnDataName = "Titulo" })
                             </div>
 
                             <div>
                                 <label for="txtDescripcion">Descripción:</label>
-                                <textarea rows="3" id="txtDescripcion" type="text" class="form-control"
-                                          ColumnDataName="Descripcion"></textarea>
+                                @Html.TextAreaFor(licitacion => licitacion.Descripcion, new { @class = "form-control", @id = "txtDescripcion", @ColumnDataName = "Descripcion", @rows = "4" })
                             </div>
 
                             <div>
                                 <label for="txtLugarEntrega">Lugar de entrega:</label>
-                                <input id="txtLugarEntrega" type="text" class="form-control"
-                                       ColumnDataName="LugarEntrega" />
+                                @Html.TextBoxFor(licitacion => licitacion.LugarEntrega, new { @class = "form-control", @id = "txtLugarEntrega", @ColumnDataName = "LugarEntrega", type = "text" })
                             </div>
 
                             <div>
                                 <label for="txtFechaCierreOfertas">Cierre de ofertas:</label>
-                                <input id="txtFechaCierreOfertas" type="datetime" class="form-control"
-                                       ColumnDataName="FechaCierreOfertas" />
+                                @Html.TextBoxFor(licitacion => licitacion.FechaCierreOfertas, "{0:yyyy-MM-dd}", new { @class = "form-control", @id = "txtFechaCierreOfertas", @ColumnDataName = "FechaCierreOfertas", type = "date" })
                             </div>
 
                             <div>
                                 <label for="txtMontoPresupuestado">Presupuesto:</label>
-                                <input id="txtMontoPresupuestado" type="number" class="form-control"
-                                       ColumnDataName="MontoPresupuestado" />
+                                @Html.TextBoxFor(licitacion => licitacion.MontoPresupuestado, new { @class = "form-control", @id = "txtMontoPresupuestado", @ColumnDataName = "MontoPresupuestado", type = "number" })
                             </div>
 
                             <div class="form-group mt-5">
                                 <button type="reset" class="btn btn-outline-info" id="btnReset">Limpiar</button>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -68,7 +64,7 @@
         <fieldset>
             <div class="col-lg-8 col-producto">
                 <h3 class="mt-3">Productos</h3>
-                <div class="card bloque-producto my-4">
+                <div class="card bloque-producto my-4" id="numprod-0">
                     <div class="card-body">
                         <div class="form-group">
 
@@ -77,17 +73,6 @@
                                 <input id="licitacionId" type="text" class="form-control" ColumnDataName="Id" />
                             </div>
 
-                            <div class="form-group">
-                                <label for="licitacionProduct" class="form-label mt-4">Producto:</label>
-                                <input id="licitacionProduct" type="text" class="form-control"
-                                       ColumnDataName="Product" />
-                            </div>
-
-                            <div class="form-group">
-                                <label for="licitacionDescription" class="form-label mt-4">Descriptor:</label>
-                                <textarea rows="3" id="licitacionDescription" type="text" class="form-control"
-                                          ColumnDataName="Description"></textarea>
-                            </div>
 
                             <div class="form-group">
                                 <label for="licitacionQuantity" class="form-label mt-4">Cantidad:</label>
@@ -95,25 +80,18 @@
                                        ColumnDataName="Quantity" />
                             </div>
 
-                            <div class="form-group">
-                                <label for="licitacionPrice" class="form-label mt-4">Precio:</label>
-                                <input id="licitacionPrice" type="number" class="form-control" ColumnDataName="Price" />
-                            </div>
-
                             <div class="form-group mt-5">
                                 <button type="reset" class="btn btn-outline-info" id="btnReset">Limpiar</button>
                                 <button type="button" class="btn btn-outline-danger mx-2 remover-producto">Remover</button>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
         </fieldset>
         <div class="col-lg-8 mt-5">
             <button type="button" class="btn btn-outline-info mx-2 agregar-producto">Agregar Producto</button>
-            <button type="button" class="btn btn-outline-success mx-2" id="btnCrearLicitacion">Enviar</button>
+            <button type="submit" class="btn btn-outline-success mx-2" id="btnCrearLicitacion">Enviar</button>
         </div>
-    </form>
-    </div>
+    }
+</div>

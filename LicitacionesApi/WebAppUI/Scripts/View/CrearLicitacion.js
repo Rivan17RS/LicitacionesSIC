@@ -1,13 +1,13 @@
 ﻿function CrearLicitacion() {
 
     this.InitView = function () {
-        $("btnCrearLicitacion").click(function () {
+        $("btnCrearLicitacion").on(function () {
             var lic = new CrearLicitacion();
             lic.EnviarLicitacion();
         });
     }
 
-    
+
     this.EnviarLicitacion = function () {
         var licitacion = {}
         licitacion.IdAnalista = $('#txtIdAnalista').val();
@@ -30,35 +30,39 @@
             data: JSON.stringify(licitacion),
             hasContent: true
         }).done(function (apiResult) {
-                if (apiResult.Result === "OK")
-                    alert(apiResult.Message);
-                else
-                    alert("Fallo " + apiResult.Message);
+            if (apiResult.Result === "OK")
+                alert(apiResult.Message);
+            else
+                alert("Fallo " + apiResult.Message);
 
         }).fail(function () {
-                alert('Hubo un problema al crear la licitación');
-             });
+            alert('Hubo un problema al crear la licitación');
+        });
 
     }
 
-    
+
+    var counter = 1;
+
+    $(function () {
+        var views = new CrearLicitacion();
+        views.InitView();
+
+        //Funcion para agregar bloques de codigo en el form de productos
+        $(".agregar-producto").on(function () {
+            var nuevoBloqueProducto = $(".bloque-producto:first").clone();
+            nuevoBloqueProducto.find("input").val("");
+            $(".col-producto").append(nuevoBloqueProducto);
+            $(".bloque-producto:last").attr("id", "numprod-" + counter);
+            counter++
+
+        });
+
+        //Funcion para borrar el bloque de codigo de un producto (hasta el card)
+        $(document).on("click", ".remover-producto", function () {
+            if ($(".bloque-producto").length > 1) {
+                $(this).closest(".bloque-producto").remove();
+            }
+        });
+    });
 }
-
-$(document).ready(function () {
-    var views = new CrearLicitacion();
-    views.InitView();
-
-    //Funcion para agregar bloques de codigo en el form de productos
-    $(".agregar-producto").click(function () {
-        var nuevoBloqueProducto = $(".bloque-producto:first").clone();
-        nuevoBloqueProducto.find("input").val("");
-        $(".col-producto").append(nuevoBloqueProducto);
-    });
-
-    //Funcion para borrar el bloque de codigo de un producto (hasta el card)
-    $(document).on("click", ".remover-producto", function () {
-        if ($(".bloque-producto").length > 1) {
-            $(this).closest(".bloque-producto").remove();
-        }
-    });
-});
