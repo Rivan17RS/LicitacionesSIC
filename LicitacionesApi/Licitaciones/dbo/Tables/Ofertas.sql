@@ -1,6 +1,5 @@
 CREATE TABLE [dbo].[Ofertas] (
     [Id]                 INT             IDENTITY (1, 1) NOT NULL,
-    [IdOferta]           INT             NOT NULL,
     [IdUsuario]          INT             NOT NULL,
     [IdLicitacion]       INT             NOT NULL,
     [FechaEntrega]       DATETIME        NOT NULL,

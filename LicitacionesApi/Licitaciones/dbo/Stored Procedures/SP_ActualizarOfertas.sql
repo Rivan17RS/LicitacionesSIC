@@ -1,6 +1,5 @@
 ﻿CREATE PROCEDURE SP_ActualizarOfertas
 	@Id INT,
-	@IdOferta INT,
 	@IdLicitacion INT,
 	@IdUsuario INT,
 	@FechaEntrega DATETIME,
@@ -9,7 +8,7 @@
 AS
 BEGIN
 	UPDATE Ofertas
-	SET IdOferta = @IdOferta,
+	SET
 	IdLicitacion = @IdLicitacion,
 	IdUsuario = @IdUsuario,
 	FechaEntrega = @FechaEntrega,

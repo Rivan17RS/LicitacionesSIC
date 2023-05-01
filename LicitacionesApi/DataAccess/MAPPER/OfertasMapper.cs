@@ -23,6 +23,7 @@ namespace DataAccess.MAPPER
             oper.AddIntegerParam("IdUsuario", o.IdUsuario);
             oper.AddDateTimeParam("FechaEntrega", o.FechaEntrega);
             oper.AddDecimalParam("MontoTotal", o.MontoTotal);
+            oper.AddIntegerParam("IdUsrCreacion", o.IdUsuario);
 
             return oper;
         }

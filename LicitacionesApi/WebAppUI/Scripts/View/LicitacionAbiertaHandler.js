@@ -3,6 +3,10 @@ $(document).ready(function () {
     const urlParams = new URLSearchParams(window.location.search);
     const idLicitacion = urlParams.get('idLicitacion');
     CargarLicitacion(idLicitacion);
+
+    $('#CrearOferta').on('click', function () {
+        CrearOferta();
+    });
 });
 
 
@@ -54,7 +58,15 @@ function CargarProductosLicitaciones(IdLic) {
                 var promise = $.getJSON("https://licitaciones-api.azurewebsites.net/api/Producto/ObtenerProducto/" + productId)
                     .then(function (product) {
                         // Crea una fila por cada producto
-                        var row = "<tr><td>" + product.Nombre + "</td><td>" + value.Cantidad + "</td></tr>";
+                        var row = "<tr><td>" + product.Nombre + "</td><td>" + value.Cantidad + "</td>";
+
+                        if (rol == "Usuario") {
+                            row += "<td><input type='number' class='form-control form-control-sm' id='CantProd" + productId + "'></td><td><input type='number' class='form-control form-control-sm' id='PrecioProd" + productId + "'></td>";
+                        }
+
+                        row += "</tr>";
+
+
 
 
                         rows.push(row);
@@ -70,6 +82,11 @@ function CargarProductosLicitaciones(IdLic) {
             });
         },
     });
+
+}
+
+
+function CrearOferta() {
 
 }
 

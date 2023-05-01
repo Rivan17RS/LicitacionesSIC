@@ -3,5 +3,5 @@
 AS
 	SELECT *
 	FROM Ofertas
-	WHERE IdOferta = @IdOferta
+	WHERE Id = @IdOferta
 RETURN 0

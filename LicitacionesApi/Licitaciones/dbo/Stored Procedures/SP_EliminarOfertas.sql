@@ -9,5 +9,5 @@ BEGIN
 
 	-- Eliminar la Oferta
 	DELETE FROM Ofertas
-	WHERE IdOferta = @IdOferta;
+	WHERE Id = @IdOferta;
 END
