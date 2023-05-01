@@ -7,11 +7,13 @@ $(document).ready(function () {
             licitaciones = data;
             for (var i = 0; i < data.length; i++) {
                 var value = data[i];
-                $('#licitacion-dock').append('<div class="card m-2 licitation-card"><div class="card-body"><h4 class="card-title text-truncate">' + value.Titulo + '</h4><h6 class="card-subtitle mb-2 text-muted">' + value.Id + '</h6><p class="card-text text-truncate">' + value.Descripcion + '</p></div><div class="card-footer row justify-content-between pb-6"><div class="col-3"><span class="badge rounded-pill bg-info">' + value.Estado + '</span></div><div class="col-8 text-end"><a onclick="assignIdToTempData(' + value.Id + ')" href=\"/Licitacion/AbrirLicitacion" class=\"card-link\">Ver Licitaci&oacuten</a></div></div>');
+                $('#licitacion-dock').append('<div class="card m-2 licitation-card"><div class="card-body"><h4 class="card-title text-truncate">' + value.Titulo + '</h4><h6 class="card-subtitle mb-2 text-muted">' + value.Id + '</h6><p class="card-text text-truncate">' + value.Descripcion + '</p></div><div class="card-footer row justify-content-between pb-6"><div class="col-3"><span class="badge rounded-pill bg-info">' + value.Estado + '</span></div><div class="col-8 text-end"><a href="/Licitacion/AbrirLicitacion?idLicitacion=' + value.Id + '" class="card-link">Ver Licitacion</a></div></div>');
             }
         }
     });
 });
+
+
 
 /*
 function assignIdToTempData(id) {
