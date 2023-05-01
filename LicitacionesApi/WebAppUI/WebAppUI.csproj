@@ -198,7 +198,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\View\CargarLicitacionAbierta.js" />
+    <Content Include="Scripts\View\LicitacionAbiertaHandler.js" />
     <Content Include="Scripts\View\CargarLicitaciones.js" />
     <Content Include="Scripts\View\ActionsControl.js" />
     <Content Include="Scripts\View\Configuracion.js" />

@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    //Licitacion get info general
     return $.ajax({
         type: 'GET',
         url: "https://licitaciones-api.azurewebsites.net/api/Licitacion/ObtenerLicitacion/" + "4", //FORCED, TBR'd
@@ -15,9 +16,15 @@ $(document).ready(function () {
             $("#descripcionLicitacion").val(licitacion.Descripcion);
             $("#direccionLicitacion").text(licitacion.LugarEntrega);
             $("#expiracionLicitacion").text(FechaCierreOfertasCulled);
-            if ($("#presupuestoLicitacion") != null) {
-                $("#presupuestoLicitacion".text("CRC " + licitacion.MontoPresupuestado));
+            if ($("#presupuestoLicitacion").val() != null) {
+                $("#presupuestoLicitacion").text("CRC " + licitacion.MontoPresupuestado);
             }
         }
     });
+
+    //Licitacion get info tabla
+
+    //Oferta get info
+
+
 });
