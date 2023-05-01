@@ -34,19 +34,19 @@
                     </fieldset>
                 </form>
 
-
+                <!--MODAL PREMIUM-->
                 <div class="modal" id="premiumModal">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h2 class="modal-title">Editar Plan Premium</h2>
+                                <h2 class="modal-title">Membresía Premium</h2>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true"></span>
                                 </button>
                             </div>
                             <div class="modal-body">
                                 <form id="frmPremiumModal" class="form-group">
-                                    <h6>Actualice los datos del plan Premium</h6>
+                                    <h6>Datos del plan Premium</h6>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group" id="IdPremium">
@@ -139,8 +139,8 @@
             <div class="card-body">
                 <form id="frmRole" class="form-group">
                     <fieldset>
-                        <legend>Administrar Planes Premium</legend>
-                        <button type="submit" class="btn btn-outline-primary mt-4 bg-primary text-bg-primary" id="btnUpdateRole" onclick="CrearRole()">Crear Nuevo Rol</button>
+                        <legend>Administrar Roles</legend>
+                        <button type="submit" class="btn btn-outline-primary mt-4 bg-primary text-bg-primary" id="btnCrearRole">Crear Nuevo Rol</button>
                         <br>.<br />
                         <table id="TblRoles" class="table table-borderless table-striped">
                             <thead>
@@ -154,6 +154,55 @@
                         </table>
                     </fieldset>
                 </form>
+
+
+                <!--MODAL ROLES-->
+                <div class="modal" id="RolModal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title">Roles de Usuarios</h2>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="frmRolModal" class="form-group">
+                                    <h6>Datos del Rol</h6>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group" id="IdRol">
+                                                <label for="txtIdRol" class="form-label mt-4">Rol ID (solo lectura)</label>
+                                                <input id="txtIdRol" type="text" class="form-control form-control-sm" data-column-name="Id" readonly />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="txtNombreP" class="form-label mt-4" data-column-name="Nombre">Nombre del Rol</label>
+                                                <!--    <input id="txtNombreP" type="text" class="form-control form-control-sm" data-column-name="Nombre" /> -->
+                                                <select id="RolOption" class="form-control form-control-sm">
+                                                    <option value="0"> -- Seleccione una opción -- </option>
+                                                    <option value="1">Administrador</option>
+                                                    <option value="2">Analista</option>
+                                                    <option value="3">Usuario</option>
+                                                    <option value="4">Premium</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="txtEstadoR" class="form-label mt-4">Estado</label>
+                                                <textarea id="txtEstadoR" class="form-control" data-column-name="Estado"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="button" id="btnGuardarRol" class="btn btn-primary mt-4 bg-primary text-light">Guardar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
             </div>
         </div>
     </div>

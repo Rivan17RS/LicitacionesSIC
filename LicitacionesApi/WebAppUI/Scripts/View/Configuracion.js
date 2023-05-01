@@ -5,22 +5,22 @@
     }
 
     this.LoadAllPremium = function () {
-        var arrayColumns = [];
-        arrayColumns[0] = { 'data': 'Id' };
-        arrayColumns[1] = { 'data': 'Nombre' };
-        arrayColumns[2] = { 'data': 'Descripcion' };
-        arrayColumns[3] = { 'data': 'PrecioMensual' };
-        arrayColumns[4] = { 'data': 'Estado' };
-        arrayColumns[5] = {
-            'data': 'Configuracion',
-                'render': function (data, type, full, meta) {
-                    return '<div class="btn-group" role="group">' +
-                        '<button type="button" class="btn btn-sm btn-primary editar" data-toggle="tooltip" title="Editar"><i class="fas fa-pencil-alt"></i></button>' +
-                        '<button type="button" class="btn btn-sm btn-danger eliminar" data-toggle="tooltip" title="Eliminar"><i class="fas fa-trash-alt"></i></button>' +
-                        '</div>'
-                },
+            var arrayColumns = [];
+            arrayColumns[0] = { 'data': 'Id' };
+            arrayColumns[1] = { 'data': 'Nombre' };
+            arrayColumns[2] = { 'data': 'Descripcion' };
+            arrayColumns[3] = { 'data': 'PrecioMensual' };
+            arrayColumns[4] = { 'data': 'Estado' };
+            arrayColumns[5] = {
+                'data': 'Configuracion',
+                    'render': function (data, type, full, meta) {
+                        return '<div class="btn-group" role="group">' +
+                            '<button type="button" class="btn btn-sm btn-primary editar" data-toggle="tooltip" title="Editar"><i class="fas fa-pencil-alt"></i></button>' +
+                            '<button type="button" class="btn btn-sm btn-danger eliminar" data-toggle="tooltip" title="Eliminar"><i class="fas fa-trash-alt"></i></button>' +
+                            '</div>'
+                    },
 
-        },
+            },
 
         PremiumCargada = $('#TblPremium').DataTable({
             language: {
@@ -39,10 +39,6 @@
             columns: arrayColumns
         });
 
-
-
-   
-        //To be reviewed
 
         $('#btnCrearPremium').on('click', function () {
             $('#frmPremiumModal')[0].reset();
@@ -89,25 +85,26 @@
 
 function TablaRoles() {
 
-    var arrayColumns = [];
-    arrayColumns[0] = { 'data': 'Id' };
-    arrayColumns[1] = { 'data': 'Nombre' };
-    arrayColumns[2] = { 'data': 'Estado' };
-    arrayColumns[3] = {
-                        'data': 'Configuracion',
-                        'render': function (data, type, full, meta) {
-                            return '<div class="btn-group" role="group">' +
-                                '<button class="btn btn-sm btn-primary editar" data-toggle="tooltip" title="Editar"><i class="fas fa-pencil-alt"></i></button>' +
-                                '<button class="btn btn-sm btn-danger eliminar" data-toggle="tooltip" title="Eliminar"><i class="fas fa-trash-alt"></i></button>' +
-                                '</div>'
-                        },
-            
-    },
-
-    RolesCargado = $('#TblRoles').DataTable({
-            language: {
-                url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
+    
+        var arrayColumns = [];
+        arrayColumns[0] = { 'data': 'Id' };
+        arrayColumns[1] = { 'data': 'Nombre' };
+        arrayColumns[2] = { 'data': 'Estado' };
+        arrayColumns[3] = {
+            'data': 'Configuracion',
+            'render': function (data, type, full, meta) {
+                return '<div class="btn-group" role="group">' +
+                    '<button class="btn btn-sm btn-primary editar" data-toggle="tooltip" title="Editar"><i class="fas fa-pencil-alt"></i></button>' +
+                    '<button class="btn btn-sm btn-danger eliminar" data-toggle="tooltip" title="Eliminar"><i class="fas fa-trash-alt"></i></button>' +
+                    '</div>'
             },
+
+        },
+
+            RolesCargado = $('#TblRoles').DataTable({
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
+                },
                 ajax: {
                     method: "GET",
                     url: "https://licitaciones-api.azurewebsites.net/api/Role/ObtenerRoles",
@@ -118,12 +115,42 @@ function TablaRoles() {
                     }
                 },
                 columns: arrayColumns
-    })
 
+            })
 
+        $('#btnCrearRole').on('click', function () {
+            $('#frmRolModal')[0].reset();
+            $('#frmRolModal #IdRol').hide();
 
+            $('#btnGuardarRol').off('click').on('click', function () {
+                CrearRol();
+            });
+            $('#RolModal').modal('show');
+        })
 
- }
+        $('#TblRoles tbody').on('click', 'tr .editar', function () {
+            $('#frmRolModal')[0].reset();
+            var tr = $(this).closest('tr');
+            var data = RolesCargado.row(tr).data();
+            $('#txtIdRol').val(data.Id);
+            $('#RolOption').val(data.Nombre);
+            $('#txtEstadoR').val(data.Estado);
+            $('#frmRolModal #IdRol').show();
+            $('#RolModal').modal('show');
+            $('#btnGuardarRol').off('click').on('click', function () {
+                ActualizarRol();
+            });
+        });
+
+        $('#TblRoles tbody').on('click', 'tr .eliminar', function () {
+            var tr = $(this).closest('tr');
+            var data = RolesCargado.row(tr).data();
+            var RolId = data.Id;
+            EliminarRol(RolId);
+
+        }).css('cursor', 'pointer');
+    
+}
 
 
 
@@ -197,6 +224,74 @@ function EliminarPremium(Id) {
     }
 }
 
+
+
+
+function CrearRol() {
+    var cr = {};
+    cr.Nombre = $('#RolOption').val();
+    cr.Estado = $('#txtEstadoR').val();
+    cr.IdUsrCreacion = 5;
+    if (confirm("¿Está seguro que desea crear este Rol?")) {
+        $.ajax({
+            type: 'POST',
+            url: "https://licitaciones-api.azurewebsites.net/api/Role/CrearRole",
+            contentType: "application/json",
+            data: JSON.stringify(cr),
+            success: function (response) {
+                alert('Rol actualizado correctamente').reload();
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+                alert('Error, no se pudo crear');
+
+            }
+        });
+    }
+}
+
+
+function ActualizarRol() {
+    var cr = {};
+    cr.Id = $('#txtIdRol').val();
+    cr.Nombre = $('#RolOption').val();
+    cr.Estado = $('#txtEstadoR').val();
+    cr.IdUsrCreacion = 15;
+    if (confirm("¿Está seguro que desea crear este Rol?")) {
+        $.ajax({
+            type: 'POST',
+            url: "https://licitaciones-api.azurewebsites.net/api/Role/ActualizarRole",
+            contentType: "application/json",
+            data: JSON.stringify(cr),
+            success: function (response) {
+                alert('Rol actualizado correctamente').reload();
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+                alert('Error, no se pudo crear');
+
+            }
+        });
+    }
+}
+
+
+
+function EliminarRol(Id) {
+    if (confirm("¿Está seguro que desea eliminar el rol?")) {
+        $.ajax({
+            headers: {
+                'Accept': "application/json",
+                'Content-Type': "application/json"
+            },
+            type: 'POST',
+            url: "https://licitaciones-api.azurewebsites.net/api/Role/EliminarRole/" + Id,
+            success: function (response) {
+                alert('Rol eliminado');
+            }
+        });
+    }
+}
 
 
 $(document).ready(function () {
