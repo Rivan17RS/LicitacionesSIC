@@ -34,6 +34,43 @@ function CargarLicitacion(IdLic) {
 
 //Licitacion get info tabla
 function CargarProductosLicitaciones(IdLic) {
+    $.ajax({
+        searching: true,
+        language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
+        },
+        method: "GET",
+        url: "https://licitaciones-api.azurewebsites.net/api/DetalleLicitaciones/ObtenerDetalleLicitacionesId?IdLicitacion=" + IdLic,
+        contentType: "application/json;charset=utf-8",
+        success: function (data) {
+            var promises = [];
+            var rows = [];
+
+            // Itera sobre los detalles de la licitación
+            $.each(data, function (index, value) {
+                var productId = value.Idproducto;
+
+                // obtener el producto correspondiente
+                var promise = $.getJSON("https://licitaciones-api.azurewebsites.net/api/Producto/ObtenerProducto/" + productId)
+                    .then(function (product) {
+                        // Crea una fila por cada producto
+                        var row = "<tr><td>" + product.Nombre + "</td><td>" + value.Cantidad + "</td></tr>";
+
+
+                        rows.push(row);
+                    });
+
+
+                promises.push(promise);
+            });
+
+            // Cuando se resuelven todas las promesas se actualiza la tabla
+            Promise.all(promises).then(function () {
+                $("#tblLicProducts tbody").html(rows.join(""));
+            });
+        },
+    });
 
 }
-    //Oferta get info
+
+
