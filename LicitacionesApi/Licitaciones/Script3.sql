@@ -1,1 +1,6 @@
-﻿
+﻿CREATE PROCEDURE SP_ObtenerOfertas
+AS
+BEGIN
+    SELECT *
+    FROM Ofertas
+END

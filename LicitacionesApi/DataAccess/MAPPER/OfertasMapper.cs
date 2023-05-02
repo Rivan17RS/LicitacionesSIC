@@ -16,7 +16,7 @@ namespace DataAccess.MAPPER
             
              var oper = new SqlOperation()
             {
-                ProcedureName = "SP_CrearOferta"
+                ProcedureName = "SP_CrearOfertas"
             };
             var o = (Ofertas) entyDTO;
             oper.AddIntegerParam("IdLicitacion", o.IdLicitacion);
@@ -99,7 +99,6 @@ namespace DataAccess.MAPPER
             var oferta = new Ofertas()
             {
                 Id = Convert.ToInt32(row["Id"]),
-                IdOferta = Convert.ToInt32(row["IdOferta"]),
                 IdLicitacion = Convert.ToInt32(row["IdLicitacion"]),
                 IdUsuario = Convert.ToInt32(row["IdUsuario"]),
                 FechaEntrega = Convert.ToDateTime(row["FechaEntrega"]),

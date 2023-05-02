@@ -1,5 +1,4 @@
 ﻿CREATE PROCEDURE SP_CrearOfertas
-	@Id INT,
 	@IdLicitacion INT,
 	@IdUsuario INT,
 	@FechaEntrega DATETIME,
