@@ -20,7 +20,7 @@ namespace DataAccess.MAPPER
             var rol = (Roles)entyDTO;
             oper.AddIntegerParam("IdUsrCreacion", rol.IdUsrCreacion);
             oper.AddVarcharParam("Nombre", rol.Nombre);
-            oper.AddVarcharParam("Estado", rol.Estado);
+            oper.AddIntegerParam("Estado", rol.Estado);
             oper.AddDateTimeParam("FechaCreacion", DateTime.Now);
 
             return oper;
@@ -63,7 +63,7 @@ namespace DataAccess.MAPPER
 
             var rol = (Roles)entyDTO;
             oper.AddVarcharParam("Nombre", rol.Nombre);
-            oper.AddVarcharParam("Estado", rol.Estado);
+            oper.AddIntegerParam("Estado", rol.Estado);
 
             return oper;
         }
@@ -76,7 +76,7 @@ namespace DataAccess.MAPPER
             {
                 Id = Convert.ToInt32(row["Id"]),
                 Nombre = Convert.ToString(row["Nombre"]),
-                Estado = Convert.ToString(row["Estado"]),
+                Estado = Convert.ToInt32(row["Estado"]),
 
                 //necesario para todas las tablas
                 IdUsrCreacion = row["IdUsrCreacion"] != DBNull.Value ? Convert.ToInt32(row["IdUsrCreacion"]) : 0,
