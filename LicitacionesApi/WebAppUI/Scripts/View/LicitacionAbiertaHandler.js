@@ -118,7 +118,7 @@ function CrearOferta(idLic) {
             'Content-Type': "application/json"
         },
         type: 'POST',
-        url: "https://localhost:44369/api/Ofertas/CrearOfertas",
+        url: "https://licitaciones-api.azurewebsites.net/api/Ofertas/CrearOfertas",
         contentType: "application/json",
         data: JSON.stringify(ofer),
         success: function (response) {
@@ -166,7 +166,7 @@ function CrearDetalleOferta(IdOfer, IdProducto, Cantidad) {
             'Content-Type': "application/json"
         },
         type: 'POST',
-        url: "https://localhost:44369/api/DetalleOfertas/CrearDetalleOfertas",
+        url: "https://licitaciones-api.azurewebsites.net/api/DetalleOfertas/CrearDetalleOfertas",
         contentType: "application/json",
         data: JSON.stringify(dOfer),
         success: function (response) {
@@ -185,7 +185,7 @@ function CrearDetalleOferta(IdOfer, IdProducto, Cantidad) {
 function ObtenerUltimaOferta() {
     return new Promise(function (resolve, reject) {
         $.ajax({
-            url: "https://localhost:44369/api/Ofertas/ObtenerOfertas",
+            url: "https://licitaciones-api.azurewebsites.net/api/Ofertas/ObtenerOfertas",
             method: "GET",
             success: function (data) {
                 var ultimaOferta = data[data.length - 1];
