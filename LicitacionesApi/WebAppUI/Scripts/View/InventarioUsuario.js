@@ -104,7 +104,7 @@ var Table = {
                     'Content-Type': "application/json"
             },
             type: "GET",
-            url: "https://localhost:44369/api/StockProductos/GetProductoDetailsFromUser?userIdentificacion=" + userId,
+            url: "https://licitaciones-api.azurewebsites.net/api/StockProductos/GetProductoDetailsFromUser?userIdentificacion=" + userId,
                     contentType: "application/json;charset=utf-8",
             error: function (request, status, error) {
                 console.log("Error al cargar los datos detalles productos");
@@ -207,7 +207,7 @@ var Table = {
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
-            url: "https://localhost:44369/api/StockProductos/ActualizarProductoUsuario",
+            url: "https://licitaciones-api.azurewebsites.net/api/StockProductos/ActualizarProductoUsuario",
             data: JSON.stringify(producto),
             sucess: (success) => {
                 console.log(success.Content);
@@ -220,7 +220,7 @@ var Table = {
 
     eliminarProductoDB: function (producto) {
 
-        var url = `https://localhost:44369/api/StockProductos/EliminarProductoUsuario?IdUsuario=${producto.IdUsuario}&IdProducto=${producto.IdProducto}`
+        var url = `https://licitaciones-api.azurewebsites.net/api/StockProductos/EliminarProductoUsuario?IdUsuario=${producto.IdUsuario}&IdProducto=${producto.IdProducto}`
         console.log(url);
         $.ajax({
             type: "POST",
@@ -240,7 +240,7 @@ var Table = {
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
-            url: "https://localhost:44369/api/StockProductos/AnadirProductoUsuario?IdUsuario=",
+            url: "https://licitaciones-api.azurewebsites.net/api/StockProductos/AnadirProductoUsuario?IdUsuario=",
             data: JSON.stringify(producto),
             success: (success) => {
                 console.log(success.Content)

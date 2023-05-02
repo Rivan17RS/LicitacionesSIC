@@ -3,5 +3,5 @@
 	@IdProducto int
 AS
 BEGIN
-	DELETE FROM StockProducto WHERE IdUsuario = @IdUsuario AND IdProducto = @IdProducto
+	DELETE FROM StockProductos WHERE IdUsuario = @IdUsuario AND IdProducto = @IdProducto
 END
