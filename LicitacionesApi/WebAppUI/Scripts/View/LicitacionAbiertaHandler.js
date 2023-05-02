@@ -7,6 +7,9 @@ $(document).ready(function () {
     $('#CrearOferta').on('click', function () {
         CrearOferta(idLicitacion);
     });
+    $('#ModalOfertas').on('click', function () {
+        cargarOfertas();
+    });
 });
 
 
@@ -14,8 +17,7 @@ $(document).ready(function () {
 function CargarLicitacion(IdLic) {
     return $.ajax({
         type: 'GET',
-        url: "https://licitaciones-api.azurewebsites.net/api/Licitacion/ObtenerLicitacion/" + IdLic, //FORCED, TBR'd
-        // Need to find a way to move idlicitacion into tempdata from licitacion to use it here for the url
+        url: "https://licitaciones-api.azurewebsites.net/api/Licitacion/ObtenerLicitacion/" + IdLic, 
         contentType: "application/json",
         success: function (data) {
             licitacion = data;
@@ -198,4 +200,116 @@ function ObtenerUltimaOferta() {
         });
     });
 }
+
+function ObtenerOfertas() {
+    const urlParam = new URLSearchParams(window.location.search);
+    const idLic = urlParam.get('idLicitacion');
+
+    return $.ajax({
+        type: 'GET',
+        url: "https://licitaciones-api.azurewebsites.net/api/Ofertas/ObtenerOfertasPorIdLicitacion?IdLicitacion=" + idLic,
+        contentType: "application/json",
+    });
+}
+
+function ObtenerUsuarioId(IdUser) {
+    return $.ajax({
+        type: 'GET',
+        url: "https://licitaciones-api.azurewebsites.net/api/Usuario/ObtenerUsuarioID/" + IdUser,
+        contentType: "application/json",
+    });
+}
+
+function ObtenerDetalleOferta(IdOfer) {
+    return $.ajax({
+        type: 'GET',
+        url: "https://licitaciones-api.azurewebsites.net/api/DetalleOfertas/ObtenerDetalleOfertasPorIdOfer?IdOferta=" + IdOfer,
+        contentType: "application/json",
+    });
+}
+
+function ObtenerProducto(IdProduc) {
+    return $.ajax({
+        type: 'GET',
+        url: "https://licitaciones-api.azurewebsites.net/api/Producto/ObtenerProducto/" + IdProduc,
+        contentType: "application/json",
+    });
+}
+
+
+function cargarOfertas() {
+
+    //ObtenerOfertas().done(function (data) {
+    //    const ofertas = data;
+    //    const promises = [];
+
+    //    for (let i = 0; i < ofertas.length; i++) {
+    //        const oferta = ofertas[i];
+
+    //        const promiseUsuario = ObtenerUsuarioId(oferta.IdUsuario);
+    //        const promiseDetalleOferta = ObtenerDetalleOferta(oferta.Id);
+
+    //        promises.push(
+    //            $.when(promiseUsuario, promiseDetalleOferta).done(function (usuario, detallesOferta) {
+    //                const cardHeader = `<div class="card-header">
+    //                            <h3 class="mt-2">${usuario[0].Nombre + " " + usuario[0].Apellidos}</h3>
+    //                          </div>`;
+
+    //                let cardDetallesHtml = '';
+    //                for (let j = 0; j < detallesOferta.length; j++) {
+    //                    const detalleOferta = detallesOferta[j];
+    //                    const promiseProducto = ObtenerProducto(8);
+
+    //                    promises.push(
+    //                        $.when(promiseProducto).done((producto) => { 
+    //                            cardDetallesHtml += `<p>${producto.Nombre} - Cantidad: ${detalleOferta[j].Cantidad}</p>`;
+    //                        })
+    //                    );
+    //                }
+
+    //                const cardBody = `<div class="card-body">
+    //                          <form>
+    //                            <fieldset>
+    //                              <div class="form-check">
+    //                                <input class="form-check-input" onclick="return false;" type="checkbox" value="" checked id="offerChecksForm" />
+    //                                <label class="form-check-label" for="offerChecksForm">Presupuesto</label>
+    //                                <p>CRC ${oferta.Presupuesto}</p>
+    //                              </div>
+    //                              <div class="form-check">
+    //                                <input class="form-check-input" onclick="return false;" type="checkbox" value="" checked id="offerChecksForm" />
+    //                                <label class="form-check-label" for="offerChecksForm">Fecha de Entrega</label>
+    //                                <p>${oferta.FechaEntrega}</p>
+    //                              </div>
+    //                              <div class="form-check">
+    //                                <input class="form-check-input" onclick="return false;" type="checkbox" value="" id="offerChecksForm" />
+    //                                <label class="form-check-label" for="offerChecksForm">Detalle de la oferta</label>
+    //                                <br />
+    //                                ${cardDetallesHtml}
+    //                              </div>
+    //                            </fieldset>
+    //                          </form>
+    //                        </div>`;
+
+    //                const cardFooter = `<div class="card-footer row justify-content-between pb-6">
+    //                            <button type="button" class="btn btn-outline-primary my-4" id="btnAceptarLicitacion">Aceptar</button>
+    //                          </div>`;
+
+    //                const card = `<div class="card m-2">
+    //                      ${cardHeader}
+    //                      ${cardBody}
+    //                      ${cardFooter}
+    //                    </div>`;
+
+    //                $('.modal-body').append(card);
+    //            })
+    //        );
+    //    }
+
+    //    $.when.apply($, promises).done(function () {
+    //        console.log('Ofertas cargadas exitosamente');
+    //    });
+    //    $('#exampleModalToggle').show();
+    //});
+}
+
 

@@ -88,7 +88,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <div class="card m-2">
+                            @*<div class="card m-2">
                                 <div class="card-header">
                                     <h3 class="mt-2">Elizabeth Allen</h3>
                                 </div>
@@ -117,7 +117,7 @@
                                 <div class="card-footer row justify-content-between pb-6">
                                     <button type="button" class="btn btn-outline-primary my-4" id="btnAceptarLicitacion">Aceptar</button>
                                 </div>
-                            </div>
+                            </div>*@
                         </div>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
                     </div>
                 </div>
             </div>
-            <a class="btn btn-outline-primary w-25 mt-5" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Ofertas</a>
+            <a class="btn btn-outline-primary w-25 mt-5" data-bs-toggle="modal" id="ModalOfertas" role="button" >Ofertas</a>
         }
         else if (Session["Role"].ToString() == "Usuario")
         {

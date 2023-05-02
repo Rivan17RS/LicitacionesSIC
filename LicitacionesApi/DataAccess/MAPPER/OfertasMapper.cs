@@ -49,7 +49,15 @@ namespace DataAccess.MAPPER
 
             return oper;
         }
-
+        public SqlOperation GetRetrieveAllStatementByLic(int IdLic)
+        {
+            var oper = new SqlOperation()
+            {
+                ProcedureName = "SP_ObtenerOfertasLicitacion"
+            };
+            oper.AddIntegerParam("IdLicitacion", IdLic);
+            return oper;
+        }
         public SqlOperation GetRetrieveAllStatement(Ofertas o)
         {
             var oper = new SqlOperation()
