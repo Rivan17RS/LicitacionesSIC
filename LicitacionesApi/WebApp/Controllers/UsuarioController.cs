@@ -159,7 +159,7 @@ namespace WebApp.Controllers
 
             usr.ActualizarUsuario(usuario);
 
-            var URL = $"https://licitacionesapp.azurewebsites.net/IniciarSesion/CrearContrasenaNueva?correo={correo}&codigo={otp}";
+            var URL = $"https://licitacionesUI.azurewebsites.net/IniciarSesion/CrearContrasenaNueva?correo={correo}&codigo={otp}";
 
             usr.SendRecoveryEmail(correo, URL);
 
