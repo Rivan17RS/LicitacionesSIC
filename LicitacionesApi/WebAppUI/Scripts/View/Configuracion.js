@@ -83,6 +83,7 @@
 
 
 
+
 function TablaRoles() {
 
     
@@ -101,32 +102,32 @@ function TablaRoles() {
 
         },
 
-            RolesCargado = $('#TblRoles').DataTable({
-                language: {
-                    url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
-                },
-                ajax: {
-                    method: "GET",
-                    url: "https://licitaciones-api.azurewebsites.net/api/Role/ObtenerRoles",
-                    contentType: "application/json;charset=utf-8",
-                    dataSrc: function (json) {
-                        var jsonResult = { 'data': json };
-                        return jsonResult.data;
-                    }
-                },
-                columns: arrayColumns
 
-            })
+        RolesCargado = $('#TblRoles').DataTable({
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
+            },
+            ajax: {
+                method: "GET",
+                url: "https://licitaciones-api.azurewebsites.net/api/Role/ObtenerRoles",
+                contentType: "application/json;charset=utf-8",
+                dataSrc: function (json) {
+                    var jsonResult = { 'data': json };
+                    return jsonResult.data;
+                }
+            },
+            columns: arrayColumns
+
+        });
 
         $('#btnCrearRole').on('click', function () {
             $('#frmRolModal')[0].reset();
             $('#frmRolModal #IdRol').hide();
-
             $('#btnGuardarRol').off('click').on('click', function () {
                 CrearRol();
             });
             $('#RolModal').modal('show');
-        })
+        });
 
         $('#TblRoles tbody').on('click', 'tr .editar', function () {
             $('#frmRolModal')[0].reset();
@@ -149,7 +150,8 @@ function TablaRoles() {
             EliminarRol(RolId);
 
         }).css('cursor', 'pointer');
-    
+
+
 }
 
 
@@ -168,7 +170,7 @@ function CrearPremium() {
             contentType: "application/json",
             data: JSON.stringify(ap),
             success: function (response) {
-                alert('Plan actualizado correctamente');
+                alert('Plan creado exitosamente');
             },
             error: function (xhr, status, error) {
                 console.log(error);
@@ -201,7 +203,6 @@ function ActualizarPremium() {
             error: function (xhr, status, error) {
                 console.log(error);
                 alert('Error, no se pudo actualizar');
-
             }
         });
     }
@@ -239,7 +240,7 @@ function CrearRol() {
             contentType: "application/json",
             data: JSON.stringify(cr),
             success: function (response) {
-                alert('Rol actualizado correctamente').reload();
+                alert('Rol creado exitosamente');
             },
             error: function (xhr, status, error) {
                 console.log(error);
@@ -257,14 +258,14 @@ function ActualizarRol() {
     cr.Nombre = $('#RolOption').val();
     cr.Estado = $('#txtEstadoR').val();
     cr.IdUsrCreacion = 15;
-    if (confirm("¿Está seguro que desea crear este Rol?")) {
+    if (confirm("¿Está seguro que desea actualizar el Rol?")) {
         $.ajax({
             type: 'POST',
             url: "https://licitaciones-api.azurewebsites.net/api/Role/ActualizarRole",
             contentType: "application/json",
             data: JSON.stringify(cr),
             success: function (response) {
-                alert('Rol actualizado correctamente').reload();
+                alert('Rol actualizado correctamente');
             },
             error: function (xhr, status, error) {
                 console.log(error);
@@ -295,7 +296,6 @@ function EliminarRol(Id) {
 
 
 $(document).ready(function () {
- 
 
     var view = new TablaPremium();
     view.InitView();
