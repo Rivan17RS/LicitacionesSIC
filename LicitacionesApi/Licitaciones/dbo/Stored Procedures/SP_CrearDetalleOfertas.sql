@@ -1,10 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[SP_CrearDetalleOfertas]
-	@Id INT,
 	@IdOferta INT,
 	@IdProducto INT,
 	@Cantidad INT,
-	@IdUsrCreacion INT,
-	@FechaCreacion DATETIME
+	@IdUsrCreacion INT
 AS
 	BEGIN
 	SET NOCOUNT ON;
@@ -19,6 +17,6 @@ AS
 	@IdProducto,
 	@Cantidad,
 	@IdUsrCreacion,
-	@FechaCreacion
+	GETDATE()
 	);
 END

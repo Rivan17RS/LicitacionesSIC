@@ -55,9 +55,9 @@ namespace AppLogic
                 return new Response("Error, no se pudo eliminar", ex.Message, ResponseType.ERROR);
             }
         }
-        public DetalleOfertas ObtenerDetalleOfertasPorId(int IdOferta)
+        public List<DetalleOfertas> ObtenerDetalleOfertasPorId(int IdOferta)
         {
-            return _factory.RetrieveByIdOferta<DetalleOfertas>(IdOferta);
+            return _factory.RetrieveAllByOferta<DetalleOfertas>(IdOferta);
         }
 
         public List<DetalleOfertas> ObtenerDetalleOfertas()

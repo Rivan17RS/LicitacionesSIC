@@ -64,7 +64,8 @@ function CargarProductosLicitaciones(IdLic) {
                             row += "<td><input type='number' class='form-control form-control-sm cantidadProd' id='CantProd" + productId + "'></td><td><input type='number' class='form-control form-control-sm precioProd' id='PrecioProd" + productId + "'></td><td><input type='number' class='form-control form-control-sm montoProd' id='MontoProd" + productId + "' readonly></td>";
                         }
 
-                        row += "</tr>";
+                        row += "<td class='d-none' id='productoId'>" + productId + "</td></tr>";
+
 
                         rows.push(row);
                     });
@@ -100,12 +101,15 @@ function CargarProductosLicitaciones(IdLic) {
 
 
 function CrearOferta(idLic) {
+
     var ofer = {};
     ofer.IdLicitacion = idLic;
     ofer.IdUsuario = parseInt(IdUserSession);
     ofer.FechaEntrega = $('#FechaEntregaOfer').val()
     ofer.MontoTotal = $('#MontoOfer').val();
     ofer.IdUsrCreacion = parseInt(IdUserSession);
+
+    
 
 
     $.ajax({
@@ -114,18 +118,24 @@ function CrearOferta(idLic) {
             'Content-Type': "application/json"
         },
         type: 'POST',
-        url: "https://localhost:44369//api/Ofertas/CrearOfertas",
+        url: "https://localhost:44369/api/Ofertas/CrearOfertas",
         contentType: "application/json",
         data: JSON.stringify(ofer),
         success: function (response) {
-            alert('Oferta creada correctamente');
+            ObtenerUltimaOferta().then(function (Ofer) {
+                $('#tblLicProducts tbody tr').each(function () {
+                    var IdProducto = $(this).find('#productoId').text();
+                    var Cantidad = $(this).find('.cantidadProd').val();
+                    CrearDetalleOferta(Ofer.Id, IdProducto, Cantidad);
+                });
+            });
         },
         error: function (xhr, status, error) {
             console.log(error);
             alert('Error, no se pudo crear');
-
         }
     });
+
 
 }
 
@@ -143,5 +153,49 @@ function sumarMonto() {
     $("#MontoOfer").val(montoTotal);
 }
 
+function CrearDetalleOferta(IdOfer, IdProducto, Cantidad) {
+    var dOfer = {};
+    dOfer.IdOferta = IdOfer;
+    dOfer.IdProducto = IdProducto;
+    dOfer.Cantidad = Cantidad;
+    dOfer.IdUsrCreacion = parseInt(IdUserSession);
 
+    $.ajax({
+        headers: {
+            'Accept': "application/json",
+            'Content-Type': "application/json"
+        },
+        type: 'POST',
+        url: "https://localhost:44369/api/DetalleOfertas/CrearDetalleOfertas",
+        contentType: "application/json",
+        data: JSON.stringify(dOfer),
+        success: function (response) {
+            console.log(response);
+
+        },
+        error: function (xhr, status, error) {
+            console.log(error);
+
+        }
+    });
+
+}
+
+
+function ObtenerUltimaOferta() {
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            url: "https://localhost:44369/api/Ofertas/ObtenerOfertas",
+            method: "GET",
+            success: function (data) {
+                var ultimaOferta = data[data.length - 1];
+                resolve(ultimaOferta);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log("Error en la llamada AJAX: " + errorThrown);
+                reject(errorThrown);
+            }
+        });
+    });
+}
 

@@ -20,7 +20,7 @@ namespace DataAccess.MAPPER
             oper.AddIntegerParam("IdOferta", d.IdOferta);
             oper.AddIntegerParam("IdProducto", d.IdProducto);
             oper.AddIntegerParam("Cantidad", d.Cantidad);
-            
+            oper.AddIntegerParam("IdUsrCreacion", d.IdUsrCreacion);
             return oper;
         }
 
@@ -63,12 +63,13 @@ namespace DataAccess.MAPPER
         {
             var oper = new SqlOperation()
             {
-                ProcedureName = "SP_ObtenerDetalleOfertasPorIdentificacion"
+                ProcedureName = "SP_ObtenerDetalleOfertasPorOferta"
             };
             oper.AddIntegerParam("IdOferta", IdOferta);
 
             return oper;
         }
+
 
         public SqlOperation GetUpdateStatement(BaseEntity entyDTO)
         {
@@ -87,7 +88,7 @@ namespace DataAccess.MAPPER
         {
             var DeOfr = new DetalleOfertas()
             {
-                Id = Convert.ToInt32(row["ID"]),
+                Id = Convert.ToInt32(row["Id"]),
                 IdOferta = Convert.ToInt32(row["IdOferta"]),
                 IdProducto = Convert.ToInt32(row["IdProducto"]),
                 Cantidad = Convert.ToInt32(row["Cantidad"]),
