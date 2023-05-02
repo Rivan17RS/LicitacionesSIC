@@ -9,7 +9,7 @@ namespace DTO
     public class Roles:BaseEntity
     {
         public string Nombre { get; set; }
-        public string Estado { get; set; }
+        public int Estado { get; set; }
 
     }
 }

@@ -96,42 +96,6 @@
 
 
 
-@*<fieldset>
-        <legend>Actualizar Plan Premium</legend>
-
-        <div class="form-group">
-            <label for="PremiumId" class="form-label mt-4">Premium ID</label>
-            <input type="text" class="form-control" id="IdPremium" readonly>
-        </div>
-
-        <div class="form-group">
-            <label for="PremiumNombre" class="form-label mt-4">Nombre Membresía</label>
-            <input type="text" class="form-control" id="NombreP" placeholder="Actualice el nombre">
-        </div>
-
-        <div class="form-group">
-            <label for="PremiumCosto" class="form-label mt-4">Nuevo Monto</label>
-            <input type="number" class="form-control" id="costoP" placeholder="Actualice el costo mensual">
-        </div>
-
-        <div class="form-group">
-            <label for="PremiumDescripcion" class="form-label mt-4">Nueva Descripción</label>
-            <input type="text" class="form-control" id="descripcionP" placeholder="Actualizar la descripción">
-        </div>
-
-        <button type="submit" class="btn btn-outline-primary mt-4 bg-primary text-bg-primary" id="btnPremium">Actualizar </button>
-
-
-                                    <select id="RoleOption" class="form-control form-control-sm">
-                                    <option value="0"> -- Seleccione una opción -- </option>
-                                    <option value="1">Administrador</option>
-                                    <option value="2">Analista</option>
-                                    <option value="3">Usuario</option>
-                                    <option value="4">Premium</option>
-                                </select>
-
-    </fieldset>*@
-
 
 <div class="row align-items-center justify-content-center">
     <div class="col-lg-10">
@@ -176,19 +140,17 @@
                                                 <input id="txtIdRol" type="text" class="form-control form-control-sm" data-column-name="Id" readonly />
                                             </div>
                                             <div class="form-group">
-                                                <label for="txtNombreP" class="form-label mt-4" data-column-name="Nombre">Nombre del Rol</label>
-                                                <!--    <input id="txtNombreP" type="text" class="form-control form-control-sm" data-column-name="Nombre" /> -->
-                                                <select id="RolOption" class="form-control form-control-sm">
-                                                    <option value="0"> -- Seleccione una opción -- </option>
-                                                    <option value="1">Administrador</option>
-                                                    <option value="2">Analista</option>
-                                                    <option value="3">Usuario</option>
-                                                    <option value="4">Premium</option>
-                                                </select>
+                                                <label for="txtNombreR" class="form-label mt-4" data-column-name="Nombre">Nombre del Rol</label>
+                                                <input id="txtNombreR" type="text" class="form-control form-control-sm" data-column-name="Nombre" />
                                             </div>
                                             <div class="form-group">
-                                                <label for="txtEstadoR" class="form-label mt-4">Estado</label>
-                                                <input id="txtEstadoR" type="number" class="form-control form-control-sm" data-column-name="Estado"/>
+                                                <label for="txtEstadoR" class="form-label mt-4" data-column-name="Estado">Estado</label>
+                                                <!--    <input id="txtEstadoR" type="number" class="form-control form-control-sm" data-column-name="Estado" /> -->
+                                                <select id="txtEstadoR" class="form-control form-control-sm">
+                                                    <option value="0"> -- Seleccione una opción -- </option>
+                                                    <option value="1">1 - (True)</option>
+                                                    <option value="2">2 - (False)</option>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <button type="button" id="btnGuardarRol" class="btn btn-primary mt-4 bg-primary text-light">Guardar</button>

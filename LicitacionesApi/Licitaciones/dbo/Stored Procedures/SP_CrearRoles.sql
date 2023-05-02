@@ -2,7 +2,7 @@
 (
     @IdUsrCreacion INT,
     @Nombre VARCHAR(50),
-    @Estado VARCHAR(50)
+    @Estado BIT
 )
 AS
 BEGIN

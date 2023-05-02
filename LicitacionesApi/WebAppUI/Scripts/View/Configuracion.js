@@ -95,8 +95,8 @@ function TablaRoles() {
             'data': 'Configuracion',
             'render': function (data, type, full, meta) {
                 return '<div class="btn-group" role="group">' +
-                    '<button class="btn btn-sm btn-primary editar" data-toggle="tooltip" title="Editar"><i class="fas fa-pencil-alt"></i></button>' +
-                    '<button class="btn btn-sm btn-danger eliminar" data-toggle="tooltip" title="Eliminar"><i class="fas fa-trash-alt"></i></button>' +
+                    '<button type="button" class="btn btn-sm btn-primary editar" data-toggle="tooltip" title="Editar"><i class="fas fa-pencil-alt"></i></button>' +
+                    '<button type="button" class="btn btn-sm btn-danger eliminar" data-toggle="tooltip" title="Eliminar"><i class="fas fa-trash-alt"></i></button>' +
                     '</div>'
             },
 
@@ -134,7 +134,7 @@ function TablaRoles() {
             var tr = $(this).closest('tr');
             var data = RolesCargado.row(tr).data();
             $('#txtIdRol').val(data.Id);
-            $('#RolOption').val(data.Nombre);
+            $('#txtNombreR').val(data.Nombre);
             $('#txtEstadoR').val(data.Estado);
             $('#frmRolModal #IdRol').show();
             $('#RolModal').modal('show');
@@ -230,7 +230,7 @@ function EliminarPremium(Id) {
 
 function CrearRol() {
     var cr = {};
-    cr.Nombre = $('#RolOption').val();
+    cr.Nombre = $('#txtNombreR').val();
     cr.Estado = $('#txtEstadoR').val();
     cr.IdUsrCreacion = 5;
     if (confirm("¿Está seguro que desea crear este Rol?")) {
@@ -255,7 +255,7 @@ function CrearRol() {
 function ActualizarRol() {
     var cr = {};
     cr.Id = $('#txtIdRol').val();
-    cr.Nombre = $('#RolOption').val();
+    cr.Nombre = $('#txtNombreR').val();
     cr.Estado = $('#txtEstadoR').val();
     cr.IdUsrCreacion = 15;
     if (confirm("¿Está seguro que desea actualizar el Rol?")) {
