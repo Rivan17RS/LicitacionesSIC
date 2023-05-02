@@ -13,6 +13,5 @@ namespace DTO
         public int IdUsuario { get; set; }
         public DateTime FechaEntrega { get; set; }
         public decimal MontoTotal { get; set; }
-        public List<DetalleOfertas> DetalleOfertas { get; set;}
     }
 }

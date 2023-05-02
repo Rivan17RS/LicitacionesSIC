@@ -1,7 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[SP_ObtenerDetalleOfertasPorOferta]
 	@IdOferta INT
 AS
+begin
 	SELECT *
-	FROM Ofertas
-	WHERE Id = @IdOferta
-RETURN 0
+	FROM DetalleOfertas
+	WHERE IdOferta = @IdOferta
+
+end

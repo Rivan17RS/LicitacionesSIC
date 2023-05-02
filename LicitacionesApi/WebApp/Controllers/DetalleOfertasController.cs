@@ -30,7 +30,7 @@ namespace WebApp.Controllers
 
         [HttpGet]
 
-        public DetalleOfertas ObtenerDetalleOfertasPorId(int IdOferta)
+        public List<DetalleOfertas> ObtenerDetalleOfertasPorIdOfer(int IdOferta)
         {
             return _Manager.ObtenerDetalleOfertasPorId(IdOferta);
         }
