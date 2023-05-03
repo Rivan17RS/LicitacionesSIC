@@ -71,7 +71,10 @@ function mostrarDetallesLicitacion(idLicitacion) {
             $.each(data, function (index, value) {
                 var promise = $.getJSON("https://licitaciones-api.azurewebsites.net/api/Producto/ObtenerProducto/" + value.Idproducto)
                     .then(function (product) {
+                        console.log("producto: " + product)
                         return '<tr><td><div class="form-check"><input class="form-check-input" type="checkbox" name="producto' + value.Idproducto + '"></div></td><td>' + (product ? product.Nombre : "Error al obtener producto") + '</td><td><input type="number" class="form-control form-control-sm" value="' + value.Cantidad + '" readonly></td><td><input  type="number" class="form-control form-control-sm"  name="producto' + value.Idproducto + '_cantidad" id="producto' + value.Idproducto + '"></td><td><select class="form-control form-control-sm" name="producto' + value.Idproducto + '_estado"><option value=""></option><option value="bien">Bien</option><option value="danado">Dañado</option><option value="incompleto">Incompleto</option><option value="faltante">Faltante</option></select></td></tr>';
+                    }).catch(() => {
+                        console.log("Error");
                     });
                 promises.push(promise);
             });
@@ -107,6 +110,9 @@ function ObtenerLicitacion() {
 function ActualizarLicitacion(estado) {
     ObtenerLicitacion().then(function (lic) {
         lic.Estado = estado;
+        console.log(lic)
+        console.log(estado)
+
         if (confirm("¿Está seguro que desea actualizar esta Licitación?")) {
             $.ajax({
                 headers: {

@@ -129,6 +129,7 @@ function CrearOferta(idLic) {
                     var IdProducto = $(this).find('#productoId').text();
                     var Cantidad = $(this).find('.cantidadProd').val();
                     CrearDetalleOferta(Ofer.Id, IdProducto, Cantidad);
+                    
                 });
             });
         },
@@ -173,6 +174,7 @@ function CrearDetalleOferta(IdOfer, IdProducto, Cantidad) {
         data: JSON.stringify(dOfer),
         success: function (response) {
             console.log(response);
+            location.reload();
 
         },
         error: function (xhr, status, error) {
