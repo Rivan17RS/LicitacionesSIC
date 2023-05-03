@@ -1,4 +1,4 @@
-﻿ALTER PROCEDURE SP_ActualizarRoles
+﻿CREATE PROCEDURE SP_ActualizarRoles
 (
     @Id INT,
     @Nombre VARCHAR(50),

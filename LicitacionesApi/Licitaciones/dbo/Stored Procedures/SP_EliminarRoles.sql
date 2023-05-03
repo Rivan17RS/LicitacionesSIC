@@ -1,7 +1,7 @@
-﻿CREATE PROCEDURE SP_EliminarAdjudicacion
+﻿CREATE PROCEDURE SP_EliminarRoles
     @ID INT
 AS
 BEGIN
-    DELETE FROM Adjudicaciones
+    DELETE FROM Suscripciones
     WHERE Id = @ID
 END

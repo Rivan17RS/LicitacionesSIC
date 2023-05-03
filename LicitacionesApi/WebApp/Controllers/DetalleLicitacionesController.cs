@@ -12,19 +12,10 @@ namespace WebApp.Controllers
     public class DetalleLicitacionesController : ApiController
     {
         [HttpPost]
-        public string CrearDetalleLicitacion(int IdLicitacion, int IdProducto, int Cantidad,
-            int IdUsrCreacion)
+        public string CrearDetalleLicitacion(DetalleLicitaciones detalle)
         {
             var dlm = new DetalleLicitacionesManager();
-            var d = new DetalleLicitaciones()
-            {
-                IdLicitacion = IdLicitacion,
-                Idproducto = IdProducto,
-                Cantidad = Cantidad,
-                IdUsrCreacion = IdUsrCreacion
-            };
-
-            return dlm.CrearDetalleLicitacion(d);
+            return dlm.CrearDetalleLicitacion(detalle);
         }
 
         [HttpGet]

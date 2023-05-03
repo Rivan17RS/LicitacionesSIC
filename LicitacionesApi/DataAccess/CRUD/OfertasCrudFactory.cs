@@ -59,19 +59,6 @@ namespace DataAccess.CRUD
             return default(T);
         }
 
-        public T RetrieveByIdLicitacion<T>(int IdLicitacion)
-        {
-            var dataResult = dao.ExecuteQueryProcedureWithQuery(mapper.GetRetrieveByIDStatement(IdLicitacion));
-            if (dataResult.Count > 0)
-            {
-                var objPO = mapper.BuildObjects(dataResult);
-                foreach (var po in objPO)
-                {
-                    return (T)Convert.ChangeType(po, typeof(T));
-                }
-            }
-            return default(T);
-        }
 
         public override T RetrieveByID<T>(int Id)
         {
@@ -91,7 +78,17 @@ namespace DataAccess.CRUD
 
         public override List<T> RetrieveByLicitacion<T>(int Id)
         {
-            throw new NotImplementedException();
+            var lstResult = new List<T>();
+            var dataResult = dao.ExecuteQueryProcedureWithQuery(mapper.GetRetrieveAllStatementByLic(Id));
+            if (dataResult.Count > 0)
+            {
+                var objPO = mapper.BuildObjects(dataResult);
+                foreach (var po in objPO)
+                {
+                    lstResult.Add((T)Convert.ChangeType(po, typeof(T)));
+                }
+            }
+            return lstResult;
         }
 
         public override void Update(BaseEntity entityDto)

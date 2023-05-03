@@ -60,9 +60,9 @@ namespace AppLogic
         {
             return _factory.RetrieveByIdOferta<Ofertas>(IdOferta);
         }
-        public Ofertas ObtenerOfertasPorIdLicitacion(int IdLicitacion)
+        public List<Ofertas> ObtenerOfertasPorIdLicitacion(int IdLicitacion)
         {
-            return _factory.RetrieveByIdOferta<Ofertas>(IdLicitacion);
+            return _factory.RetrieveByLicitacion<Ofertas>(IdLicitacion);
         }
 
         public List<Ofertas> ObtenerOfertas()

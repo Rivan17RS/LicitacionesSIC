@@ -4,7 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script src="~/Scripts/View/CrearLicitaciones.js"></script>
 <script src="~/Scripts/View/CargarLicitaciones.js"></script>
 
 
@@ -19,28 +18,16 @@
     }
 }
 
+
+<!--if (Session["Role"].ToString() == "Usuario")
+{-->
+<h2 class="my-5 text-primary">Nuevo</h2>
+<div id="licitacion-dock" class="card-columns"></div>
 @if (Session["Role"] != null)
 {
-    <!--if (Session["Role"].ToString() == "Usuario")
-    {-->
-    <h2 class="my-5 text-primary">Nuevo</h2>
-    <div id="licitacion-dock" class="card-columns"></div>
-    <!--<div class="card m-2 licitation-card">
-        <div class="card-body">
-            <h4 class="card-title text-truncate">
-                Licitación de suministro de materiales de construcción para proyectos educativos
-            </h4>
-            <h6 class="card-subtitle mb-2 text-muted">613846</h6>
-            <p class="card-text text-truncate">Estamos buscando proveedores para suministrar 250kg de cemento y 1150 tablones de madera para nuestras próximas construcciones en la institución. La entrega de estos materiales es vital para garantizar el avance de nuestros proyectos de construcción y mejora de infraestructuras.</p>
-        </div>
-        <div class="card-footer row justify-content-between pb-6">
-            <div class="col-3">
-                <span class="badge rounded-pill bg-info">Adjudicado</span>
-            </div>
-            <div class="col-8 text-end">
-                <a>@Html.ActionLink("Ver Licitación", "AbrirLicitacion", "Licitacion", new { area = "" }, new { @class = "card-link" })</a>
-            </div>
-        </div>
-    </div>
-}-->
+    <a> @Html.ActionLink("Ver Licitación", "AbrirLicitacion", "Licitacion", new { area = "" }, new { @class = "card-link" })</a>
 }
+
+
+
+

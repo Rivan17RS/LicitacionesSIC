@@ -12,3 +12,15 @@ BEGIN
     INNER JOIN Productos P ON DL.IdProducto = P.Id
     WHERE A.Id = @AdjudicacionID
 END
+
+
+
+CREATE PROCEDURE [dbo].[SP_ObtenerDetalleOfertasPorOferta]
+	@IdOferta INT
+AS
+begin
+	SELECT *
+	FROM DetalleOfertas
+	WHERE IdOferta = @IdOferta
+
+end

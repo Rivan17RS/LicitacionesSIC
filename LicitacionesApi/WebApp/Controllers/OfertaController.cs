@@ -34,10 +34,10 @@ namespace WebApp.Controllers
         {
             return _Manager.ObtenerOfertasPorId(Id);
         }
-
-        public Ofertas ObtenerOfertasPorIdLicitacion(int IdLicitacion)
+        [HttpGet]
+        public List<Ofertas> ObtenerOfertasPorIdLicitacion(int IdLicitacion)
         {
-            return _Manager.ObtenerOfertasPorId(IdLicitacion);
+            return _Manager.ObtenerOfertasPorIdLicitacion(IdLicitacion);
         }
 
         public Ofertas ObtenerOfertasPorIdOferta(int IdOferta)

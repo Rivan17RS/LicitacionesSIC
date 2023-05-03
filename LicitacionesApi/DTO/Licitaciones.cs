@@ -17,8 +17,6 @@ namespace DTO
         public string Estado { get; set; }
         public string CodigoQR { get; set; }
 
-        public List<DetalleLicitaciones> DetalleLicitaciones { get; set; }
-
 
     }
 }
