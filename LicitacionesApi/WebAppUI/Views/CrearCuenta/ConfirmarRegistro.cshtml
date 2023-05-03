@@ -62,12 +62,15 @@
                                 var emptyErrorMessage = "Campo no puede quedar vacio";
                             }
 
-                            <div class="form-group" id="identificationNumberInput">
-                                @Html.LabelFor(model => model.Identificacion, new { @class = "form-label mt-4" })
-                                @Html.TextBoxFor(model => model.Identificacion, new { @class = "form-control", @placeholder = "Ingrese su identificación" })
-                                @Html.ValidationMessage("nombre", emptyErrorMessage, new { @class = "text-danger emptyValidationMessage" })
-                                @Html.ValidationMessage("nombre", "Solo se permite numeros", new { @class = "text-danger formatValidationMessage" })
-                            </div>
+                        <div class="form-group" id="identificationNumberInput">
+                            @Html.LabelFor(model => model.Identificacion, new { @class = "form-label mt-4" })
+                            @Html.TextBoxFor(model => model.Identificacion, new { @class = "form-control", @placeholder = "Ingrese su identificación" })
+                            @Html.ValidationMessage("nombre", emptyErrorMessage, new { @class = "text-danger emptyValidationMessage" })
+                            @Html.ValidationMessage("nombre", "Solo se permite numeros", new { @class = "text-danger formatValidationMessage" })
+                            <small id="passwordHelp" class="form-text text-muted">
+                                Ejemplo: 101790200 (sin espacios).
+                            </small>
+                        </div>
 
                             <div class="form-group" id="otpInput">
                                 @Html.LabelFor(model => model.Otp, new { @class = "form-label mt-4" })
