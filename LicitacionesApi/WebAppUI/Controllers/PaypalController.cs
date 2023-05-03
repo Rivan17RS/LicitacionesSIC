@@ -110,8 +110,8 @@ namespace WebAppUI.Controllers
                         brand_name = "SIC-Premium",
                         landing_page = "NO_PREFERENCE",
                         user_action = "PAY_NOW", //Accion para que paypal muestre el monto de pago
-                        return_url = "https://localhost:44304/Paypal/PaypalConfirm",// cuando se aprobo la solicitud del cobro
-                        cancel_url = "https://localhost:44304/Premium/Premium"// cuando cancela la operacion
+                        return_url = "https://licitacionesui.azurewebsites.net/Paypal/PaypalConfirm",// cuando se aprobo la solicitud del cobro
+                        cancel_url = "https://licitacionesui.azurewebsites.net/Premium/Premium"// cuando cancela la operacion
                     }
                 };
 
