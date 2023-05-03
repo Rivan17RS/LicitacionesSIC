@@ -90,6 +90,7 @@ namespace AppLogic
             prod.Descripcion = p.Descripcion;
             prod.PrecioMensual = p.PrecioMensual;
             prod.Estado = p.Estado;
+            prod.IdUsrActualizacion = p.IdUsrActualizacion;
 
             try
             {

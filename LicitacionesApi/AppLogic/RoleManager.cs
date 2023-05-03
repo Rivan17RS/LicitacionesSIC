@@ -24,7 +24,9 @@ namespace AppLogic
             var rol = new Roles
             {
                 Nombre = r.Nombre,
-                Estado = r.Estado
+                Estado = r.Estado,
+                IdUsrCreacion = r.IdUsrCreacion
+ 
             };
 
             try

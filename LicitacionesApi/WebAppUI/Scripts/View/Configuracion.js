@@ -170,6 +170,7 @@ function CrearPremium() {
             contentType: "application/json",
             data: JSON.stringify(ap),
             success: function (response) {
+                location.reload();
                 alert('Plan creado exitosamente');
             },
             error: function (xhr, status, error) {
@@ -190,7 +191,7 @@ function ActualizarPremium() {
     ap.Descripcion = $('#txtDescripcionP').val();
     ap.PrecioMensual = $('#txtPrecioP').val();
     ap.Estado = $('#txtEstadoP').val()
-    ap.IdUsrActualizacion = 41;
+    ap.IdUsrActualizacion = parseInt(IdUserSession);
     if (confirm("¿Está seguro que desea actualizar este plan?")) {
         $.ajax({
             type: 'POST',
@@ -198,6 +199,7 @@ function ActualizarPremium() {
             contentType: "application/json",
             data: JSON.stringify(ap),
             success: function (response) {
+                location.reload();
                 alert('Plan actualizado correctamente');
             },
             error: function (xhr, status, error) {
@@ -219,6 +221,7 @@ function EliminarPremium(Id) {
             type: 'POST',
             url: "https://licitaciones-api.azurewebsites.net/api/Premium/EliminarPremium/" + Id,
             success: function (response) {
+                location.reload();
                 alert('Plan eliminado');
             }
         });
@@ -230,9 +233,10 @@ function EliminarPremium(Id) {
 
 function CrearRol() {
     var cr = {};
+    cr.Id = $('#txtIdRol').val();
     cr.Nombre = $('#txtNombreR').val();
     cr.Estado = $('#txtEstadoR').val();
-    cr.IdUsrCreacion = 5;
+    cr.IdUsrCreacion = parseInt(IdUserSession);
     if (confirm("¿Está seguro que desea crear este Rol?")) {
         $.ajax({
             type: 'POST',
@@ -240,6 +244,7 @@ function CrearRol() {
             contentType: "application/json",
             data: JSON.stringify(cr),
             success: function (response) {
+                location.reload();
                 alert('Rol creado exitosamente');
             },
             error: function (xhr, status, error) {
@@ -265,6 +270,7 @@ function ActualizarRol() {
             contentType: "application/json",
             data: JSON.stringify(cr),
             success: function (response) {
+                location.reload();
                 alert('Rol actualizado correctamente');
             },
             error: function (xhr, status, error) {
@@ -288,6 +294,7 @@ function EliminarRol(Id) {
             type: 'POST',
             url: "https://licitaciones-api.azurewebsites.net/api/Role/EliminarRole/" + Id,
             success: function (response) {
+                location.reload();
                 alert('Rol eliminado');
             }
         });
