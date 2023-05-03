@@ -50,8 +50,8 @@
                         @if (Session["Role"].ToString() == "Usuario")
                         {
                             <th scope="col">Cantidad oferta</th>
-                            <th scope="col">Precio unidad $</th>
-                            <th scope="col">Subtotal $</th>
+                            <th scope="col">Precio unidad CRC</th>
+                            <th scope="col">Subtotal CRC</th>
                         }
                     </tr>
                 </thead>
@@ -154,7 +154,7 @@
         else if (Session["Role"].ToString() == "Usuario")
         {
         <div style="display:flex; flex-direction:column; align-items:center;">
-            <label for="MontoOfer">Monto de la Oferta $</label>
+            <label for="MontoOfer">Monto de la Oferta CRC</label>
             <input type='number' class='form-control form-control-sm w-25' readonly id='MontoOfer' style="margin-bottom: 10px; ">
             <label for="FechaEntregaOfer">Fecha de Entrega</label>
             <input type='date' class='form-control form-control-sm w-25' id='FechaEntregaOfer' style="margin-bottom: 10px;">
