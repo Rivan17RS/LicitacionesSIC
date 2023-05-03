@@ -48,11 +48,12 @@ namespace DataAccess.MAPPER
                 ProcedureName = "SP_ActualizarPremium"
             };
             var p = (Subscripcion)entyDTO;
+            oper.AddIntegerParam("Id", p.Id);
             oper.AddVarcharParam("Nombre", p.Nombre);
             oper.AddVarcharParam("Descripcion", p.Descripcion);
             oper.AddDecimalParam("PrecioMensual", p.PrecioMensual);
             oper.AddIntegerParam("Estado", p.Estado);
-   
+            oper.AddIntegerParam("IdUsrActualizacion", p.IdUsrActualizacion);
             return oper;
         }
 

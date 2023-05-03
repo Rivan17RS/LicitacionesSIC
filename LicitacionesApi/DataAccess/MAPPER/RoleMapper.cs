@@ -21,7 +21,7 @@ namespace DataAccess.MAPPER
             oper.AddIntegerParam("IdUsrCreacion", rol.IdUsrCreacion);
             oper.AddVarcharParam("Nombre", rol.Nombre);
             oper.AddIntegerParam("Estado", rol.Estado);
-            oper.AddDateTimeParam("FechaCreacion", DateTime.Now);
+            //oper.AddDateTimeParam("FechaCreacion", DateTime.Now);
 
             return oper;
         }
@@ -62,9 +62,10 @@ namespace DataAccess.MAPPER
             oper.ProcedureName = "SP_ActualizarRoles";
 
             var rol = (Roles)entyDTO;
+            oper.AddIntegerParam("Id", rol.Id);
             oper.AddVarcharParam("Nombre", rol.Nombre);
             oper.AddIntegerParam("Estado", rol.Estado);
-
+            oper.AddIntegerParam("IdUsrActualizacion", rol.IdUsrActualizacion);
             return oper;
         }
 
